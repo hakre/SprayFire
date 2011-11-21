@@ -87,7 +87,7 @@
          * @return boolean
          */
         private function isFrameworkInterface($className) {
-            $regexPattern = '/^(SF_).+(IF)$/';
+            $regexPattern = '/^(SF_Is).+$/';
             $numMatches = preg_match($regexPattern, $className);
             return $this->didRegexMatch($numMatches);
         }
