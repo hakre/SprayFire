@@ -52,7 +52,7 @@ abstract class SF_BaseConfig implements SF_IsConfigurationStorage {
      * @return boolean
      */
     public function write($key, $value) {
-        $dataStorage[$key] = $value;
+        $this->dataStorage[$key] = $value;
         return isset($this->dataStorage[$key]);
     }
 
