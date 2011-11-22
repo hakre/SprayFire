@@ -60,6 +60,19 @@
             $this->doFrameworkCoreInclude($className);
         }
 
+
+        /**
+         * Will ensure that the application classes are properly loaded.
+         *
+         * @param string $className
+         */
+        private function appAutoload($className) {
+            $isBootstrapClass = $this->isAppBootstrapClass($className);
+            if ($isBootstrapClass) {
+                $this->doAppBootstrapInclude($className);
+            }
+        }
+
         /**
          * Determines if the $className belongs to a class considered part of the
          * framework.
@@ -134,18 +147,6 @@
             $fileName = $className . '.php';
             $path = $directory . DS . $fileName;
             include $path;
-        }
-
-        /**
-         * Will ensure that the application classes are properly loaded.
-         *
-         * @param string $className
-         */
-        private function appAutoload($className) {
-            $isBootstrapClass = $this->isAppBootstrapClass($className);
-            if ($isBootstrapClass) {
-                $this->doAppBootstrapInclude($className);
-            }
         }
 
         /**
