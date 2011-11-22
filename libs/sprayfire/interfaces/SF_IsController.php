@@ -53,6 +53,16 @@ interface SF_IsController {
     public function getModels();
 
     /**
+     * Returns an array listing the name of the helpers attached to the view for
+     * this controller.
+     *
+     * If there are no helpers listed this function return an empty array.
+     *
+     * @return array
+     */
+    public function getHelpers();
+
+    /**
      * A callback method that will be invoked for every request, as the name implies,
      * before the requested action is invoked.
      *

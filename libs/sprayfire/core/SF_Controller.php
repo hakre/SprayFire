@@ -45,6 +45,13 @@ abstract class SF_Controller extends SF_CoreObject implements SF_IsController {
     protected $models = array();
 
     /**
+     * A list of helpers to attach to the view.
+     *
+     * @var array
+     */
+    protected $helpers = array();
+
+    /**
      * The framework core configuration object.
      *
      * @var SF_CoreConfiguration
@@ -82,20 +89,6 @@ abstract class SF_Controller extends SF_CoreObject implements SF_IsController {
     }
 
     /**
-     * @return array
-     */
-    public function getComponents() {
-        return $this->components;
-    }
-
-    /**
-     * @return array
-     */
-    public function getModels() {
-        return $this->models;
-    }
-
-    /**
      * The framework callback that is invoked before the requested action.
      */
     public function beforeAction() {
@@ -128,6 +121,27 @@ abstract class SF_Controller extends SF_CoreObject implements SF_IsController {
      */
     public function getSafeViewData() {
         return $this->viewData['safeData'];
+    }
+
+    /**
+     * @return array
+     */
+    public function getComponents() {
+        return $this->components;
+    }
+
+    /**
+     * @return array
+     */
+    public function getModels() {
+        return $this->models;
+    }
+
+    /**
+     * @return array
+     */
+    public function getHelpers() {
+        return $this->helpers;
     }
 
 }
