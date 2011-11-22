@@ -32,7 +32,7 @@ interface SF_IsController {
      *
      * @return boolean
      */
-    public function giveToView(array $associateVars);
+    public function giveToView(array $associateVars, $isUnsafeData = true);
 
     /**
      * Returns an array listing the name of components attached to this controller.
@@ -61,7 +61,7 @@ interface SF_IsController {
      *
      * @return boolean
      */
-    public function beforeAction(SF_IsController &$Controller);
+    public function beforeAction();
 
     /**
      * A callback method that will be invoked for every request, that makes it
@@ -73,7 +73,23 @@ interface SF_IsController {
      *
      * @return boolean
      */
-    public function afterAction(SF_IsController &$Controller);
+    public function afterAction();
+
+    /**
+     * Should return an associative array holding the view data that should be
+     * escaped for HTML output.
+     *
+     * @return array
+     */
+    public function getUnsafeViewData();
+
+    /**
+     * Should return an associative array holding the view data that should NOT
+     * be escaped for HTML output.
+     *
+     * @return array
+     */
+    public function getSafeViewData();
 
 }
 
