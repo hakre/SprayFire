@@ -35,34 +35,6 @@ interface SF_IsController {
     public function giveToView(array $associateVars, $isUnsafeData = true);
 
     /**
-     * Returns an array listing the name of components attached to this controller.
-     *
-     * If there are no components listed this function should return an empty array.
-     *
-     * @return array
-     */
-    public function getComponents();
-
-    /**
-     * Returns an array listing the name of models attached to this controller.
-     *
-     * If there are no models listed this function should return an empty array.
-     *
-     * @return array
-     */
-    public function getModels();
-
-    /**
-     * Returns an array listing the name of the helpers attached to the view for
-     * this controller.
-     *
-     * If there are no helpers listed this function return an empty array.
-     *
-     * @return array
-     */
-    public function getHelpers();
-
-    /**
      * A callback method that will be invoked for every request, as the name implies,
      * before the requested action is invoked.
      *
@@ -100,6 +72,54 @@ interface SF_IsController {
      * @return array
      */
     public function getSafeViewData();
+
+    /**
+     * Returns an array listing the name of components attached to this controller.
+     *
+     * If there are no components listed this function should return an empty array.
+     *
+     * @return array
+     */
+    public function getComponents();
+
+    /**
+     * Returns an array listing the name of models attached to this controller.
+     *
+     * If there are no models listed this function should return an empty array.
+     *
+     * @return array
+     */
+    public function getModels();
+
+    /**
+     * Returns an array listing the name of the helpers attached to the view for
+     * this controller.
+     *
+     * If there are no helpers listed this function return an empty array.
+     *
+     * @return array
+     */
+    public function getHelpers();
+
+    /**
+     * Returns the name the layout template to be used for this request.
+     *
+     * This function may also return NULL if the controller does not set a specific
+     * layout template to used.
+     *
+     * @return mixed
+     */
+    public function getLayoutTemplate();
+
+    /**
+     * Returns the name of the content template to be used for this request.
+     *
+     * This function may also return NULL if the controller does not set a specific
+     * content template to be used.
+     *
+     * @return mixed
+     */
+    public function getContentTemplate();
 
 }
 

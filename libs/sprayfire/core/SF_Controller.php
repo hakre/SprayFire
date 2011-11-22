@@ -52,6 +52,20 @@ abstract class SF_Controller extends SF_CoreObject implements SF_IsController {
     protected $helpers = array();
 
     /**
+     * The name of the layout template to use.
+     *
+     * @var string
+     */
+    protected $contentTemplate;
+
+    /**
+     * The name of the content template to use.
+     *
+     * @var string
+     */
+    protected $layoutTemplate;
+
+    /**
      * The framework core configuration object.
      *
      * @var SF_CoreConfiguration
@@ -60,6 +74,16 @@ abstract class SF_Controller extends SF_CoreObject implements SF_IsController {
 
     /**
      * Ensures the data necessary for the class to function is properly initialized.
+     *
+     * If this method is overridden in child classes be sure to invoke the parent
+     * constructor, passing a SF_IsConfigurationStorage object to the constructor.
+     * For example, the constructor for child classes may look like:
+     *
+     *     public function __construct(SF_IsConfigurationStorage $CoreConfiguration) {
+     *         parent::__construct($CoreConfiguration);
+     *         // do your stuff here!
+     *     }
+     *
      *
      * @param SF_IsConfigurationStorage $CoreConfiguration
      */
@@ -142,6 +166,20 @@ abstract class SF_Controller extends SF_CoreObject implements SF_IsController {
      */
     public function getHelpers() {
         return $this->helpers;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLayoutTemplate() {
+        return $this->layoutTemplate;
+    }
+
+    /**
+     * @return string
+     */
+    public function getContentTemplate() {
+        return $this->contentTemplate;
     }
 
 }
