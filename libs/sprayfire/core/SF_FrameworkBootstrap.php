@@ -38,14 +38,27 @@ class SF_FrameworkBootstrap implements SF_IsBootstrapper {
      * app bootstrap objects.
      */
     public function runBootstrap() {
+        $this->writeCoreConfiguration();
         $this->runAppBootstrap();
+    }
+
+    /**
+     *
+     */
+    private function writeCoreConfiguration() {
+        $this->CoreConfiguration->write('default_controller', 'pages');
+        $this->CoreConfiguration->write('default_action', 'index');
+        $this->CoreConfiguration->write('default_controller_interface', 'SF_IsController');
+        $this->CoreConfiguration->write('database_config', 'DatabaseConfig');
+        $this->CoreConfiguration->write('error_controller', 'error');
+        $this->CoreConfiguration->write('error_action', 'index');
     }
 
     /**
      * Will get a list of app boostrap objects and invoke the runBootstrap() method
      * on the list of valid objects.
      */
-    protected function runAppBootstrap() {
+    private function runAppBootstrap() {
         $bootstrapObjects = $this->getAppBootstrapObjects();
         $this->runAllBootstraps($bootstrapObjects);
     }
