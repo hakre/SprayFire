@@ -27,8 +27,9 @@
          */
         public function setAutoloader() {
             $frameworkCallback = array($this, 'frameworkAutoload');
-
+            $appCallback = array($this, 'appAutoload');
             spl_autoload_register($frameworkCallback);
+            spl_autoload_register($appCallback);
         }
 
         /**
@@ -135,8 +136,36 @@
             include $path;
         }
 
+        /**
+         * Will ensure that the application classes are properly loaded.
+         *
+         * @param string $className
+         */
         private function appAutoload($className) {
+            $isBootstrapClass = $this->isAppBootstrapClass($className);
+            if ($isBootstrapClass) {
+                $this->doAppBootstrapInclude($className);
+            }
+        }
 
+        /**
+         * Determines if the class should be located in the app/bootstrap directory.
+         *
+         * @param string $className
+         * @return boolean
+         */
+        private function isAppBootstrapClass($className) {
+            $regexPattern = '/^.+(Bootstrap)$/';
+            $numMatches = preg_match($regexPattern, $className);
+            return $this->didRegexMatch($numMatches);
+        }
+
+        /**
+         * @param type $className
+         */
+        private function doAppBootstrapInclude($className) {
+            $directory = APP_PATH . DS . 'bootstrap';
+            $this->includeClassFromDirectory($className, $directory);
         }
 
         /**
