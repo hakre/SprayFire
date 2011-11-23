@@ -24,15 +24,18 @@ interface SF_IsController {
     public function __construct(SF_IsConfigurationStorage $CoreConfiguration);
 
     /**
-     * The only way to pass data to the view is through an associative array, with
-     * the name of the array key being the name of the variable in the view.
+     * The only way to pass data to the responding object is through an associative
+     * array.
      *
-     * Return a value to let the calling code know if the data was successfully
-     * handed off to the view.
+     * The method needs to have some way to handle whether or not the responder
+     * should consider the data safe or unsafe.  By default all data is considered
+     * unsafe and the responder object would need to do whatever is necessary for
+     * the unsafe data to be safely sent to the user.
      *
-     * @return boolean
+     * @param array $associateVars
+     * @param boolean $isUnsafeData
      */
-    public function giveToView(array $associateVars, $isUnsafeData = true);
+    public function giveToResponse(array $associateVars, $isUnsafeData = true);
 
     /**
      * A callback method that will be invoked for every request, as the name implies,
@@ -63,7 +66,7 @@ interface SF_IsController {
      *
      * @return array
      */
-    public function getUnsafeViewData();
+    public function getUnsafeResponseData();
 
     /**
      * Should return an associative array holding the view data that should NOT
@@ -71,7 +74,7 @@ interface SF_IsController {
      *
      * @return array
      */
-    public function getSafeViewData();
+    public function getSafeResponseData();
 
     /**
      * Returns an array listing the name of components attached to this controller.
@@ -120,6 +123,16 @@ interface SF_IsController {
      * @return mixed
      */
     public function getContentTemplate();
+
+    /**
+     * Returns the complete name of the responder object to be used for this request.
+     *
+     * This function may also return NULL if the controller does not set a specific
+     * responder to be used.
+     *
+     * @return mixed
+     */
+    public function getResponder();
 
 }
 
