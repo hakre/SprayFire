@@ -115,6 +115,11 @@ interface SF_IsController {
     public function getLayoutTemplate();
 
     /**
+     * @param string
+     */
+    public function setLayoutTemplate($templateName);
+
+    /**
      * Returns the name of the content template to be used for this request.
      *
      * This function may also return NULL if the controller does not set a specific
@@ -123,6 +128,11 @@ interface SF_IsController {
      * @return mixed
      */
     public function getContentTemplate();
+
+    /**
+     * @param string
+     */
+    public function setContentTemplate($templateName);
 
     /**
      * Returns the complete name of the responder object to be used for this request.
