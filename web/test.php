@@ -16,6 +16,11 @@
     $RequestParserTest = new SF_RequestParserTest();
     $RequestParserTest->testRequestParser();
 
+    echo '<br />';
+    echo '<br />';
 
+    include '../tests/SF_CoreConfigurationTest.php';
+    $CoreConfigurationTest = new SF_CoreConfigurationTest();
+    $CoreConfigurationTest->testWriteAndRead();
 
 ?>
