@@ -29,10 +29,9 @@ interface SF_IsResponder {
      * Assures that the Responder object will have access to data that may be needed
      * to generate the complete response.
      *
-     * @param SF_RequestParser $RequestParser
      * @param SF_IsConfigurationStorage $CoreConfiguration
      */
-    public function __construct(SF_RequestParser $RequestParser, SF_IsConfigurationStorage $CoreConfiguration);
+    public function __construct(SF_IsConfigurationStorage $CoreConfiguration);
 
     /**
      * Gathers whatever data is needed from the Controller, RequestParser or Core
