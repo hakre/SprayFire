@@ -71,6 +71,11 @@
             if ($isBootstrapClass) {
                 $this->doAppBootstrapInclude($className);
             }
+
+            $isConfigClass = $this->isAppConfigClass($className);
+            if ($isConfigClass) {
+                $this->doAppConfigInclude($className);
+            }
         }
 
         /**
@@ -162,10 +167,28 @@
         }
 
         /**
-         * @param type $className
+         * @param string $className
          */
         private function doAppBootstrapInclude($className) {
             $directory = APP_PATH . DS . 'bootstrap';
+            $this->includeClassFromDirectory($className, $directory);
+        }
+
+        /**
+         * @param string $className
+         * @return boolean
+         */
+        private function isAppConfigClass($className) {
+            $regexPattern = '/^.+(Config)$/';
+            $numMatches = preg_match($regexPattern, $className);
+            return $this->didRegexMatch($numMatches);
+        }
+
+        /**
+         * @param string $className
+         */
+        private function doAppConfigInclude($className) {
+            $directory = APP_PATH . DS . 'config';
             $this->includeClassFromDirectory($className, $directory);
         }
 
