@@ -14,6 +14,13 @@
 /**
  * The framework's default controller object, implements the IsController interface
  * and is also an overloadable object.
+ *
+ * The controller is supposed to interact with models and ultimately be a primary
+ * source of data for the responder.  This controller is capable of storing safe
+ * and unsafe data for the responder.  We have this separation of data into safe
+ * and unsafe categories so we know what, if any, sanitation needs to be done before
+ * the response is sent to the user.
+ *
  */
 abstract class SF_Controller extends SF_CoreObject implements SF_IsController {
 
@@ -28,7 +35,7 @@ abstract class SF_Controller extends SF_CoreObject implements SF_IsController {
      *
      * @var array
      */
-    private $viewData = array();
+    private $responderData = array();
 
     /**
      * A list of components attached to the controller.
@@ -66,6 +73,14 @@ abstract class SF_Controller extends SF_CoreObject implements SF_IsController {
     protected $layoutTemplate;
 
     /**
+     * The name of the responder object to use for this controller, leave this
+     * null to use the default responder as set in the CoreConfiguration object.
+     *
+     * @var string
+     */
+    protected $responderName;
+
+    /**
      * The framework core configuration object.
      *
      * @var SF_CoreConfiguration
@@ -89,25 +104,25 @@ abstract class SF_Controller extends SF_CoreObject implements SF_IsController {
      */
     public function __construct(SF_IsConfigurationStorage $CoreConfiguration) {
         $this->CoreConfiguration = $CoreConfiguration;
-        $this->viewData['unsafeData'] = array();
-        $this->viewData['safeData'] = array();
+        $this->responderData['unsafeData'] = array();
+        $this->responderData['safeData'] = array();
     }
 
     /**
-     * Will add an associative array to the list of data to be passed to the view,
+     * Will add an associative array to the list of data to be passed to the responder,
      * selectively choosing whether the data should be considered 'safe', meaning
      * it does not need to be escaped on output, or the data should be considered
      * 'unsafe', meaning it does need to be escaped on output.
      *
-     * @param array $variablesForView
+     * @param array $variablesForResponder
      * @param boolean $shouldEscapeData
      */
-    public function giveToView(array $variablesForView, $shouldEscapeData = true) {
-        foreach ($variablesForView as $key => $value) {
+    public function giveToResponder(array $variablesForResponder, $shouldEscapeData = true) {
+        foreach ($variablesForResponder as $key => $value) {
             if ($shouldEscapeData) {
-                $this->viewData['unsafeData'][$key] = $value;
+                $this->responderData['unsafeData'][$key] = $value;
             } else {
-                $this->viewData['safeData'][$key] = $value;
+                $this->responderData['safeData'][$key] = $value;
             }
         }
     }
@@ -132,8 +147,8 @@ abstract class SF_Controller extends SF_CoreObject implements SF_IsController {
      *
      * @return array
      */
-    public function getUnsafeViewData() {
-        return $this->viewData['unsafeData'];
+    public function getUnsafeData() {
+        return $this->responderData['unsafeData'];
 
     }
 
@@ -143,8 +158,8 @@ abstract class SF_Controller extends SF_CoreObject implements SF_IsController {
      *
      * @return array
      */
-    public function getSafeViewData() {
-        return $this->viewData['safeData'];
+    public function getSafeData() {
+        return $this->responderData['safeData'];
     }
 
     /**
@@ -169,17 +184,59 @@ abstract class SF_Controller extends SF_CoreObject implements SF_IsController {
     }
 
     /**
-     * @return string
+     * @return mixed
      */
     public function getLayoutTemplate() {
         return $this->layoutTemplate;
     }
 
     /**
-     * @return string
+     * @param string $templateName
+     * @return boolean
+     */
+    public function setLayoutTemplate($templateName) {
+        $isTemplateSet = $this->setTemplateValue('layoutTemplate', $templateName);
+        return $isTemplateSet;
+    }
+
+    /**
+     * @return mixed
      */
     public function getContentTemplate() {
         return $this->contentTemplate;
+    }
+
+    /**
+     * @param string $templateName
+     * @return boolean
+     */
+    public function setContentTemplate($templateName) {
+        $isTemplateSet = $this->setTemplateValue('contentTemplate', $templateName);
+        return $isTemplateSet;
+    }
+
+    /**
+     * Will set the property passed to the $templateName passed if that value is
+     * not an object, array and is a string.
+     *
+     * @param string $propertyName
+     * @param string $templateName
+     * @return boolean
+     */
+    private function setTemplateValue($propertyName, $templateName) {
+        if (is_object($templateName) || is_array($templateName) || !is_string($templateName)) {
+            error_log('Attempting to set the ' . $propertyName . ' to a non-string value.', E_USER_NOTICE);
+            return false;
+        }
+        $this->$propertyname = $templateName;
+        return true;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getResponder() {
+        return $this->responderName;
     }
 
 }
