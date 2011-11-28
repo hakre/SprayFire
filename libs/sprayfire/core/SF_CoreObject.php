@@ -90,6 +90,13 @@ abstract class SF_CoreObject implements SF_IsOverloadable {
         $this->overloadedProperties = $newArray;
     }
 
+    /**
+     * @return string
+     */
+    public function __toString() {
+        return __CLASS__;
+    }
+
 }
 
 // End SF_CoreObject
