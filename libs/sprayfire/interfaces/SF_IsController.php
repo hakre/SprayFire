@@ -35,7 +35,7 @@ interface SF_IsController {
      * @param array $associateVars
      * @param boolean $isUnsafeData
      */
-    public function giveToResponse(array $associateVars, $isUnsafeData = true);
+    public function giveToResponder(array $associateVars, $isUnsafeData = true);
 
     /**
      * A callback method that will be invoked for every request, as the name implies,
@@ -66,7 +66,7 @@ interface SF_IsController {
      *
      * @return array
      */
-    public function getUnsafeResponseData();
+    public function getUnsafeData();
 
     /**
      * Should return an associative array holding the view data that should NOT
@@ -74,7 +74,7 @@ interface SF_IsController {
      *
      * @return array
      */
-    public function getSafeResponseData();
+    public function getSafeData();
 
     /**
      * Returns an array listing the name of components attached to this controller.
