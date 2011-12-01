@@ -19,4 +19,4 @@ class CoreConfiguration extends BaseConfig {
 
 }
 
-// End SF_CoreConfiguration
+// End CoreConfiguration
