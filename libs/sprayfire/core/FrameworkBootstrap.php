@@ -233,4 +233,4 @@ class FrameworkBootstrap extends CoreObject implements Bootstrapper {
 
 }
 
-// End SF_FrameworkBootstrap
+// End FrameworkBootstrap
