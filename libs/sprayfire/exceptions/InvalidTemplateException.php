@@ -19,4 +19,4 @@ class InvalidTemplateException extends Exception {
 
 }
 
-// End SF_InvalidTemplateException
+// End InvalidTemplateException

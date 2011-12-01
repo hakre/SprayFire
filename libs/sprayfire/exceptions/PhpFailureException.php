@@ -19,4 +19,4 @@ class PhpFailureException extends Exception {
 
 }
 
-// End SF_PhpFailureException
+// End PhpFailureException

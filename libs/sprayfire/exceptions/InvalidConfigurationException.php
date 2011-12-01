@@ -19,4 +19,4 @@ class InvalidConfigurationException extends Exception {
 
 }
 
-// End SF_InvalidDataSourceConfigurationException
+// End InvalidConfigurationException
