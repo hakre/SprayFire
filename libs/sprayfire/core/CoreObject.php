@@ -126,4 +126,4 @@ abstract class CoreObject implements Overloadable {
 
 }
 
-// End SF_CoreObject
+// End CoreObject
