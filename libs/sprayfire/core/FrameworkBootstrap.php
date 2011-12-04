@@ -49,10 +49,7 @@ class FrameworkBootstrap extends CoreObject implements Bootstrapper {
      */
     private function writeCoreConfiguration() {
         $this->writeFrameworkDefaults();
-        $this->CoreConfiguration->write('debug_mode', true);
-        $this->CoreConfiguration->write('error_controller', 'error');
-        $this->CoreConfiguration->write('error_action', 'index');
-        $this->CoreConfiguration->write('error_reporting', E_ALL & E_STRICT);
+        $this->writeErrorDefaults();
     }
 
     /**
@@ -63,7 +60,17 @@ class FrameworkBootstrap extends CoreObject implements Bootstrapper {
         $this->CoreConfiguration->write('default_action', 'index');
         $this->CoreConfiguration->write('default_layout_template', 'default');
         $this->CoreConfiguration->write('default_responder', 'HtmlResponder');
-        $this->CoreConfiguration->write('default_data_source', '');
+        $this->CoreConfiguration->write('default_data_source', 'PdoDataSource');
+    }
+
+    /**
+     * Writes configuration values for error handling and debugging.
+     */
+    private function writeErrorDefaults() {
+        $this->CoreConfiguration->write('debug_mode', true);
+        $this->CoreConfiguration->write('error_controller', 'error');
+        $this->CoreConfiguration->write('error_action', 'index');
+        $this->CoreConfiguration->write('error_reporting', E_ALL & E_STRICT);
     }
 
     /**
