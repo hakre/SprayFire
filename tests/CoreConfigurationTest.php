@@ -11,18 +11,26 @@
  * @copyright Copyright (c) 2011, Charles Sprayberry
  */
 
-$overloadablePath = '../libs/sprayfire/interfaces/Overloadable.php';
 $coreObjectPath = '../libs/sprayfire/core/CoreObject.php';
 $coreConfigurationPath = '../libs/sprayfire/core/CoreConfiguration.php';
 $baseConfigurationPath = '../libs/sprayfire/core/BaseConfig.php';
 $configurationPath = '../libs/sprayfire/interfaces/Configuration.php';
 
-include $overloadablePath;
-include $coreObjectPath;
-include $configurationPath;
-include $baseConfigurationPath;
-include $coreConfigurationPath;
+if (!class_exists('CoreObject')) {
+    include $coreObjectPath;
+}
 
+if (!interface_exists('Configuration')) {
+    include $configurationPath;
+}
+
+if (!class_exists('BaseConfig')) {
+    include $baseConfigurationPath;
+}
+
+if (!class_exists('CoreConfiguration')) {
+    include $coreConfigurationPath;
+}
 
 /**
  * Will test the SF_BaseConfig and SF_CoreConfiguration objects to assure they
@@ -40,9 +48,6 @@ class CoreConfigurationTest extends PHPUnit_Framework_TestCase {
      */
     public function testWriteAndRead() {
 
-        echo 'Testing the BaseConfig, through CoreConfiguration, to read/write mixed key/value pairs:';
-        echo '<br />';
-
         $TestObject = new CoreConfiguration();
 
         $TestObject->write('testOne', '1');
@@ -59,47 +64,10 @@ class CoreConfigurationTest extends PHPUnit_Framework_TestCase {
         $expectedTestThree = $this;
         $expectedTestFour = NULL;
 
-        $failedAssertions = array();
-        try {
-            $this->assertEquals($expectedTestOne, $actualTestOne);
-        } catch (PHPUnit_Framework_ExpectationFailedException $ExpectationException) {
-            $failedAssertions['test_one_read/write'] = array();
-            $failedAssertions['test_one_read/write']['details'] = $ExpectationException->getMessage();
-            $failedAssertions['test_one_read/write']['trace'] = $ExpectationException->getTrace();
-        }
-
-        try {
-            $this->assertEquals($expectedTestTwo, $actualTestTwo);
-        } catch (PHPUnit_Framework_ExpectationFailedException $ExpectationException) {
-            $failedAssertions['test_two_read/write'] = array();
-            $failedAssertions['test_two_read/write']['details'] = $ExpectationException->getMessage();
-            $failedAssertions['test_two_read/write']['trace'] = $ExpectationException->getTrace();
-        }
-
-        try {
-            $this->assertEquals($expectedTestThree, $actualTestThree);
-        } catch (PHPUnit_Framework_ExpectationFailedException $ExpectationException) {
-            $failedAssertions['test_three_read/write'] = array();
-            $failedAssertions['test_three_read/write']['details'] = $ExpectationException->getMessage();
-            $failedAssertions['test_three_read/write']['trace'] = $ExpectationException->getTrace();
-        }
-
-        try {
-            $this->assertEquals($expectedTestFour, $actualTestFour);
-        } catch (PHPUnit_Framework_ExpectationFailedException $ExpectationException) {
-            $failedAssertions['test_four_read/write'] = array();
-            $failedAssertions['test_four_read/write']['details'] = $ExpectationException->getMessage();
-            $failedAssertions['test_four_read/write']['trace'] = $ExpectationException->getTrace();
-        }
-
-        if (empty($failedAssertions)) {
-            echo 'The tests passed!';
-        } else {
-            echo 'The tests FAILED!';
-            echo '<pre>';
-            echo var_dump($failedAssertions);
-            echo '</pre>';
-        }
+        $this->assertEquals($expectedTestOne, $actualTestOne);
+        $this->assertEquals($expectedTestTwo, $actualTestTwo);
+        $this->assertEquals($expectedTestThree, $actualTestThree);
+        $this->assertEquals($expectedTestFour, $actualTestFour);
 
     }
 
