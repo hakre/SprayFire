@@ -14,13 +14,18 @@
 // For now this is a crude test, once the TestSuite is completed we will incorporate
 // this code into the TestSuite.
 
-$overloadablePath = '../libs/sprayfire/interfaces/Overloadable.php';
 $coreObjectPath = '../libs/sprayfire/core/CoreObject.php';
 $requestParserPath = '../libs/sprayfire/core/RequestParser.php';
 
-include $overloadablePath;
-include $coreObjectPath;
-include $requestParserPath;
+if (!class_exists('CoreObject')) {
+    include $coreObjectPath;
+}
+
+if (!class_exists('RequestParser')) {
+    include $requestParserPath;
+}
+
+
 
 /**
  * The unit tests to ensure the SF_RequestParser object is returning the proper
@@ -32,9 +37,6 @@ class RequestParserTest extends PHPUnit_Framework_TestCase {
      * Will generate the necessary SF_RequestParser object, passing a known URI
      * string, and then assert that the controller, action and parameters returned
      * by the SF_RequestParser object is of the correct type.
-     *
-     * @todo This function needs to be refactored as it is currently far too long,
-     * taking on too many things and has duplicate code.
      */
     public function testUriWithFramework() {
         $testUri = '/sprayfire/testwith/frameworkfolder/1/2/3';
@@ -48,9 +50,12 @@ class RequestParserTest extends PHPUnit_Framework_TestCase {
         $actualAction = $RequestParser->getRequestedAction();
         $actualParameters = $RequestParser->getSentParameters();
 
+        $storedUri = $RequestParser->getServerUri();
+
         $this->assertEquals($expectedController, $actualController);
         $this->assertEquals($expectedAction, $actualAction);
         $this->assertEquals($expectedParameters, $actualParameters);
+        $this->assertEquals($testUri, $storedUri);
 
     }
 
