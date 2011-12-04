@@ -125,9 +125,6 @@ class RequestParser extends CoreObject {
      */
     private function parseNextElement(array &$explodedUriParts) {
         $element = array_shift($explodedUriParts);
-        if (empty($element)) {
-            $element = NULL;
-        }
         return $element;
     }
 
