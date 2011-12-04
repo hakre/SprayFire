@@ -50,6 +50,7 @@ class ClassLoader extends CoreObject {
         $this->setCoreDirectory();
         $this->setInterfaceDirectory();
         $this->setExceptionDirectory();
+        $this->setDataStructsDirectory();
     }
 
     /**
@@ -59,14 +60,36 @@ class ClassLoader extends CoreObject {
     private function setCoreDirectory() {
         $coreDir = FRAMEWORK_PATH . DS . 'core' . DS;
         $this->knownClassDirectory['BaseConfig'] = $coreDir . 'BaseConfig.php';
-        $this->knownClassDirectory['ComponentFactory'] = $coreDir . 'ComponentFactory.php';
-        $this->knownClassDirectory['BaseController'] = $coreDir . 'BaseController.php';
-        $this->knownClassDirectory['ControllerFactory'] = $coreDir . 'ControllerFactory.php';
         $this->knownClassDirectory['CoreConfiguration'] = $coreDir . 'CoreConfiguration.php';
         $this->knownClassDirectory['CoreObject'] = $coreDir . 'CoreObject.php';
-        $this->knownClassDirectory['DataSourceStore'] = $coreDir . 'DataSourceStore.php';
         $this->knownClassDirectory['FrameworkBootstrap'] = $coreDir . 'FrameworkBootstrap.php';
         $this->knownClassDirectory['RequestParser'] = $coreDir . 'RequestParser.php';
+    }
+
+    /**
+     * Will assign the classes that implement data structures.
+     */
+    private function setDataStructsDirectory() {
+        $dataDirs = FRAMEWORK_PATH . DS . 'datastructs' . DS;
+        $this->knownClassDirectory['IteratorList'] = $dataDirs . 'IteratorList.php';
+        $this->knownClassDirectory['UniqueList'] = $dataDirs . 'UniqueList.php';
+    }
+
+    /**
+     * Will assign the classes that are found in the FRAMEWORK_PATH/exceptions/
+     * directory.
+     */
+    private function setExceptionDirectory() {
+        $exceptionDir = FRAMEWORK_PATH . DS . 'exceptions' . DS;
+        $this->knownClassDirectory['IllegalArgumentException'] = $exceptionDir . 'IllegalArgumentException.php';
+        $this->knownClassDirectory['InvalidConfigurationException'] = $exceptionDir . 'InvalidConfigurationException.php';
+        $this->knownClassDirectory['InvalidDataSourceException'] = $exceptionDir . 'InvalidDataSourceException.php';
+        $this->knownClassDirectory['InvalidTemplateException'] = $exceptionDir . 'InvalidTemplateException.php';
+        $this->knownClassDirectory['OperationFailedException'] = $exceptionDir . 'OperationFailedException';
+        $this->knownClassDirectory['PhpFailureException'] = $exceptionDir . 'PhpFailureException.php';
+        $this->knownClassDirectory['UnexpectedValueException'] = $exceptionDir . 'UnexpectedValueException.php';
+        $this->knownClassDirectory['UnkownClassException'] = $exceptionDir . 'UnknownClassException.php';
+        $this->knownClassDirectory['UnsupportedOperationException'] = $exceptionDir . 'UnsupportedOperationException.php';
     }
 
     /**
@@ -78,29 +101,7 @@ class ClassLoader extends CoreObject {
         $this->knownClassDirectory['Bootstrapper'] = $interfacesDir . 'Bootstrapper.php';
         $this->knownClassDirectory['Configuration'] = $interfacesDir . 'Configuration.php';
         $this->knownClassDirectory['Controller'] = $interfacesDir . 'Controller.php';
-        $this->knownClassDirectory['DataSource'] = $interfacesDir. 'DataSource.php';
-        $this->knownClassDirectory['Model'] = $interfacesDir . 'Model.php';
-        $this->knownClassDirectory['Overloadable'] = $interfacesDir . 'Overloadable.php';
-        $this->knownClassDirectory['PersistenceManager'] = $interfacesDir . 'PersistenceManager.php';
-        $this->knownClassDirectory['QueryConditions'] = $interfacesDir . 'QueryConditions.php';
-        $this->knownClassDirectory['QueryData'] = $interfacesDir . 'QueryData.php';
-        $this->knownClassDirectory['QueryFields'] = $interfacesDir . 'QueryFields.php';
-        $this->knownClassDirectory['QueryResult'] = $interfacesDir . 'QueryResult.php';
-        $this->knownClassDirectory['Responder'] = $interfacesDir . 'Responder.php';
-    }
-
-    /**
-     * Will assign the classes that are found in the FRAMEWORK_PATH/exceptions/
-     * directory.
-     */
-    private function setExceptionDirectory() {
-        $exceptionDir = FRAMEWORK_PATH . DS . 'exceptions' . DS;
-        $this->knownClassDirectory['InvalidConfigurationException'] = $exceptionDir . 'InvalidConfigurationException.php';
-        $this->knownClassDirectory['InvalidDataSourceException'] = $exceptionDir . 'InvalidDataSourceException.php';
-        $this->knownClassDirectory['InvalidTemplateException'] = $exceptionDir . 'InvalidTemplateException.php';
-        $this->knownClassDirectory['PhpFailureException'] = $exceptionDir . 'PhpFailureException.php';
-        $this->knownClassDirectory['UnkownClassException'] = $exceptionDir . 'UnknownClassException.php';
-
+        $this->knownClassDirectory['DataList'] = $interfacesDir . 'DataList.php';
     }
 
     /**
