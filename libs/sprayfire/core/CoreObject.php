@@ -48,7 +48,7 @@ abstract class CoreObject {
      * @return string
      */
     public function __toString() {
-        return __CLASS__;
+        return get_class($this);
     }
 
 }
