@@ -26,12 +26,9 @@ using the following directions:
 2. Change directory to {framework_dir}/tests/.
 3. Run each test by inputting the following command in your terminal
 
-phpunit --bootstrap test_bootstrap.php SF_{ClassName} SF_{ClassName}.php
+phpunit --bootstrap test_bootstrap.php {ClassNameTest} /path/to/{ClassNameTest}.php
 
-Please note the bootstrap file, the tests will not pass if this flag is not set,
-and also note that the full file path must be given, if only the TestCase object
-being ran is given the PHPUnit autoloader will convert SF_{ClassName} to
-SF/{ClassName}.
+Please note that there is an AllTests suite that will, well, run all tests.
 
 SprayFire is under development!  The SprayFire development team consists of:
 ================================================================================
