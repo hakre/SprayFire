@@ -31,11 +31,7 @@
      */
     defined('APP_PATH') or define('APP_PATH', ROOT_PATH . DS . 'app');
 
-    /**
-     * @var string
-     */
-    defined('FRAMEWORK_VERSION') or define('FRAMEWORK_VERSION', '0.10b');
-
+    include FRAMEWORK_PATH . DS . 'core' . DS . 'CoreObject.php';
     include FRAMEWORK_PATH . DS . 'core' . DS . 'ClassLoader.php';
 
     $ClassLoader = new ClassLoader();
@@ -46,4 +42,5 @@
 
     $FrameworkBootstrapper->runBootstrap();
 
-    echo '<pre>', var_dump($CoreConfiguration), '</pre>';
+    echo 'Ran bootstrap!';
+
