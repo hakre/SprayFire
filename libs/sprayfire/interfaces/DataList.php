@@ -31,23 +31,26 @@ interface DataList extends Iterator {
     public function __construct($interfaceOrClassName);
 
     /**
-     * Should add the given object to the end of the list, if the object is not
-     * added an exception should be thrown; the precise reason for the object not
-     * being added to the list should be determined by the exception thrown.
+     * Should throw an exception if the list implementation does not have the proper
+     * number of buckets available or the object passed is not of the correct type.
      *
      * @param CoreObject $Object
      * @return void
-     * @throws IllegalArgumentException
-     *         OperationFailedException
+     * @throws InvalidArgumentException
+     *         OutOfRangeException
      */
     public function add(CoreObject $Object);
 
     /**
-     * Will return the CoreObject that is found at the
+     * Will return the CoreObject that is found at the index passed, if the index
+     * is invalid an OutOfRangeException should be thrown.
+     *
+     * Should return an instance of an object that implements the parent type passed
+     * in the constructor.
      *
      * @param int $index
-     * @return CoreObject
-     * @throws OutOfBoundsException
+     * @return mixed
+     * @throws OutOfRangeException
      */
     public function get($index);
 
@@ -62,6 +65,10 @@ interface DataList extends Iterator {
      * @param int $index
      * @param CoreObject $Object
      * @return boolean
+     * @throws OutOfRangeException
+     *         InvalidArgumentException
+     *         UnsupportedOperationException
+     *
      */
     public function set($index, CoreObject $Object);
 
@@ -83,6 +90,8 @@ interface DataList extends Iterator {
      *
      * @param CoreObject $Object
      * @return void
+     * @throws InvalidArgumentException
+     *         UnsupportedOperationException
      */
     public function remove(CoreObject $Object);
 
@@ -110,9 +119,11 @@ interface DataList extends Iterator {
     public function size();
 
     /**
-     * Should set the size that this list should be restricted to.
+     * Should set the size that this list should be restricted to and return the
+     * actual max size that was set.
      *
      * @param int $maxSize
+     * @return int
      */
     public function setMaxSize($maxSize);
 
