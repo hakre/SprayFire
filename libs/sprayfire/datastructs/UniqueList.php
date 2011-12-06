@@ -20,8 +20,10 @@
  * that only unique objects are added to the List.  The only means in which to set the
  * type of objects stored in the class is through the constructor.  If you want
  * the list to store different types of objects you will need to create a new one.
+ *
+ * @see ObjectTypeValidator
  */
-class UniqueList extends IteratorList implements DataList {
+class UniqueList extends BaseIteratingList implements DataList {
 
     /**
      * A zero in the $maxSize property value means the list may have an unlimited
@@ -32,49 +34,12 @@ class UniqueList extends IteratorList implements DataList {
     private $maxSize;
 
     /**
-     * The interface or class name all objects in this list must implement or
-     * extend.
+     * The name of the interface or class
      *
-     * @var ReflectionClass
-     */
-    private $ReflectedParentType;
-
-    /**
-     * Ensures the name of the interface or class the objects in the list should
-     * implement or extend.
-     *
-     * @param string $interfaceOrClassName
-     * @param int $maxSize
-     * @throws IllegalArgumentException
+     * @param string $parentType
      */
     public function __construct($parentType) {
-        $this->setParentType($parentType);
-    }
-
-    /**
-     * Creates a ReflectionClass object for the given parent type and sets the
-     * ReflectedParentType property to said ReflectionClass.
-     *
-     * @param string $parentType
-     * @throws IllegalArgumentException
-     */
-    private function setParentType($parentType) {
-        $ReflectedType = $this->createReflectedParentType($parentType);
-        $this->ReflectedParentType = $ReflectedType;
-    }
-
-    /**
-     * @param string $parentType
-     * @return ReflectionClass
-     */
-    private function createReflectedParentType($parentType) {
-        $ReflectedParent = null;
-        try {
-            $ReflectedParent = new ReflectionClass($parentType);
-        } catch (ReflectionException $ReflectionExc) {
-            throw new IllegalArgumentException('There was an error reflecting the parent type, ' . $parentType, null, $ReflectionExc);
-        }
-        return $ReflectedParent;
+        parent::__construct($parentType);
     }
 
     /**
@@ -83,12 +48,12 @@ class UniqueList extends IteratorList implements DataList {
      * object does not already exist in the list.
      *
      * @param CoreObject $Object
-     * @throws IllegalArgumentException
-     *         OutOfRangeException
+     * @throws OutOfRangeException
+     *         IllegalArgumentException
      */
     public function add(CoreObject $Object) {
         $this->throwExceptionIfNoAvailableBuckets();
-        $this->throwExceptionIfObjectNotParentType ($Object);
+        $this->throwExceptionIfObjectNotParentType($Object);
         $isObjectInList = $this->contains($Object);
         if (!$isObjectInList) {
             $this->_add($Object);
@@ -111,6 +76,18 @@ class UniqueList extends IteratorList implements DataList {
     }
 
     /**
+     * Will add the passed object to the storage and increment the size of the
+     * list.
+     *
+     * @param CoreObject $Object
+     */
+    private function _add(CoreObject $Object) {
+        $arrayIndex = $this->size;
+        $this->dataStorage[$arrayIndex] = $Object;
+        $this->size++;
+    }
+
+    /**
      * @throws OutOfRangeException
      */
     private function throwExceptionIfNoAvailableBuckets() {
@@ -121,6 +98,12 @@ class UniqueList extends IteratorList implements DataList {
     }
 
     /**
+     * Will return whether or not the list has enough buckets to add 1 additional
+     * element.
+     *
+     * Note, if the $maxSize is set to 0 then there will always be available buckets
+     * for the list.
+     *
      * @return boolean
      */
     private function hasAvailableBuckets() {
@@ -134,126 +117,12 @@ class UniqueList extends IteratorList implements DataList {
     }
 
     /**
-     * @param CoreObject $Object
-     * @throws IllegalArgumentException
-     *         UnexpectedValueException
-     */
-    private function throwExceptionIfObjectNotParentType(CoreObject $Object) {
-        $isObjectValid = $this->isObjectParentType($Object);
-        if (!$isObjectValid) {
-            throw new IllegalArgumentException('The object passed does not implement/extend ' . $this->ReflectedParentType->getShortName());
-        }
-    }
-
-    /**
-     * Ensures that the passed $Object either is an instance of, extends  or implements
-     * the $ReflectedParentType.
+     * Should remove the object from the list if it exists and resize the array.
      *
-     * @param CoreObject $Object
-     * @return boolean
-     */
-    private function isObjectParentType(CoreObject $Object) {
-        $isValid = false;
-        $ReflectedParent = $this->ReflectedParentType;
-        $parentName = $ReflectedParent->getShortName();
-        try {
-            $ReflectedObject = new ReflectionClass($Object);
-            if ($ReflectedParent->isInterface()) {
-                if ($ReflectedObject->implementsInterface($parentName)) {
-                    $isValid = true;
-                }
-            } else {
-                if ($ReflectedObject->getShortName() === $parentName || $ReflectedObject->isSubclassOf($parentName)) {
-                    $isValid = true;
-                }
-            }
-        } catch (ReflectionException $ReflectionExc) {
-            // @codeCoverageIgnoreStart
-            trigger_error($ReflectionExc->getMessage(), E_USER_WARNING);
-            // @codeCoverageIgnoreEnd
-        }
-        return $isValid;
-    }
-
-    /**
-     * Will add the passed object to the storage and increment the size of the
-     * list.
-     *
-     * @param CoreObject $Object
-     */
-    private function _add(CoreObject $Object) {
-        $arrayIndex = $this->size;
-        $this->dataStorage[$arrayIndex] = $Object;
-        $this->size++;
-    }
-
-    /**
-     * Will ensure the index passed is a valid range and return the CoreObject
-     * associated with it if it is a valid range.
-     *
-     * @param int $index
-     * @return CoreObject
-     * @throws OutOfRangeException
-     */
-    public function get($index) {
-        $this->throwExceptionIfIndexOutOfRange($index);
-        $Object = $this->dataStorage[$index];
-        return $Object;
-    }
-
-    /**
-     * @param int $index
-     * @throws OutOfRangeException
-     */
-    private function throwExceptionIfIndexOutOfRange($index) {
-        if (!is_int($index) || $index < 0 || $index >= $this->size()) {
-            throw new OutOfRangeException('The requested index is not valid.');
-        }
-    }
-
-    /**
-     * Determines whether or not the list contains the given object.
-     *
-     * @param CoreObject $Object
-     * @return boolean
-     */
-    public function contains(CoreObject $Object) {
-        $objectContained = false;
-        $objectIndex = $this->indexOf($Object);
-        if ($objectIndex >= 0) {
-            $objectContained = true;
-        }
-        return $objectContained;
-    }
-
-    /**
-     * Returns the number representing the index for the passed element, or -1 if
-     * the element could not be found.
-     *
-     * @param CoreObject $Object
-     * @return int
-     */
-    public function indexOf(CoreObject $Object) {
-        $index = -1;
-        for ($i = 0; $i < $this->size(); $i++) {
-            $ListedObject = $this->dataStorage[$i];
-            if ($Object->equals($ListedObject)) {
-                $index = $i;
-            }
-        }
-        return $index;
-    }
-
-    /**
-     * @return boolean
-     */
-    public function isEmpty() {
-        return ($this->size === 0);
-    }
-
-    /**
-     * Should remove the object from the list if it exists and reset the appropriate
-     * values.
+     * Please note that it is highly unrecommended that you remove objects from a
+     * list while looping through the list, for example in a foreach() loop.  The
+     * initial implementation simply wasn't sufficient to handle this, please avoid
+     * doing so.  This feature may be added in a future release.
      *
      * @param CoreObject $Object
      */
@@ -261,16 +130,24 @@ class UniqueList extends IteratorList implements DataList {
         $objectIndex = $this->indexOf($Object);
         if ($objectIndex >= 0) {
             $this->dataStorage[$objectIndex] = null;
-            $newArray = array();
-            for ($i = 0; $i < $this->size(); $i++) {
-                if (isset($this->dataStorage[$i])) {
-                    $newArray[] = $this->dataStorage[$i];
-                }
-            }
-            $this->dataStorage = $newArray;
-            $newSize = count($this->dataStorage);
-            $this->size = $newSize;
+            $this->resizeList();
         }
+    }
+
+    /**
+     * Should be called after an element is removed from the list, will create a
+     * new array that does not contain any null values and then assign that array
+     * to the $dataStorage property.
+     */
+    private function resizeList() {
+        $newArray = array();
+        for ($i = 0; $i < $this->size(); $i++) {
+            if (isset($this->dataStorage[$i])) {
+                $newArray[] = $this->dataStorage[$i];
+            }
+        }
+        $this->dataStorage = $newArray;
+        $this->size = count($this->dataStorage);
     }
 
     /**
@@ -283,6 +160,7 @@ class UniqueList extends IteratorList implements DataList {
      * triggered if this happens.
      *
      * @param int $maxSize
+     * @return int
      */
     public function setMaxSize($maxSize) {
         $isSizeInteger = is_int($maxSize);
@@ -290,21 +168,14 @@ class UniqueList extends IteratorList implements DataList {
         $isSizeValid = ($isSizeInteger && $isSizeBigEnough);
         if (!$isSizeValid) {
             $maxSize = 0;
-            trigger_error('The maximum size for the list was not a valid integer value.', E_USER_WARNING);
+            error_log('The maximum size for the list was not a valid integer value, no maximum size set.');
         }
         $currentSize = $this->size();
         if ($currentSize > $maxSize) {
             $maxSize = $currentSize;
-            trigger_error('The size of the existing list conflicts with the maximum size set.', E_USER_NOTICE);
+            error_log('The current size of the list is greater than the maximum size set, maximum size set to current size.');
         }
-        $this->maxSize = $maxSize;
-    }
-
-    /**
-     * @return int
-     */
-    public function size() {
-        return $this->size;
+        return $this->maxSize = $maxSize;
     }
 
 }
