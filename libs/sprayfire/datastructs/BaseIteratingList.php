@@ -12,8 +12,8 @@
  */
 
 /**
- * This is a base list, it provides a means to store the objects and to keep up
- * with the size of the list.
+ * This is a base list, it provides a means to store the objects and perform basic
+ * common functionality on those elements.
  *
  * This list also implements the methods necessary for the list to be iterated
  * over.  This list should be able to be used in a foreach() loop
@@ -97,6 +97,7 @@ abstract class BaseIteratingList extends CoreObject implements DataList {
             $ListedObject = $this->dataStorage[$i];
             if ($Object->equals($ListedObject)) {
                 $index = $i;
+                break;
             }
         }
         return $index;
@@ -168,4 +169,4 @@ abstract class BaseIteratingList extends CoreObject implements DataList {
 
 }
 
-// End IteratorList
+// End BaseIteratingList
