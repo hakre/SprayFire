@@ -12,7 +12,8 @@
  */
 
 /**
- *
+ * This class ensures that a given object implements or extends a specific interface
+ * or class.
  */
 class ObjectTypeValidator extends CoreObject {
 
@@ -22,7 +23,7 @@ class ObjectTypeValidator extends CoreObject {
     protected $ReflectedParentType;
 
     /**
-     * Will create a ReflectionClass of the passed $parentType, if the 
+     * Will create a ReflectionClass of the passed $parentType, if the
      *
      * @param string $parentType
      * @throws InvalidArgumentException
@@ -54,7 +55,7 @@ class ObjectTypeValidator extends CoreObject {
      * instanceof operator due to the fact that the $parentType expected from the
      * user in __construct() is of type string.  By using Reflection we ensure that
      * the class can be included through the ClassLoader and can ensure that
-     * interfaces implementation and class inheritance is covered.
+     * interface implementation and class inheritance is covered.
      *
      * @param CoreObject $Object
      * @return boolean
@@ -76,7 +77,7 @@ class ObjectTypeValidator extends CoreObject {
             }
         } catch (ReflectionException $ReflectionExc) {
             // @codeCoverageIgnoreStart
-            trigger_error($ReflectionExc->getMessage(), E_USER_WARNING);
+            error_log($ReflectionExc->getMessage());
             // @codeCoverageIgnoreEnd
         }
         return $isValid;
