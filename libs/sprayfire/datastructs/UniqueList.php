@@ -13,9 +13,9 @@
 
 /**
  * This class is an implementation of the DataList interface, with data storage and
- * iteration responsibilities being handled by its immediate superclass, IteratorList.
+ * iteration responsibilities being handled by its immediate superclass.
  *
- * This object guarantees that the objects added to it implement the appropriate
+ * This data structure guarantees that the objects added to it implement the appropriate
  * interface or extends the appropriate class.  This data structure will also ensure
  * that only unique objects are added to the List.  The only means in which to set the
  * type of objects stored in the class is through the constructor.  If you want
@@ -23,7 +23,7 @@
  *
  * @see ObjectTypeValidator
  */
-class UniqueList extends BaseIteratingList implements DataList {
+class UniqueList extends BaseIteratingList {
 
     /**
      * A zero in the $maxSize property value means the list may have an unlimited
@@ -32,15 +32,6 @@ class UniqueList extends BaseIteratingList implements DataList {
      * @var int
      */
     private $maxSize;
-
-    /**
-     * The name of the interface or class
-     *
-     * @param string $parentType
-     */
-    public function __construct($parentType) {
-        parent::__construct($parentType);
-    }
 
     /**
      * Will add the passed object to the list, given (a) there are enough empty buckets
