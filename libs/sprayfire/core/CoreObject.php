@@ -15,7 +15,7 @@
  * The base object for all application classes, allows for the overloading of
  * properties.
  */
-abstract class CoreObject {
+abstract class CoreObject implements Object {
 
     /**
      * Returns a unique identifier for the calling object.
@@ -34,10 +34,10 @@ abstract class CoreObject {
      * If your objects need to implement a Comparator be sure to override the
      * implementation of this class.
      *
-     * @param CoreObject $CompareObject
+     * @param Object $CompareObject
      * @return boolean
      */
-    public function equals(CoreObject $CompareObject) {
+    public function equals(Object $CompareObject) {
         $thisHash = $this->hashCode();
         $compareHash = $CompareObject->hashCode();
         $areHashesEqual = $thisHash === $compareHash;
