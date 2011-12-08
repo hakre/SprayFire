@@ -14,19 +14,6 @@
 // For now this is a crude test, once the TestSuite is completed we will incorporate
 // this code into the TestSuite.
 
-$coreObjectPath = '../libs/sprayfire/core/CoreObject.php';
-$requestParserPath = '../libs/sprayfire/core/RequestParser.php';
-
-if (!class_exists('CoreObject')) {
-    include $coreObjectPath;
-}
-
-if (!class_exists('RequestParser')) {
-    include $requestParserPath;
-}
-
-
-
 /**
  * The unit tests to ensure the SF_RequestParser object is returning the proper
  * values.

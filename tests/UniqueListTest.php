@@ -11,50 +11,10 @@
  * @copyright Copyright (c) 2011, Charles Sprayberry
  */
 
-$uniqueListPath = '../libs/sprayfire/datastructs/UniqueList.php';
-$iteratorListPath = '../libs/sprayfire/datastructs/IteratorList.php';
-$dataListPath = '../libs/sprayfire/interfaces/DataList.php';
-$coreObjectPath = '../libs/sprayfire/core/CoreObject.php';
-$illegalArgumentExceptionPath = '../libs/sprayfire/exceptions/IllegalArgumentException.php';
-$unexpectedValueExceptionPath = '../libs/sprayfire/exceptions/UnexpectedValueException.php';
-$configurationPath = '../libs/sprayfire/interfaces/Configuration.php';
-$coreConfigurationPath = '../libs/sprayfire/core/CoreConfiguration.php';
 $testObjectPath = 'TestObject.php';
-
-if (!class_exists('CoreObject')) {
-    include $coreObjectPath;
-}
-
-if (!interface_exists('DataList')) {
-    include $dataListPath;
-}
-
-if (!class_exists('IteratorList')) {
-    include $iteratorListPath;
-}
-
-if (!class_exists('UniqueList')) {
-    include $uniqueListPath;
-}
 
 if (!class_exists('TestObject')) {
     include $testObjectPath;
-}
-
-if (!class_exists('IllegalArgumentException')) {
-    include $illegalArgumentExceptionPath;
-}
-
-if (!class_exists('UnexpectedValueException')) {
-    include $unexpectedValueExceptionPath;
-}
-
-if (!interface_exists('Configuration')) {
-    include $configurationPath;
-}
-
-if (!class_exists('CoreConfiguration')) {
-    include $coreConfigurationPath;
 }
 
 /**
@@ -67,7 +27,7 @@ class UniqueListTest extends PHPUnit_Framework_TestCase {
      * Will create a list and run through some of the most basic features; including
      * add(), contains(), size(), isEmpty() and get().
      */
-    public function testBasicListFunctions() {
+    public function testBasicListMethods() {
         $List = new UniqueList('TestObject');
         $FirstObject = new TestObject();
         $SecondObject = new TestObject();
@@ -128,7 +88,7 @@ class UniqueListTest extends PHPUnit_Framework_TestCase {
      * Will test that the list size can be restricted to a maximum and that adding
      * objects to the list past the maximum size will result in an OutOfRangeException.
      */
-    public function testRestrictedListBeforeAdd() {
+    public function testSettingMaxSizeBeforeAdd() {
         $List = new UniqueList('TestObject');
         $List->setMaxSize(3);
         $List->add(new TestObject());
@@ -152,14 +112,16 @@ class UniqueListTest extends PHPUnit_Framework_TestCase {
      * Will test the restriction of the list, given that there are already a number
      * of objects in the list greater than the maximum set.
      *
-     * @expectedException PHPUnit_Framework_Error
      */
-    public function testRestrictedListAfterAdd() {
+    public function testSettingMaxSizeAfterAdd() {
         $List = new UniqueList('TestObject');
         $List->add(new TestObject());
         $List->add(new TestObject());
         $List->add(new TestObject());
-        $List->setMaxSize(2);
+
+        $expectedMaxSize = 3;
+        $maxSizeSet = $List->setMaxSize(2);
+        $this->assertSame($expectedMaxSize, $maxSizeSet);
 
         $expectedListSize = 3;
         $listSize = $List->size();
@@ -180,17 +142,12 @@ class UniqueListTest extends PHPUnit_Framework_TestCase {
      * adding 100 objects to the list, a number we would expect to fall below the
      * requested maximum.
      *
-     * @expectedException PHPUnit_Framework_Error
      */
-    public function testInvalidMaxSize() {
+    public function testSetInvalidMaxSize() {
         $List = new UniqueList('TestObject');
-        $List->setMaxSize('Not an integer value');
-        for ($i = 0; $i < 100; $i++) {
-            $List->add(new TestObject());
-        }
-        $listSize = $List->size();
-        $expectedListSize = 100;
-        $this->assertSame($expectedListSize, $listSize);
+        $maxSizeSet = $List->setMaxSize('Not an integer value');
+        $expectedMaxSize = 0;
+        $this->assertSame($expectedMaxSize, $maxSizeSet);
     }
 
     /**
@@ -198,11 +155,11 @@ class UniqueListTest extends PHPUnit_Framework_TestCase {
      * is not a valid class, in that the class either does not exist or the file
      * holding the class could not be loaded.
      */
-    public function testInvalidParentType() {
+    public function testCreateListWithInvalidParentType() {
         $exceptionThrown = false;
         try {
             $List = new UniqueList('IDoNotExist');
-        } catch (IllegalArgumentException $IllegalArgExec) {
+        } catch (InvalidArgumentException $IllegalArgExec) {
             $exceptionThrown = true;
         }
         $this->assertTrue($exceptionThrown);
@@ -212,11 +169,11 @@ class UniqueListTest extends PHPUnit_Framework_TestCase {
      * Will test that an exception is thrown if the parent type passed to the List
      * constructor is blank or has no value.
      */
-    public function testNoParentType() {
+    public function testCreateListWithNoParentType() {
         $exceptionThrown = false;
         try {
             $List = new UniqueList('');
-        } catch (IllegalArgumentException $IllegalArgExc) {
+        } catch (InvalidArgumentException $IllegalArgExc) {
             $exceptionThrown = true;
         }
         $this->assertTrue($exceptionThrown);
@@ -250,7 +207,7 @@ class UniqueListTest extends PHPUnit_Framework_TestCase {
      * when a varied number of objects may be added and removed, the objects listed
      * should still be in the appropriate order.
      */
-    public function testLoopListWithRemove() {
+    public function testLoopListWithExternalRemove() {
         $List = new UniqueList('TestObject');
         $FirstObject = new TestObject();
         $SecondObject = new TestObject();
@@ -263,7 +220,8 @@ class UniqueListTest extends PHPUnit_Framework_TestCase {
         $List->add($ThirdObject);
         $List->add($FourthObject);
 
-        $List->remove($SecondObject);
+        $secondObjectRemoved = $List->remove($SecondObject);
+        $this->assertTrue($secondObjectRemoved);
 
         $List->set(1, $FifthObject);
 
@@ -280,7 +238,7 @@ class UniqueListTest extends PHPUnit_Framework_TestCase {
      * Will ensure that objects implementing an interface parent type can be added
      * to the list.
      */
-    public function testInterfaceList() {
+    public function testCreatingInterfaceList() {
         $List = new UniqueList('Configuration');
         $List->add(new CoreConfiguration());
         $List->add(new CoreConfiguration());
@@ -293,8 +251,8 @@ class UniqueListTest extends PHPUnit_Framework_TestCase {
      * Ensures that an exception is thrown if the proper index is passed as an
      * argument to get().
      */
-    public function testInvalidGetIndex() {
-        $exceptionThrown = false;
+    public function testUsingInvalidGetIndex() {
+            $exceptionThrown = false;
         try {
             $List = new UniqueList('TestObject');
             $List->add(new TestObject());
@@ -315,10 +273,22 @@ class UniqueListTest extends PHPUnit_Framework_TestCase {
         try {
             $List = new UniqueList('TestObject');
             $List->add(new CoreConfiguration);
-        } catch (IllegalArgumentException $IllegalArgExc) {
+        } catch (InvalidArgumentException $IllegalArgExc) {
             $exceptionThrown = true;
         }
         $this->assertTrue($exceptionThrown);
+    }
+
+    public function testRemoveInvalidObject() {
+        $List = new UniqueList('TestObject');
+        $FirstObject = new TestObject();
+        $SecondObject = new TestObject();
+        $ThirdObject = new TestObject();
+
+        $List->add($FirstObject);
+        $List->add($SecondObject);
+        $removedThirdObject = $List->remove($ThirdObject);
+        $this->assertFalse($removedThirdObject);
     }
 
 }

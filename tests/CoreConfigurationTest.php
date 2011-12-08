@@ -11,27 +11,6 @@
  * @copyright Copyright (c) 2011, Charles Sprayberry
  */
 
-$coreObjectPath = '../libs/sprayfire/core/CoreObject.php';
-$coreConfigurationPath = '../libs/sprayfire/core/CoreConfiguration.php';
-$baseConfigurationPath = '../libs/sprayfire/core/BaseConfig.php';
-$configurationPath = '../libs/sprayfire/interfaces/Configuration.php';
-
-if (!class_exists('CoreObject')) {
-    include $coreObjectPath;
-}
-
-if (!interface_exists('Configuration')) {
-    include $configurationPath;
-}
-
-if (!class_exists('BaseConfig')) {
-    include $baseConfigurationPath;
-}
-
-if (!class_exists('CoreConfiguration')) {
-    include $coreConfigurationPath;
-}
-
 /**
  * Will test the SF_BaseConfig and SF_CoreConfiguration objects to assure they
  * can properly read/write mixed key/value pairs.

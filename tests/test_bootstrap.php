@@ -19,3 +19,10 @@
       * @var string
       */
      defined('APP_PATH') or define('APP_PATH', ROOT_PATH . DS . 'app');
+
+     include FRAMEWORK_PATH . DS . 'interfaces' . DS . 'Object.php';
+     include FRAMEWORK_PATH . DS . 'core' . DS . 'CoreObject.php';
+     include FRAMEWORK_PATH . DS . 'core' . DS . 'ClassLoader.php';
+
+     $ClassLoader = new ClassLoader();
+     $ClassLoader->setAutoLoader();
