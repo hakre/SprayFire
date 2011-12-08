@@ -14,6 +14,13 @@
 /**
  * This class is responsible for including framework and application classes
  * using PHP's autoload mechanism.
+ *
+ * @codeCoverageIgnore
+ * @internal Reason for ignoring this class in code coverage is because it can't
+ * truly be tested.  Intead, simply do not include any files that would be normally
+ * used in the framework.  If the file is loaded successfully the ClassLoader is
+ * working properly.  If the file is not loaded correctly then the ClassLoader is
+ * not working properly.
  */
 class ClassLoader extends CoreObject {
 
@@ -71,7 +78,8 @@ class ClassLoader extends CoreObject {
      */
     private function setDataStructsDirectory() {
         $dataDirs = FRAMEWORK_PATH . DS . 'datastructs' . DS;
-        $this->knownClassDirectory['IteratorList'] = $dataDirs . 'IteratorList.php';
+        $this->knownClassDirectory['BaseIteratingList'] = $dataDirs . 'BaseIteratingList.php';
+        $this->knownClassDirectory['ObjectTypeValidator'] = $dataDirs . 'ObjectTypeValidator.php';
         $this->knownClassDirectory['UniqueList'] = $dataDirs . 'UniqueList.php';
     }
 
@@ -81,7 +89,6 @@ class ClassLoader extends CoreObject {
      */
     private function setExceptionDirectory() {
         $exceptionDir = FRAMEWORK_PATH . DS . 'exceptions' . DS;
-        $this->knownClassDirectory['IllegalArgumentException'] = $exceptionDir . 'IllegalArgumentException.php';
         $this->knownClassDirectory['InvalidConfigurationException'] = $exceptionDir . 'InvalidConfigurationException.php';
         $this->knownClassDirectory['InvalidDataSourceException'] = $exceptionDir . 'InvalidDataSourceException.php';
         $this->knownClassDirectory['InvalidTemplateException'] = $exceptionDir . 'InvalidTemplateException.php';
@@ -102,6 +109,7 @@ class ClassLoader extends CoreObject {
         $this->knownClassDirectory['Configuration'] = $interfacesDir . 'Configuration.php';
         $this->knownClassDirectory['Controller'] = $interfacesDir . 'Controller.php';
         $this->knownClassDirectory['DataList'] = $interfacesDir . 'DataList.php';
+        $this->knownClassDirectory['Object'] = $interfacesDir . 'Object.php';
     }
 
     /**
@@ -141,7 +149,9 @@ class ClassLoader extends CoreObject {
         } else {
             $classPath = $className . '.php';
         }
-        include $classPath;
+        if (file_exists($classPath)) {
+            include $classPath;
+        }
     }
 
 }
