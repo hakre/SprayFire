@@ -34,7 +34,7 @@ abstract class BaseIteratingList extends CoreObject implements DataList {
      *
      * @var int
      */
-    protected $size = 0;
+    private $size = 0;
 
     /**
      * An object used to verify that the type of object being added to the list
@@ -91,8 +91,8 @@ abstract class BaseIteratingList extends CoreObject implements DataList {
      * @param CoreObject $Object
      * @return int
      */
-    public function indexOf(CoreObject $Object) {
-        $index = -1;
+    public function indexOf(Object $Object) {
+        $index = false;
         for ($i = 0; $i < $this->size(); $i++) {
             $ListedObject = $this->dataStorage[$i];
             if ($Object->equals($ListedObject)) {
@@ -131,7 +131,7 @@ abstract class BaseIteratingList extends CoreObject implements DataList {
      * @param CoreObject $Object
      * @throws InvalidArgumentException
      */
-    protected function throwExceptionIfObjectNotParentType(CoreObject $Object) {
+    protected function throwExceptionIfObjectNotParentType(Object $Object) {
         $isObjectValid = $this->TypeValidator->isObjectParentType($Object);
         if (!$isObjectValid) {
             throw new InvalidArgumentException('The object passed does not implement/extend ' . $this->TypeValidator->getParentType());
@@ -144,10 +144,10 @@ abstract class BaseIteratingList extends CoreObject implements DataList {
      * @param CoreObject $Object
      * @return boolean
      */
-    public function contains(CoreObject $Object) {
+    public function contains(Object $Object) {
         $objectContained = false;
         $objectIndex = $this->indexOf($Object);
-        if ($objectIndex >= 0) {
+        if ($objectIndex !== false) {
             $objectContained = true;
         }
         return $objectContained;
@@ -165,6 +165,14 @@ abstract class BaseIteratingList extends CoreObject implements DataList {
      */
     public function size() {
         return $this->size;
+    }
+
+    /**
+     * Will set the size of the list to the proper amount of elements in the list,
+     * should be called if an object is removed.
+     */
+    protected function recalculateSize() {
+        $this->size = count($this->dataStorage);
     }
 
 }
