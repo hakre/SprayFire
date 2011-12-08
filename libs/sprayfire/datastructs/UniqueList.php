@@ -38,11 +38,11 @@ class UniqueList extends BaseIteratingList {
      * in the list, (b) the object properly implements the $parentType and (c) the
      * object does not already exist in the list.
      *
-     * @param CoreObject $Object
+     * @param Object $Object
      * @throws OutOfRangeException
      *         IllegalArgumentException
      */
-    public function add(CoreObject $Object) {
+    public function add(Object $Object) {
         $this->throwExceptionIfNoAvailableBuckets();
         $this->throwExceptionIfObjectNotParentType($Object);
         $isObjectInList = $this->contains($Object);
@@ -55,11 +55,11 @@ class UniqueList extends BaseIteratingList {
      * Should change the index of the given list to the object passed.
      *
      * @param int $index
-     * @param CoreObject $Object
+     * @param Object $Object
      * @throws OutOfRangeException
      *         IllegalArgumentException
      */
-    public function set($index, CoreObject $Object) {
+    public function set($index, Object $Object) {
         $this->throwExceptionIfIndexOutOfRange($index);
         $this->throwExceptionIfObjectNotParentType($Object);
         $this->dataStorage[$index] = null;
@@ -70,12 +70,12 @@ class UniqueList extends BaseIteratingList {
      * Will add the passed object to the storage and increment the size of the
      * list.
      *
-     * @param CoreObject $Object
+     * @param Object $Object
      */
-    private function _add(CoreObject $Object) {
-        $arrayIndex = $this->size;
+    private function _add(Object $Object) {
+        $arrayIndex = $this->size();
         $this->dataStorage[$arrayIndex] = $Object;
-        $this->size++;
+        $this->recalculateSize();
     }
 
     /**
@@ -100,7 +100,7 @@ class UniqueList extends BaseIteratingList {
     private function hasAvailableBuckets() {
         $hasBuckets = true;
         if ($this->maxSize > 0) {
-            if ($this->size >= $this->maxSize) {
+            if ($this->size() >= $this->maxSize) {
                 $hasBuckets = false;
             }
         }
@@ -115,30 +115,18 @@ class UniqueList extends BaseIteratingList {
      * initial implementation simply wasn't sufficient to handle this, please avoid
      * doing so.  This feature may be added in a future release.
      *
-     * @param CoreObject $Object
+     * @param Object $Object
+     * @return boolean
      */
-    public function remove(CoreObject $Object) {
+    public function remove(Object $Object) {
         $objectIndex = $this->indexOf($Object);
-        if ($objectIndex >= 0) {
-            $this->dataStorage[$objectIndex] = null;
-            $this->resizeList();
+        if ($objectIndex !== false) {
+            unset($this->dataStorage[$objectIndex]);
+            $this->dataStorage = array_values($this->dataStorage);
+            $this->recalculateSize();
+            return true;
         }
-    }
-
-    /**
-     * Should be called after an element is removed from the list, will create a
-     * new array that does not contain any null values and then assign that array
-     * to the $dataStorage property.
-     */
-    private function resizeList() {
-        $newArray = array();
-        for ($i = 0; $i < $this->size(); $i++) {
-            if (isset($this->dataStorage[$i])) {
-                $newArray[] = $this->dataStorage[$i];
-            }
-        }
-        $this->dataStorage = $newArray;
-        $this->size = count($this->dataStorage);
+        return false;
     }
 
     /**
