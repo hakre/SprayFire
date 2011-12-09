@@ -11,6 +11,8 @@
  * @copyright Copyright (c) 2011, Charles Sprayberry
  */
 
+namespace libs\sprayfire\interfaces;
+
 /**
  * The base interface all objects in the framework must implement; simply provides
  * a way to compare 2 objects, distinguish unique objects and return a textual
