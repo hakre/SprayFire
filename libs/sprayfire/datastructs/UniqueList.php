@@ -2,14 +2,24 @@
 
 /**
  * SprayFire is a custom built framework intended to ease the development
- * of websites with PHP 5.2.
+ * of websites with PHP 5.3.
+ *
+ * SprayFire makes use of namespaces, a custom-built ORM layer, a completely
+ * object oriented approach and minimal invasiveness so you can make the framework
+ * do what YOU want to do.  Some things we take seriously over here at SprayFire
+ * includes clean, readable source, completely unit tested implementations and
+ * not polluting the global scope.
  *
  * SprayFire is released under the Open-Source Initiative MIT license.
  *
  * @author Charles Sprayberry <cspray at gmail dot com>
  * @license OSI MIT License <http://www.opensource.org/licenses/mit-license.php>
  * @copyright Copyright (c) 2011, Charles Sprayberry
+ * @version 0.10b
+ * @since 0.10b
  */
+
+namespace libs\sprayfire\datastructs;
 
 /**
  * This class is an implementation of the DataList interface, with data storage and
@@ -42,7 +52,7 @@ class UniqueList extends BaseIteratingList {
      * @throws OutOfRangeException
      *         IllegalArgumentException
      */
-    public function add(Object $Object) {
+    public function add(\libs\sprayfire\interfaces\Object $Object) {
         $this->throwExceptionIfNoAvailableBuckets();
         $this->throwExceptionIfObjectNotParentType($Object);
         $isObjectInList = $this->contains($Object);
@@ -59,7 +69,7 @@ class UniqueList extends BaseIteratingList {
      * @throws OutOfRangeException
      *         IllegalArgumentException
      */
-    public function set($index, Object $Object) {
+    public function set($index, \libs\sprayfire\interfaces\Object $Object) {
         $this->throwExceptionIfIndexOutOfRange($index);
         $this->throwExceptionIfObjectNotParentType($Object);
         $this->dataStorage[$index] = null;
@@ -72,7 +82,7 @@ class UniqueList extends BaseIteratingList {
      *
      * @param Object $Object
      */
-    private function _add(Object $Object) {
+    private function _add(\libs\sprayfire\interfaces\Object $Object) {
         $arrayIndex = $this->size();
         $this->dataStorage[$arrayIndex] = $Object;
         $this->recalculateSize();
@@ -84,7 +94,7 @@ class UniqueList extends BaseIteratingList {
     private function throwExceptionIfNoAvailableBuckets() {
         $isThereBucketsInList = $this->hasAvailableBuckets();
         if (!$isThereBucketsInList) {
-            throw new OutOfRangeException('The list does not have any buckets left to store the object.');
+            throw new \OutOfRangeException('The list does not have any buckets left to store the object.');
         }
     }
 
@@ -118,7 +128,7 @@ class UniqueList extends BaseIteratingList {
      * @param Object $Object
      * @return boolean
      */
-    public function remove(Object $Object) {
+    public function remove(\libs\sprayfire\interfaces\Object $Object) {
         $objectIndex = $this->indexOf($Object);
         if ($objectIndex !== false) {
             unset($this->dataStorage[$objectIndex]);

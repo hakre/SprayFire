@@ -2,20 +2,30 @@
 
 /**
  * SprayFire is a custom built framework intended to ease the development
- * of websites with PHP 5.2.
+ * of websites with PHP 5.3.
+ *
+ * SprayFire makes use of namespaces, a custom-built ORM layer, a completely
+ * object oriented approach and minimal invasiveness so you can make the framework
+ * do what YOU want to do.  Some things we take seriously over here at SprayFire
+ * includes clean, readable source, completely unit tested implementations and
+ * not polluting the global scope.
  *
  * SprayFire is released under the Open-Source Initiative MIT license.
  *
  * @author Charles Sprayberry <cspray at gmail dot com>
  * @license OSI MIT License <http://www.opensource.org/licenses/mit-license.php>
  * @copyright Copyright (c) 2011, Charles Sprayberry
+ * @version 0.10b
+ * @since 0.10b
  */
+
+namespace libs\sprayfire\datastructs;
 
 /**
  * This class ensures that a given object implements or extends a specific interface
  * or class.
  */
-class ObjectTypeValidator extends CoreObject {
+class ObjectTypeValidator extends \libs\sprayfire\core\CoreObject {
 
     /**
      * @var ReflectionClass
@@ -40,9 +50,9 @@ class ObjectTypeValidator extends CoreObject {
     private function createReflectedParentType($parentType) {
         $ReflectedParent = null;
         try {
-            $ReflectedParent = new ReflectionClass($parentType);
-        } catch (ReflectionException $ReflectionExc) {
-            throw new InvalidArgumentException('There was an error reflecting the parent type, ' . $parentType, null, $ReflectionExc);
+            $ReflectedParent = new \ReflectionClass($parentType);
+        } catch (\ReflectionException $ReflectionExc) {
+            throw new \InvalidArgumentException('There was an error reflecting the parent type, ' . $parentType, null, $ReflectionExc);
         }
         return $ReflectedParent;
     }
@@ -60,22 +70,22 @@ class ObjectTypeValidator extends CoreObject {
      * @param CoreObject $Object
      * @return boolean
      */
-    public function isObjectParentType(CoreObject $Object) {
+    public function isObjectParentType(\libs\sprayfire\interfaces\Object $Object) {
         $isValid = false;
         $ReflectedParent = $this->ReflectedParentType;
-        $parentName = $ReflectedParent->getShortName();
+        $parentName = $ReflectedParent->getName();
         try {
-            $ReflectedObject = new ReflectionClass($Object);
+            $ReflectedObject = new \ReflectionClass($Object);
             if ($ReflectedParent->isInterface()) {
                 if ($ReflectedObject->implementsInterface($parentName)) {
                     $isValid = true;
                 }
             } else {
-                if ($ReflectedObject->getShortName() === $parentName || $ReflectedObject->isSubclassOf($parentName)) {
+                if ($ReflectedObject->getName() === $parentName || $ReflectedObject->isSubclassOf($parentName)) {
                     $isValid = true;
                 }
             }
-        } catch (ReflectionException $ReflectionExc) {
+        } catch (\ReflectionException $ReflectionExc) {
             // @codeCoverageIgnoreStart
             error_log($ReflectionExc->getMessage());
             // @codeCoverageIgnoreEnd
@@ -87,7 +97,7 @@ class ObjectTypeValidator extends CoreObject {
      * @return string
      */
     public function getParentType() {
-        return $this->ReflectedParentType->getShortName();
+        return $this->ReflectedParentType->getName();
     }
 }
 
