@@ -161,22 +161,48 @@ class FrameworkBootstrap extends CoreObject implements \libs\sprayfire\interface
      * @return array
      */
     private function getListOfBootstrapFiles() {
-        $bootstrapPath = APP_PATH . DS . 'bootstrap';
-        $directoryHandle = opendir($bootstrapPath);
+        $bootstrapPath = SprayFireDirectory::getAppPathSubDirectory('bootstrap');
+        $directoryHandle = \opendir($bootstrapPath);
         $files = array();
         if (!$directoryHandle) {
+            \error_log('Error opening the app/bootstrap files in ' . $bootstrapPath);
             return $files;
         }
         $restrictedFiles = array('.', '..', '.DS_Store');
-        $appBootstrapNamespace = '\\app\\bootstrap\\';
-        while (false !== ($file = readdir($directoryHandle))) {
-            if (!is_dir($file)) {
-                if (!in_array($file, $restrictedFiles)) {
+        $appBootstrapNamespace = $this->getAppBootstrapNamespace();
+        $appBootstrapNamespace .= '\\';
+        while (false !== ($file = \readdir($directoryHandle))) {
+            if (!\is_dir($file)) {
+                if (!\in_array($file, $restrictedFiles)) {
                     $files[] = $appBootstrapNamespace . $file;
                 }
             }
         }
         return $files;
+    }
+
+    /**
+     * This method will return the proper namespace that should be implemented by
+     * bootstrap objects.
+     *
+     * @return string
+     * @internal This somewhat hacky method is used to help facilitate unit testing
+     * on the bootstrap object.  Damn you global scope, damn you!
+     */
+    private function getAppBootstrapNamespace() {
+        $bootstrapDir = SprayFireDirectory::getAppPathSubDirectory('bootstrap');
+
+        // we are doing this str_replace to prevent collisions with regex and /
+        $bootstrapDir = \str_replace('/', '_', $bootstrapDir);
+        $regexReadyRootPath = \str_replace('/', '_', \ROOT_PATH);
+
+        $regexPattern = '/' . $regexReadyRootPath . '_/';
+        $bootstrapDir = \preg_replace($regexPattern, '', $bootstrapDir);
+
+        // now we just want to change the underscores to the namespace separator
+        $bootstrapNamespace = \str_replace('_', '\\', $bootstrapDir);
+
+        return $bootstrapNamespace;
     }
 
     /**
@@ -261,9 +287,6 @@ class FrameworkBootstrap extends CoreObject implements \libs\sprayfire\interface
      * @param array $objects
      */
     private function runAllBootstraps(array $objects) {
-        if (empty($objects)) {
-            return;
-        }
         foreach ($objects as $object) {
             $object->runBootstrap();
         }
