@@ -71,8 +71,6 @@ interface FrameworkPaths {
      */
     public static function getAppPathSubDirectory($subDirectory);
 
-
-
 }
 
 // End FrameworkPaths
