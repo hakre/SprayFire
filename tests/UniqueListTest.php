@@ -28,7 +28,7 @@ class UniqueListTest extends PHPUnit_Framework_TestCase {
      * add(), contains(), size(), isEmpty() and get().
      */
     public function testBasicListMethods() {
-        $List = new UniqueList('TestObject');
+        $List = new \libs\sprayfire\datastructs\UniqueList('TestObject');
         $FirstObject = new TestObject();
         $SecondObject = new TestObject();
         $ThirdObject = new TestObject();
@@ -80,7 +80,7 @@ class UniqueListTest extends PHPUnit_Framework_TestCase {
         $this->assertSame($ThirdObject, $ActualThirdObject);
 
         $listString = $List->__toString();
-        $expectedString = 'UniqueList';
+        $expectedString = 'libs\sprayfire\datastructs\UniqueList';
         $this->assertEquals($expectedString, $listString);
     }
 
@@ -89,7 +89,7 @@ class UniqueListTest extends PHPUnit_Framework_TestCase {
      * objects to the list past the maximum size will result in an OutOfRangeException.
      */
     public function testSettingMaxSizeBeforeAdd() {
-        $List = new UniqueList('TestObject');
+        $List = new \libs\sprayfire\datastructs\UniqueList('TestObject');
         $List->setMaxSize(3);
         $List->add(new TestObject());
         $List->add(new TestObject());
@@ -98,7 +98,7 @@ class UniqueListTest extends PHPUnit_Framework_TestCase {
         $exceptionThrown = false;
         try {
             $List->add(new TestObject());
-        } catch (OutOfRangeException $Exc) {
+        } catch (\OutOfRangeException $Exc) {
             $exceptionThrown = true;
         }
         $this->assertTrue($exceptionThrown);
@@ -114,7 +114,7 @@ class UniqueListTest extends PHPUnit_Framework_TestCase {
      *
      */
     public function testSettingMaxSizeAfterAdd() {
-        $List = new UniqueList('TestObject');
+        $List = new \libs\sprayfire\datastructs\UniqueList('TestObject');
         $List->add(new TestObject());
         $List->add(new TestObject());
         $List->add(new TestObject());
@@ -130,7 +130,7 @@ class UniqueListTest extends PHPUnit_Framework_TestCase {
         $exceptionThrown = false;
         try {
             $List->add(new TestObject());
-        } catch (OutOfRangeException $OorExc) {
+        } catch (\OutOfRangeException $OorExc) {
             $exceptionThrown = true;
         }
         $this->assertTrue($exceptionThrown);
@@ -144,7 +144,7 @@ class UniqueListTest extends PHPUnit_Framework_TestCase {
      *
      */
     public function testSetInvalidMaxSize() {
-        $List = new UniqueList('TestObject');
+        $List = new \libs\sprayfire\datastructs\UniqueList('TestObject');
         $maxSizeSet = $List->setMaxSize('Not an integer value');
         $expectedMaxSize = 0;
         $this->assertSame($expectedMaxSize, $maxSizeSet);
@@ -158,8 +158,8 @@ class UniqueListTest extends PHPUnit_Framework_TestCase {
     public function testCreateListWithInvalidParentType() {
         $exceptionThrown = false;
         try {
-            $List = new UniqueList('IDoNotExist');
-        } catch (InvalidArgumentException $IllegalArgExec) {
+            $List = new \libs\sprayfire\datastructs\UniqueList('IDoNotExist');
+        } catch (\InvalidArgumentException $IllegalArgExec) {
             $exceptionThrown = true;
         }
         $this->assertTrue($exceptionThrown);
@@ -172,8 +172,8 @@ class UniqueListTest extends PHPUnit_Framework_TestCase {
     public function testCreateListWithNoParentType() {
         $exceptionThrown = false;
         try {
-            $List = new UniqueList('');
-        } catch (InvalidArgumentException $IllegalArgExc) {
+            $List = new \libs\sprayfire\datastructs\UniqueList('');
+        } catch (\InvalidArgumentException $IllegalArgExc) {
             $exceptionThrown = true;
         }
         $this->assertTrue($exceptionThrown);
@@ -184,7 +184,7 @@ class UniqueListTest extends PHPUnit_Framework_TestCase {
      * elements are removed from the List and should be fairly straight forward.
      */
     public function testLoopListWithNoRemove() {
-        $List = new UniqueList('TestObject');
+        $List = new \libs\sprayfire\datastructs\UniqueList('TestObject');
         $FirstObject = new TestObject();
         $SecondObject = new TestObject();
         $ThirdObject = new TestObject();
@@ -208,7 +208,7 @@ class UniqueListTest extends PHPUnit_Framework_TestCase {
      * should still be in the appropriate order.
      */
     public function testLoopListWithExternalRemove() {
-        $List = new UniqueList('TestObject');
+        $List = new \libs\sprayfire\datastructs\UniqueList('TestObject');
         $FirstObject = new TestObject();
         $SecondObject = new TestObject();
         $ThirdObject = new TestObject();
@@ -239,9 +239,9 @@ class UniqueListTest extends PHPUnit_Framework_TestCase {
      * to the list.
      */
     public function testCreatingInterfaceList() {
-        $List = new UniqueList('Configuration');
-        $List->add(new CoreConfiguration());
-        $List->add(new CoreConfiguration());
+        $List = new \libs\sprayfire\datastructs\UniqueList('\\libs\\sprayfire\\interfaces\\Configuration');
+        $List->add(new \libs\sprayfire\core\CoreConfiguration());
+        $List->add(new \libs\sprayfire\core\CoreConfiguration());
         $listSize = $List->size();
         $expectedSize = 2;
         $this->assertSame($expectedSize, $listSize);
@@ -254,11 +254,11 @@ class UniqueListTest extends PHPUnit_Framework_TestCase {
     public function testUsingInvalidGetIndex() {
             $exceptionThrown = false;
         try {
-            $List = new UniqueList('TestObject');
+            $List = new \libs\sprayfire\datastructs\UniqueList('TestObject');
             $List->add(new TestObject());
             $List->add(new TestObject());
             $Object = $List->get(2);
-        } catch (OutOfRangeException $OorExc) {
+        } catch (\OutOfRangeException $OorExc) {
             $exceptionThrown = true;
         }
         $this->assertTrue($exceptionThrown);
@@ -271,16 +271,16 @@ class UniqueListTest extends PHPUnit_Framework_TestCase {
     public function testAddInvalidObject() {
         $exceptionThrown = false;
         try {
-            $List = new UniqueList('TestObject');
-            $List->add(new CoreConfiguration);
-        } catch (InvalidArgumentException $IllegalArgExc) {
+            $List = new \libs\sprayfire\datastructs\UniqueList('TestObject');
+            $List->add(new \libs\sprayfire\core\CoreConfiguration);
+        } catch (\InvalidArgumentException $IllegalArgExc) {
             $exceptionThrown = true;
         }
         $this->assertTrue($exceptionThrown);
     }
 
     public function testRemoveInvalidObject() {
-        $List = new UniqueList('TestObject');
+        $List = new \libs\sprayfire\datastructs\UniqueList('TestObject');
         $FirstObject = new TestObject();
         $SecondObject = new TestObject();
         $ThirdObject = new TestObject();

@@ -14,7 +14,7 @@
 /**
  *
  */
-class TestObject extends CoreObject {
+class TestObject extends \libs\sprayfire\core\CoreObject {
 
 }
 

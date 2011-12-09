@@ -27,7 +27,7 @@ class CoreConfigurationTest extends PHPUnit_Framework_TestCase {
      */
     public function testWriteAndRead() {
 
-        $TestObject = new CoreConfiguration();
+        $TestObject = new \libs\sprayfire\core\CoreConfiguration();
 
         $TestObject->write('testOne', '1');
         $TestObject->write('testTwo', array('one' => '2'));

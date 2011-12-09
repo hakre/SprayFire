@@ -12,8 +12,8 @@
  */
 
 include 'CoreConfigurationTest.php';
-include 'RequestParserTest.php';
 include 'UniqueListTest.php';
+include 'FrameworkBootstrapTest.php';
 
 /**
  *
@@ -28,8 +28,8 @@ class AllTests {
     public static function suite() {
         $Suite = new PHPUnit_Framework_TestSuite();
         $Suite->addTestSuite('CoreConfigurationTest');
-        $Suite->addTestSuite('RequestParserTest');
         $Suite->addTestSuite('UniqueListTest');
+        $Suite->addTestSuite('FrameworkBootstrapTest');
         return $Suite;
     }
 

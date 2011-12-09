@@ -3,26 +3,21 @@
     /**
      * @var string
      */
-     defined('DS') or define('DS', DIRECTORY_SEPARATOR);
+    defined('DS') or define('DS', DIRECTORY_SEPARATOR);
 
-     /**
-      * @var string
-      */
-     defined('ROOT_PATH') or define('ROOT_PATH', dirname(dirname(__FILE__)));
+    /**
+     * @var string
+     */
+    defined('ROOT_PATH') or define('ROOT_PATH', dirname(dirname(__FILE__)));
 
-     /**
-      * @var string
-      */
-     defined('FRAMEWORK_PATH') or define('FRAMEWORK_PATH', ROOT_PATH . DS . 'libs' . DS . 'sprayfire');
+    include ROOT_PATH . DS . 'libs' . DS . 'sprayfire' . DS . 'interfaces' . DS . 'FrameworkPaths.php';
+    include ROOT_PATH . DS . 'libs' . DS . 'sprayfire' . DS . 'core' . DS . 'SprayFireDirectory.php';
 
-     /**
-      * @var string
-      */
-     defined('APP_PATH') or define('APP_PATH', ROOT_PATH . DS . 'app');
+    \libs\sprayfire\core\SprayFireDirectory::setRootInstallationPath(ROOT_PATH);
 
-     include FRAMEWORK_PATH . DS . 'interfaces' . DS . 'Object.php';
-     include FRAMEWORK_PATH . DS . 'core' . DS . 'CoreObject.php';
-     include FRAMEWORK_PATH . DS . 'core' . DS . 'ClassLoader.php';
+    include \libs\sprayfire\core\SprayFireDirectory::getFrameworkPathSubDirectory('interfaces') . DS . 'Object.php';
+    include \libs\sprayfire\core\SprayFireDirectory::getFrameworkPathSubDirectory('core') . DS . 'CoreObject.php';
+    include \libs\sprayfire\core\SprayFireDirectory::getFrameworkPathSubDirectory('core') . DS . 'ClassLoader.php';
 
-     $ClassLoader = new ClassLoader();
-     $ClassLoader->setAutoLoader();
+    $ClassLoader = new \libs\sprayfire\core\ClassLoader();
+    $ClassLoader->setAutoLoader();
