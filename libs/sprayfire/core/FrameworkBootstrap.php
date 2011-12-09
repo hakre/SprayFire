@@ -2,21 +2,31 @@
 
 /**
  * SprayFire is a custom built framework intended to ease the development
- * of websites with PHP 5.2.
+ * of websites with PHP 5.3.
+ *
+ * SprayFire makes use of namespaces, a custom-built ORM layer, a completely
+ * object oriented approach and minimal invasiveness so you can make the framework
+ * do what YOU want to do.  Some things we take seriously over here at SprayFire
+ * includes clean, readable source, completely unit tested implementations and
+ * not polluting the global scope.
  *
  * SprayFire is released under the Open-Source Initiative MIT license.
  *
  * @author Charles Sprayberry <cspray at gmail dot com>
  * @license OSI MIT License <http://www.opensource.org/licenses/mit-license.php>
  * @copyright Copyright (c) 2011, Charles Sprayberry
+ * @version 0.10b
+ * @since 0.10b
  */
+
+namespace libs\sprayfire\core;
 
 /**
  * The framework's default bootstrap, is primarily responsible for writing the default
  * values in the CoreConfiguration object and running each bootstrap object located
  * in the app/bootstrap folder.
  */
-class FrameworkBootstrap extends CoreObject implements Bootstrapper {
+class FrameworkBootstrap extends CoreObject implements \libs\sprayfire\interfaces\Bootstrapper {
 
     /**
      * The framework's core configuration object, will be passed to each bootstrap
@@ -29,7 +39,7 @@ class FrameworkBootstrap extends CoreObject implements Bootstrapper {
     /**
      * @param Configuration $CoreConfiguration
      */
-    public function __construct(Configuration $CoreConfiguration) {
+    public function __construct(\libs\sprayfire\interfaces\Configuration $CoreConfiguration) {
         $this->CoreConfiguration = $CoreConfiguration;
     }
 
@@ -50,16 +60,47 @@ class FrameworkBootstrap extends CoreObject implements Bootstrapper {
     private function writeCoreConfiguration() {
         $this->writeFrameworkDefaults();
         $this->writeErrorDefaults();
+        $this->writeIniConfiguration();
     }
 
     /**
      * Writes the default values the framework needs to complete the request.
      */
     private function writeFrameworkDefaults() {
+
+        // This option is used to determine which controller should be used if the
+        // root webserver path is passed in $_SERVER['REQUEST_URI'].  Please be
+        // sure to name your controller as if it were being passed in a url and
+        // not the actual name of the controller class being instantiated.
+        //
+        // Expects: string
         $this->CoreConfiguration->write('default_controller', 'pages');
+
+        // This option is used to determing which action should be invoked if the
+        // root webserver path is passed.  Please be sure to name the action as if
+        // it were being passed in a url.
+        //
+        // Expects: string
         $this->CoreConfiguration->write('default_action', 'index');
+
+        // This option is used to determine which layout template should be used
+        // if the controller does not set one.
+        //
+        // Expects: string
         $this->CoreConfiguration->write('default_layout_template', 'default');
+
+        // This option is used to determine which Responder class should be used
+        // to generate the response.  This should be the complete name of a class
+        // that implements the Responder interface.
+        //
+        // Expects: string
         $this->CoreConfiguration->write('default_responder', 'HtmlResponder');
+
+        // This option is used to determine which DataSource class should be used
+        // to persist data if there isn't one set by the Mapper.  This should be
+        // the complete name of a class that implements the DataSource interface.
+        //
+        // Expects: string
         $this->CoreConfiguration->write('default_data_source', 'PdoDataSource');
     }
 
@@ -71,6 +112,16 @@ class FrameworkBootstrap extends CoreObject implements Bootstrapper {
         $this->CoreConfiguration->write('error_controller', 'error');
         $this->CoreConfiguration->write('error_action', 'index');
         $this->CoreConfiguration->write('error_reporting', E_ALL & E_STRICT);
+    }
+
+    /**
+     * Writes configuration files used to customize the PHP ini file.
+     */
+    private function writeIniConfiguration() {
+
+        $this->CoreConfiguration->write('php_ini_default_timezone', 'America/New_York');
+        $this->CoreConfiguration->write('php_ini_default_charset', 'UTF-8');
+
     }
 
     /**
@@ -113,14 +164,15 @@ class FrameworkBootstrap extends CoreObject implements Bootstrapper {
         $bootstrapPath = APP_PATH . DS . 'bootstrap';
         $directoryHandle = opendir($bootstrapPath);
         $files = array();
-        $restrictedFiles = array('.', '..', '.DS_Store');
         if (!$directoryHandle) {
             return $files;
         }
+        $restrictedFiles = array('.', '..', '.DS_Store');
+        $appBootstrapNamespace = '\\app\\bootstrap\\';
         while (false !== ($file = readdir($directoryHandle))) {
             if (!is_dir($file)) {
                 if (!in_array($file, $restrictedFiles)) {
-                    $files[] = $file;
+                    $files[] = $appBootstrapNamespace . $file;
                 }
             }
         }
@@ -170,12 +222,12 @@ class FrameworkBootstrap extends CoreObject implements Bootstrapper {
      */
     private function implementsBootstrapperInterface($className) {
         try {
-            $nameOfBootstapperInterface = 'Bootstrapper';
-            $ReflectedClass = new ReflectionClass($className);
-            if ($ReflectedClass->implementsInterface($nameOfBootstapperInterface)) {
+            $bootstapperInterface = '\\libs\\sprayfire\\interfaces\\Bootstrapper';
+            $ReflectedClass = new \ReflectionClass($className);
+            if ($ReflectedClass->implementsInterface($bootstapperInterface)) {
                 return true;
             }
-        } catch (ReflectionException $ReflectionException) {
+        } catch (\ReflectionException $ReflectionException) {
             // no need to do anything here as the final return of false will
             // handle this exception
             error_log($ReflectionException->getMessage());
