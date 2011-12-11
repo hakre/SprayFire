@@ -23,35 +23,62 @@ namespace libs\sprayfire\interfaces;
 
 /**
  * An interface for configuration objects used by the application and framework.
+ *
+ * It is expected that the implementation objects will allow read-only properties
+ * to hold the various information associated with a configuration.  Each type of
+ * configuration object should ultimately read the configuration from a file.  The
+ * ability to parse the given file should exist within the class not needing a
+ * dependency.  It is expected that any given configuration object will be mutable,
+ * allowing the imported configuration values to only be read.
+ *
  */
 interface Configuration {
 
     /**
-     * Ensures that there are no dependencies needed when the configuration objects
-     * are created.
+     * The absolute path to a configuration file should be passed, afterwards the
+     * object should parse the configuration file assigning the appropriate values.
+     *
+     * @param string $filePath
+     * @return boolean
      */
-    public function __construct();
+    public function importConfig($filePath);
 
     /**
-     * The $key passed will be searched for in some data structure holding key/value
-     * pairs, if the key is found the value associated with it should be returned
-     * otherwise the method should return NULL.
+     * This method should throw an UnsupportedOperationException as it is expected
+     * configuration values to be read-only.
      *
-     * @param string $key
-     * @return mixed Whatever value is associated with the key
-     */
-    public function read($key);
-
-    /**
-     * Will add a new, or replace an existing, entry in the data structure holding
-     * the key/value pairs, should return a status as to whether or not the $value
-     * was written to $key.
-     *
-     * @param string $key
+     * @param string $propertyName
      * @param mixed $value
-     * @return boolean True/false if the $value was written to $key
+     * @throws \libs\sprayfire\exceptions\UnsupportedOperationException
      */
-    public function write($key, $value);
+    public function __set($proeprtyName, $value);
+
+    /**
+     * Should return the value set for the property, if it exists or NULL if it
+     * doesn't.
+     *
+     * @param string $propertyName
+     * @return mixed
+     */
+    public function __get($propertyName);
+
+    /**
+     * Should return true if the property exists and there is a value assigned to
+     * it or false otherwise.
+     *
+     * @param string $propertyName
+     * @return boolean
+     */
+    public function __isset($propertyName);
+
+    /**
+     * Should thrown an UnsupportedOperationException as a configuration property
+     * should never be allowed to be nset.
+     *
+     * @param string $propertyName
+     * @throws \libs\sprayfire\exceptions\UnsupportedOperationException
+     */
+    public function __unset($propertyName);
 
 }
 
