@@ -53,23 +53,19 @@ interface FrameworkPaths {
 
     /**
      * Should return a string with the complete path to the sub directory of the
-     * framework; each directory after the first should be separated by a directory
-     * separator.
+     * framework; this list of dir should be a variable number of string arguments.
      *
-     * @param string $subDirectory
      * @return string
      */
-    public static function getFrameworkPathSubDirectory($subDirectory);
+    public static function getFrameworkPathSubDirectory();
 
     /**
      * Should return a string with the complete path to the sub directory of the
-     * application; each directory after first should be seperated by a directory
-     * separator.
+     * application; the list of dir should be a variable number of string arguments.
      *
-     * @param string $subDirectory
      * @return string
      */
-    public static function getAppPathSubDirectory($subDirectory);
+    public static function getAppPathSubDirectory();
 
 }
 
