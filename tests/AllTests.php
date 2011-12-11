@@ -11,7 +11,6 @@
  * @copyright Copyright (c) 2011, Charles Sprayberry
  */
 
-include 'CoreConfigurationTest.php';
 include 'UniqueListTest.php';
 include 'FrameworkBootstrapTest.php';
 
@@ -27,7 +26,6 @@ class AllTests {
      */
     public static function suite() {
         $Suite = new PHPUnit_Framework_TestSuite();
-        $Suite->addTestSuite('CoreConfigurationTest');
         $Suite->addTestSuite('UniqueListTest');
         $Suite->addTestSuite('FrameworkBootstrapTest');
         return $Suite;
