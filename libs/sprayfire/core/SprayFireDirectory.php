@@ -26,6 +26,8 @@ namespace libs\sprayfire\core;
  * Ultimately though the methods in this class provide a very good functionality
  * that makes it easy to easily get a framework or application directory anywhere
  * in the framework.
+ *
+ * @uses \libs\sprayfire\interfaces\FrameworkPaths
  */
 class SprayFireDirectory implements \libs\sprayfire\interfaces\FrameworkPaths {
 
@@ -45,6 +47,15 @@ class SprayFireDirectory implements \libs\sprayfire\interfaces\FrameworkPaths {
     private static $appRoot = null;
 
     /**
+     * @param string $rootInstallationPath
+     */
+    public static function setRootInstallationPath($rootInstallationPath) {
+        self::$installRoot = $rootInstallationPath;
+        self::$frameworkRoot = self::$installRoot . DS . 'libs' . DS . 'sprayfire';
+        self::$appRoot = self::$installRoot . DS . 'app';
+    }
+
+    /**
      * @return string
      */
     public static function getAppPath() {
@@ -52,14 +63,17 @@ class SprayFireDirectory implements \libs\sprayfire\interfaces\FrameworkPaths {
     }
 
     /**
-     * The $subDirectory passed should be separated by directory separators after
-     * the first directory.
+     * Converts a variable list of strings into a directory separated path that
+     * will be interpreted to be a sub directory in the ROOT_PATH/app/ dir
      *
      * @param string $subDirectory
      * @return string
      */
-    public static function getAppPathSubDirectory($subDirectory) {
-        return self::$appRoot . DS . $subDirectory;
+    public static function getAppPathSubDirectory() {
+        $subDirList = \func_get_args();
+        if (\count($subDirList) === 0)
+        $subDirPath = self::getSubDirectoryPath($subDirList);
+        return self::getAppPath() . DS . $subDirPath;
     }
 
     /**
@@ -70,24 +84,35 @@ class SprayFireDirectory implements \libs\sprayfire\interfaces\FrameworkPaths {
     }
 
     /**
-     * The $subDirectory passed should be separated by directory separators after
-     * the first directory.
+     * Converts a variable list of strings into a directory separated path that
+     * will be interpreted as a sub directory in the ROOT_PATH/libs/sprayfire dir
      *
      * @param string $subDirectory
      * @return string
      */
-    public static function getFrameworkPathSubDirectory($subDirectory) {
-        return self::$frameworkRoot . DS . $subDirectory;
+    public static function getFrameworkPathSubDirectory() {
+        $subDirList = \func_get_args();
+        if (\count($subDirList) === 0) {
+            return self::getFrameworkPath();
+        }
+        $subDirPath = self::getSubDirectoryPath($subDirList);
+        $fullPath = self::getFrameworkPath() . DS . $subDirPath;
+        return $fullPath;
     }
 
     /**
-     * @param string $rootInstallationPath
+     * @param array $subDirList
+     * @return string
      */
-    public static function setRootInstallationPath($rootInstallationPath) {
-        self::$installRoot = $rootInstallationPath;
-        self::$frameworkRoot = self::$installRoot . DS . 'libs' . DS . 'sprayfire';
-        self::$appRoot = self::$installRoot . DS . 'app';
+    private static function getSubDirectoryPath(array $subDirList) {
+        $subDirPath = '';
+        foreach ($subDirList as $subDir) {
+            $subDirPath .= \trim($subDir) . DS;
+        }
+        $subDirPath = \rtrim($subDirPath, DS);
+        return $subDirPath;
     }
+
 }
 
 // End SprayFireDirectory
