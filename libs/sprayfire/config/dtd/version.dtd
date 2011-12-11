@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!ELEMENT version (major, minor, revision)>
+        <!ATTLIST version deployment-stage (alpha|beta|rc|gold-rc|release) #REQUIRED>
+        <!ELEMENT major (#PCDATA)>
+        <!ELEMENT minor (#PCDATA)>
+        <!ELEMENT revision (#PCDATA)>
+
