@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    This is the primary root for the framework configuration document.
+-->
+<!ELEMENT sprayfire (version, configuration)>
+
+    <!--
+        Ensures that the framework configuration has a version set with a deployment-stage
+        attribute, a major version number, a minor version number and a revision version
+        number
+    -->
+    <!ENTITY % version SYSTEM 'version.dtd'>
+    %version;
+
+    <!ELEMENT configuration (app-config-file, routing, error-handling, exception-handling, global-ini-settings)>
+
+        <!--
+            Name and extension of the file holding application configuration values
+            This file should exist in ROOT_PATH/app/config
+        -->
+        <!ELEMENT app-config-file (#PCDATA)>
+
+        <!--
+            This section holds various information pertaining to default routing
+            used by the framework; to include where the routes configuration file
+            can be found and what the default-controller and default-action for
+            requests should be.  The controller and action specified are safe-guards
+            in case the app-config.xml file does not specify a controller.
+        -->
+        <!ELEMENT routing (routes-config-file, default-controller, default-action)>
+
+            <!--
+                Name and extension of the file holding routing configuration values
+                This file should exist in ROOT_PATH/app/config
+            -->
+            <!ELEMENT routes-config-file (#PCDATA)>
+
+            <!--
+                The name of the controller that should be used if there is no controller
+                specfied in the REQUEST_URI.  Please note that this should be the
+                name of the controller as if it were coming through a REQUEST_URI
+            -->
+            <!ELEMENT default-controller (#PCDATA)>
+
+            <!--
+                The name of the method that should be invoked by the controller
+                for this request if the action is not specified in the REQUEST_URI.
+            -->
+            <!ELEMENT default-action (#PCDATA)>
+
+        <!--
+            This is the name of the class and method which will be the application's
+            error handling and exception handling callbacks.
+         -->
+        <!ELEMENT error-handling (class, action)>
+        <!ELEMENT exception-handling (class, action)>
+            <!ELEMENT class (#PCDATA)>
+            <!ELEMENT action (#PCDATA)>
+
+        <!--
+            These are ini settings that should be set regardless of the development
+            environment set by the application configuration.  These settings are a
+            safe-guard in case the application configuration does not properly set
+            these values.
+
+            For more information about the ini configurations set in this section
+            please refer to the global-ini-settings.dtd.
+        -->
+        <!ENTITY % global-ini-settings SYSTEM 'global-ini-settings.dtd'>
+        %global-ini-settings;
