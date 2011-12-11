@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    These are various ini settings that will be set by the framework bootstrap and
+    should be set regardless of the development mode.
+-->
+<!ELEMENT global-ini-settings (timezone, charset, short-open-tags, expose-php, asp-tags)>
+    <!ELEMENT timezone (#PCDATA)>
+    <!ELEMENT charset (#PCDATA)>
+    <!ELEMENT short-open-tags EMPTY>
+        <!ATTLIST short-open-tags value (yes|no) #REQUIRED>
+    <!ELEMENT expose-php EMPTY>
+        <!ATTLIST expose-php value (yes|no) #REQUIRED>
+    <!ELEMENT asp-tags EMPTY>
+        <!ATTLIST asp-tags value (yes|no) #REQUIRED>
