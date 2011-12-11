@@ -25,6 +25,10 @@ namespace libs\sprayfire\core;
  * The framework's default bootstrap, is primarily responsible for writing the default
  * values in the CoreConfiguration object and running each bootstrap object located
  * in the app/bootstrap folder.
+ *
+ * @uses \libs\sprayfire\interfaces\Bootstrapper
+ * @uses \libs\sprayfire\core\CoreObject
+ * @uses \libs\sprayfire\interfaces\Object
  */
 class FrameworkBootstrap extends CoreObject implements \libs\sprayfire\interfaces\Bootstrapper {
 
@@ -34,13 +38,13 @@ class FrameworkBootstrap extends CoreObject implements \libs\sprayfire\interface
      *
      * @var Configuration
      */
-    private $CoreConfiguration;
+    private $FrameworkConfiguration;
 
     /**
-     * @param Configuration $CoreConfiguration
+     * @param Configuration $FrameworkConfiguration
      */
-    public function __construct(\libs\sprayfire\interfaces\Configuration $CoreConfiguration) {
-        $this->CoreConfiguration = $CoreConfiguration;
+    public function __construct(\libs\sprayfire\interfaces\Configuration $FrameworkConfiguration) {
+        $this->FrameworkConfiguration = $FrameworkConfiguration;
     }
 
     /**
@@ -48,80 +52,8 @@ class FrameworkBootstrap extends CoreObject implements \libs\sprayfire\interface
      * app bootstrap objects.
      */
     public function runBootstrap() {
-        $this->writeCoreConfiguration();
         $this->runAppBootstrap();
         $this->runPostAppBootstrap();
-    }
-
-    /**
-     * Will fill the CoreConfiguration object with the appropriate values needed
-     * to configure various framework pieces.
-     */
-    private function writeCoreConfiguration() {
-        $this->writeFrameworkDefaults();
-        $this->writeErrorDefaults();
-        $this->writeIniConfiguration();
-    }
-
-    /**
-     * Writes the default values the framework needs to complete the request.
-     */
-    private function writeFrameworkDefaults() {
-
-        // This option is used to determine which controller should be used if the
-        // root webserver path is passed in $_SERVER['REQUEST_URI'].  Please be
-        // sure to name your controller as if it were being passed in a url and
-        // not the actual name of the controller class being instantiated.
-        //
-        // Expects: string
-        $this->CoreConfiguration->write('default_controller', 'pages');
-
-        // This option is used to determing which action should be invoked if the
-        // root webserver path is passed.  Please be sure to name the action as if
-        // it were being passed in a url.
-        //
-        // Expects: string
-        $this->CoreConfiguration->write('default_action', 'index');
-
-        // This option is used to determine which layout template should be used
-        // if the controller does not set one.
-        //
-        // Expects: string
-        $this->CoreConfiguration->write('default_layout_template', 'default');
-
-        // This option is used to determine which Responder class should be used
-        // to generate the response.  This should be the complete name of a class
-        // that implements the Responder interface.
-        //
-        // Expects: string
-        $this->CoreConfiguration->write('default_responder', 'HtmlResponder');
-
-        // This option is used to determine which DataSource class should be used
-        // to persist data if there isn't one set by the Mapper.  This should be
-        // the complete name of a class that implements the DataSource interface.
-        //
-        // Expects: string
-        $this->CoreConfiguration->write('default_data_source', 'PdoDataSource');
-    }
-
-    /**
-     * Writes configuration values for error handling and debugging.
-     */
-    private function writeErrorDefaults() {
-        $this->CoreConfiguration->write('debug_mode', true);
-        $this->CoreConfiguration->write('error_controller', 'error');
-        $this->CoreConfiguration->write('error_action', 'index');
-        $this->CoreConfiguration->write('error_reporting', E_ALL & E_STRICT);
-    }
-
-    /**
-     * Writes configuration files used to customize the PHP ini file.
-     */
-    private function writeIniConfiguration() {
-
-        $this->CoreConfiguration->write('php_ini_default_timezone', 'America/New_York');
-        $this->CoreConfiguration->write('php_ini_default_charset', 'UTF-8');
-
     }
 
     /**
