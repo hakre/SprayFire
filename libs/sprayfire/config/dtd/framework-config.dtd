@@ -49,14 +49,8 @@
             -->
             <!ELEMENT default-action (#PCDATA)>
 
-        <!--
-            This is the name of the class and method which will be the application's
-            error handling and exception handling callbacks.
-         -->
-        <!ELEMENT error-handling (class, action)>
-        <!ELEMENT exception-handling (class, action)>
-            <!ELEMENT class (#PCDATA)>
-            <!ELEMENT action (#PCDATA)>
+        <!ENTITY % error-exception-handler SYSTEM 'error-exception-handler.dtd'>
+        %error-exception-handler;
 
         <!--
             These are ini settings that should be set regardless of the development
