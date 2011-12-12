@@ -324,12 +324,6 @@ final class FrameworkConfig extends XmlConfig {
         if ($configBoolean === self::CONFIG_YES) {
             return self::INI_YES;
         }
-
-        if ($configBoolean === self::CONFIG_NO) {
-            return self::INI_NO;
-        }
-
-        error_log('There was an error parsing the expected value, returning INI_NO as a default');
         return self::INI_NO;
     }
 
