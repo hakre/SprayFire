@@ -11,6 +11,9 @@
     * @copyright Copyright (c) 2011, Charles Sprayberry
     */
 
+    use libs\sprayfire\core\SprayFireDirectory,
+        libs\sprayfire\core\ClassLoader;
+
    /**
     * @var string
     */
@@ -24,21 +27,22 @@
     include ROOT_PATH . DS . 'libs' . DS . 'sprayfire' . DS . 'interfaces' . DS . 'FrameworkPaths.php';
     include ROOT_PATH . DS . 'libs' . DS . 'sprayfire' . DS . 'core' . DS . 'SprayFireDirectory.php';
 
-    \libs\sprayfire\core\SprayFireDirectory::setRootInstallationPath(ROOT_PATH);
+    SprayFireDirectory::setRootInstallationPath(ROOT_PATH);
 
-    include \libs\sprayfire\core\SprayFireDirectory::getFrameworkPathSubDirectory('interfaces') . DS . 'Object.php';
-    include \libs\sprayfire\core\SprayFireDirectory::getFrameworkPathSubDirectory('core') . DS . 'CoreObject.php';
-    include \libs\sprayfire\core\SprayFireDirectory::getFrameworkPathSubDirectory('core') . DS . 'ClassLoader.php';
+    include SprayFireDirectory::getFrameworkPathSubDirectory('interfaces') . DS . 'Object.php';
+    include SprayFireDirectory::getFrameworkPathSubDirectory('core') . DS . 'CoreObject.php';
+    include SprayFireDirectory::getFrameworkPathSubDirectory('core') . DS . 'ClassLoader.php';
 
-    $ClassLoader = new \libs\sprayfire\core\ClassLoader();
+    $ClassLoader = new ClassLoader();
     $ClassLoader->setAutoloader();
 
-    $CoreConfiguration = new \libs\sprayfire\core\CoreConfiguration();
-    $FrameworkBootstrapper = new \libs\sprayfire\core\FrameworkBootstrap($CoreConfiguration);
+    $frameworkConfigFile = SprayFireDirectory::getFrameworkPathSubDirectory('config', 'xml') . DS . 'framework-config.xml';
+    $FrameworkConfig = new libs\sprayfire\config\FrameworkConfig();
 
-    $FrameworkBootstrapper->runBootstrap();
-
-    var_dump($CoreConfiguration->read('from_app'));
-
-    //phpinfo();
-
+    try {
+        if (!file_exists($frameworkConfigFile)) {
+            $FrameworkConfig->importConfig($filePath);
+        }
+    } catch (\InvalidArgumentException $InvalArgExc) {
+        error_log('There was an error importing the framework\'s configuration, please check the config file path.');
+    }
