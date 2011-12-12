@@ -13,6 +13,7 @@
 
 include 'UniqueListTest.php';
 include 'FrameworkBootstrapTest.php';
+include 'FrameworkConfigTest.php';
 
 /**
  *
@@ -27,7 +28,9 @@ class AllTests {
     public static function suite() {
         $Suite = new PHPUnit_Framework_TestSuite();
         $Suite->addTestSuite('UniqueListTest');
+        $Suite->addTestSuite('FrameworkConfigTest');
         $Suite->addTestSuite('FrameworkBootstrapTest');
+
         return $Suite;
     }
 
