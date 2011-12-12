@@ -24,7 +24,7 @@ namespace libs\sprayfire\exceptions;
 /**
  *
  */
-class UnsupportedOperationException extends Exception {
+class UnsupportedOperationException extends \Exception {
 
 }
 
