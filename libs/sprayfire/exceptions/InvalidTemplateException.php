@@ -25,7 +25,7 @@ namespace libs\sprayfire\exceptions;
  * An exception thrown if the templates requested for an HTML response are not
  * found or otherwise invalid.
  */
-class InvalidTemplateException extends Exception {
+class InvalidTemplateException extends \Exception {
 
 }
 

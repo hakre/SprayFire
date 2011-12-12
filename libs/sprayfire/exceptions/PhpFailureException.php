@@ -25,7 +25,7 @@ namespace libs\sprayfire\exceptions;
  * An exception for when the PHP language constructs fail in a way that we can't
  * account for.
  */
-class PhpFailureException extends Exception {
+class PhpFailureException extends \Exception {
 
 }
 

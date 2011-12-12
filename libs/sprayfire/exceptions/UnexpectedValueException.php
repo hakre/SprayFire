@@ -24,7 +24,7 @@ namespace libs\sprayfire\exceptions;
 /**
  *
  */
-class UnexpectedValueException extends Exception {
+class UnexpectedValueException extends \Exception {
 
 }
 

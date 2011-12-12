@@ -25,7 +25,7 @@ namespace libs\sprayfire\exceptions;
  * Thrown if the configuration object for the data source could not be instantiated
  * in the framework creation of the data source object.
  */
-class InvalidConfigurationException extends Exception {
+class InvalidConfigurationException extends \Exception {
 
 }
 

@@ -24,7 +24,7 @@ namespace libs\sprayfire\exceptions;
 /**
  *
  */
-class OperationFailedException extends Exception {
+class OperationFailedException extends \Exception {
 
 }
 

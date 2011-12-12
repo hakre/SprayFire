@@ -25,7 +25,7 @@ namespace libs\sprayfire\exceptions;
  * An exception thrown if the requested object could not be properly instantiated
  * because the class could not be found.
  */
-class UnknownClassException extends Exception {
+class UnknownClassException extends \Exception {
 
 }
 

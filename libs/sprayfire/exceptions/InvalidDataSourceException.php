@@ -24,7 +24,7 @@ namespace libs\sprayfire\exceptions;
 /**
  * Thrown if the data source could not be created.
  */
-class InvalidDataSourceException extends Exception {
+class InvalidDataSourceException extends \Exception {
 
 }
 
