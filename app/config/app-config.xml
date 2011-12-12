@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : app-config.xml
+    Created on : December 9, 2011, 8:35 PM
+    Author     : charlessprayberry
+    Description:
+        Purpose of the document follows.
+-->
+
+<!DOCTYPE app-config SYSTEM '../../libs/sprayfire/config/dtd/app-config.dtd'>
+<app-config>
+
+    <version deployment-stage="alpha">
+        <major>0</major>
+        <minor>1</minor>
+        <revision>0</revision>
+    </version>
+
+    <env-configuration>
+
+        <development-mode value="on" />
+
+        <global-ini-settings>
+            <timezone></timezone>
+            <charset></charset>
+            <short-open-tags value="no" />
+            <expose-php value="no" />
+            <asp-tags value="no" />
+        </global-ini-settings>
+
+        <production-ini-settings>
+            <display-errors value="no" />
+            <display-startup-errors value="no" />
+            <error-reporting></error-reporting>
+        </production-ini-settings>
+
+        <development-ini-settings>
+            <display-errors value="yes" />
+            <display-startup-errors value="yes" />
+            <error-reporting></error-reporting>
+        </development-ini-settings>
+
+    </env-configuration>
+
+    <routing-default>
+        <controller></controller>
+        <action></action>
+    </routing-default>
+
+    <error-handling>
+        <class>ErrorTrapper</class>
+        <action>handle</action>
+    </error-handling>
+
+    <exception-handling>
+        <class>ExceptionTrapper</class>
+        <action>handle</action>
+    </exception-handling>
+
+</app-config>

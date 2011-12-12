@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!ELEMENT app-config (version, env-configuration, routing-default, error-handling, exception-handling, ANY*)>
+
+    <!ENTITY % version SYSTEM 'version.dtd'>
+    %version;
+
+    <!ELEMENT env-configuration (development-mode, global-ini-settings, production-ini-settings, development-ini-settings)>
+
+        <!--
+            The value attribute in this element will determine what configuration
+            values are written to the php.ini file as well as the whether DEBUG_MODE
+            constant is set to true or false.
+        -->
+        <!ELEMENT development-mode EMPTY>
+            <!ATTLIST development-mode value (on|off) #REQUIRED>
+
+        <!--
+            These are ini settings that will be set regardless of the value of the
+            development mode.  Note, that if these values are not set the framework
+            defaults will be used.
+        -->
+        <!ENTITY % global-ini-settings SYSTEM 'global-ini-settings.dtd'>
+        %global-ini-settings;
+
+        <!--
+            ini settings that should only be set if the development-mode value is
+            set to off.
+        -->
+        <!ELEMENT production-ini-settings (display-errors, display-startup-errors, error-reporting)>
+
+        <!--
+            ini settings that should only be set if the development-mode value is
+            set to on.
+        -->
+        <!ELEMENT development-ini-settings (display-errors, display-startup-errors, error-reporting)>
+
+            <!ELEMENT display-errors EMPTY>
+                <!ATTLIST display-errors value (yes|no) #REQUIRED>
+            <!ELEMENT display-startup-errors EMPTY>
+                <!ATTLIST display-startup-errors value (yes|no) #REQUIRED>
+            <!ELEMENT error-reporting (#PCDATA)>
+
+
+    <!ELEMENT routing-default (controller, action)>
+        <!ELEMENT controller (#PCDATA)>
+
+    <!ENTITY % error-exception-handler SYSTEM 'error-exception-handler.dtd'>
+    %error-exception-handler;
