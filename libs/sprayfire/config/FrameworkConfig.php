@@ -313,6 +313,13 @@ final class FrameworkConfig extends XmlConfig {
         $this->aspTags = $aspTagsIni;
     }
 
+    /**
+     * Converts a string 'yes' or 'no' value to the appropriate int value to be
+     * set in the php.ini file.
+     *
+     * @param string $configBoolean
+     * @return int
+     */
     private function convertConfigBooleanToIniBoolean($configBoolean) {
         if ($configBoolean === self::CONFIG_YES) {
             return self::INI_YES;
