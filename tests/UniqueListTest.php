@@ -240,8 +240,8 @@ class UniqueListTest extends PHPUnit_Framework_TestCase {
      */
     public function testCreatingInterfaceList() {
         $List = new \libs\sprayfire\datastructs\UniqueList('\\libs\\sprayfire\\interfaces\\Configuration');
-        $List->add(new \libs\sprayfire\core\CoreConfiguration());
-        $List->add(new \libs\sprayfire\core\CoreConfiguration());
+        $List->add(new \libs\sprayfire\config\FrameworkConfig());
+        $List->add(new \libs\sprayfire\config\FrameworkConfig());
         $listSize = $List->size();
         $expectedSize = 2;
         $this->assertSame($expectedSize, $listSize);
@@ -272,7 +272,7 @@ class UniqueListTest extends PHPUnit_Framework_TestCase {
         $exceptionThrown = false;
         try {
             $List = new \libs\sprayfire\datastructs\UniqueList('TestObject');
-            $List->add(new \libs\sprayfire\core\CoreConfiguration);
+            $List->add(new \libs\sprayfire\config\FrameworkConfig);
         } catch (\InvalidArgumentException $IllegalArgExc) {
             $exceptionThrown = true;
         }
