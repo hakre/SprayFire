@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : framework-configuration.xml
+    Created on : December 9, 2011, 6:25 PM
+    Author     : Charles Sprayberry
+    Description:
+        This is the default framework configuration file.
+-->
+
+<!DOCTYPE sprayfire SYSTEM '../../../../../../libs/sprayfire/config/dtd/framework-config.dtd'>
+<sprayfire>
+
+    <version deployment-stage="gold-rc">
+        <major>4</major>
+        <minor>10</minor>
+        <revision>7</revision>
+    </version>
+
+    <configuration>
+
+        <app-config-file>test-app-config.xml</app-config-file>
+
+        <routing>
+            <routes-config-file>test-routes.xml</routes-config-file>
+            <default-controller>test_pages</default-controller>
+            <default-action>routing_action</default-action>
+        </routing>
+
+        <error-handling>
+            <class>TestErrorHandler</class>
+            <action>error_action</action>
+        </error-handling>
+
+        <exception-handling>
+            <class>TestExceptionHandler</class>
+            <action>exception_action</action>
+        </exception-handling>
+
+        <global-ini-settings>
+            <timezone>America/New_York</timezone>
+            <charset>UTF-8</charset>
+            <short-open-tags value="yes" />
+            <expose-php value="no" />
+            <asp-tags value="yes" />
+        </global-ini-settings>
+
+    </configuration>
+
+</sprayfire>
