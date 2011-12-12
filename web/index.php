@@ -40,9 +40,11 @@
     $FrameworkConfig = new libs\sprayfire\config\FrameworkConfig();
 
     try {
-        if (!file_exists($frameworkConfigFile)) {
-            $FrameworkConfig->importConfig($filePath);
-        }
+        $FrameworkConfig->importConfig($frameworkConfigFile);
     } catch (\InvalidArgumentException $InvalArgExc) {
+        // TODO This needs to be updated to generate an AbortRequest object
         error_log('There was an error importing the framework\'s configuration, please check the config file path.');
+        var_dump($InvalArgExc);
     }
+
+    var_dump($FrameworkConfig);
