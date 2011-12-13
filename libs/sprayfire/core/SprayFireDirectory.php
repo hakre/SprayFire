@@ -71,7 +71,9 @@ class SprayFireDirectory implements \libs\sprayfire\interfaces\FrameworkPaths {
      */
     public static function getAppPathSubDirectory() {
         $subDirList = \func_get_args();
-        if (\count($subDirList) === 0)
+        if (\count($subDirList) === 0) {
+            return self::getAppPath();
+        }
         $subDirPath = self::getSubDirectoryPath($subDirList);
         return self::getAppPath() . DS . $subDirPath;
     }
