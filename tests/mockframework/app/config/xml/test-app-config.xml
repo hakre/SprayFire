@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : app-config.xml
+    Created on : December 9, 2011, 8:35 PM
+    Author     : charlessprayberry
+    Description:
+        Purpose of the document follows.
+-->
+
+<!DOCTYPE app-config SYSTEM '../../../../../libs/sprayfire/config/xml/dtd/app-config.dtd'>
+<app-config>
+
+    <version deployment-stage="beta">
+        <major>5</major>
+        <minor>10</minor>
+        <revision>15</revision>
+    </version>
+
+    <env-configuration>
+
+        <development-mode value="off" />
+
+        <global-ini-settings>
+            <timezone>America/New_York</timezone>
+            <charset>UTF-8</charset>
+            <short-open-tags value="no" />
+            <expose-php value="no" />
+            <asp-tags value="yes" />
+        </global-ini-settings>
+
+        <production-ini-settings>
+            <display-errors value="no" />
+            <display-startup-errors value="no" />
+            <error-reporting>E_ALL &amp; E_STRICT</error-reporting>
+        </production-ini-settings>
+
+        <development-ini-settings>
+            <display-errors value="yes" />
+            <display-startup-errors value="yes" />
+            <error-reporting>E_ALL ^ E_STRICT</error-reporting>
+        </development-ini-settings>
+
+    </env-configuration>
+
+    <routing-default>
+        <controller>test_app_route</controller>
+        <action>test_app_action</action>
+    </routing-default>
+
+    <error-handling>
+        <class>\app\core\error\TestAppError</class>
+        <action>test_app_error_action</action>
+    </error-handling>
+
+    <exception-handling>
+        <class>\app\core\exception\TestAppException</class>
+        <action>test_app_exception</action>
+    </exception-handling>
+
+</app-config>
