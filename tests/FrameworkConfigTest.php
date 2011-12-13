@@ -78,7 +78,7 @@ class FrameworkConfigTest extends PHPUnit_Framework_TestCase {
         $actualRoutesAction = $this->FrameworkConfig->routesDefaultAction;
         $this->assertSame($expectedRoutesAction, $actualRoutesAction);
 
-        $expectedErrorClass = 'TestErrorHandler';
+        $expectedErrorClass = '\\libs\\sprayfire\\errors\\TestErrorHandler';
         $actualErrorClass = $this->FrameworkConfig->errorHandlingClass;
         $this->assertSame($expectedErrorClass, $actualErrorClass);
 
