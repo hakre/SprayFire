@@ -256,7 +256,6 @@ final class FrameworkConfig extends XmlConfig {
      */
     private function parseErrorHandling() {
         $errorHandlingClass = (string) $this->XmlConfiguration->configuration->{'error-handling'}->class;
-        $errorHandlingClass = str_replace('\\', '\\\\', $errorHandlingClass);
         $errorHandlingAction = (string) $this->XmlConfiguration->configuration->{'error-handling'}->action;
         $this->errorHandlingClass = $errorHandlingClass;
         $this->errorHandlingAction = $errorHandlingAction;
@@ -268,7 +267,6 @@ final class FrameworkConfig extends XmlConfig {
      */
     private function parseExceptionHandling() {
         $exceptionHandlingClass = (string) $this->XmlConfiguration->configuration->{'exception-handling'}->class;
-        $exceptionHandlingClass = str_replace('\\', '\\\\', $exceptionHandlingClass);
         $exceptionHandlingAction = (string) $this->XmlConfiguration->configuration->{'exception-handling'}->action;
         $this->exceptionHandlingClass = $exceptionHandlingClass;
         $this->exceptionHandlingAction = $exceptionHandlingAction;
