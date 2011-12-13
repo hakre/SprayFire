@@ -36,15 +36,21 @@
     $ClassLoader = new ClassLoader();
     $ClassLoader->setAutoloader();
 
-    $frameworkConfigFile = SprayFireDirectory::getFrameworkPathSubDirectory('config', 'xml') . DS . 'framework-config.xml';
+    $frameworkConfigPath = SprayFireDirectory::getFrameworkPathSubDirectory('config', 'xml', 'framework-config.xml');
     $FrameworkConfig = new libs\sprayfire\config\FrameworkConfig();
+    $AppConfig = new app\config\AppConfig();
 
     try {
-        $FrameworkConfig->importConfig($frameworkConfigFile);
+        $FrameworkConfig->importConfig($frameworkConfigPath);
+        $appConfigPath = SprayFireDirectory::getAppPathSubDirectory('config','xml', $FrameworkConfig->appConfigFile);
+        $AppConfig->importConfig($appConfigPath);
     } catch (\InvalidArgumentException $InvalArgExc) {
         // TODO This needs to be updated to generate an AbortRequest object
         error_log('There was an error importing the framework\'s configuration, please check the config file path.');
         var_dump($InvalArgExc);
+        echo '<br />We are exiting here but only as a temporary measure';
+        exit;
     }
 
     var_dump($FrameworkConfig);
+    var_dump($AppConfig);
