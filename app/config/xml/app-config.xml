@@ -19,14 +19,14 @@
 
     <env-configuration>
 
-        <development-mode value="on" />
+        <development-mode value="off" />
 
         <global-ini-settings>
-            <timezone></timezone>
-            <charset></charset>
+            <timezone>America/Atlanta</timezone>
+            <charset>UTF-16</charset>
             <short-open-tags value="no" />
-            <expose-php value="no" />
-            <asp-tags value="no" />
+            <expose-php value="yes" />
+            <asp-tags value="yes" />
         </global-ini-settings>
 
         <production-ini-settings>
@@ -44,17 +44,17 @@
     </env-configuration>
 
     <routing-default>
-        <controller></controller>
-        <action></action>
+        <controller>pages</controller>
+        <action>index</action>
     </routing-default>
 
     <error-handling>
-        <class>ErrorTrapper</class>
+        <class>\app\error\ErrorTrapper</class>
         <action>handle</action>
     </error-handling>
 
     <exception-handling>
-        <class>ExceptionTrapper</class>
+        <class>\app\exception\ExceptionTrapper</class>
         <action>handle</action>
     </exception-handling>
 

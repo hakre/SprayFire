@@ -8,7 +8,7 @@
         This is the default framework configuration file.
 -->
 
-<!DOCTYPE sprayfire SYSTEM '../../../../../../libs/sprayfire/config/dtd/framework-config.dtd'>
+<!DOCTYPE sprayfire SYSTEM '../../../../../../libs/sprayfire/config/xml/dtd/framework-config.dtd'>
 <sprayfire>
 
     <version deployment-stage="gold-rc">
