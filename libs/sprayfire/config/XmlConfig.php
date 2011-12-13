@@ -131,12 +131,14 @@ abstract class XmlConfig extends BaseConfig {
 
         // Is thrown if there is an error creating the new class from the reflected SimpleXMLElement
         } catch (\ReflectionException $ReflectExc) {
+            \libxml_use_internal_errors(false);
             throw new \InvalidArgumentException('The file path was invalid or otherwise caused the parser object to not be created. ' . $ReflectExc->getMessage(), null, $ReflectExc);
 
         // Is thrown if there is an error parsing the $filePath, to include the file not existing.
         // This exception is thrown by SimpleXMLElement if the first parameter is not a valid XML document
         // or there is a problem opening the file.
         } catch (\Exception $Exc) {
+            \libxml_use_internal_errors(false);
             throw new \InvalidArgumentException('The file path was invalid or otherwise caused the parser object to not be created. ' . $Exc->getMessage(), null, $Exc);
         }
     }
