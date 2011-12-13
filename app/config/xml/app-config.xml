@@ -8,7 +8,7 @@
         Purpose of the document follows.
 -->
 
-<!DOCTYPE app-config SYSTEM '../../libs/sprayfire/config/dtd/app-config.dtd'>
+<!DOCTYPE app-config SYSTEM '../../../libs/sprayfire/config/xml/dtd/app-config.dtd'>
 <app-config>
 
     <version deployment-stage="alpha">
