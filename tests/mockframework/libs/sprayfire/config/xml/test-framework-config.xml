@@ -28,7 +28,7 @@
         </routing>
 
         <error-handling>
-            <class>TestErrorHandler</class>
+            <class>\libs\sprayfire\errors\TestErrorHandler</class>
             <action>error_action</action>
         </error-handling>
 
