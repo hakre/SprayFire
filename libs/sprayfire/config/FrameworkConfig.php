@@ -38,34 +38,6 @@ namespace libs\sprayfire\config;
 final class FrameworkConfig extends XmlConfig {
 
     /**
-     * The value for true for ini settings that expect a boolean value
-     *
-     * @var int
-     */
-    const INI_YES = 1;
-
-    /**
-     * The value for false for ini settings that expect a boolean value
-     *
-     * @var int
-     */
-    const INI_NO = 0;
-
-    /**
-     * The value for true in the configuration files.
-     *
-     * @var string
-     */
-    const CONFIG_YES = 'yes';
-
-    /**
-     * The value for false in the configuration files.
-     *
-     * @var string
-     */
-    const CONFIG_NO = 'no';
-
-    /**
      * The framework version; a string in the following format:
      *
      * MAJOR.MINOR.REVISION-DEPLOYMENT_STAGE
@@ -319,10 +291,10 @@ final class FrameworkConfig extends XmlConfig {
      * @return int
      */
     private function convertConfigBooleanToIniBoolean($configBoolean) {
-        if ($configBoolean === self::CONFIG_YES) {
-            return self::INI_YES;
+        if ($configBoolean === XmlConfig::CONFIG_YES) {
+            return XmlConfig::INI_YES;
         }
-        return self::INI_NO;
+        return XmlConfig::INI_NO;
     }
 
 }
