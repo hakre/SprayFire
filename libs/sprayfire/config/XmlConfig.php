@@ -38,6 +38,34 @@ namespace libs\sprayfire\config;
 abstract class XmlConfig extends BaseConfig {
 
     /**
+     * The value for true for ini settings that expect a boolean value
+     *
+     * @var int
+     */
+    const INI_YES = 1;
+
+    /**
+     * The value for false for ini settings that expect a boolean value
+     *
+     * @var int
+     */
+    const INI_NO = 0;
+
+    /**
+     * The value for true in the configuration files.
+     *
+     * @var string
+     */
+    const CONFIG_YES = 'yes';
+
+    /**
+     * The value for false in the configuration files.
+     *
+     * @var string
+     */
+    const CONFIG_NO = 'no';
+
+    /**
      * Holds a reflection of the SimpleXMLElement class, allowing new SimpleXMLElement
      * objects to be created
      *
@@ -103,13 +131,13 @@ abstract class XmlConfig extends BaseConfig {
 
         // Is thrown if there is an error creating the new class from the reflected SimpleXMLElement
         } catch (\ReflectionException $ReflectExc) {
-            throw new \InvalidArgumentException('The file path was invalid or otherwise caused the parser object to not be created.', null, $ReflectExc);
+            throw new \InvalidArgumentException('The file path was invalid or otherwise caused the parser object to not be created. ' . $ReflectExc->getMessage(), null, $ReflectExc);
 
         // Is thrown if there is an error parsing the $filePath, to include the file not existing.
         // This exception is thrown by SimpleXMLElement if the first parameter is not a valid XML document
         // or there is a problem opening the file.
         } catch (\Exception $Exc) {
-            throw new \InvalidArgumentException('The file path was invalid or otherwise caused the parser object to not be created.', null, $Exc);
+            throw new \InvalidArgumentException('The file path was invalid or otherwise caused the parser object to not be created. ' . $Exc->getMessage(), null, $Exc);
         }
     }
 
