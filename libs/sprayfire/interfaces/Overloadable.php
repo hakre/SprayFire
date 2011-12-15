@@ -44,7 +44,7 @@ interface Overloadable {
     /**
      * @param string $key
      * @param mixed $value
-     * @return boolean
+     * @return mixed
      * @throws \libs\sprayfire\exceptions\UnsupportedOperationException
      */
     public function __set($key, $value);
