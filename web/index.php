@@ -22,35 +22,23 @@
     /**
      * @var string
      */
-    defined('ROOT_PATH') or define('ROOT_PATH', dirname(dirname(__FILE__)));
+    defined('ROOT_PATH') or define('ROOT_PATH', dirname(__DIR__));
 
     include ROOT_PATH . DS . 'libs' . DS . 'sprayfire' . DS . 'interfaces' . DS . 'FrameworkPaths.php';
     include ROOT_PATH . DS . 'libs' . DS . 'sprayfire' . DS . 'core' . DS . 'SprayFireDirectory.php';
 
     SprayFireDirectory::setRootInstallationPath(ROOT_PATH);
 
-    include SprayFireDirectory::getFrameworkPathSubDirectory('interfaces') . DS . 'Object.php';
-    include SprayFireDirectory::getFrameworkPathSubDirectory('core') . DS . 'CoreObject.php';
-    include SprayFireDirectory::getFrameworkPathSubDirectory('core') . DS . 'ClassLoader.php';
+    include SprayFireDirectory::getFrameworkPathSubDirectory('interfaces', 'Object.php');
+    include SprayFireDirectory::getFrameworkPathSubDirectory('core', 'CoreObject.php');
+    include SprayFireDirectory::getFrameworkPathSubDirectory('core', 'ClassLoader.php');
 
     $ClassLoader = new ClassLoader();
     $ClassLoader->setAutoloader();
 
-    $frameworkConfigPath = SprayFireDirectory::getFrameworkPathSubDirectory('config', 'xml', 'framework-config.xml');
-    $FrameworkConfig = new libs\sprayfire\config\FrameworkConfig();
-    $AppConfig = new app\config\AppConfig();
+    $configFile = SprayFireDirectory::getFrameworkPathSubDirectory('config', 'configuration.json');
+    $File = new \SplFileInfo($configFile);
 
-    try {
-        $FrameworkConfig->importConfig($frameworkConfigPath);
-        $appConfigPath = SprayFireDirectory::getAppPathSubDirectory('config','xml', $FrameworkConfig->appConfigFile);
-        $AppConfig->importConfig($appConfigPath);
-    } catch (\InvalidArgumentException $InvalArgExc) {
-        // TODO This needs to be updated to generate an AbortRequest object
-        error_log('There was an error importing the framework\'s configuration, please check the config file path.');
-        var_dump($InvalArgExc);
-        echo '<br />We are exiting here but only as a temporary measure';
-        exit;
-    }
+    $Config = new libs\sprayfire\config\JsonConfig($File);
 
-    var_dump($FrameworkConfig);
-    var_dump($AppConfig);
+    var_dump($Config);
