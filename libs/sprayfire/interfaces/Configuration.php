@@ -38,9 +38,9 @@ interface Configuration extends Overloadable, \ArrayAccess {
      * Data can be any type, as long as after the object is constructed it is ready
      * to be read from either as an object or as an array.
      *
-     * @param mixed $data
+     * @param \SplFileInfo $configurationFileInfo
      */
-    public function __construct($data);
+    public function __construct(\SplFileInfo $configurationFileInfo);
 
 }
 
