@@ -1,0 +1,40 @@
+{
+    "_comment": "",
+    "framework": {
+        "version": "0.1.0-alpha"
+    },
+    "app": {
+        "version": "0.1.0-alpha",
+        "development-mode": "on",
+        "ini-settings": {
+            "global": {
+                "allow_url_fopen": "0",
+                "allow_url_include": "0",
+                "asp_tags": "0",
+                "date.timezone": "America/New_York",
+                "default_charset": "UTF-8",
+                "default_mimetype": "text/html"
+            },
+            "development": {
+
+            },
+            "production": {
+
+            }
+        },
+        "routing": {
+            "config-file": "routes.json",
+            "default-controller": "pages",
+            "default-action": "index",
+            "parameter-delimiter": ":"
+        },
+        "error-handling": {
+            "namespaced-class": "\\libs\\sprayfire\\core\\ErrorTrapper",
+            "callback": "error_trap"
+        },
+        "exception-handling": {
+            "namespaced-class": "\\libs\\sprayfire\\core\\ExceptionTrapper",
+            "callback": "exception_trap"
+        }
+    }
+}
