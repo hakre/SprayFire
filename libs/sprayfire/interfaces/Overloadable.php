@@ -17,6 +17,8 @@
  * @copyright Copyright (c) 2011, Charles Sprayberry
  */
 
+namespace libs\sprayfire\interfaces;
+
 /**
  * An interface that forces the implementation of the magic methods that allow
  * an object to access non-existing or inaccessible properties.
