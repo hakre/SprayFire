@@ -155,16 +155,12 @@ abstract class MutableStorage extends \libs\sprayfire\core\CoreObject implements
 
     /**
      * @param string $key
-     * @return boolean
      */
     protected function removeKey($key) {
         if ($this->keyInData($key)) {
             unset($this->data[$key]);
             $this->data = array_values($this->data);
-            return true;
         }
-        error_log('Attempting to remove a non-existent key.');
-        return false;
     }
 
     /**
