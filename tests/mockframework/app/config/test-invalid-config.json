@@ -1,0 +1,20 @@
+{
+    "framework": {
+        "version": 0.1.0-gold-rc
+    },
+    "app": {
+        "version": "0.0.1-beta",
+        "name": "Application name",
+        "ini-settings": {
+            "date.timezone": "America/New_York",
+            "display_errors": "1"
+        },
+        "deep-one": {
+            "deep-two": {
+                "deep-three": {
+                    "value": "Roll Tide!"
+                }
+            }
+        }
+    }
+}
