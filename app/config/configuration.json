@@ -1,5 +1,5 @@
 {
-    "_comment": "",
+    "__comment": "This is the primary configuration file for the application and ",
     "framework": {
         "version": "0.1.0-alpha"
     },
