@@ -32,53 +32,15 @@ namespace libs\sprayfire\interfaces;
  * allowing the imported configuration values to only be read.
  *
  */
-interface Configuration {
+interface Configuration extends Overloadable, \ArrayAccess {
 
     /**
-     * The absolute path to a configuration file should be passed, afterwards the
-     * object should parse the configuration file assigning the appropriate values.
+     * Data can be any type, as long as after the object is constructed it is ready
+     * to be read from either as an object or as an array.
      *
-     * @param string $filePath
-     * @return boolean
+     * @param mixed $data
      */
-    public function importConfig($filePath);
-
-    /**
-     * This method should throw an UnsupportedOperationException as it is expected
-     * configuration values to be read-only.
-     *
-     * @param string $propertyName
-     * @param mixed $value
-     * @throws \libs\sprayfire\exceptions\UnsupportedOperationException
-     */
-    public function __set($proeprtyName, $value);
-
-    /**
-     * Should return the value set for the property, if it exists or NULL if it
-     * doesn't.
-     *
-     * @param string $propertyName
-     * @return mixed
-     */
-    public function __get($propertyName);
-
-    /**
-     * Should return true if the property exists and there is a value assigned to
-     * it or false otherwise.
-     *
-     * @param string $propertyName
-     * @return boolean
-     */
-    public function __isset($propertyName);
-
-    /**
-     * Should thrown an UnsupportedOperationException as a configuration property
-     * should never be allowed to be nset.
-     *
-     * @param string $propertyName
-     * @throws \libs\sprayfire\exceptions\UnsupportedOperationException
-     */
-    public function __unset($propertyName);
+    public function __construct($data);
 
 }
 
