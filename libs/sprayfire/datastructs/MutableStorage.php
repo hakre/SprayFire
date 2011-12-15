@@ -21,8 +21,22 @@ namespace libs\sprayfire\datastructs;
 
 /**
  * A simple data storage object that holds key/value pairs.
+ *
+ * This class is intended to be extended to implement the specific behavior needed
+ * for that storage.  One, or more, of the four protected methods:
+ *
+ * get()
+ * set()
+ * keyHasValue()
+ * removeKey()
+ *
+ * needs to be overriden.  For example, ImmutableStorage overrides set() and removeKey()
+ * to throw \libs\sprayfire\exception\UnsupportedOperationException when the object
+ * is attempting to be changed.  If you do not need to override one or more of the
+ * above methods then simply use an array, as that is effectively what this object is
+ * but with object notation access in addition to array notation access.
  */
-class MutableStorage implements \libs\sprayfire\interfaces\Overloadable, \ArrayAccess {
+abstract class MutableStorage extends \libs\sprayfire\core\CoreObject implements \libs\sprayfire\interfaces\Overloadable, \ArrayAccess {
 
     /**
      * The array holding the data being stored.
