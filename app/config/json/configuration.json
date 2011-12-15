@@ -1,6 +1,14 @@
 {
-    "__comment": "This is the primary configuration file for the application and ",
+    "_sprayfire-docs": {
+        "0": ""
+    },
+    "sprayfire-docs": {
+
+    },
     "framework": {
+        "_comment": {
+            "test": "Noooo!'"
+        },
         "version": "0.1.0-alpha"
     },
     "app": {
@@ -8,6 +16,7 @@
         "development-mode": "on",
         "ini-settings": {
             "global": {
+                "sprayfire-docs": "Blah blah blah blah blah blah blah",
                 "allow_url_fopen": "0",
                 "allow_url_include": "0",
                 "asp_tags": "0",

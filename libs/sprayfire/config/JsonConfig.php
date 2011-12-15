@@ -23,6 +23,8 @@ class JsonConfig extends \libs\sprayfire\datastructs\ImmutableStorage implements
 
     private $ConfigFileInfo;
 
+    private $commentKeys = array('_sprayfire-docs', 'sprayfire-docs');
+
     /**
      * Will take an SplFileInfo object, return the complete path for the file held
      * by that object, convert the data in that file to a JSON array and then convert
@@ -115,9 +117,13 @@ class JsonConfig extends \libs\sprayfire\datastructs\ImmutableStorage implements
      */
     protected function getMasterData(array $decodedJson) {
         foreach ($decodedJson as $key => $value) {
-           if (is_array($value)) {
-               $decodedJson[$key] = $this->convertArrayToImmutableObject($value);
-           }
+            if (in_array($key, $this->commentKeys)) {
+                unset($decodedJson[$key]);
+                continue;
+            }
+            if (is_array($value)) {
+                $decodedJson[$key] = $this->convertArrayToImmutableObject($value);
+            }
         }
         return $decodedJson;
     }
@@ -131,6 +137,10 @@ class JsonConfig extends \libs\sprayfire\datastructs\ImmutableStorage implements
      */
     private function convertArrayToImmutableObject(array $data) {
         foreach ($data as $key => $value) {
+            if (in_array($key, $this->commentKeys)) {
+                unset($data[$key]);
+                continue;
+            }
             if (is_array($value)) {
                 $data[$key] = $this->convertArrayToImmutableObject($value);
             }
