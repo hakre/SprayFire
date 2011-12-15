@@ -59,7 +59,6 @@ class MutableStorage implements \libs\sprayfire\interfaces\Overloadable, \ArrayA
      * @return mixed
      */
     protected function get($key) {
-        var_dump($key);
         if ($this->keyInData($key)) {
             return $this->data[$key];
         }
