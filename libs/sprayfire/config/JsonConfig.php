@@ -21,6 +21,8 @@ namespace libs\sprayfire\config;
 
 class JsonConfig extends \libs\sprayfire\datastructs\ImmutableStorage implements \libs\sprayfire\interfaces\Configuration {
 
+    private $ConfigFileInfo;
+
     /**
      * Will take an SplFileInfo object, return the complete path for the file held
      * by that object, convert the data in that file to a JSON array and then convert
@@ -57,21 +59,45 @@ class JsonConfig extends \libs\sprayfire\datastructs\ImmutableStorage implements
      * @throws \UnexpectedValueException
      */
     public function __construct(\SplFileInfo $FileInfo) {
-        $json = file_get_contents($FileInfo->getRealPath());
-        if (!$json) {
-            throw new \InvalidArgumentException('The configuration file passed does not exist, please check the path and filename.');
+        $this->ConfigFileInfo = $FileInfo;
+        $data = $this->getMasterData($this->getDecodedJson());
+        if (!is_array($data)) {
+            throw new \UnexpectedValueException('The value returned from JsonConfig::getMasterData is not an array, ensure that your implementation properly returns an array.');
         }
-        $decodedJson = json_decode($json, true);
+        parent::__construct($data);
+    }
+
+    /**
+     * Will retrieve the contents of the file passed in the constructor and
+     * decode the contents if possible; if not possible to parse the contents
+     * an exception will be thrown.
+     *
+     * @return array
+     * @throws \InvalidArgumentException
+     * @throws \UnexpectedValueException
+     */
+    private function getDecodedJson() {
+        $decodedJson = json_decode($this->getFileContents(), true);
         $lastJsonError = json_last_error();
         if ($lastJsonError !== JSON_ERROR_NONE || is_null($decodedJson)) {
             error_log('The last JSON error was ' . $lastJsonError);
             throw new \InvalidArgumentException('There was an error parsing the JSON configuration file passed.  Please see error log for more info.');
         }
-        $data = $this->getMasterData($decodedJson);
-        if (!is_array($data)) {
-            throw new \UnexpectedValueException('The value returned from JsonConfig::getMasterData is not an array, ensure that your implementation properly returns an array.');
+        return $decodedJson;
+    }
+
+    /**
+     * Will return the contents of the file associated with this configuration object.
+     *
+     * @return string
+     * @throws \InvalidArgumentException
+     */
+    private function getFileContents() {
+        if (!$this->ConfigFileInfo->isFile() && !$this->ConfigFileInfo->isLink()) {
+            throw new \InvalidArgumentException('There is an error with the path to the configuration file.');
         }
-        parent::__construct($data);
+        $fileInfo = file_get_contents($this->ConfigFileInfo->getRealPath());
+        return $fileInfo;
     }
 
     /**
@@ -110,6 +136,14 @@ class JsonConfig extends \libs\sprayfire\datastructs\ImmutableStorage implements
             }
         }
         return new \libs\sprayfire\datastructs\ImmutableStorage($data);
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString() {
+        $escapedRootPath = '/' . preg_replace('/\//', '\/', ROOT_PATH) . '/';
+        return parent::__toString() . '::' . 'ROOT_PATH' . preg_replace($escapedRootPath, '', $this->ConfigFileInfo->getPathname());
     }
 
 }
