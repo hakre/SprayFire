@@ -135,6 +135,9 @@ abstract class MutableStorage extends CoreObject implements Overloadable, \Array
      * @return mixed
      */
     protected function set($key, $value) {
+        if (is_null($key)) {
+            $key = \count($this->data);
+        }
         return $this->data[$key] = $value;
     }
 
