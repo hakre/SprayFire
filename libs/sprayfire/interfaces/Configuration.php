@@ -21,6 +21,10 @@
 
 namespace libs\sprayfire\interfaces;
 
+use \ArrayAccess,
+    \SplFileInfo,
+    libs\sprayfire\interfaces\Overloadable;
+
 /**
  * An interface for configuration objects used by the application and framework.
  *
@@ -38,9 +42,9 @@ interface Configuration extends Overloadable, \ArrayAccess {
      * Data can be any type, as long as after the object is constructed it is ready
      * to be read from either as an object or as an array.
      *
-     * @param \SplFileInfo $configurationFileInfo
+     * @param \SplFileInfo $FileInfo
      */
-    public function __construct(\SplFileInfo $configurationFileInfo);
+    public function __construct(\SplFileInfo $FileInfo);
 
 }
 
