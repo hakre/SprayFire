@@ -36,9 +36,7 @@
     $ClassLoader = new ClassLoader();
     $ClassLoader->setAutoloader();
 
-    $configFile = SprayFireDirectory::getFrameworkPathSubDirectory('config', 'configuration.json');
+    $configFile = SprayFireDirectory::getAppPathSubDirectory('config', 'json', 'configuration.json');
     $File = new \SplFileInfo($configFile);
 
     $Config = new libs\sprayfire\config\JsonConfig($File);
-
-    var_dump($Config);
