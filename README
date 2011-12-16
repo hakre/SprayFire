@@ -8,13 +8,17 @@
         |___/| .__/ |_|  \__,_| \_, ||_|    |_||_|  \___|
              |_|                |__/
 
-SprayFire is a PHP framework designed to seperate the concerns of web development, provide built-in SQL injection security with the use of prepared statement and escape output passed to the View to prevent XSS.  SprayFire is intended to be a lightweight, configurable framework that allows for an easy workflow throughout the entire website creation process.
+SprayFire is a PHP framework designed to separate the concerns of web development, provide built-in SQL injection security with the use of prepared statement and escape output passed to the View to prevent XSS.  SprayFire is intended to be a lightweight, configurable framework that allows for an easy workflow throughout the entire website creation process.
 
-SprayFire is targeted toward PHP 5.2+ and MySQL 5+.  Appropriate PHP code is unit-tested to ensure code correctness.
+SprayFire is targeted toward PHP 5.3+ and MySQL 5+.  Appropriate PHP code is unit-tested to ensure code correctness.
 
 This is the second evolution of SprayFire, with the bulk of the templating engine created in the first generation I had moved on to writing the CRUD functionality and realized that the code was not going to work in its current state.  After reading 'Clean Code' by Robert Martin I re-evaluated the SprayFire codebase and decided it was beyond refactoring the entire thing.  Ultimately, there were several design decisions that, in hindsight, were not the right decisions.  This rewrite is taking place to better practice the rules in 'Clean Code', to rectify the design mistakes in the first generation and to ensure all appropriate classes are unit tested.
 
-The updated wiki for SprayFire will be coming at a future date.
+Please check out the framework wiki:
+https://github.com/cspray/CleanSprayFire/wiki/
+
+Please check out the roadmap at the framework wiki:
+https://github.com/cspray/CleanSprayFire/wiki/Roadmap
 
 Testing Instructions
 ================================================================================
