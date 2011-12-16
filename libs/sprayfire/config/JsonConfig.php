@@ -77,7 +77,8 @@ class JsonConfig extends \libs\sprayfire\datastructs\ImmutableStorage implements
      * the nested arrays into ImmutableStorageObjects providing a means to chain
      * together JSON keys through object or array access notation.
      *
-     * Note, JSON objects passed to this object will be chainable arbirtrarily deep
+     * Note, JSON objects passed to this object will be chainable arbirtrarily deep,
+     * only limited to the stack depth allowed by `json_decode()`.
      *
      *
      *
@@ -180,7 +181,7 @@ class JsonConfig extends \libs\sprayfire\datastructs\ImmutableStorage implements
         $escapedRootPath = '/' . preg_replace('/\//', '\/', ROOT_PATH) . '/';
         return parent::__toString() . '::' . 'ROOT_PATH' . preg_replace($escapedRootPath, '', $this->ConfigFileInfo->getPathname());
     }
-    
+
 }
 
 // End JsonConfig
