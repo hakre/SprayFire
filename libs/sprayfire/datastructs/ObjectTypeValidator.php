@@ -21,11 +21,17 @@
 
 namespace libs\sprayfire\datastructs;
 
+use \ReflectionClass,
+    \ReflectionException,
+    \InvalidArgumentException,
+    libs\sprayfire\core\CoreObject,
+    libs\sprayfire\interfaces\Object;
+
 /**
  * This class ensures that a given object implements or extends a specific interface
  * or class.
  */
-class ObjectTypeValidator extends \libs\sprayfire\core\CoreObject {
+class ObjectTypeValidator extends CoreObject {
 
     /**
      * @var ReflectionClass
@@ -70,7 +76,7 @@ class ObjectTypeValidator extends \libs\sprayfire\core\CoreObject {
      * @param CoreObject $Object
      * @return boolean
      */
-    public function isObjectParentType(\libs\sprayfire\interfaces\Object $Object) {
+    public function isObjectParentType(Object $Object) {
         $isValid = false;
         $ReflectedParent = $this->ReflectedParentType;
         $parentName = $ReflectedParent->getName();
