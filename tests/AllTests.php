@@ -14,6 +14,7 @@
 include 'FrameworkBootstrapTest.php';
 include 'JsonConfigTest.php';
 include 'MutableStorageTest.php';
+include 'SprayFireObjectStoreTest.php';
 
 /**
  *
@@ -30,6 +31,7 @@ class AllTests {
         $Suite->addTestSuite('FrameworkBootstrapTest');
         $Suite->addTestSuite('JsonConfigTest');
         $Suite->addTestSuite('MutableStorageTest');
+        $Suite->addTestSuite('SprayFireObjectStoreTest');
 
         return $Suite;
     }
