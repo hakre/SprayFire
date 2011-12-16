@@ -19,6 +19,8 @@
 
 namespace libs\sprayfire\datastructs;
 
+use libs\sprayfire\exceptions\UnsupportedOperationException;
+
 /**
  * A simple key/value storage object that does not allow the data associated with
  * to be changed after the object has been constructed.
@@ -31,7 +33,7 @@ class ImmutableStorage extends MutableStorage {
      * @throws \libs\sprayfire\exceptions\UnsupportedOperationException
      */
     protected function set($key, $value) {
-        throw new \libs\sprayfire\exceptions\UnsupportedOperationException('Attempting to set the value of an immutable object.');
+        throw new UnsupportedOperationException('Attempting to set the value of an immutable object.');
     }
 
     /**
@@ -39,7 +41,7 @@ class ImmutableStorage extends MutableStorage {
      * @throws \libs\sprayfire\exceptions\UnsupportedOperationException
      */
     protected function removeKey($key) {
-        throw new \libs\sprayfire\exceptions\UnsupportedOperationException('Attempting to remove an value of an immutable object.');
+        throw new UnsupportedOperationException('Attempting to remove the value of an immutable object.');
     }
 
 }
