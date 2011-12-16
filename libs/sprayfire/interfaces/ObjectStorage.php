@@ -22,6 +22,7 @@ namespace libs\sprayfire\interfaces;
 use \ArrayAccess,
     \ReflectionClass,
     \Iterator,
+    \Countable,
     libs\sprayfire\interfaces\Object,
     libs\sprayfire\interfaces\Overloadable;
 
@@ -40,7 +41,7 @@ use \ArrayAccess,
  * 2) via array notation '[]'
  * 3) via `getObject()` and `setObject()` methods
  */
-interface ObjectStorage extends \ArrayAccess, Overloadable, Iterator {
+interface ObjectStorage extends ArrayAccess, Overloadable, Iterator, Countable {
 
     /**
      * This storage object should restrict the objects stored in it to a specific
@@ -96,6 +97,11 @@ interface ObjectStorage extends \ArrayAccess, Overloadable, Iterator {
      * @return mixed
      */
     public function indexOf(Object $Object);
+
+    /**
+     * @return boolean
+     */
+    public function isEmpty();
 
 }
 
