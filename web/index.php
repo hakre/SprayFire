@@ -40,3 +40,5 @@
     $File = new \SplFileInfo($configFile);
 
     $Config = new libs\sprayfire\config\JsonConfig($File);
+
+    var_dump($Config);
