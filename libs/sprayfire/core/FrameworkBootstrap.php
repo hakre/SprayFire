@@ -21,16 +21,15 @@
 
 namespace libs\sprayfire\core;
 
+use libs\sprayfire\interfaces\Bootstrapper,
+    libs\sprayfire\interfaces\Configuration;
+
 /**
  * The framework's default bootstrap, is primarily responsible for writing the default
  * values in the CoreConfiguration object and running each bootstrap object located
  * in the app/bootstrap folder.
- *
- * @uses \libs\sprayfire\interfaces\Bootstrapper
- * @uses \libs\sprayfire\core\CoreObject
- * @uses \libs\sprayfire\interfaces\Object
  */
-class FrameworkBootstrap extends CoreObject implements \libs\sprayfire\interfaces\Bootstrapper {
+class FrameworkBootstrap extends CoreObject implements Bootstrapper {
 
     /**
      * The framework's core configuration object, will be passed to each bootstrap
@@ -43,7 +42,7 @@ class FrameworkBootstrap extends CoreObject implements \libs\sprayfire\interface
     /**
      * @param Configuration $FrameworkConfiguration
      */
-    public function __construct(\libs\sprayfire\interfaces\Configuration $FrameworkConfiguration) {
+    public function __construct(Configuration $FrameworkConfiguration) {
         $this->FrameworkConfiguration = $FrameworkConfiguration;
     }
 
@@ -230,19 +229,6 @@ class FrameworkBootstrap extends CoreObject implements \libs\sprayfire\interface
      */
     private function runPostAppBootstrap() {
         $this->setDebugMode();
-    }
-
-    /**
-     * Will define the `DEBUG_MODE` constant.
-     */
-    private function setDebugMode() {
-        $debugMode = $this->CoreConfiguration->read('debug_mode');
-        if (isset($debugMode) && $debugMode) {
-            $debugMode = true;
-        } else {
-            $debugMode = false;
-        }
-        defined('DEBUG_MODE') or define('DEBUG_MODE', $debugMode);
     }
 
 }
