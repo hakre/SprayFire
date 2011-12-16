@@ -28,7 +28,6 @@ use \Iterator,
  *
  * This code is heavily influenced by the Zend Framework 2 Zend\Config\Config class.
  * https://github.com/zendframework/zf2/blob/master/library/Zend/Config/Config.php
- *
  */
 abstract class MutableIterator extends MutableStorage implements \Iterator {
 
@@ -37,14 +36,14 @@ abstract class MutableIterator extends MutableStorage implements \Iterator {
      *
      * @var int
      */
-    protected $count = 0;
+    private $count = 0;
 
     /**
      * Holds the number of the current internal pointer for the $data array.
      *
      * @var int
      */
-    protected $index = 0;
+    private $index = 0;
 
     /**
      * Is flagged true when elements are removed from the storage during a loop
@@ -62,7 +61,7 @@ abstract class MutableIterator extends MutableStorage implements \Iterator {
      */
     public function __construct(array $data) {
         parent::__construct($data);
-        $this->count = \count($this->data);
+        $this->countData();
     }
 
     /**
@@ -129,7 +128,7 @@ abstract class MutableIterator extends MutableStorage implements \Iterator {
      */
     protected function set($key, $value) {
         $setValue = parent::set($key, $value);
-        $this->count = \count($this->data);
+        $this->countData();
         return $setValue;
     }
 
@@ -141,8 +140,26 @@ abstract class MutableIterator extends MutableStorage implements \Iterator {
      */
     protected function removeKey($key) {
         parent::removeKey($key);
-        $this->count = \count($this->data);
+        $this->countData();
         $this->skipNextIteration = true;
+    }
+
+    /**
+     * Provides access to extending classes to retrieve the number of buckets stored
+     * in this iterator.
+     *
+     * @return int
+     */
+    protected function getCount() {
+        return $this->count;
+    }
+
+    /**
+     * Provides access to extending classes to recalibrate the number of buckets
+     * stored in this iterator.
+     */
+    protected function countData() {
+        $this->count = \count($this->data);
     }
 
 }
