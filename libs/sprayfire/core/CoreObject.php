@@ -21,11 +21,13 @@
 
 namespace libs\sprayfire\core;
 
+use libs\sprayfire\interfaces\Object;
+
 /**
  * The base object for all application classes, allows for the overloading of
  * properties.
  */
-abstract class CoreObject implements \libs\sprayfire\interfaces\Object {
+abstract class CoreObject implements Object {
 
     /**
      * Returns a unique identifier for the calling object.
@@ -47,7 +49,7 @@ abstract class CoreObject implements \libs\sprayfire\interfaces\Object {
      * @param Object $CompareObject
      * @return boolean
      */
-    public function equals(\libs\sprayfire\interfaces\Object $CompareObject) {
+    public function equals(Object $CompareObject) {
         $thisHash = $this->hashCode();
         $compareHash = $CompareObject->hashCode();
         $areHashesEqual = $thisHash === $compareHash;
