@@ -138,7 +138,7 @@ abstract class MutableStorage extends CoreObject implements Overloadable, \Array
         if ($this->keyInData($key)) {
             return $this->data[$key] = $value;
         }
-        error_log('Attempting to set a value to a property that does not exist.');
+        \error_log('Attempting to set a value to a property that does not exist.');
         return false;
     }
 
@@ -164,7 +164,7 @@ abstract class MutableStorage extends CoreObject implements Overloadable, \Array
     protected function removeKey($key) {
         if ($this->keyInData($key)) {
             unset($this->data[$key]);
-            $this->data = array_values($this->data);
+            $this->data = \array_values($this->data);
         }
     }
 
@@ -173,7 +173,7 @@ abstract class MutableStorage extends CoreObject implements Overloadable, \Array
      * @return boolean
      */
     protected function keyInData($key) {
-        return array_key_exists($key, $this->data);
+        return \array_key_exists($key, $this->data);
     }
 
 }
