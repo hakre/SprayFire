@@ -19,6 +19,11 @@
 
 namespace libs\sprayfire\datastructs;
 
+use \ArrayAccess,
+    libs\sprayfire\core\CoreObject,
+    libs\sprayfire\interfaces\Overloadable;
+
+
 /**
  * A simple data storage object that holds key/value pairs.
  *
@@ -36,7 +41,7 @@ namespace libs\sprayfire\datastructs;
  * above methods then simply use an array, as that is effectively what this object is
  * but with object notation access in addition to array notation access.
  */
-abstract class MutableStorage extends \libs\sprayfire\core\CoreObject implements \libs\sprayfire\interfaces\Overloadable, \ArrayAccess {
+abstract class MutableStorage extends CoreObject implements Overloadable, \ArrayAccess {
 
     /**
      * The array holding the data being stored.
