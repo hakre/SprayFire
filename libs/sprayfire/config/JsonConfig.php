@@ -19,10 +19,56 @@
 
 namespace libs\sprayfire\config;
 
+/**
+ * Will parse a JSON configuration file into an ImmutableStorage object with the
+ * key/value pairs in that JSON object being converted to ImmutableStorage objects.
+ *
+ * Ultimately this allows for the reading of any JSON object using PHP's object
+ * '->' or array '[]' access notations.  For a better example see the example
+ * below.
+ *
+ * @example
+ *
+ * // JSON configuration file -- config.json
+ * {
+ *      "app": {
+ *          "version": "1.0.0-beta",
+ *          "development-settings": {
+ *              "debug-mode": "on",
+ *              "display-errors": 1
+ *          }
+ *      }
+ * }
+ *
+ * // Somewhere in your PHP code
+ * $configFile = new \SplFileInfo($filePath);
+ * $Config = new \libs\sprayfire\config\JsonConfig($configFile);
+ *
+ * // Values from the configuration file can now be read
+ *
+ * echo $Config->app->version;  // '1.0.0-beta'
+ *
+ * echo $Config['app']['development-settings']['debug-mode'];   // 'on'
+ *
+ * echo $Config->app->{'development-settings'}->{'display-errors'};   // 1
+ */
 class JsonConfig extends \libs\sprayfire\datastructs\ImmutableStorage implements \libs\sprayfire\interfaces\Configuration {
 
+    /**
+     * Holds the object passed in the constructor holding the path to the configuration
+     * file.
+     *
+     * @var \SplFileInfo
+     */
     private $ConfigFileInfo;
 
+    /**
+     * These are keys that are interpreted by this configuration as holding documentation
+     * for the given configuration file; any key listed will be removed from the
+     * parsed data and its values will not be available after the object is created.
+     *
+     * @var array
+     */
     private $commentKeys = array('_sprayfire-docs', 'sprayfire-docs');
 
     /**
@@ -31,30 +77,9 @@ class JsonConfig extends \libs\sprayfire\datastructs\ImmutableStorage implements
      * the nested arrays into ImmutableStorageObjects providing a means to chain
      * together JSON keys through object or array access notation.
      *
-     * @example
+     * Note, JSON objects passed to this object will be chainable arbirtrarily deep
      *
-     * // JSON configuration file -- config.json
-     * {
-     *      "app": {
-     *          "version": "1.0.0-beta",
-     *          "development-settings": {
-     *              "debug-mode": "on",
-     *              "display-errors": 1
-     *          }
-     *      }
-     * }
      *
-     * // Somewhere in your PHP code
-     * $configFile = new \SplFileInfo($filePath);
-     * $Config = new \libs\sprayfire\config\JsonConfig($configFile);
-     *
-     * // Values from the configuration file can now be read
-     *
-     * echo $Config->app->version;  // '1.0.0-beta'
-     *
-     * echo $Config['app']['development-settings']['debug-mode'];   // 'on'
-     *
-     * echo $Config->app->{'development-settings'}->{'display-errors'};   // 1
      *
      * @param \SplFileInfo $FileInfo
      * @throws \InvalidArgumentException
@@ -155,7 +180,7 @@ class JsonConfig extends \libs\sprayfire\datastructs\ImmutableStorage implements
         $escapedRootPath = '/' . preg_replace('/\//', '\/', ROOT_PATH) . '/';
         return parent::__toString() . '::' . 'ROOT_PATH' . preg_replace($escapedRootPath, '', $this->ConfigFileInfo->getPathname());
     }
-
+    
 }
 
 // End JsonConfig
