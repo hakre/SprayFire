@@ -29,7 +29,9 @@ namespace libs\sprayfire\config;
  *
  * @example
  *
+ * <code>
  * // JSON configuration file -- config.json
+ *
  * {
  *      "app": {
  *          "version": "1.0.0-beta",
@@ -51,6 +53,7 @@ namespace libs\sprayfire\config;
  * echo $Config['app']['development-settings']['debug-mode'];   // 'on'
  *
  * echo $Config->app->{'development-settings'}->{'display-errors'};   // 1
+ * </code>
  */
 class JsonConfig extends \libs\sprayfire\datastructs\ImmutableStorage implements \libs\sprayfire\interfaces\Configuration {
 
@@ -181,7 +184,7 @@ class JsonConfig extends \libs\sprayfire\datastructs\ImmutableStorage implements
         $escapedRootPath = '/' . \preg_replace('/\//', '\/', ROOT_PATH) . '/';
         return parent::__toString() . '::' . 'ROOT_PATH' . \preg_replace($escapedRootPath, '', $this->ConfigFileInfo->getPathname());
     }
-
+    
 }
 
 // End JsonConfig
