@@ -15,8 +15,6 @@
  * @author Charles Sprayberry <cspray at gmail dot com>
  * @license OSI MIT License <http://www.opensource.org/licenses/mit-license.php>
  * @copyright Copyright (c) 2011, Charles Sprayberry
- * @version 0.10b
- * @since 0.10b
  */
 
 namespace libs\sprayfire\core;
@@ -25,7 +23,7 @@ namespace libs\sprayfire\core;
  * This class is responsible for including framework and application classes
  * using PHP's autoload mechanism.
  */
-class ClassLoader extends CoreObject {
+class ClassLoader extends \libs\sprayfire\core\CoreObject {
 
     /**
      * Adds the class's autoloader function to the autoload register.
@@ -43,7 +41,7 @@ class ClassLoader extends CoreObject {
      */
     private function loadClass($className) {
         $convertedPath = $this->convertNamespacedClassToDirectoryPath($className);
-        if (file_exists($convertedPath)) {
+        if (\file_exists($convertedPath)) {
             include $convertedPath;
         }
     }
@@ -57,7 +55,7 @@ class ClassLoader extends CoreObject {
      */
     private function convertNamespacedClassToDirectoryPath($className) {
         $convertedPath = ROOT_PATH . DS;
-        $convertedPath .= str_replace('\\', DS, $className);
+        $convertedPath .= \str_replace('\\', DS, $className);
         $convertedPath .= '.php';
         return $convertedPath;
     }
