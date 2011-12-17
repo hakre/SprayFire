@@ -31,7 +31,7 @@ interface Bootstrapper {
      *
      * @param Configuration $ConfigurationObject
      */
-    public function __construct(Configuration $ConfigurationObject);
+    public function __construct(\libs\sprayfire\interfaces\Configuration $ConfigurationObject);
 
     /**
      * A method that should do whatever bootstrapping features are needed for that
