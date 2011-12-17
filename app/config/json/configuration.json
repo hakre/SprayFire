@@ -5,6 +5,7 @@
     "app": {
         "version": "0.1.0-alpha",
         "development-mode": "on",
+        "routing-file": "routes.json",
         "ini-settings": {
             "global": {
                 "allow_url_fopen": "0",
@@ -20,12 +21,6 @@
             "production": {
 
             }
-        },
-        "routing": {
-            "config-file": "routes.json",
-            "default-controller": "pages",
-            "default-action": "index",
-            "parameter-delimiter": ":"
         },
         "error-handling": {
             "sprayfire-docs": {
