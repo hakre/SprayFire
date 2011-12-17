@@ -26,13 +26,26 @@ namespace libs\sprayfire\request\Uri;
 interface Uri {
 
     /**
-     * The $Config parameter is passed to supply default values if the given $uri
-     * does not supply a controller or action.
+     * This constant is returned if the default controller should be used.
      *
-     * @param \libs\sprayfire\interfaces\Configuration $Config
+     * @var string
+     */
+    const DEFAULT_CONTROLLER = '%default_controller%';
+
+    /**
+     * This constant is returned if the default action should be used.
+     *
+     * @var string
+     */
+    const DEFAULT_ACTION = '%default_action%';
+
+    /**
+     * Should parse the URI passed, providing access to the controller, action
+     * and parameters passed along with the original URI.
+     *
      * @param string $uri
      */
-    public function __construct(\libs\sprayfire\interfaces\Configuration $Config, $uri);
+    public function __construct($uri);
 
     /**
      * Should return the original, unaltered URI.
@@ -42,14 +55,17 @@ interface Uri {
     public function getRawUri();
 
     /**
-     * Should return the string associated with the 'controller' URI fragment.
+     * Should return the string associated with the 'controller' URI fragment, if
+     * no controller URI fragment is passed then Uri::DEFAULT_CONTROLLER should be
+     * returned.
      *
      * @return string
      */
     public function getController();
 
     /**
-     * Should return the string associated with the 'action' URI fragment.
+     * Should return the string associated with the 'action' URI fragment, if no
+     * action URI fragment is passed then Uri::DEFAULT_ACTION should be returned.
      *
      * @return string
      */
