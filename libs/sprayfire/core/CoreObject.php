@@ -15,15 +15,14 @@
  * @author Charles Sprayberry <cspray at gmail dot com>
  * @license OSI MIT License <http://www.opensource.org/licenses/mit-license.php>
  * @copyright Copyright (c) 2011, Charles Sprayberry
- * @version 0.10b
- * @since 0.10b
  */
 
 namespace libs\sprayfire\core;
 
 /**
- * The base object for all application classes, allows for the overloading of
- * properties.
+ * The base object for all application classes; provides easy access to implementation
+ * of the \libs\sprayfire\interfaces\Object interface.
+ *
  */
 abstract class CoreObject implements \libs\sprayfire\interfaces\Object {
 
@@ -44,7 +43,7 @@ abstract class CoreObject implements \libs\sprayfire\interfaces\Object {
      * If your objects need to implement a Comparator be sure to override the
      * implementation of this class.
      *
-     * @param Object $CompareObject
+     * @param \libs\sprayfire\interfaces\Object $CompareObject
      * @return boolean
      */
     public function equals(\libs\sprayfire\interfaces\Object $CompareObject) {
