@@ -39,7 +39,7 @@ interface Overloadable {
      * @param string $key
      * @return mixed
      */
-    public function __get($property);
+    public function __get($key);
 
     /**
      * @param string $key

@@ -15,8 +15,6 @@
  * @author Charles Sprayberry <cspray at gmail dot com>
  * @license OSI MIT License <http://www.opensource.org/licenses/mit-license.php>
  * @copyright Copyright (c) 2011, Charles Sprayberry
- * @version 0.10b
- * @since 0.10b
  */
 
 namespace libs\sprayfire\interfaces;
@@ -33,7 +31,7 @@ interface Bootstrapper {
      *
      * @param Configuration $ConfigurationObject
      */
-    public function __construct(Configuration $ConfigurationObject);
+    public function __construct(\libs\sprayfire\interfaces\Configuration $ConfigurationObject);
 
     /**
      * A method that should do whatever bootstrapping features are needed for that

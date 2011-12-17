@@ -23,7 +23,7 @@ namespace libs\sprayfire\datastructs;
  * A simple key/value storage object that does not allow the data associated with
  * to be changed after the object has been constructed.
  */
-class ImmutableStorage extends MutableStorage {
+class ImmutableStorage extends \libs\sprayfire\datastructs\DataStorage {
 
     /**
      * @param string $key
@@ -39,7 +39,7 @@ class ImmutableStorage extends MutableStorage {
      * @throws \libs\sprayfire\exceptions\UnsupportedOperationException
      */
     protected function removeKey($key) {
-        throw new \libs\sprayfire\exceptions\UnsupportedOperationException('Attempting to remove an value of an immutable object.');
+        throw new \libs\sprayfire\exceptions\UnsupportedOperationException('Attempting to remove the value of an immutable object.');
     }
 
 }

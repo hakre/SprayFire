@@ -15,8 +15,6 @@
  * @author Charles Sprayberry <cspray at gmail dot com>
  * @license OSI MIT License <http://www.opensource.org/licenses/mit-license.php>
  * @copyright Copyright (c) 2011, Charles Sprayberry
- * @version 0.10b
- * @since 0.10b
  */
 
 namespace libs\sprayfire\interfaces;
@@ -33,10 +31,10 @@ interface Object {
      * this method, simply ensure that it returns true if object passed is equal
      * to the calling object and false if it is not.
      *
-     * @param Object $Object
+     * @param \libs\sprayfire\interfaces\Object $Object
      * @return boolean
      */
-    public function equals(Object $Object);
+    public function equals(\libs\sprayfire\interfaces\Object $Object);
 
     /**
      * Should return a unique identifier for the calling object.

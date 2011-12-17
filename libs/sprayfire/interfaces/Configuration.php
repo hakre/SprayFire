@@ -15,8 +15,6 @@
  * @author Charles Sprayberry <cspray at gmail dot com>
  * @license OSI MIT License <http://www.opensource.org/licenses/mit-license.php>
  * @copyright Copyright (c) 2011, Charles Sprayberry
- * @version 0.10b
- * @since 0.10b
  */
 
 namespace libs\sprayfire\interfaces;
@@ -32,15 +30,15 @@ namespace libs\sprayfire\interfaces;
  * allowing the imported configuration values to only be read.
  *
  */
-interface Configuration extends Overloadable, \ArrayAccess {
+interface Configuration extends \libs\sprayfire\interfaces\Overloadable, \ArrayAccess {
 
     /**
      * Data can be any type, as long as after the object is constructed it is ready
      * to be read from either as an object or as an array.
      *
-     * @param \SplFileInfo $configurationFileInfo
+     * @param \SplFileInfo $FileInfo
      */
-    public function __construct(\SplFileInfo $configurationFileInfo);
+    public function __construct(\SplFileInfo $FileInfo);
 
 }
 

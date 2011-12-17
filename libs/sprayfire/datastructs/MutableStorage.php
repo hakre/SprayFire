@@ -35,94 +35,13 @@ namespace libs\sprayfire\datastructs;
  * is attempting to be changed.  If you do not need to override one or more of the
  * above methods then simply use an array, as that is effectively what this object is
  * but with object notation access in addition to array notation access.
+ *
+ * @todo The basic get and isset functionality of this object needs to be abstracted
+ * out into an abstract DataStorage class.  This DataStorage class should force the
+ * implementation of the set() and removeKey() methods.  The DataStorage class should
+ * implement Overloadable, ArrayAccess and Countable.
  */
-abstract class MutableStorage extends \libs\sprayfire\core\CoreObject implements \libs\sprayfire\interfaces\Overloadable, \ArrayAccess {
-
-    /**
-     * The array holding the data being stored.
-     *
-     * @var array
-     */
-    protected $data = array();
-
-    /**
-     * @param array $data
-     */
-    public function __construct(array $data) {
-        $this->data = $data;
-    }
-
-    /**
-     * @param string $key
-     * @return mixed
-     */
-    public function offsetGet($key) {
-        return $this->get($key);
-    }
-
-    /**
-     * @param string $key
-     * @return mixed
-     */
-    public function __get($key) {
-        return $this->get($key);
-    }
-
-    /**
-     * @param string $key
-     * @return mixed
-     */
-    protected function get($key) {
-        if ($this->keyInData($key)) {
-            return $this->data[$key];
-        }
-        return NULL;
-    }
-
-    /**
-     * @param string $key
-     * @return boolean
-     */
-    public function __isset($key) {
-        return $this->keyHasValue($key);
-    }
-
-    /**
-     * @param string $key
-     * @return boolean
-     */
-    public function offsetExists($key) {
-        return $this->keyHasValue($key);
-    }
-
-    /**
-     * @param string $key
-     * @return boolean
-     */
-    protected function keyHasValue($key) {
-        if ($this->keyInData($key)) {
-            return isset($this->data[$key]);
-        }
-        return false;
-    }
-
-    /**
-     * @param string $key
-     * @param mixed $value
-     * @return mixed
-     */
-    public function __set($key, $value) {
-        return $this->set($key, $value);
-    }
-
-    /**
-     * @param string $key
-     * @param mixed $value
-     * @return mixed
-     */
-    public function offsetSet($key, $value) {
-        return $this->set($key, $value);
-    }
+abstract class MutableStorage extends \libs\sprayfire\datastructs\DataStorage {
 
     /**
      * @param string $key
@@ -130,27 +49,10 @@ abstract class MutableStorage extends \libs\sprayfire\core\CoreObject implements
      * @return mixed
      */
     protected function set($key, $value) {
-        if ($this->keyInData($key)) {
-            return $this->data[$key] = $value;
+        if (is_null($key)) {
+            $key = \count($this->data);
         }
-        error_log('Attempting to set a value to a property that does not exist.');
-        return false;
-    }
-
-    /**
-     * @param string $key
-     * @return boolean
-     */
-    public function __unset($key) {
-        return $this->removeKey($key);
-    }
-
-    /**
-     * @param string $key
-     * @return boolean
-     */
-    public function offsetUnset($key) {
-        return $this->removeKey($key);
+        return $this->data[$key] = $value;
     }
 
     /**
@@ -159,16 +61,7 @@ abstract class MutableStorage extends \libs\sprayfire\core\CoreObject implements
     protected function removeKey($key) {
         if ($this->keyInData($key)) {
             unset($this->data[$key]);
-            $this->data = array_values($this->data);
         }
-    }
-
-    /**
-     * @param string $key
-     * @return boolean
-     */
-    protected function keyInData($key) {
-        return array_key_exists($key, $this->data);
     }
 
 }

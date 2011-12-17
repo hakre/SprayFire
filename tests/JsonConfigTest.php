@@ -98,7 +98,7 @@ class JsonConfigTest extends PHPUnit_Framework_TestCase {
      * @expectedException InvalidArgumentException
      */
     public function testInvalidJsonFile() {
-        $File = new SplFileInfo(\libs\sprayfire\core\SprayFireDirectory::getAppPathSubDirectory('config', 'test-invalid-config.json'));
+        $File = new SplFileInfo(\libs\sprayfire\core\SprayFireDirectory::getFrameworkPathSubDirectory('config', 'test-invalid-config.json'));
         $Config = new libs\sprayfire\config\JsonConfig($File);
     }
 

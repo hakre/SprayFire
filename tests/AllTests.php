@@ -11,10 +11,10 @@
  * @copyright Copyright (c) 2011, Charles Sprayberry
  */
 
-include 'UniqueListTest.php';
 include 'FrameworkBootstrapTest.php';
 include 'JsonConfigTest.php';
 include 'MutableStorageTest.php';
+include 'SprayFireObjectStoreTest.php';
 
 /**
  *
@@ -28,10 +28,10 @@ class AllTests {
      */
     public static function suite() {
         $Suite = new PHPUnit_Framework_TestSuite();
-        $Suite->addTestSuite('UniqueListTest');
         $Suite->addTestSuite('FrameworkBootstrapTest');
         $Suite->addTestSuite('JsonConfigTest');
         $Suite->addTestSuite('MutableStorageTest');
+        $Suite->addTestSuite('SprayFireObjectStoreTest');
 
         return $Suite;
     }

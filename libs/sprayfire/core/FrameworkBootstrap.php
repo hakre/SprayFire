@@ -15,8 +15,6 @@
  * @author Charles Sprayberry <cspray at gmail dot com>
  * @license OSI MIT License <http://www.opensource.org/licenses/mit-license.php>
  * @copyright Copyright (c) 2011, Charles Sprayberry
- * @version 0.10b
- * @since 0.10b
  */
 
 namespace libs\sprayfire\core;
@@ -25,10 +23,6 @@ namespace libs\sprayfire\core;
  * The framework's default bootstrap, is primarily responsible for writing the default
  * values in the CoreConfiguration object and running each bootstrap object located
  * in the app/bootstrap folder.
- *
- * @uses \libs\sprayfire\interfaces\Bootstrapper
- * @uses \libs\sprayfire\core\CoreObject
- * @uses \libs\sprayfire\interfaces\Object
  */
 class FrameworkBootstrap extends CoreObject implements \libs\sprayfire\interfaces\Bootstrapper {
 
@@ -126,7 +120,7 @@ class FrameworkBootstrap extends CoreObject implements \libs\sprayfire\interface
 
         // we are doing this str_replace to prevent collisions with regex and /
         $bootstrapDir = \str_replace('/', '_', $bootstrapDir);
-        $regexReadyRootPath = \str_replace('/', '_', \ROOT_PATH);
+        $regexReadyRootPath = \str_replace('/', '_', ROOT_PATH);
 
         $regexPattern = '/' . $regexReadyRootPath . '_/';
         $bootstrapDir = \preg_replace($regexPattern, '', $bootstrapDir);
@@ -146,7 +140,7 @@ class FrameworkBootstrap extends CoreObject implements \libs\sprayfire\interface
     private function removeFileExtension(array &$files) {
         $regexPattern = '/(.php)$/';
         foreach ($files as $key => $file) {
-            $className = preg_replace($regexPattern, '', $file);
+            $className = \preg_replace($regexPattern, '', $file);
             $files[$key] = $className;
         }
     }
@@ -188,7 +182,7 @@ class FrameworkBootstrap extends CoreObject implements \libs\sprayfire\interface
         } catch (\ReflectionException $ReflectionException) {
             // no need to do anything here as the final return of false will
             // handle this exception
-            error_log($ReflectionException->getMessage());
+            \error_log($ReflectionException->getMessage());
         }
         return false;
     }
@@ -230,19 +224,6 @@ class FrameworkBootstrap extends CoreObject implements \libs\sprayfire\interface
      */
     private function runPostAppBootstrap() {
         $this->setDebugMode();
-    }
-
-    /**
-     * Will define the `DEBUG_MODE` constant.
-     */
-    private function setDebugMode() {
-        $debugMode = $this->CoreConfiguration->read('debug_mode');
-        if (isset($debugMode) && $debugMode) {
-            $debugMode = true;
-        } else {
-            $debugMode = false;
-        }
-        defined('DEBUG_MODE') or define('DEBUG_MODE', $debugMode);
     }
 
 }

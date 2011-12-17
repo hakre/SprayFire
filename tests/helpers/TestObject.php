@@ -11,6 +11,8 @@
  * @copyright Copyright (c) 2011, Charles Sprayberry
  */
 
+namespace tests\helpers;
+
 /**
  *
  */

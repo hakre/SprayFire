@@ -36,9 +36,6 @@ class MutableStorageTest extends PHPUnit_Framework_TestCase {
         $Storage->{'key-one'} = $newValue;
         $this->assertSame($newValue, $Storage['key-one']);
 
-        $Storage['non-exist'] = 'something';
-        $this->assertFalse(isset($Storage['non-exist']));
-
         unset($Storage['key-one']);
         $this->assertFalse(isset($Storage->{'key-one'}));
 

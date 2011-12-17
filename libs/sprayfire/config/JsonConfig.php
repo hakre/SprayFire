@@ -29,7 +29,9 @@ namespace libs\sprayfire\config;
  *
  * @example
  *
+ * <code>
  * // JSON configuration file -- config.json
+ *
  * {
  *      "app": {
  *          "version": "1.0.0-beta",
@@ -51,6 +53,7 @@ namespace libs\sprayfire\config;
  * echo $Config['app']['development-settings']['debug-mode'];   // 'on'
  *
  * echo $Config->app->{'development-settings'}->{'display-errors'};   // 1
+ * </code>
  */
 class JsonConfig extends \libs\sprayfire\datastructs\ImmutableStorage implements \libs\sprayfire\interfaces\Configuration {
 
@@ -105,10 +108,10 @@ class JsonConfig extends \libs\sprayfire\datastructs\ImmutableStorage implements
      * @throws \UnexpectedValueException
      */
     private function getDecodedJson() {
-        $decodedJson = json_decode($this->getFileContents(), true);
-        $lastJsonError = json_last_error();
-        if ($lastJsonError !== JSON_ERROR_NONE || is_null($decodedJson)) {
-            error_log('The last JSON error was ' . $lastJsonError);
+        $decodedJson = \json_decode($this->getFileContents(), true);
+        $lastJsonError = \json_last_error();
+        if ($lastJsonError !== JSON_ERROR_NONE || \is_null($decodedJson)) {
+            \error_log('The last JSON error was ' . $lastJsonError);
             throw new \InvalidArgumentException('There was an error parsing the JSON configuration file passed.  Please see error log for more info.');
         }
         return $decodedJson;
@@ -124,7 +127,7 @@ class JsonConfig extends \libs\sprayfire\datastructs\ImmutableStorage implements
         if (!$this->ConfigFileInfo->isFile() && !$this->ConfigFileInfo->isLink()) {
             throw new \InvalidArgumentException('There is an error with the path to the configuration file.');
         }
-        $fileInfo = file_get_contents($this->ConfigFileInfo->getRealPath());
+        $fileInfo = \file_get_contents($this->ConfigFileInfo->getRealPath());
         return $fileInfo;
     }
 
@@ -143,11 +146,11 @@ class JsonConfig extends \libs\sprayfire\datastructs\ImmutableStorage implements
      */
     protected function getMasterData(array $decodedJson) {
         foreach ($decodedJson as $key => $value) {
-            if (in_array($key, $this->commentKeys)) {
+            if (\in_array($key, $this->commentKeys)) {
                 unset($decodedJson[$key]);
                 continue;
             }
-            if (is_array($value)) {
+            if (\is_array($value)) {
                 $decodedJson[$key] = $this->convertArrayToImmutableObject($value);
             }
         }
@@ -163,11 +166,11 @@ class JsonConfig extends \libs\sprayfire\datastructs\ImmutableStorage implements
      */
     private function convertArrayToImmutableObject(array $data) {
         foreach ($data as $key => $value) {
-            if (in_array($key, $this->commentKeys)) {
+            if (\in_array($key, $this->commentKeys)) {
                 unset($data[$key]);
                 continue;
             }
-            if (is_array($value)) {
+            if (\is_array($value)) {
                 $data[$key] = $this->convertArrayToImmutableObject($value);
             }
         }
@@ -178,10 +181,10 @@ class JsonConfig extends \libs\sprayfire\datastructs\ImmutableStorage implements
      * @return string
      */
     public function __toString() {
-        $escapedRootPath = '/' . preg_replace('/\//', '\/', ROOT_PATH) . '/';
-        return parent::__toString() . '::' . 'ROOT_PATH' . preg_replace($escapedRootPath, '', $this->ConfigFileInfo->getPathname());
+        $escapedRootPath = '/' . \preg_replace('/\//', '\/', ROOT_PATH) . '/';
+        return parent::__toString() . '::' . 'ROOT_PATH' . \preg_replace($escapedRootPath, '', $this->ConfigFileInfo->getPathname());
     }
-
+    
 }
 
 // End JsonConfig
