@@ -31,7 +31,7 @@ abstract class MutableIterator extends \libs\sprayfire\datastructs\MutableStorag
     /**
      * Holds the number of the current internal pointer for the $data array.
      *
-     * @var int
+     * @var \int
      */
     private $index = 0;
 
@@ -39,7 +39,7 @@ abstract class MutableIterator extends \libs\sprayfire\datastructs\MutableStorag
      * Is flagged true when elements are removed from the storage during a loop
      * so that the next iteration over the array will be skipped.
      *
-     * @var boolean
+     * @var \boolean
      */
     protected $skipNextIteration = false;
 
