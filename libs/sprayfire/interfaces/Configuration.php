@@ -21,10 +21,6 @@
 
 namespace libs\sprayfire\interfaces;
 
-use \ArrayAccess,
-    \SplFileInfo,
-    libs\sprayfire\interfaces\Overloadable;
-
 /**
  * An interface for configuration objects used by the application and framework.
  *

@@ -19,13 +19,6 @@
 
 namespace libs\sprayfire\interfaces;
 
-use \ArrayAccess,
-    \ReflectionClass,
-    \Iterator,
-    \Countable,
-    libs\sprayfire\interfaces\Object,
-    libs\sprayfire\interfaces\Overloadable;
-
 /**
  * Provides a data structure to store *framework* derived objects.
  *
@@ -41,7 +34,7 @@ use \ArrayAccess,
  * 2) via array notation '[]'
  * 3) via `getObject()` and `setObject()` methods
  */
-interface ObjectStorage extends ArrayAccess, Overloadable, Iterator, Countable {
+interface ObjectStorage extends \ArrayAccess, \Iterator, \Countable, \libs\sprayfire\interfaces\Overloadable {
 
     /**
      * This storage object should restrict the objects stored in it to a specific

@@ -19,9 +19,6 @@
 
 namespace libs\sprayfire\datastructs;
 
-use \Iterator,
-    libs\sprayfire\datastructs\MutableStorage;
-
 /**
  * This class is a data storage that also acts as an iterator, allowing objects
  * extending this class to be used in a foreach loop.

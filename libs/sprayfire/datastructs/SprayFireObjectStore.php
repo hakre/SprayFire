@@ -19,13 +19,6 @@
 
 namespace libs\sprayfire\datastructs;
 
-use \ReflectionClass,
-    \ReflectionException,
-    \InvalidArgumentException,
-    libs\sprayfire\datastructs\MutableIterator,
-    libs\sprayfire\interfaces\ObjectStorage,
-    libs\sprayfire\interfaces\Object;
-
 /**
  * This is the framework's primary data structure to store framework objects.
  *
@@ -34,7 +27,7 @@ use \ReflectionClass,
  * of objects associated with a key and iterating over the objects stored in the
  * array.
  */
-class SprayFireObjectStore extends MutableIterator implements ObjectStorage {
+class SprayFireObjectStore extends MutableIterator implements \libs\sprayfire\interfaces\ObjectStorage {
 
     /**
      * Holds a ReflectionClass of the data type that should be implemented by objects
@@ -71,7 +64,7 @@ class SprayFireObjectStore extends MutableIterator implements ObjectStorage {
      * @param \libs\sprayfire\interfaces\Object $Object
      * @return boolean
      */
-    public function contains(Object $Object) {
+    public function contains(\libs\sprayfire\interfaces\Object $Object) {
         if ($this->indexOf($Object) === false) {
             return false;
         }
@@ -85,7 +78,7 @@ class SprayFireObjectStore extends MutableIterator implements ObjectStorage {
      * @param \libs\sprayfire\interfaces\Object $Object
      * @return mixed
      */
-    public function indexOf(Object $Object) {
+    public function indexOf(\libs\sprayfire\interfaces\Object $Object) {
         $index = false;
         foreach ($this->data as $key => $StoredObject) {
             if ($Object->equals($StoredObject)) {
@@ -134,7 +127,7 @@ class SprayFireObjectStore extends MutableIterator implements ObjectStorage {
      * @throws \InvalidArgumentException
      * @return mixed
      */
-    public function setObject($key, Object $Object) {
+    public function setObject($key, \libs\sprayfire\interfaces\Object $Object) {
         return $this->set($key, $Object);
     }
 

@@ -41,4 +41,4 @@
 
     $Config = new libs\sprayfire\config\JsonConfig($File);
 
-    var_dump($Config);
+    var_dump($Config->app->__toString());

@@ -21,15 +21,12 @@
 
 namespace libs\sprayfire\core;
 
-use libs\sprayfire\interfaces\Bootstrapper,
-    libs\sprayfire\interfaces\Configuration;
-
 /**
  * The framework's default bootstrap, is primarily responsible for writing the default
  * values in the CoreConfiguration object and running each bootstrap object located
  * in the app/bootstrap folder.
  */
-class FrameworkBootstrap extends CoreObject implements Bootstrapper {
+class FrameworkBootstrap extends CoreObject implements \libs\sprayfire\interfaces\Bootstrapper {
 
     /**
      * The framework's core configuration object, will be passed to each bootstrap
@@ -42,7 +39,7 @@ class FrameworkBootstrap extends CoreObject implements Bootstrapper {
     /**
      * @param Configuration $FrameworkConfiguration
      */
-    public function __construct(Configuration $FrameworkConfiguration) {
+    public function __construct(\libs\sprayfire\interfaces\Configuration $FrameworkConfiguration) {
         $this->FrameworkConfiguration = $FrameworkConfiguration;
     }
 
@@ -125,7 +122,7 @@ class FrameworkBootstrap extends CoreObject implements Bootstrapper {
 
         // we are doing this str_replace to prevent collisions with regex and /
         $bootstrapDir = \str_replace('/', '_', $bootstrapDir);
-        $regexReadyRootPath = \str_replace('/', '_', \ROOT_PATH);
+        $regexReadyRootPath = \str_replace('/', '_', ROOT_PATH);
 
         $regexPattern = '/' . $regexReadyRootPath . '_/';
         $bootstrapDir = \preg_replace($regexPattern, '', $bootstrapDir);
@@ -145,7 +142,7 @@ class FrameworkBootstrap extends CoreObject implements Bootstrapper {
     private function removeFileExtension(array &$files) {
         $regexPattern = '/(.php)$/';
         foreach ($files as $key => $file) {
-            $className = preg_replace($regexPattern, '', $file);
+            $className = \preg_replace($regexPattern, '', $file);
             $files[$key] = $className;
         }
     }
@@ -187,7 +184,7 @@ class FrameworkBootstrap extends CoreObject implements Bootstrapper {
         } catch (\ReflectionException $ReflectionException) {
             // no need to do anything here as the final return of false will
             // handle this exception
-            error_log($ReflectionException->getMessage());
+            \error_log($ReflectionException->getMessage());
         }
         return false;
     }

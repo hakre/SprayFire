@@ -21,8 +21,6 @@
 
 namespace libs\sprayfire\interfaces;
 
-use libs\sprayfire\interfaces\Configuration;
-
 /**
  * An interface implemented by all framework and app bootstrapping objects.
  */

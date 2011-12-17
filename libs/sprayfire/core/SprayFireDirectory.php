@@ -19,8 +19,6 @@
 
 namespace libs\sprayfire\core;
 
-use libs\sprayfire\interfaces\FrameworkPaths;
-
 /**
  * This class is used as a wrapper for what would otherwise be a constant in the
  * framework.
@@ -28,10 +26,8 @@ use libs\sprayfire\interfaces\FrameworkPaths;
  * Ultimately though the methods in this class provide a very good functionality
  * that makes it easy to easily get a framework or application directory anywhere
  * in the framework.
- *
- * @uses \libs\sprayfire\interfaces\FrameworkPaths
  */
-class SprayFireDirectory implements FrameworkPaths {
+class SprayFireDirectory implements \libs\sprayfire\interfaces\FrameworkPaths {
 
     /**
      * @var string
