@@ -27,7 +27,7 @@ namespace libs\sprayfire\datastructs;
  * of objects associated with a key and iterating over the objects stored in the
  * array.
  */
-class SprayFireObjectStore extends MutableIterator implements \libs\sprayfire\interfaces\ObjectStorage {
+class SprayFireObjectStore extends MutableIterator implements \libs\sprayfire\datastructs\ObjectStorage {
 
     /**
      * Holds a ReflectionClass of the data type that should be implemented by objects
@@ -54,7 +54,7 @@ class SprayFireObjectStore extends MutableIterator implements \libs\sprayfire\in
     public function __construct(\ReflectionClass $ReflectedObjectType) {
         parent::__construct(array());
         $this->ReflectedParentType = $ReflectedObjectType;
-        $this->ReflectedFrameworkObject = new \ReflectionClass("\\libs\\sprayfire\\interfaces\\Object");
+        $this->ReflectedFrameworkObject = new \ReflectionClass("\\libs\\sprayfire\\core\\Object");
     }
 
     /**
@@ -64,7 +64,7 @@ class SprayFireObjectStore extends MutableIterator implements \libs\sprayfire\in
      * @param \libs\sprayfire\interfaces\Object $Object
      * @return boolean
      */
-    public function contains(\libs\sprayfire\interfaces\Object $Object) {
+    public function contains(\libs\sprayfire\core\Object $Object) {
         if ($this->indexOf($Object) === false) {
             return false;
         }
@@ -78,7 +78,7 @@ class SprayFireObjectStore extends MutableIterator implements \libs\sprayfire\in
      * @param \libs\sprayfire\interfaces\Object $Object
      * @return mixed
      */
-    public function indexOf(\libs\sprayfire\interfaces\Object $Object) {
+    public function indexOf(\libs\sprayfire\core\Object $Object) {
         $index = false;
         foreach ($this->data as $key => $StoredObject) {
             if ($Object->equals($StoredObject)) {
@@ -118,7 +118,7 @@ class SprayFireObjectStore extends MutableIterator implements \libs\sprayfire\in
      * @throws \InvalidArgumentException
      * @return mixed
      */
-    public function setObject($key, \libs\sprayfire\interfaces\Object $Object) {
+    public function setObject($key, \libs\sprayfire\core\Object $Object) {
         return $this->set($key, $Object);
     }
 

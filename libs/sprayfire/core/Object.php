@@ -17,7 +17,7 @@
  * @copyright Copyright (c) 2011, Charles Sprayberry
  */
 
-namespace libs\sprayfire\interfaces;
+namespace libs\sprayfire\core;
 
 /**
  * The base interface all objects in the framework must implement; simply provides
@@ -34,7 +34,7 @@ interface Object {
      * @param \libs\sprayfire\interfaces\Object $Object
      * @return boolean
      */
-    public function equals(\libs\sprayfire\interfaces\Object $Object);
+    public function equals(\libs\sprayfire\core\Object $Object);
 
     /**
      * Should return a unique identifier for the calling object.
