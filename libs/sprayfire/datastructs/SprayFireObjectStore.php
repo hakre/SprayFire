@@ -176,7 +176,7 @@ class SprayFireObjectStore extends MutableIterator implements \libs\sprayfire\in
      * @param mixed $Object
      * @return boolean
      */
-    public function isFrameworkObject($Object) {
+    protected function isFrameworkObject($Object) {
         $frameworkObjectInterface = $this->ReflectedFrameworkObject->getName();
         try {
             $ReflectedObject = new \ReflectionClass($Object);
