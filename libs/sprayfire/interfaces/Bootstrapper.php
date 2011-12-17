@@ -15,8 +15,6 @@
  * @author Charles Sprayberry <cspray at gmail dot com>
  * @license OSI MIT License <http://www.opensource.org/licenses/mit-license.php>
  * @copyright Copyright (c) 2011, Charles Sprayberry
- * @version 0.10b
- * @since 0.10b
  */
 
 namespace libs\sprayfire\interfaces;
