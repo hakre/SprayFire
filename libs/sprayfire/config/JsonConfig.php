@@ -66,15 +66,6 @@ class JsonConfig extends \libs\sprayfire\datastructs\ImmutableStorage implements
     private $ConfigFileInfo;
 
     /**
-     * These are keys that are interpreted by this configuration as holding documentation
-     * for the given configuration file; any key listed will be removed from the
-     * parsed data and its values will not be available after the object is created.
-     *
-     * @var array
-     */
-    private $commentKeys = array('_sprayfire-docs', 'sprayfire-docs');
-
-    /**
      * Will take an SplFileInfo object, return the complete path for the file held
      * by that object, convert the data in that file to a JSON array and then convert
      * the nested arrays into ImmutableStorageObjects providing a means to chain
@@ -91,10 +82,7 @@ class JsonConfig extends \libs\sprayfire\datastructs\ImmutableStorage implements
      */
     public function __construct(\SplFileInfo $FileInfo) {
         $this->ConfigFileInfo = $FileInfo;
-        $data = $this->getMasterData($this->getDecodedJson());
-        if (!is_array($data)) {
-            throw new \UnexpectedValueException('The value returned from JsonConfig::getMasterData is not an array, ensure that your implementation properly returns an array.');
-        }
+        $data = $this->getDecodedJson();
         parent::__construct($data);
     }
 
@@ -129,52 +117,6 @@ class JsonConfig extends \libs\sprayfire\datastructs\ImmutableStorage implements
         }
         $fileInfo = \file_get_contents($this->ConfigFileInfo->getRealPath());
         return $fileInfo;
-    }
-
-    /**
-     * Will loop through each value held in the decoded JSON, converting those values
-     * that are arrays into ImmutableStorage objects.
-     *
-     * Please note, if this exception does not return array the __construct will
-     * throw an \UnexpectedValueException.  If this function is overridden in child
-     * classes PLEASE ensure that this function returns an array, even if the array
-     * is empty to signify a problem with the configuration that is not detrimental
-     * enough to halt execution.
-     *
-     * @param array $decodedJson
-     * @return array
-     */
-    protected function getMasterData(array $decodedJson) {
-        foreach ($decodedJson as $key => $value) {
-            if (\in_array($key, $this->commentKeys)) {
-                unset($decodedJson[$key]);
-                continue;
-            }
-            if (\is_array($value)) {
-                $decodedJson[$key] = $this->convertArrayToImmutableObject($value);
-            }
-        }
-        return $decodedJson;
-    }
-
-    /**
-     * Will loop through each of the values and recursively convert those values
-     * that are arrays into ImmutableStorage objects.
-     *
-     * @param array $data
-     * @return \libs\sprayfire\datastructs\ImmutableStorage
-     */
-    private function convertArrayToImmutableObject(array $data) {
-        foreach ($data as $key => $value) {
-            if (\in_array($key, $this->commentKeys)) {
-                unset($data[$key]);
-                continue;
-            }
-            if (\is_array($value)) {
-                $data[$key] = $this->convertArrayToImmutableObject($value);
-            }
-        }
-        return new \libs\sprayfire\datastructs\ImmutableStorage($data);
     }
 
     /**
