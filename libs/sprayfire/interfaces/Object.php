@@ -34,7 +34,7 @@ interface Object {
      * @param \libs\sprayfire\interfaces\Object $Object
      * @return boolean
      */
-    public function equals(Object $Object);
+    public function equals(\libs\sprayfire\interfaces\Object $Object);
 
     /**
      * Should return a unique identifier for the calling object.
