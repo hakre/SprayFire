@@ -19,8 +19,6 @@
 
 namespace libs\sprayfire\interfaces\Uri;
 
-use libs\sprayfire\interfaces\Configuration;
-
 /**
  * An interface to take a URI and parse the string into the appropriate controller,
  * action and parameters.
@@ -34,7 +32,7 @@ interface Uri {
      * @param \libs\sprayfire\interfaces\Configuration $Config
      * @param string $uri
      */
-    public function __construct(Configuration $Config, $uri);
+    public function __construct(\libs\sprayfire\interfaces\Configuration $Config, $uri);
 
     /**
      * Should return the original, unaltered URI.
