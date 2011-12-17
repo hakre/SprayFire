@@ -30,7 +30,7 @@ namespace libs\sprayfire\interfaces;
  * allowing the imported configuration values to only be read.
  *
  */
-interface Configuration extends Overloadable, \ArrayAccess {
+interface Configuration extends \libs\sprayfire\interfaces\Overloadable, \ArrayAccess {
 
     /**
      * Data can be any type, as long as after the object is constructed it is ready
