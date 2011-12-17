@@ -87,7 +87,7 @@ class JsonConfigTest extends PHPUnit_Framework_TestCase {
     }
 
     /**
-     * @expectedException InvalidArgumentException
+     * @expectedException \InvalidArgumentException
      */
     public function testNonExistentFile() {
         $File = new SplFileInfo('this/file/path/does/not/exist/config.json');
@@ -95,7 +95,7 @@ class JsonConfigTest extends PHPUnit_Framework_TestCase {
     }
 
     /**
-     * @expectedException InvalidArgumentException
+     * @expectedException \InvalidArgumentException
      */
     public function testInvalidJsonFile() {
         $File = new SplFileInfo(\libs\sprayfire\core\SprayFireDirectory::getFrameworkPathSubDirectory('config', 'test-invalid-config.json'));
@@ -103,7 +103,7 @@ class JsonConfigTest extends PHPUnit_Framework_TestCase {
     }
 
     /**
-     * @expectedException UnexpectedValueException
+     * @expectedException \UnexpectedValueException
      */
     public function testInvalidChildReturn() {
         $File = new SplFileInfo(\libs\sprayfire\core\SprayFireDirectory::getAppPathSubDirectory('config', 'test-config.json'));
@@ -121,7 +121,7 @@ class JsonConfigTest extends PHPUnit_Framework_TestCase {
 
 class CrappyJsonConfig extends libs\sprayfire\config\JsonConfig {
 
-    protected function getMasterData(array $data) {
+    protected function convertDataDeep(array $data) {
         return null;
     }
 }
