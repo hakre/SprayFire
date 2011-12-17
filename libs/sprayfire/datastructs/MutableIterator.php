@@ -26,7 +26,7 @@ namespace libs\sprayfire\datastructs;
  * This code is heavily influenced by the Zend Framework 2 Zend\Config\Config class.
  * https://github.com/zendframework/zf2/blob/master/library/Zend/Config/Config.php
  */
-abstract class MutableIterator extends MutableStorage implements \Iterator {
+abstract class MutableIterator extends \libs\sprayfire\datastructs\MutableStorage implements \Iterator {
 
     /**
      * Holds the number of buckets being stored by $data

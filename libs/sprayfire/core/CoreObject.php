@@ -57,7 +57,7 @@ abstract class CoreObject implements \libs\sprayfire\interfaces\Object {
      * @return string
      */
     public function __toString() {
-        return get_class($this);
+        return \get_class($this);
     }
 
 }
