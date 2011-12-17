@@ -35,11 +35,6 @@ namespace libs\sprayfire\datastructs;
  * is attempting to be changed.  If you do not need to override one or more of the
  * above methods then simply use an array, as that is effectively what this object is
  * but with object notation access in addition to array notation access.
- *
- * @todo The basic get and isset functionality of this object needs to be abstracted
- * out into an abstract DataStorage class.  This DataStorage class should force the
- * implementation of the set() and removeKey() methods.  The DataStorage class should
- * implement Overloadable, ArrayAccess and Countable.
  */
 abstract class MutableStorage extends \libs\sprayfire\datastructs\DataStorage {
 
