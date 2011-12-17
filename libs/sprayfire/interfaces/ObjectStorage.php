@@ -69,7 +69,7 @@ interface ObjectStorage extends \ArrayAccess, \Iterator, \Countable, \libs\spray
      * @throws \libs\sprayfire\exceptions\UnsupportedOperationException
      * @throws \InvalidArgumentException
      */
-    public function setObject($key, Object $Object);
+    public function setObject($key, \libs\sprayfire\interfaces\Object $Object);
 
     /**
      * Will return a boolean value if the passed Object is stored; the Object::equals()
@@ -79,7 +79,7 @@ interface ObjectStorage extends \ArrayAccess, \Iterator, \Countable, \libs\spray
      * @param \libs\sprayfire\interfaces\Object $Object
      * @return boolean
      */
-    public function contains(Object $Object);
+    public function contains(\libs\sprayfire\interfaces\Object $Object);
 
     /**
      * Will return the index for the given index or false if the object does
@@ -89,7 +89,7 @@ interface ObjectStorage extends \ArrayAccess, \Iterator, \Countable, \libs\spray
      * @param \libs\sprayfire\interfaces\Object $Object
      * @return mixed
      */
-    public function indexOf(Object $Object);
+    public function indexOf(\libs\sprayfire\interfaces\Object $Object);
 
     /**
      * @return boolean
