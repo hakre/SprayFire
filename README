@@ -20,6 +20,9 @@ https://github.com/cspray/CleanSprayFire/wiki/
 Please check out the roadmap at the framework wiki:
 https://github.com/cspray/CleanSprayFire/wiki/Roadmap
 
+Please check out the documentation files and some other technical material:
+http://cspray.github.com/CleanSprayFire/
+
 Testing Instructions
 ================================================================================
 Framework objects that can be reasonably unit tested will have those tests stored
