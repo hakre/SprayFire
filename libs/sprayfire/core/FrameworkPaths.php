@@ -17,7 +17,7 @@
  * @copyright Copyright (c) 2011, Charles Sprayberry
  */
 
-namespace libs\sprayfire\interfaces;
+namespace libs\sprayfire\core;
 
 /**
  * An interface that should be implemented by objects that determine the framework

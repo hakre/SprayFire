@@ -17,7 +17,7 @@
  * @copyright Copyright (c) 2011, Charles Sprayberry
  */
 
-namespace libs\sprayfire\interfaces;
+namespace libs\sprayfire\config;
 
 /**
  * An interface for configuration objects used by the application and framework.
@@ -30,7 +30,7 @@ namespace libs\sprayfire\interfaces;
  * allowing the imported configuration values to only be read.
  *
  */
-interface Configuration extends \libs\sprayfire\interfaces\Overloadable, \ArrayAccess {
+interface Configuration extends \ArrayAccess, \libs\sprayfire\datastructs\Overloadable {
 
     /**
      * Data can be any type, as long as after the object is constructed it is ready

@@ -23,7 +23,7 @@ namespace libs\sprayfire\datastructs;
  * Is the base class for objects needing to store data, retrieve a count of that
  * data, and access that data through object '->' or array '[]' notation.
  */
-abstract class DataStorage extends \libs\sprayfire\core\CoreObject implements \ArrayAccess, \Countable, \libs\sprayfire\interfaces\Overloadable {
+abstract class DataStorage extends \libs\sprayfire\core\CoreObject implements \ArrayAccess, \Countable, \libs\sprayfire\datastructs\Overloadable {
 
     /**
      * The array holding the data being stored.

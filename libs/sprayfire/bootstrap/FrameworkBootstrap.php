@@ -17,14 +17,14 @@
  * @copyright Copyright (c) 2011, Charles Sprayberry
  */
 
-namespace libs\sprayfire\core;
+namespace libs\sprayfire\bootstrap;
 
 /**
  * The framework's default bootstrap, is primarily responsible for writing the default
  * values in the CoreConfiguration object and running each bootstrap object located
  * in the app/bootstrap folder.
  */
-class FrameworkBootstrap extends CoreObject implements \libs\sprayfire\interfaces\Bootstrapper {
+class FrameworkBootstrap extends \libs\sprayfire\core\CoreObject implements \libs\sprayfire\bootstrap\Bootstrapper {
 
     /**
      * The framework's core configuration object, will be passed to each bootstrap
@@ -37,7 +37,7 @@ class FrameworkBootstrap extends CoreObject implements \libs\sprayfire\interface
     /**
      * @param Configuration $FrameworkConfiguration
      */
-    public function __construct(\libs\sprayfire\interfaces\Configuration $FrameworkConfiguration) {
+    public function __construct(\libs\sprayfire\config\Configuration $FrameworkConfiguration) {
         $this->FrameworkConfiguration = $FrameworkConfiguration;
     }
 
@@ -174,7 +174,7 @@ class FrameworkBootstrap extends CoreObject implements \libs\sprayfire\interface
      */
     private function implementsBootstrapperInterface($className) {
         try {
-            $bootstapperInterface = '\\libs\\sprayfire\\interfaces\\Bootstrapper';
+            $bootstapperInterface = '\\libs\\sprayfire\\bootstrap\\Bootstrapper';
             $ReflectedClass = new \ReflectionClass($className);
             if ($ReflectedClass->implementsInterface($bootstapperInterface)) {
                 return true;

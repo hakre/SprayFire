@@ -27,7 +27,7 @@ namespace libs\sprayfire\core;
  * that makes it easy to easily get a framework or application directory anywhere
  * in the framework.
  */
-class SprayFireDirectory implements \libs\sprayfire\interfaces\FrameworkPaths {
+class SprayFireDirectory implements \libs\sprayfire\core\FrameworkPaths {
 
     /**
      * @var string

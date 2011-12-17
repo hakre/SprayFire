@@ -17,7 +17,7 @@
  * @copyright Copyright (c) 2011, Charles Sprayberry
  */
 
-namespace libs\sprayfire\interfaces;
+namespace libs\sprayfire\bootstrap;
 
 /**
  * An interface implemented by all framework and app bootstrapping objects.
@@ -31,7 +31,7 @@ interface Bootstrapper {
      *
      * @param Configuration $ConfigurationObject
      */
-    public function __construct(\libs\sprayfire\interfaces\Configuration $ConfigurationObject);
+    public function __construct(\libs\sprayfire\config\Configuration $ConfigurationObject);
 
     /**
      * A method that should do whatever bootstrapping features are needed for that

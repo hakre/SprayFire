@@ -70,7 +70,7 @@ class SprayFireObjectStoreTest extends PHPUnit_Framework_TestCase {
     }
 
     public function testInterfaceObjectStorage() {
-        $Type = new \ReflectionClass('\\libs\\sprayfire\\interfaces\\Overloadable');
+        $Type = new \ReflectionClass('\\libs\\sprayfire\\datastructs\\Overloadable');
         $Storage = new libs\sprayfire\datastructs\SprayFireObjectStore($Type);
 
         $Storage->{'first-object'} = new \libs\sprayfire\datastructs\ImmutableStorage(array());
@@ -78,7 +78,7 @@ class SprayFireObjectStoreTest extends PHPUnit_Framework_TestCase {
     }
 
     public function testLoopingThroughObjectStore() {
-        $Type = new \ReflectionClass('\\libs\\sprayfire\\interfaces\\Object');
+        $Type = new \ReflectionClass('\\libs\\sprayfire\\core\\Object');
         $Storage = new libs\sprayfire\datastructs\SprayFireObjectStore($Type);
 
         $One = new \tests\helpers\TestObject();

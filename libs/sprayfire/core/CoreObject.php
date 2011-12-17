@@ -24,7 +24,7 @@ namespace libs\sprayfire\core;
  * of the \libs\sprayfire\interfaces\Object interface.
  *
  */
-abstract class CoreObject implements \libs\sprayfire\interfaces\Object {
+abstract class CoreObject implements \libs\sprayfire\core\Object {
 
     /**
      * Returns a unique identifier for the calling object.
@@ -46,7 +46,7 @@ abstract class CoreObject implements \libs\sprayfire\interfaces\Object {
      * @param \libs\sprayfire\interfaces\Object $CompareObject
      * @return boolean
      */
-    public function equals(\libs\sprayfire\interfaces\Object $CompareObject) {
+    public function equals(\libs\sprayfire\core\Object $CompareObject) {
         $thisHash = $this->hashCode();
         $compareHash = $CompareObject->hashCode();
         $areHashesEqual = $thisHash === $compareHash;

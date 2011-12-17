@@ -17,7 +17,7 @@
  * @copyright Copyright (c) 2011, Charles Sprayberry
  */
 
-namespace libs\sprayfire\interfaces;
+namespace libs\sprayfire\datastructs;
 
 /**
  * Provides a data structure to store *framework* derived objects.
@@ -34,7 +34,7 @@ namespace libs\sprayfire\interfaces;
  * 2) via array notation '[]'
  * 3) via `getObject()` and `setObject()` methods
  */
-interface ObjectStorage extends \ArrayAccess, \Iterator, \Countable, \libs\sprayfire\interfaces\Overloadable {
+interface ObjectStorage extends \ArrayAccess, \Iterator, \Countable, \libs\sprayfire\datastructs\Overloadable {
 
     /**
      * This storage object should restrict the objects stored in it to a specific
@@ -69,7 +69,7 @@ interface ObjectStorage extends \ArrayAccess, \Iterator, \Countable, \libs\spray
      * @throws \libs\sprayfire\exceptions\UnsupportedOperationException
      * @throws \InvalidArgumentException
      */
-    public function setObject($key, \libs\sprayfire\interfaces\Object $Object);
+    public function setObject($key, \libs\sprayfire\core\Object $Object);
 
     /**
      * Will return a boolean value if the passed Object is stored; the Object::equals()
@@ -79,7 +79,7 @@ interface ObjectStorage extends \ArrayAccess, \Iterator, \Countable, \libs\spray
      * @param \libs\sprayfire\interfaces\Object $Object
      * @return boolean
      */
-    public function contains(\libs\sprayfire\interfaces\Object $Object);
+    public function contains(\libs\sprayfire\core\Object $Object);
 
     /**
      * Will return the index for the given index or false if the object does
@@ -89,7 +89,7 @@ interface ObjectStorage extends \ArrayAccess, \Iterator, \Countable, \libs\spray
      * @param \libs\sprayfire\interfaces\Object $Object
      * @return mixed
      */
-    public function indexOf(\libs\sprayfire\interfaces\Object $Object);
+    public function indexOf(\libs\sprayfire\core\Object $Object);
 
     /**
      * @return boolean
