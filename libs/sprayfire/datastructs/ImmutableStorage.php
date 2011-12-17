@@ -23,7 +23,7 @@ namespace libs\sprayfire\datastructs;
  * A simple key/value storage object that does not allow the data associated with
  * to be changed after the object has been constructed.
  */
-class ImmutableStorage extends MutableStorage {
+class ImmutableStorage extends \libs\sprayfire\datastructs\DataStorage {
 
     /**
      * @param string $key

@@ -90,15 +90,6 @@ class SprayFireObjectStore extends MutableIterator implements \libs\sprayfire\in
     }
 
     /**
-     * Returns the number of objects that have been set in this storage.
-     *
-     * @return int
-     */
-    public function count() {
-        return $this->getCount();
-    }
-
-    /**
      * Returns whether or not this object has any objects stored in it.
      *
      * @return boolean

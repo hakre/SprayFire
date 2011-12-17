@@ -29,13 +29,6 @@ namespace libs\sprayfire\datastructs;
 abstract class MutableIterator extends \libs\sprayfire\datastructs\MutableStorage implements \Iterator {
 
     /**
-     * Holds the number of buckets being stored by $data
-     *
-     * @var int
-     */
-    private $count = 0;
-
-    /**
      * Holds the number of the current internal pointer for the $data array.
      *
      * @var int
@@ -58,7 +51,7 @@ abstract class MutableIterator extends \libs\sprayfire\datastructs\MutableStorag
      */
     public function __construct(array $data) {
         parent::__construct($data);
-        $this->countData();
+        $this->recalibrateCount();
     }
 
     /**
@@ -125,7 +118,7 @@ abstract class MutableIterator extends \libs\sprayfire\datastructs\MutableStorag
      */
     protected function set($key, $value) {
         $setValue = parent::set($key, $value);
-        $this->countData();
+        $this->recalibrateCount();
         return $setValue;
     }
 
@@ -137,26 +130,8 @@ abstract class MutableIterator extends \libs\sprayfire\datastructs\MutableStorag
      */
     protected function removeKey($key) {
         parent::removeKey($key);
-        $this->countData();
+        $this->recalibrateCount();
         $this->skipNextIteration = true;
-    }
-
-    /**
-     * Provides access to extending classes to retrieve the number of buckets stored
-     * in this iterator.
-     *
-     * @return int
-     */
-    protected function getCount() {
-        return $this->count;
-    }
-
-    /**
-     * Provides access to extending classes to recalibrate the number of buckets
-     * stored in this iterator.
-     */
-    protected function countData() {
-        $this->count = \count($this->data);
     }
 
 }
