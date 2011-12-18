@@ -29,7 +29,7 @@ namespace libs\sprayfire\config;
  *
  * @example
  *
- * <code>
+ * <pre>
  * // JSON configuration file -- config.json
  *
  * {
@@ -43,8 +43,8 @@ namespace libs\sprayfire\config;
  * }
  *
  * // Somewhere in your PHP code
- * $configFile = new \SplFileInfo($filePath);
- * $Config = new \libs\sprayfire\config\JsonConfig($configFile);
+ * $configFile = new \\SplFileInfo($filePath);
+ * $Config = new \\libs\\sprayfire\\config\\JsonConfig($configFile);
  *
  * // Values from the configuration file can now be read
  *
@@ -53,7 +53,7 @@ namespace libs\sprayfire\config;
  * echo $Config['app']['development-settings']['debug-mode'];   // 'on'
  *
  * echo $Config->app->{'development-settings'}->{'display-errors'};   // 1
- * </code>
+ * </pre>
  */
 class JsonConfig extends \libs\sprayfire\datastructs\ImmutableStorage implements \libs\sprayfire\config\Configuration {
 
