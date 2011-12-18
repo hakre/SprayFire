@@ -33,13 +33,6 @@ abstract class DataStorage extends \libs\sprayfire\core\CoreObject implements \A
     protected $data = array();
 
     /**
-     * The number of elements being stored by this data structure
-     *
-     * @var int
-     */
-    protected $count = 0;
-
-    /**
      * Should accept an array, associative or numeric indexed, that stores the
      * information for this object.
      *
@@ -47,7 +40,6 @@ abstract class DataStorage extends \libs\sprayfire\core\CoreObject implements \A
      */
     public function __construct(array $data) {
         $this->data = $data;
-        $this->recalibrateCount();
     }
 
     /**
@@ -171,15 +163,6 @@ abstract class DataStorage extends \libs\sprayfire\core\CoreObject implements \A
      */
     public function count() {
         return \count($this->data);
-    }
-
-    /**
-     * A means to ensure extending classes have a way to adjust the count when
-     * elements are manipulated in the data array; anytime an object is set or
-     * removed please ensure this method is called.
-     */
-    protected function recalibrateCount() {
-        $this->count = \count($this->data);
     }
 
     /**
