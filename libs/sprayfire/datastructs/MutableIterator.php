@@ -51,7 +51,6 @@ abstract class MutableIterator extends \libs\sprayfire\datastructs\MutableStorag
      */
     public function __construct(array $data) {
         parent::__construct($data);
-        $this->recalibrateCount();
     }
 
     /**
@@ -105,7 +104,7 @@ abstract class MutableIterator extends \libs\sprayfire\datastructs\MutableStorag
      * @return boolean
      */
     public function valid() {
-        return $this->index < $this->count;
+        return $this->index < \count($this);
     }
 
     /**
@@ -117,9 +116,7 @@ abstract class MutableIterator extends \libs\sprayfire\datastructs\MutableStorag
      * @return boolean
      */
     protected function set($key, $value) {
-        $setValue = parent::set($key, $value);
-        $this->recalibrateCount();
-        return $setValue;
+        return parent::set($key, $value);
     }
 
     /**
@@ -130,7 +127,6 @@ abstract class MutableIterator extends \libs\sprayfire\datastructs\MutableStorag
      */
     protected function removeKey($key) {
         parent::removeKey($key);
-        $this->recalibrateCount();
         $this->skipNextIteration = true;
     }
 

@@ -29,14 +29,21 @@ class MutableStorageTest extends PHPUnit_Framework_TestCase {
         $data['key-three'] = array('one' => '1');
         $Storage = new libs\sprayfire\datastructs\MutableStorage($data, false);
 
+        $this->assertSame(\count($Storage), \count($data));
+
         $this->assertSame($data['key-one'], $Storage->{'key-one'});
 
         $newValue = 'a different value';
         $Storage->{'key-one'} = $newValue;
         $this->assertSame($newValue, $Storage['key-one']);
 
+        $Storage->{'key-four'} = 'Roll Tide!';
+        $this->assertSame(4, \count($Storage));
+
         unset($Storage['key-one']);
         $this->assertFalse(isset($Storage->{'key-one'}));
+
+        $this->assertSame(3, \count($Storage));
 
         $this->assertTrue(is_array($Storage->{'key-three'}));
 
