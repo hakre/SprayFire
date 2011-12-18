@@ -1,4 +1,4 @@
- <?php
+<?php
 
 /**
  * SprayFire is a custom built framework intended to ease the development
