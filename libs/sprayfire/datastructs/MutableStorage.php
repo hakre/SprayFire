@@ -20,23 +20,28 @@
 namespace libs\sprayfire\datastructs;
 
 /**
- * A simple data storage object that holds key/value pairs.
- *
- * This class is intended to be extended to implement the specific behavior needed
- * for that storage.  One, or more, of the four protected methods:
- *
- * get()
- * set()
- * keyHasValue()
- * removeKey()
- *
- * needs to be overriden.  For example, ImmutableStorage overrides set() and removeKey()
- * to throw \libs\sprayfire\exception\UnsupportedOperationException when the object
- * is attempting to be changed.  If you do not need to override one or more of the
- * above methods then simply use an array, as that is effectively what this object is
- * but with object notation access in addition to array notation access.
+ * A simple data storage object that holds key/value pairs and allows additional
+ * keys to be added and existing keys to be manipulated or removed.
  */
-abstract class MutableStorage extends \libs\sprayfire\datastructs\DataStorage {
+class MutableStorage extends \libs\sprayfire\datastructs\DataStorage {
+
+    /**
+     * Will accept an array of data to store and gives the calling code an option
+     * to recursively convert all inner arrays into MutableStorage objects; ultimately
+     * this will allow for chaining within this object.
+     *
+     * @param array $data
+     * @param boolean $convertDeep
+     */
+    public function __construct(array $data, $convertDeep = true) {
+        if ((boolean) $convertDeep) {
+            $data = $this->convertDataDeep($data);
+        }
+        if (!\is_array($data)) {
+            throw new \UnexpectedValueException('The data returned from convertDataDeep must be an array.');
+        }
+        parent::__construct($data);
+    }
 
     /**
      * @param string $key
@@ -44,7 +49,7 @@ abstract class MutableStorage extends \libs\sprayfire\datastructs\DataStorage {
      * @return mixed
      */
     protected function set($key, $value) {
-        if (is_null($key)) {
+        if (\is_null($key)) {
             $key = \count($this->data);
         }
         return $this->data[$key] = $value;
@@ -57,6 +62,38 @@ abstract class MutableStorage extends \libs\sprayfire\datastructs\DataStorage {
         if ($this->keyInData($key)) {
             unset($this->data[$key]);
         }
+    }
+
+    /**
+     * Will take an array and conver all inner arrays into MutableStorage objects
+     * returning the outer array.
+     *
+     * @param array $data
+     * @return array
+     */
+    protected function convertDataDeep(array $data) {
+        foreach ($data as $key => $value) {
+            if (\is_array($value)) {
+                $data[$key] = $this->convertArrayToMutableObject($value);
+            }
+        }
+        return $data;
+    }
+
+    /**
+     * Will loop through each of the values and recursively convert those values
+     * that are arrays into MutableStorage objects.
+     *
+     * @param array $data
+     * @return \libs\sprayfire\datastructs\MutableStorage
+     */
+    private function convertArrayToMutableObject(array $data) {
+        foreach ($data as $key => $value) {
+            if (\is_array($value)) {
+                $data[$key] = $this->convertArrayToMutableObject($value);
+            }
+        }
+        return new \libs\sprayfire\datastructs\MutableStorage($data);
     }
 
 }

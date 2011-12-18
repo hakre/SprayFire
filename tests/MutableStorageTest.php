@@ -17,8 +17,6 @@
  * @copyright Copyright (c) 2011, Charles Sprayberry
  */
 
-include 'GenericStorage.php';
-
 /**
  *
  */
@@ -28,7 +26,8 @@ class MutableStorageTest extends PHPUnit_Framework_TestCase {
         $data = array();
         $data['key-one'] = 'value';
         $data['key-two'] = 'another value';
-        $Storage = new GenericStorage($data);
+        $data['key-three'] = array('one' => '1');
+        $Storage = new libs\sprayfire\datastructs\MutableStorage($data, false);
 
         $this->assertSame($data['key-one'], $Storage->{'key-one'});
 
@@ -39,6 +38,26 @@ class MutableStorageTest extends PHPUnit_Framework_TestCase {
         unset($Storage['key-one']);
         $this->assertFalse(isset($Storage->{'key-one'}));
 
+        $this->assertTrue(is_array($Storage->{'key-three'}));
+
+    }
+
+    public function testMutableStorageDeep() {
+
+        $data = array(
+            'key-one' => array(
+                'one' => 'value 1'
+            ),
+            'key-two' => array(
+                'one' => 'value 2',
+                'two' => array(
+                    'key' => 'value 3'
+                )
+            )
+        );
+
+        $Storage = new libs\sprayfire\datastructs\MutableStorage($data);
+        $this->assertSame('value 1', $Storage->{'key-one'}->one);
     }
 
 
