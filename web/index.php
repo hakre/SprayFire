@@ -39,6 +39,13 @@
     $configFile = SprayFireDirectory::getAppPathSubDirectory('config', 'json', 'configuration.json');
     $File = new \SplFileInfo($configFile);
 
-    $Config = new libs\sprayfire\config\JsonConfig($File);
+    try {
+        $Config = new libs\sprayfire\config\JsonConfig($File);
+    } catch (\InvalidArgumentException $InvalArgException) {
+        // this is a temporary measure until a completed system is in place.
+        var_dump($InvalArgException);
+        exit;
+    }
+
 
     var_dump($Config->app->version);
