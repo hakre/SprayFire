@@ -43,6 +43,8 @@ class MutableStorageTest extends PHPUnit_Framework_TestCase {
         unset($Storage['key-one']);
         $this->assertFalse(isset($Storage->{'key-one'}));
 
+        $this->assertSame(3, \count($Storage));
+
         $this->assertTrue(is_array($Storage->{'key-three'}));
 
     }
