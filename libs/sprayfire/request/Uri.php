@@ -17,7 +17,7 @@
  * @copyright Copyright (c) 2011, Charles Sprayberry
  */
 
-namespace libs\sprayfire\request\Uri;
+namespace libs\sprayfire\request;
 
 /**
  * An interface to take a URI and parse the string into the appropriate controller,
