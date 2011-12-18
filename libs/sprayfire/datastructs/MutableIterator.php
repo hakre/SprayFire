@@ -44,16 +44,6 @@ abstract class MutableIterator extends \libs\sprayfire\datastructs\MutableStorag
     protected $skipNextIteration = false;
 
     /**
-     * Overridden to ensure that the iterator can set the proper count for the storage
-     * when the object is created.
-     *
-     * @param array $data
-     */
-    public function __construct(array $data) {
-        parent::__construct($data);
-    }
-
-    /**
      * Will return whetever value is held by the current pointer of the data storage.
      *
      * @return mixed
