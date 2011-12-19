@@ -1,6 +1,10 @@
 <?php
 
 /**
+ * @file
+ * @brief
+ *
+ * @details
  * SprayFire is a custom built framework intended to ease the development
  * of websites with PHP 5.3.
  *
@@ -16,6 +20,10 @@
  * @copyright Copyright (c) 2011, Charles Sprayberry OSI MIT License <http://www.opensource.org/licenses/mit-license.php>
  */
 
+/**
+ * @namespace libs.sprayfire.datastructs
+ * @brief Holds the API used by the framework to store and transfer sets of data.
+ */
 namespace libs\sprayfire\datastructs {
 
     /**
