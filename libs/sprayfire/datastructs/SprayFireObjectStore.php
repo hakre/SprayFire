@@ -46,14 +46,6 @@ namespace libs\sprayfire\datastructs {
         protected $ReflectedParentType;
 
         /**
-         * @brief Holds a ReflectionClass of the framework's Object interface, used to ensure
-         * all objects added to this store properly implement this interface.
-         *
-         * @property ReflectionClass
-         */
-        private $ReflectedFrameworkObject;
-
-        /**
          * @brief Will initiate the object storage as an empty array and assign the passed
          * ReflectionClass to the appropriate class property.
          *
@@ -62,7 +54,6 @@ namespace libs\sprayfire\datastructs {
         public function __construct(\ReflectionClass $ReflectedObjectType) {
             parent::__construct(array());
             $this->ReflectedParentType = $ReflectedObjectType;
-            $this->ReflectedFrameworkObject = new \ReflectionClass("\\libs\\sprayfire\\core\\Object");
         }
 
         /**
@@ -134,6 +125,13 @@ namespace libs\sprayfire\datastructs {
             return $this->set($key, $Object);
         }
 
+        public function removeObject($key) {
+            if (array_key_exists($key, $this->data)) {
+                unset($this->data[$key]);
+                $this->skipNextIteration = true;
+            }
+        }
+
         /**
          * @brief Determines whether or not the passed \a $value \a is a proepr
          * object for this storage type, adds the \a $value \a if it does and
@@ -143,76 +141,37 @@ namespace libs\sprayfire\datastructs {
          * We are not type hinting \a $value \a in this function so that we are
          * properly overriding the parent function; throwing an exception if the
          * value is not the correct type will handle this "break" in type hinting.
+         * Furthermore the only method that should be invoking this is setObject
+         * as the other methods of accessing an overloadable project have been
+         * overriden.
          *
          * @param $key A string or numeric index
          * @param $value Should implement libs.sprayfire.core.Object
          * @throws InvalidArgumentException
          * @return libs.sprayfire.core.Object
+         * @see libs.sprayfire.datastructs.MutableStorage
          */
         protected function set($key, $value) {
-            // We are throwing an exception if the value is not a framework object to
-            // adhere to the contract of the ObjectStorage interface.  A crafty developer
-            // would soon discover that __set() and offsetSet do not have type hints on
-            // them and any object type could be added.  Ultimately SprayFire implemented
-            // data structures expect SprayFire objects to be stored in them.
-            $this->throwExceptionIfNotFrameworkObject($value);
+            $this->throwExceptionIfKeyInvalid($key);
             $this->throwExceptionIfObjectNotParentType($value);
             return parent::set($key, $value);
         }
 
         /**
-         * @param $Object mixed
+         * @param $key string
          * @throws InvalidArgumentException
          */
-        protected function throwExceptionIfNotFrameworkObject($Object) {
-            if (!$this->isFrameworkObject($Object)) {
-                throw new \InvalidArgumentException('Objects added to this storage MUST implement the Object interface.');
+        protected function throwExceptionIfKeyInvalid($key) {
+            if (empty($key) || !\is_string($key)) {
+                throw new \InvalidArgumentException('The key for an object may not be an empty or non-string value.');
             }
         }
 
         /**
-         * @brief Simple check to determine if the \a $Object \a passed properly
-         * implements the framework's libs.sprayfire.core.Object interface.
-         *
-         * @details
-         * Here to ensure that the object being added to the store is a proper
-         * framework object; this has to be checked as there is no type hinting for
-         * the __set and offsetSet methods in the parent classes and thus any object
-         * type could theoreticaly be added.
-         *
-         * We are checking this when objects are set as it would be impossible to tell
-         * from the passed ReflectionClass if the type properly implements the Object
-         * interface as the type may itelf be an interface that does not extend the
-         * Object interface.
-         *
-         * Furthermore, we are making this check and enforcement of only adding
-         * framework objects because the methods in this data storage are expecting
-         * the classes to implement this interface; specifically the indexOf()
-         * method.
-         *
-         * @param $Object mixed
-         * @return boolean
-         */
-        protected function isFrameworkObject($Object) {
-            $frameworkObjectInterface = $this->ReflectedFrameworkObject->getName();
-            try {
-                $ReflectedObject = new \ReflectionClass($Object);
-                if ($ReflectedObject->implementsInterface($frameworkObjectInterface)) {
-                    return true;
-                }
-            } catch (\ReflectionException $ReflectExc) {
-                // no need to do anything here, if an exception is thrown then the value
-                // passed obviously cannot be a framework object.
-            }
-
-            return false;
-        }
-
-        /**
-         * @param $Object mixed
+         * @param $Object libs.sprayfire.core.Object
          * @throws InvalidArgumentException
          */
-        protected function throwExceptionIfObjectNotParentType($Object) {
+        protected function throwExceptionIfObjectNotParentType(\libs\sprayfire\core\Object $Object) {
             if (!\is_object($Object) || !$this->isObjectParentType($Object)) {
                 throw new \InvalidArgumentException('The value being set does not properly implement the parent type for this store.');
             }
@@ -229,7 +188,7 @@ namespace libs\sprayfire\datastructs {
          * @param $Object libs.sprayfire.core.Object
          * @return boolean
          */
-        protected function isObjectParentType($Object) {
+        protected function isObjectParentType(\libs\sprayfire\core\Object $Object) {
             $isValid = false;
             $parentName = $this->ReflectedParentType->getName();
             try {
@@ -249,6 +208,105 @@ namespace libs\sprayfire\datastructs {
                 // @codeCoverageIgnoreEnd
             }
             return $isValid;
+        }
+
+        // *********************************************************************
+        // *********************************************************************
+        // The below methods are overriden to adhere to the true contract of the
+        // libs.sprayfire.datastructs.ObjectStorage interface without having to do
+        // a runtime check to see if the set value properly implements the
+        // libs.sprayfire.core.Object interface.
+        // *********************************************************************
+        // *********************************************************************
+
+        /**
+         * @brief Overridden to throw an exception as we only want objects being
+         * stored in this data structure to be retrieved via getObject()
+         *
+         * @param $key string
+         * @throws libs.sprayfire.exceptions.UnsupportedOperationException
+         */
+        public function __get($key) {
+            throw new \libs\sprayfire\exceptions\UnsupportedOperationException('This method of adding an object is not supported; please use getObject()');
+        }
+
+        /**
+         * @brief Overridden to throw an exception as we only want objects being
+         * stored in this data structure to be retrieved via getObject()
+         *
+         * @param $key string
+         * @throws libs.sprayfire.exceptions.UnsupportedOperationException
+         */
+        public function offsetGet($key) {
+            throw new \libs\sprayfire\exceptions\UnsupportedOperationException('This method of adding an object is not supported; please use getObject()');
+        }
+
+        /**
+         * @brief Overridden to throw an exception as we only want objects being
+         * stored in this data structure via setObject()
+         *
+         * @param $key string
+         * @param $value mixed
+         */
+        public function __set($key, $value) {
+            throw new \libs\sprayfire\exceptions\UnsupportedOperationException('This method of setting an object is not supported; please use setObject()');
+        }
+
+        /**
+         * @brief Overridden to throw an exception as we only want objects being
+         * stored in this data structure via setObject()
+         *
+         * @param $key string
+         * @param $value mixed
+         */
+        public function offsetSet($key, $value) {
+            throw new \libs\sprayfire\exceptions\UnsupportedOperationException('This method of setting an object is not supported; please use setObject()');
+        }
+
+        /**
+         * @brief Overriden to throw an exception as only want the property to be
+         * checked for existence via other implemented means, such as contains()
+         * and indexOf().
+         *
+         * @param $key string
+         * @throws libs.sprayfire.exceptions.UnsupportedOperationException
+         */
+        public function __isset($key) {
+            throw new \libs\sprayfire\exceptions\UnsupportedOperationException('This method of determining an object\'s existence in the data storage is not supported; please contains() ');
+        }
+
+        /**
+         * @brief Overriden to throw an exception as only want the property to be
+         * checked for existence via other implemented means, such as contains()
+         * and indexOf().
+         *
+         * @param $key string
+         * @throws libs.sprayfire.exceptions.UnsupportedOperationException
+         */
+        public function offsetExists($key) {
+            throw new \libs\sprayfire\exceptions\UnsupportedOperationException('This method of determining an object\'s existence in the data storage is not supported; please contains() ');
+        }
+
+        /**
+         * @brief Overridden to throw an exception as we only want properties to
+         * be removed from this data structure through removeObject().
+         *
+         * @param $key string
+         * @throws libs.sprayfire.exceptions.UnsupportedOperationException
+         */
+        public function __unset($key) {
+            throw new \libs\sprayfire\exceptions\UnsupportedOperationException('This method of removing an object from storage is not supported; please use removeObject()');
+        }
+
+        /**
+         * @brief Overridden to throw an exception as we only want properties to
+         * be removed from this data structure through removeObject().
+         *
+         * @param $key string
+         * @throws libs.sprayfire.exceptions.UnsupportedOperationException
+         */
+        public function offsetUnset($key) {
+            throw new \libs\sprayfire\exceptions\UnsupportedOperationException('This method of removing an object from storage is not supported; please use removeObject()');
         }
 
     }
