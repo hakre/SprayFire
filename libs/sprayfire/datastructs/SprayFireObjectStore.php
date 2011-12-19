@@ -2,7 +2,7 @@
 
 /**
  * @file
- * @brief 
+ * @brief Framework's implementation of an ObjectStorage data structure.
  *
  * @details
  * SprayFire is a custom built framework intended to ease the development
@@ -20,11 +20,16 @@
  * @copyright Copyright (c) 2011, Charles Sprayberry OSI MIT License <http://www.opensource.org/licenses/mit-license.php>
  */
 
+/**
+ * @namespace libs.sprayfire.datastructs
+ * @brief Holds the API used by the framework to store and transfer sets of data.
+ */
 namespace libs\sprayfire\datastructs {
 
     /**
-     * This is the framework's primary data structure to store framework objects.
+     * @brief The framework's primary implementation to store framework objects.
      *
+     * @details
      * It allows for the associating of framework objects with a key and the retrieval
      * of that object using that key.  The data structure also allows for the removal
      * of objects associated with a key and iterating over the objects stored in the
@@ -33,7 +38,7 @@ namespace libs\sprayfire\datastructs {
     class SprayFireObjectStore extends MutableIterator implements \libs\sprayfire\datastructs\ObjectStorage {
 
         /**
-         * Holds a ReflectionClass of the data type that should be implemented by objects
+         * @brief Holds a ReflectionClass of the data type that should be implemented by objects
          * being added to this storage.
          *
          * @property ReflectionClass
@@ -160,7 +165,7 @@ namespace libs\sprayfire\datastructs {
          * @throws InvalidArgumentException
          */
         protected function throwExceptionIfNotFrameworkObject($Object) {
-            if (!$this->isFrameworkObject($value)) {
+            if (!$this->isFrameworkObject($Object)) {
                 throw new \InvalidArgumentException('Objects added to this storage MUST implement the Object interface.');
             }
         }
