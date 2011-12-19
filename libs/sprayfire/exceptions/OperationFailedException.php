@@ -1,6 +1,11 @@
 <?php
 
 /**
+ * @file
+ * @brief Holds an exception thrown if a vital operation could not be executed
+ * properly.
+ *
+ * @details
  * SprayFire is a custom built framework intended to ease the development
  * of websites with PHP 5.3.
  *
@@ -12,20 +17,26 @@
  *
  * SprayFire is released under the Open-Source Initiative MIT license.
  *
- * @author Charles Sprayberry <cspray at gmail dot com>
- * @license OSI MIT License <http://www.opensource.org/licenses/mit-license.php>
- * @copyright Copyright (c) 2011, Charles Sprayberry
- * @version 0.10b
- * @since 0.10b
+ * @author Charles Sprayberry cspray at gmail dot com
+ * @copyright Copyright (c) 2011, Charles Sprayberry OSI MIT License <http://www.opensource.org/licenses/mit-license.php>
  */
-
-namespace libs\sprayfire\exceptions;
 
 /**
- *
+ * @namespace libs.sprayfire.exceptions
+ * @brief Holds the various exceptions that may be thrown by the framework, in
+ * addition to PHPs pre-defined exceptions.
  */
-class OperationFailedException extends \Exception {
+namespace libs\sprayfire\exceptions {
 
+    /**
+     * @brief Thrown if an operation could not be completed successfully and the
+     * function's successfullness is critical to the application.
+     */
+    class OperationFailedException extends \Exception {
+
+    }
+
+    // End OperationFailedException
 }
 
-// End OperationFailedException
+// End libs.sprayfire.exceptions
