@@ -2,7 +2,8 @@
 
 /**
  * @file
- * @brief
+ * @brief An interface for classes that should have data accessible through overloaded
+ * properties.
  *
  * @details
  * SprayFire is a custom built framework intended to ease the development
@@ -27,15 +28,15 @@
 namespace libs\sprayfire\datastructs {
 
     /**
-     * An interface that forces the implementation of the magic methods that allow
+     * @brief An interface that forces the implementation of the magic methods that allow
      * an object to access non-existing or inaccessible properties.
      *
+     * @details
      * Please note, implementing this interface does not necessarily mean that the object
      * is mutable or immutable, simply that the implementing object must do something
      * when these methods are called.
      *
-     * For methods that are option if the method should not be allowed that method
-     * should throw a libs.sprayfire.exceptions.UnsupportedOperationException.
+     * Optional methods should throw a libs.sprayfire.exceptions.UnsupportedOperationException.
      *
      * @see http://php.net/manual/en/language.oop5.overloading.php
      */
@@ -75,3 +76,4 @@ namespace libs\sprayfire\datastructs {
 
 }
 
+// End libs.sprayfire.datastructs

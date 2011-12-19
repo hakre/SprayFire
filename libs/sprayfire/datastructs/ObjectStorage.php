@@ -25,7 +25,7 @@
  * @brief Holds the API used by the framework to store and transfer sets of data.
  */
 namespace libs\sprayfire\datastructs {
-    
+
     /**
      * Provides a data structure to store *framework* derived objects.
      *
@@ -41,7 +41,7 @@ namespace libs\sprayfire\datastructs {
      * 2) via array notation '[]'
      * 3) via `getObject()` and `setObject()` methods
      */
-    interface ObjectStorage extends \ArrayAccess, \Iterator, \Countable, \libs\sprayfire\datastructs\Overloadable {
+    interface ObjectStorage extends \Iterator, \Countable {
 
         /**
          * This storage object should restrict the objects stored in it to a specific

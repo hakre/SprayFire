@@ -153,7 +153,7 @@ class SprayFireObjectStoreTest extends PHPUnit_Framework_TestCase {
     public function testSneakyDevAddingNonFrameworkObjects() {
 
         // note that the object type is not a framework object!
-        $Type = new \ReflectionClass('\stdClass');
+        $Type = new \ReflectionClass('\\stdClass');
         $Storage = new libs\sprayfire\datastructs\SprayFireObjectStore($Type);
         $Storage->mykey = new \stdClass();
     }
