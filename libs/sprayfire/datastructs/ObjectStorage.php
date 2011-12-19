@@ -89,6 +89,15 @@ namespace libs\sprayfire\datastructs {
         public function contains(\libs\sprayfire\core\Object $Object);
 
         /**
+         * @brief Should remove the object associated with \a $key \a, there is no need
+         * to return a value.
+         *
+         * @param $key string
+         * @return void
+         */
+        public function removeObject($key);
+
+        /**
          * Will return the index for the given index or false if the object does
          * not exist in the store.  Note, this may not necessarily be a numeric index
          * but instead a string index.
