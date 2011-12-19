@@ -67,7 +67,21 @@ class MutableStorageTest extends PHPUnit_Framework_TestCase {
         $this->assertSame('value 1', $Storage->{'key-one'}->one);
     }
 
+    public function testNullArrayKeyStorage() {
+        $data = array();
+        $Storage = new libs\sprayfire\datastructs\MutableStorage($data);
 
+        $First = new \tests\helpers\TestObject();
+        $Second = new \tests\helpers\TestObject();
+
+        $Storage[] = $First;
+        $Storage[] = $Second;
+
+        $this->assertSame(\count($Storage), 2);
+
+        $this->assertSame($First, $Storage[0]);
+        $this->assertSame($Second, $Storage[1]);
+    }
 
 }
 

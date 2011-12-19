@@ -32,7 +32,7 @@ class SprayFireObjectStoreTest extends PHPUnit_Framework_TestCase {
         $this->assertTrue($Storage->isEmpty());
 
         $FirstAdd = new \tests\helpers\TestObject();
-        $Storage->{'object-one'} = $FirstAdd;
+        $Storage->setObject('object-one', $FirstAdd);
 
         $expectedSizeAfterFirstAdd = 1;
         $sizeAfterFirstAdd = \count($Storage);
@@ -47,7 +47,7 @@ class SprayFireObjectStoreTest extends PHPUnit_Framework_TestCase {
 
         $this->assertFalse($Storage->contains($SecondAdd));
 
-        $Storage['object-two'] = $SecondAdd;
+        $Storage->setObject('object-two', $SecondAdd);
 
         $expectedSizeAfterSecondAdd = 2;
         $sizeAfterSecondAdd = $Storage->count();
@@ -73,7 +73,7 @@ class SprayFireObjectStoreTest extends PHPUnit_Framework_TestCase {
         $Type = new \ReflectionClass('\\libs\\sprayfire\\datastructs\\Overloadable');
         $Storage = new libs\sprayfire\datastructs\SprayFireObjectStore($Type);
 
-        $Storage->{'first-object'} = new \libs\sprayfire\datastructs\ImmutableStorage(array());
+        $Storage->setObject('key', new \libs\sprayfire\datastructs\ImmutableStorage(array()));
         $this->assertTrue($Storage->count() === 1);
     }
 
@@ -87,14 +87,15 @@ class SprayFireObjectStoreTest extends PHPUnit_Framework_TestCase {
         $Four = new \tests\helpers\TestObject();
         $Five = new \tests\helpers\TestObject();
 
-        $Storage->one = $One;
-        $Storage['two'] = $Two;
+        $Storage->setObject('one', $One);
+        $Storage->setObject('two', $Two);
         $Storage->setObject('three', $Three);
-        $Storage->four = $Four;
+        $Storage->setObject('four', $Four);
 
-        $Storage->two = $Five;
+        $Storage->setObject('two', $Five);
 
         $this->assertTrue($Storage->contains($Five));
+        $this->assertFalse($Storage->contains($Two));
 
         $loopRan = false;
         $expectedKeys = array('one', 'three', 'four');
@@ -105,7 +106,7 @@ class SprayFireObjectStoreTest extends PHPUnit_Framework_TestCase {
                 $loopRan = true;
             }
             if ($key === 'two') {
-                unset($Storage->two);
+                $Storage->removeObject('two');
                 continue;
             }
             $this->assertSame($expectedKeys[$i], $key, 'The value of key is ' . $key . ' and the expected key is ' . $expectedKeys[$i]);
@@ -117,40 +118,10 @@ class SprayFireObjectStoreTest extends PHPUnit_Framework_TestCase {
         $this->assertTrue($Storage->count() === 3);
     }
 
-    public function testNumericIndexObjectStore() {
-        $Type = new ReflectionClass('\\tests\\helpers\\TestObject');
-        $Storage = new libs\sprayfire\datastructs\SprayFireObjectStore($Type);
-
-        $First = new \tests\helpers\TestObject();
-        $Second = new \tests\helpers\TestObject();
-        $Three = new \tests\helpers\TestObject();
-
-        $Storage[] = $First;
-
-        $this->assertTrue($Storage->count() === 1);
-        $this->assertSame($First, $Storage[0]);
-
-        $Storage[] = $Second;
-
-        $this->assertTrue(\count($Storage) === 2);
-        $this->assertSame($Second, $Storage[1]);
-
-        $Storage[] = $Three;
-
-        $expectedIndexes = array(0, 1, 2);
-        $expectedObjects = array($First, $Second, $Three);
-        $i = 0;
-        foreach ($Storage as $key => $value) {
-            $this->assertSame($key, $expectedIndexes[$i]);
-            $this->assertSame($value, $expectedObjects[$i]);
-            $i++;
-        }
-    }
-
     /**
-     * @expectedException \InvalidArgumentException
+     * @expectedException \libs\sprayfire\exceptions\UnsupportedOperationException
      */
-    public function testSneakyDevAddingNonFrameworkObjects() {
+    public function testUsingOverloadedPropertySet() {
 
         // note that the object type is not a framework object!
         $Type = new \ReflectionClass('\\stdClass');
@@ -158,6 +129,108 @@ class SprayFireObjectStoreTest extends PHPUnit_Framework_TestCase {
         $Storage->mykey = new \stdClass();
     }
 
+    /**
+     * @expectedException \libs\sprayfire\exceptions\UnsupportedOperationException
+     */
+    public function testUsingArrayAccessSet() {
+        $Type = new \ReflectionClass('\\libs\\sprayfire\\core\\Object');
+        $Storage = new libs\sprayfire\datastructs\SprayFireObjectStore($Type);
+
+        $Object = new \tests\helpers\TestObject;
+        $Storage['mykey'] = $Object;
+    }
+
+    /**
+     * @expectedException \libs\sprayfire\exceptions\UnsupportedOperationException
+     */
+    public function testUsingOverloadedPropertyGet() {
+        $Type = new \ReflectionClass('\\libs\\sprayfire\\core\\Object');
+        $Storage = new libs\sprayfire\datastructs\SprayFireObjectStore($Type);
+
+        $Object = new \tests\helpers\TestObject;
+        $Storage->setObject('mykey', $Object);
+
+        $TheObject = $Storage->mykey;
+    }
+
+    /**
+     * @expectedException \libs\sprayfire\exceptions\UnsupportedOperationException
+     */
+    public function testUsingArrayAccessGet() {
+        $Type = new \ReflectionClass('\\libs\\sprayfire\\core\\Object');
+        $Storage = new libs\sprayfire\datastructs\SprayFireObjectStore($Type);
+
+        $Object = new \tests\helpers\TestObject;
+        $Storage->setObject('mykey', $Object);
+
+        $TheObject = $Storage['mykey'];
+    }
+
+    /**
+     * @expectedException \libs\sprayfire\exceptions\UnsupportedOperationException
+     */
+    public function testRemovingOverloadedProperty() {
+        $Type = new \ReflectionClass('\\libs\\sprayfire\\core\\Object');
+        $Storage = new libs\sprayfire\datastructs\SprayFireObjectStore($Type);
+
+        $Object = new \tests\helpers\TestObject;
+        $Storage->setObject('mykey', $Object);
+
+        unset($Storage->mykey);
+    }
+
+    /**
+     * @expectedException \libs\sprayfire\exceptions\UnsupportedOperationException
+     */
+    public function testRemovingArrayAccessProperty() {
+        $Type = new \ReflectionClass('\\libs\\sprayfire\\core\\Object');
+        $Storage = new libs\sprayfire\datastructs\SprayFireObjectStore($Type);
+
+        $Object = new \tests\helpers\TestObject;
+        $Storage->setObject('mykey', $Object);
+
+        unset($Storage['mykey']);
+    }
+
+    /**
+     * @expectedException \libs\sprayfire\exceptions\UnsupportedOperationException
+     */
+    public function testOverloadedPropertyIsset() {
+        $Type = new \ReflectionClass('\\libs\\sprayfire\\core\\Object');
+        $Storage = new libs\sprayfire\datastructs\SprayFireObjectStore($Type);
+
+        $Object = new \tests\helpers\TestObject;
+        $Storage->setObject('mykey', $Object);
+
+        isset($Storage->mykey);
+    }
+
+    /**
+     * @expectedException \libs\sprayfire\exceptions\UnsupportedOperationException
+     */
+    public function testUsingArrayAccessIsset() {
+        $Type = new \ReflectionClass('\\libs\\sprayfire\\core\\Object');
+        $Storage = new libs\sprayfire\datastructs\SprayFireObjectStore($Type);
+
+        $Object = new \tests\helpers\TestObject;
+        $Storage->setObject('mykey', $Object);
+
+        isset($Storage['mykey']);
+    }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     */
+    public function testNullKeyGiven() {
+        $key = null;
+        $Object = new \tests\helpers\TestObject;
+
+        $Type = new ReflectionClass($Object);
+        $Storage = new libs\sprayfire\datastructs\SprayFireObjectStore($Type);
+
+        $Storage->setObject($key, $Object);
+
+    }
 }
 
 // End SprayFireObjectStoreTest
