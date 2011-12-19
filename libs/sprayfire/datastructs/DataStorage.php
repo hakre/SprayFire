@@ -12,9 +12,8 @@
  *
  * SprayFire is released under the Open-Source Initiative MIT license.
  *
- * @author Charles Sprayberry <cspray at gmail dot com>
- * @license OSI MIT License <http://www.opensource.org/licenses/mit-license.php>
- * @copyright Copyright (c) 2011, Charles Sprayberry
+ * @author Charles Sprayberry cspray at gmail dot com
+ * @copyright Copyright (c) 2011, Charles Sprayberry OSI MIT License <http://www.opensource.org/licenses/mit-license.php>
  */
 
 namespace libs\sprayfire\datastructs;
@@ -28,7 +27,7 @@ abstract class DataStorage extends \libs\sprayfire\core\CoreObject implements \A
     /**
      * The array holding the data being stored.
      *
-     * @var array
+     * @property array
      */
     protected $data = array();
 
@@ -36,14 +35,14 @@ abstract class DataStorage extends \libs\sprayfire\core\CoreObject implements \A
      * Should accept an array, associative or numeric indexed, that stores the
      * information for this object.
      *
-     * @param array $data
+     * @param $data array
      */
     public function __construct(array $data) {
         $this->data = $data;
     }
 
     /**
-     * @param string $key
+     * @param $key string
      * @return mixed
      */
     public function __get($key) {
@@ -51,7 +50,7 @@ abstract class DataStorage extends \libs\sprayfire\core\CoreObject implements \A
     }
 
     /**
-     * @param string $key
+     * @param $key string
      * @return mixed
      */
     public function offsetGet($key) {
@@ -67,7 +66,7 @@ abstract class DataStorage extends \libs\sprayfire\core\CoreObject implements \A
      * store simply override this function, ensuring that the proper value is
      * returned.
      *
-     * @param string $key
+     * @param $key string
      * @return mixed
      */
     protected function get($key) {
@@ -78,7 +77,7 @@ abstract class DataStorage extends \libs\sprayfire\core\CoreObject implements \A
     }
 
     /**
-     * @param string $key
+     * @param $key string
      * @return boolean
      */
     public function __isset($key) {
@@ -86,7 +85,7 @@ abstract class DataStorage extends \libs\sprayfire\core\CoreObject implements \A
     }
 
     /**
-     * @param string $key
+     * @param $key string
      * @return boolean
      */
     public function offsetExists($key) {
@@ -98,7 +97,7 @@ abstract class DataStorage extends \libs\sprayfire\core\CoreObject implements \A
      * elements being stored and the key has a value associated with it; all methods
      * needing to emulate `isset` functionality should call this method.
      *
-     * @param string $key
+     * @param $key string
      * @return boolean
      */
     protected function keyHasValue($key) {
@@ -114,7 +113,7 @@ abstract class DataStorage extends \libs\sprayfire\core\CoreObject implements \A
      * If your class needs to override this method please ensure a true boolean
      * type is returned.
      *
-     * @param string $key
+     * @param $key string
      * @return boolean
      */
     protected function keyInData($key) {
@@ -122,8 +121,8 @@ abstract class DataStorage extends \libs\sprayfire\core\CoreObject implements \A
     }
 
     /**
-     * @param string $key
-     * @param mixed $value
+     * @param $key string
+     * @param $value mixed
      * @return mixed
      */
     public function __set($key, $value) {
@@ -131,8 +130,8 @@ abstract class DataStorage extends \libs\sprayfire\core\CoreObject implements \A
     }
 
     /**
-     * @param string $key
-     * @param mixed $value
+     * @param $key string
+     * @param $value mixed
      * @return mixed
      */
     public function offsetSet($key, $value) {
@@ -140,7 +139,7 @@ abstract class DataStorage extends \libs\sprayfire\core\CoreObject implements \A
     }
 
     /**
-     * @param string $key
+     * @param $key string
      * @return boolean
      */
     public function __unset($key) {
@@ -148,7 +147,7 @@ abstract class DataStorage extends \libs\sprayfire\core\CoreObject implements \A
     }
 
     /**
-     * @param string $key
+     * @param $key string
      * @return boolean
      */
     public function offsetUnset($key) {
@@ -156,7 +155,7 @@ abstract class DataStorage extends \libs\sprayfire\core\CoreObject implements \A
     }
 
     /**
-     * Required by the \Countable interface, will return the number of data elements
+     * Required by the Countable interface, will return the number of data elements
      * stored in $data; please note that this is not a recursive count.
      *
      * @return int
@@ -167,15 +166,15 @@ abstract class DataStorage extends \libs\sprayfire\core\CoreObject implements \A
 
     /**
      * Should set the value in the data store associated with the passed key or
-     * a \libs\sprayfire\exceptions\UnsupportedOperationException should be thrown
+     * a libs.sprayfire.exceptions.UnsupportedOperationException should be thrown
      * if the class does not allow data to be set after __construct().
      *
      * Please return the value set or false if there was an error.
      *
-     * @param string $key
-     * @param mixed $value
+     * @param $key string
+     * @param $value mixed
      * @return mixed
-     * @throws \libs\sprayfire\exceptions\UnsupportedOperationException
+     * @throws libs.sprayfire.exceptions.UnsupportedOperationException
      */
     abstract protected function set($key, $value);
 

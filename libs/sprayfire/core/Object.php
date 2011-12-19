@@ -1,6 +1,10 @@
 <?php
 
 /**
+ * @file
+ * @brief
+ *
+ * @details
  * SprayFire is a custom built framework intended to ease the development
  * of websites with PHP 5.3.
  *
@@ -12,9 +16,8 @@
  *
  * SprayFire is released under the Open-Source Initiative MIT license.
  *
- * @author Charles Sprayberry <cspray at gmail dot com>
- * @license OSI MIT License <http://www.opensource.org/licenses/mit-license.php>
- * @copyright Copyright (c) 2011, Charles Sprayberry
+ * @author Charles Sprayberry cspray at gmail dot com
+ * @copyright Copyright (c) 2011, Charles Sprayberry OSI MIT License <http://www.opensource.org/licenses/mit-license.php>
  */
 
 namespace libs\sprayfire\core;
@@ -31,7 +34,7 @@ interface Object {
      * this method, simply ensure that it returns true if object passed is equal
      * to the calling object and false if it is not.
      *
-     * @param \libs\sprayfire\interfaces\Object $Object
+     * @param $Object libs.sprayfire.core.Object
      * @return boolean
      */
     public function equals(\libs\sprayfire\core\Object $Object);

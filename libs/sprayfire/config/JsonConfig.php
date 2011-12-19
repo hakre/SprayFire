@@ -12,9 +12,8 @@
  *
  * SprayFire is released under the Open-Source Initiative MIT license.
  *
- * @author Charles Sprayberry <cspray at gmail dot com>
- * @license OSI MIT License <http://www.opensource.org/licenses/mit-license.php>
- * @copyright Copyright (c) 2011, Charles Sprayberry
+ * @author Charles Sprayberry cspray at gmail dot com
+ * @copyright Copyright (c) 2011, Charles Sprayberry OSI MIT License <http://www.opensource.org/licenses/mit-license.php>
  */
 
 namespace libs\sprayfire\config;
@@ -61,7 +60,7 @@ class JsonConfig extends \libs\sprayfire\datastructs\ImmutableStorage implements
      * Holds the object passed in the constructor holding the path to the configuration
      * file.
      *
-     * @var \SplFileInfo
+     * @property SplFileInfo
      */
     private $ConfigFileInfo;
 
@@ -76,9 +75,9 @@ class JsonConfig extends \libs\sprayfire\datastructs\ImmutableStorage implements
      *
      *
      *
-     * @param \SplFileInfo $FileInfo
-     * @throws \InvalidArgumentException
-     * @throws \UnexpectedValueException
+     * @param $FileInfo SplFileInfo object
+     * @throws InvalidArgumentException
+     * @throws UnexpectedValueException
      */
     public function __construct(\SplFileInfo $FileInfo) {
         $this->ConfigFileInfo = $FileInfo;
@@ -92,8 +91,8 @@ class JsonConfig extends \libs\sprayfire\datastructs\ImmutableStorage implements
      * an exception will be thrown.
      *
      * @return array
-     * @throws \InvalidArgumentException
-     * @throws \UnexpectedValueException
+     * @throws InvalidArgumentException
+     * @throws UnexpectedValueException
      */
     private function getDecodedJson() {
         $decodedJson = \json_decode($this->getFileContents(), true);
@@ -109,7 +108,7 @@ class JsonConfig extends \libs\sprayfire\datastructs\ImmutableStorage implements
      * Will return the contents of the file associated with this configuration object.
      *
      * @return string
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     private function getFileContents() {
         if (!$this->ConfigFileInfo->isFile() && !$this->ConfigFileInfo->isLink()) {

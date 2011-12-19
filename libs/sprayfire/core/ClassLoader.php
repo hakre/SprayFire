@@ -1,6 +1,10 @@
 <?php
 
 /**
+ * @file
+ * @brief
+ *
+ * @details
  * SprayFire is a custom built framework intended to ease the development
  * of websites with PHP 5.3.
  *
@@ -12,8 +16,7 @@
  *
  * SprayFire is released under the Open-Source Initiative MIT license.
  *
- * @author Charles Sprayberry <cspray at gmail dot com>
- * @license OSI MIT License <http://www.opensource.org/licenses/mit-license.php>
+ * @author Charles Sprayberry cspray at gmail dot com
  * @copyright Copyright (c) 2011, Charles Sprayberry
  */
 
@@ -37,7 +40,7 @@ class ClassLoader extends \libs\sprayfire\core\CoreObject {
     /**
      * Will include the necessary class based on the fully namespaced class passed.
      *
-     * @param string $className
+     * @param $className The namespaced name of the class to load
      */
     private function loadClass($className) {
         $convertedPath = $this->convertNamespacedClassToDirectoryPath($className);
@@ -50,8 +53,8 @@ class ClassLoader extends \libs\sprayfire\core\CoreObject {
      * Will convert the `\` in namespaces to the appropriate directory separator
      * and then determine the complete, absolute path to the requested class.
      *
-     * @param string $className
-     * @return string
+     * @param $className Namespaced name of the class to load
+     * @return The complete path to the class
      */
     private function convertNamespacedClassToDirectoryPath($className) {
         $convertedPath = ROOT_PATH . DS;

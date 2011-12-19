@@ -12,9 +12,8 @@
  *
  * SprayFire is released under the Open-Source Initiative MIT license.
  *
- * @author Charles Sprayberry <cspray at gmail dot com>
- * @license OSI MIT License <http://www.opensource.org/licenses/mit-license.php>
- * @copyright Copyright (c) 2011, Charles Sprayberry
+ * @author Charles Sprayberry cspray at gmail dot com
+ * @copyright Copyright (c) 2011, Charles Sprayberry OSI MIT License <http://www.opensource.org/licenses/mit-license.php>
  */
 
 namespace libs\sprayfire\datastructs;
@@ -29,8 +28,8 @@ class ImmutableStorage extends \libs\sprayfire\datastructs\DataStorage {
      * Accepts an array of data to store and gives the calling code the option to
      * convert all inner arrays into ImmutableStorage objects.
      *
-     * @param array $data
-     * @param type $convertDeep
+     * @param $data array
+     * @param $convertDeep boolean
      */
     public function __construct(array $data, $convertDeep = true) {
         if ((boolean) $convertDeep) {
@@ -43,17 +42,17 @@ class ImmutableStorage extends \libs\sprayfire\datastructs\DataStorage {
     }
 
     /**
-     * @param string $key
-     * @param mixed $value
-     * @throws \libs\sprayfire\exceptions\UnsupportedOperationException
+     * @param $key string
+     * @param $value mixed
+     * @throws libs.sprayfire.exceptions.UnsupportedOperationException
      */
     protected function set($key, $value) {
         throw new \libs\sprayfire\exceptions\UnsupportedOperationException('Attempting to set the value of an immutable object.');
     }
 
     /**
-     * @param type $key
-     * @throws \libs\sprayfire\exceptions\UnsupportedOperationException
+     * @param $key string
+     * @throws libs.sprayfire.exceptions.UnsupportedOperationException
      */
     protected function removeKey($key) {
         throw new \libs\sprayfire\exceptions\UnsupportedOperationException('Attempting to remove the value of an immutable object.');
@@ -63,7 +62,7 @@ class ImmutableStorage extends \libs\sprayfire\datastructs\DataStorage {
      * Is responsible for returning an array where all internal arrays have been
      * converted to ImmutableStorage objects.
      *
-     * @param array $data
+     * @param $data array
      * @return array
      */
     protected function convertDataDeep(array $data) {
@@ -80,8 +79,8 @@ class ImmutableStorage extends \libs\sprayfire\datastructs\DataStorage {
      * that are arrays into ImmutableStorage objects; returning back an array of
      * key/value pairs and ImmutableStorage objects of deeper key/value pairs.
      *
-     * @param array $data
-     * @return \libs\sprayfire\datastructs\ImmutableStorage
+     * @param $data array
+     * @return libs.sprayfire.datastructs.ImmutableStorage
      */
     private function convertArrayToImmutableObject(array $data) {
         foreach ($data as $key => $value) {

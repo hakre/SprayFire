@@ -12,9 +12,8 @@
  *
  * SprayFire is released under the Open-Source Initiative MIT license.
  *
- * @author Charles Sprayberry <cspray at gmail dot com>
- * @license OSI MIT License <http://www.opensource.org/licenses/mit-license.php>
- * @copyright Copyright (c) 2011, Charles Sprayberry
+ * @author Charles Sprayberry cspray at gmail dot com
+ * @copyright Copyright (c) 2011, Charles Sprayberry OSI MIT License <http://www.opensource.org/licenses/mit-license.php>
  */
 
 namespace libs\sprayfire\datastructs;
@@ -30,8 +29,11 @@ class MutableStorage extends \libs\sprayfire\datastructs\DataStorage {
      * to recursively convert all inner arrays into MutableStorage objects; ultimately
      * this will allow for chaining within this object.
      *
-     * @param array $data
-     * @param boolean $convertDeep
+     * @param $data An array of data to store
+     * @param $convertDeep True if arrays within the array should be converted to
+     *                     objects as well.
+     * @throws UnexpectedValueException If extending objects do not properly return
+     *                                  an array from convertDataDeep
      */
     public function __construct(array $data, $convertDeep = true) {
         if ((boolean) $convertDeep) {
@@ -44,8 +46,8 @@ class MutableStorage extends \libs\sprayfire\datastructs\DataStorage {
     }
 
     /**
-     * @param string $key
-     * @param mixed $value
+     * @param $key string
+     * @param $value mixed
      * @return mixed
      */
     protected function set($key, $value) {
@@ -56,7 +58,7 @@ class MutableStorage extends \libs\sprayfire\datastructs\DataStorage {
     }
 
     /**
-     * @param string $key
+     * @param $key string
      */
     protected function removeKey($key) {
         if ($this->keyInData($key)) {
@@ -65,10 +67,10 @@ class MutableStorage extends \libs\sprayfire\datastructs\DataStorage {
     }
 
     /**
-     * Will take an array and conver all inner arrays into MutableStorage objects
+     * Will take an array and convert all inner arrays into MutableStorage objects
      * returning the outer array.
      *
-     * @param array $data
+     * @param $data array
      * @return array
      */
     protected function convertDataDeep(array $data) {
@@ -84,8 +86,8 @@ class MutableStorage extends \libs\sprayfire\datastructs\DataStorage {
      * Will loop through each of the values and recursively convert those values
      * that are arrays into MutableStorage objects.
      *
-     * @param array $data
-     * @return \libs\sprayfire\datastructs\MutableStorage
+     * @param $data array
+     * @return libs.sprayfire.datastructs.MutableStorage
      */
     private function convertArrayToMutableObject(array $data) {
         foreach ($data as $key => $value) {

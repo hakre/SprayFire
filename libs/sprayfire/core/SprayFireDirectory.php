@@ -1,6 +1,10 @@
 <?php
 
 /**
+ * @file
+ * @brief
+ *
+ * @details
  * SprayFire is a custom built framework intended to ease the development
  * of websites with PHP 5.3.
  *
@@ -12,9 +16,8 @@
  *
  * SprayFire is released under the Open-Source Initiative MIT license.
  *
- * @author Charles Sprayberry <cspray at gmail dot com>
- * @license OSI MIT License <http://www.opensource.org/licenses/mit-license.php>
- * @copyright Copyright (c) 2011, Charles Sprayberry
+ * @author Charles Sprayberry cspray at gmail dot com
+ * @copyright Copyright (c) 2011, Charles Sprayberry OSI MIT License <http://www.opensource.org/licenses/mit-license.php>
  */
 
 namespace libs\sprayfire\core;
@@ -30,22 +33,22 @@ namespace libs\sprayfire\core;
 class SprayFireDirectory implements \libs\sprayfire\core\FrameworkPaths {
 
     /**
-     * @var string
+     * @property string
      */
     private static $installRoot = null;
 
     /**
-     * @var string
+     * @property string
      */
     private static $frameworkRoot = null;
 
     /**
-     * @var string
+     * @property string
      */
     private static $appRoot = null;
 
     /**
-     * @param string $rootInstallationPath
+     * @param $rootInstallationPath string
      */
     public static function setRootInstallationPath($rootInstallationPath) {
         self::$installRoot = $rootInstallationPath;
@@ -64,7 +67,6 @@ class SprayFireDirectory implements \libs\sprayfire\core\FrameworkPaths {
      * Converts a variable list of strings into a directory separated path that
      * will be interpreted to be a sub directory in the ROOT_PATH/app/ dir
      *
-     * @param string $subDirectory
      * @return string
      */
     public static function getAppPathSubDirectory() {
@@ -87,7 +89,6 @@ class SprayFireDirectory implements \libs\sprayfire\core\FrameworkPaths {
      * Converts a variable list of strings into a directory separated path that
      * will be interpreted as a sub directory in the ROOT_PATH/libs/sprayfire dir
      *
-     * @param string $subDirectory
      * @return string
      */
     public static function getFrameworkPathSubDirectory() {
@@ -101,7 +102,7 @@ class SprayFireDirectory implements \libs\sprayfire\core\FrameworkPaths {
     }
 
     /**
-     * @param array $subDirList
+     * @param $subDirList array
      * @return string
      */
     private static function getSubDirectoryPath(array $subDirList) {

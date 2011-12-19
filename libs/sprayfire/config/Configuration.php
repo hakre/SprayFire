@@ -1,6 +1,10 @@
 <?php
 
 /**
+ * @file
+ * @brief
+ *
+ * @details
  * SprayFire is a custom built framework intended to ease the development
  * of websites with PHP 5.3.
  *
@@ -12,9 +16,8 @@
  *
  * SprayFire is released under the Open-Source Initiative MIT license.
  *
- * @author Charles Sprayberry <cspray at gmail dot com>
- * @license OSI MIT License <http://www.opensource.org/licenses/mit-license.php>
- * @copyright Copyright (c) 2011, Charles Sprayberry
+ * @author Charles Sprayberry cspray at gmail dot com
+ * @copyright Copyright (c) 2011, Charles Sprayberry OSI MIT License <http://www.opensource.org/licenses/mit-license.php>
  */
 
 namespace libs\sprayfire\config;
@@ -36,7 +39,7 @@ interface Configuration extends \ArrayAccess, \libs\sprayfire\datastructs\Overlo
      * Data can be any type, as long as after the object is constructed it is ready
      * to be read from either as an object or as an array.
      *
-     * @param \SplFileInfo $FileInfo
+     * @param $FileInfo SplFileInfo holding the path to the configuration file
      */
     public function __construct(\SplFileInfo $FileInfo);
 

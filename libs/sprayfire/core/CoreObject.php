@@ -1,6 +1,10 @@
 <?php
 
 /**
+ * @file
+ * @brief
+ *
+ * @details
  * SprayFire is a custom built framework intended to ease the development
  * of websites with PHP 5.3.
  *
@@ -12,8 +16,7 @@
  *
  * SprayFire is released under the Open-Source Initiative MIT license.
  *
- * @author Charles Sprayberry <cspray at gmail dot com>
- * @license OSI MIT License <http://www.opensource.org/licenses/mit-license.php>
+ * @author Charles Sprayberry cspray at gmail dot com
  * @copyright Copyright (c) 2011, Charles Sprayberry
  */
 
@@ -21,7 +24,7 @@ namespace libs\sprayfire\core;
 
 /**
  * The base object for all application classes; provides easy access to implementation
- * of the \libs\sprayfire\interfaces\Object interface.
+ * of the libs.sprayfire.core.Object interface.
  *
  */
 abstract class CoreObject implements \libs\sprayfire\core\Object {
@@ -43,7 +46,7 @@ abstract class CoreObject implements \libs\sprayfire\core\Object {
      * If your objects need to implement a Comparator be sure to override the
      * implementation of this class.
      *
-     * @param \libs\sprayfire\interfaces\Object $CompareObject
+     * @param $CompareObject A libs.sprayfire.core.Object to compare to this one for equality
      * @return boolean
      */
     public function equals(\libs\sprayfire\core\Object $CompareObject) {

@@ -1,6 +1,11 @@
 <?php
 
 /**
+ * @file
+ *
+ * @brief
+ *
+ * @details
  * SprayFire is a custom built framework intended to ease the development
  * of websites with PHP 5.3.
  *
@@ -12,9 +17,8 @@
  *
  * SprayFire is released under the Open-Source Initiative MIT license.
  *
- * @author Charles Sprayberry <cspray at gmail dot com>
- * @license OSI MIT License <http://www.opensource.org/licenses/mit-license.php>
- * @copyright Copyright (c) 2011, Charles Sprayberry
+ * @author Charles Sprayberry cspray at gmail dot com
+ * @copyright Copyright (c) 2011, Charles Sprayberry OSI MIT License <http://www.opensource.org/licenses/mit-license.php>
  */
 
 namespace libs\sprayfire\core;
@@ -31,7 +35,7 @@ interface FrameworkPaths {
     /**
      * The string passed will be the complete path to the framework's root folder.
      *
-     * @param string
+     * @param $rootInstallationPath The complete path to the directory holding framework and app files
      */
     public static function setRootInstallationPath($rootInstallationPath);
 

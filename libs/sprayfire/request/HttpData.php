@@ -43,7 +43,7 @@ namespace libs\sprayfire\request {
      *      // this is a simple implementation of the HttpData interface
      *      // using one of the already unit tested framework data structures
      *
-     *      class BeautifulClassName extends \libs\sprayfire\datastructs\MutableIterator implements \libs\sprayfire\request\HttpData {
+     *      class BeautifulClassName extends libs.sprayfire.datastructs.MutableIterator implements libs.sprayfire.request.HttpData {
      *
      *          // overriding the property used by the data storage objects
      *          protected $data = array();
