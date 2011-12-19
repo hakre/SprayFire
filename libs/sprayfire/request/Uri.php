@@ -1,6 +1,11 @@
 <?php
 
 /**
+ * @file
+ * @brief The interface necessary to turn a URI string into the appropriate fragments needed
+ * to process the request.
+ *
+ * @details
  * SprayFire is a custom built framework intended to ease the development
  * of websites with PHP 5.3.
  *
@@ -12,72 +17,82 @@
  *
  * SprayFire is released under the Open-Source Initiative MIT license.
  *
- * @author Charles Sprayberry <cspray at gmail dot com>
- * @license OSI MIT License <http://www.opensource.org/licenses/mit-license.php>
- * @copyright Copyright (c) 2011, Charles Sprayberry
+ * @author Charles Sprayberry cspray at gmail dot com
+ * @copyright Copyright (c) 2011, Charles Sprayberry OSI MIT License <http://www.opensource.org/licenses/mit-license.php>
  */
-
-namespace libs\sprayfire\request;
 
 /**
- * An interface to take a URI and parse the string into the appropriate controller,
- * action and parameters.
+ * @namespace libs.sprayfire.request
+ * @brief Contains all classes and interfaces needed to parse the requested URI
+ * and manage the HTTP data, both headers and normal GET/POST data, that get passed
+ * in each request.
  */
-interface Uri {
+namespace libs\sprayfire\request {
 
     /**
-     * This constant is returned if the default controller should be used.
+     * @brief Implementations should convert a string into appropriate fragments
+     * for the requested contoller, action and parameters.
      *
-     * @var string
+     * @details
+     * The implementation of this interface should take into account that the Uri
+     * passed may contain a leading `/` and the name of the installing directory
+     * if the framework is installed in a subdirectory of the server root.
+     *
+     * The following pattern describes the general format URIs should be interpreted:
+     *
+     * <code>[install_dir]/controller/action/param1/param2/paramN</code>
+     *
+     * If no value is returned from these then the default values should be returned.
+     * For this interface the default values are:
+     *
+     * Default controller = libs.sprayfire.request.Uri::DEFAULT_CONTROLLER
+     * Default action = libs.sprayfire.request.Uri::DEFAULT_ACTION
+     * Default parameters = array()
      */
-    const DEFAULT_CONTROLLER = '%default_controller%';
+    interface Uri {
 
-    /**
-     * This constant is returned if the default action should be used.
-     *
-     * @var string
-     */
-    const DEFAULT_ACTION = '%default_action%';
+        /**
+         * Returned if the controller fragment of the URI is not set.
+         */
+        const DEFAULT_CONTROLLER = '%default_controller%';
 
-    /**
-     * Should parse the URI passed, providing access to the controller, action
-     * and parameters passed along with the original URI.
-     *
-     * @param string $uri
-     */
-    public function __construct($uri);
+        /**
+         * Returned if the default action should be used.
+         */
+        const DEFAULT_ACTION = '%default_action%';
 
-    /**
-     * Should return the original, unaltered URI.
-     *
-     * @return string
-     */
-    public function getRawUri();
+        /**
+         * Should parse the URI passed, providing access to the controller, action
+         * and parameters passed along with the original URI.
+         *
+         * @param $uri string
+         */
+        public function __construct($uri);
 
-    /**
-     * Should return the string associated with the 'controller' URI fragment, if
-     * no controller URI fragment is passed then Uri::DEFAULT_CONTROLLER should be
-     * returned.
-     *
-     * @return string
-     */
-    public function getController();
+        /**
+         * @return string The original unaltered URI
+         */
+        public function getRawUri();
 
-    /**
-     * Should return the string associated with the 'action' URI fragment, if no
-     * action URI fragment is passed then Uri::DEFAULT_ACTION should be returned.
-     *
-     * @return string
-     */
-    public function getAction();
+        /**
+         * @return string The URI controller fragment or DEFAULT_CONTROLLER if no controller was given
+         */
+        public function getController();
 
-    /**
-     * Should **always** return an array, even if the array returned is empty.
-     *
-     * @return array
-     */
-    public function getParameters();
+        /**
+         * @return string The URI action fragment or DEFAULT_ACTION if no action was given
+         */
+        public function getAction();
+
+        /**
+         * @return array An array of parameter data fragments or an empty array if none were given
+         */
+        public function getParameters();
+
+    }
+
+    // End Uri
 
 }
 
-// End Uri
+// End libs.sprayfire.request

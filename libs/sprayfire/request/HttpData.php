@@ -1,6 +1,11 @@
 <?php
 
 /**
+ * @file
+ * @brief Holds an interface to allow PHP superglobal objects to be manipulated
+ * in an object oriented fashion.
+ *
+ * @details
  * SprayFire is a custom built framework intended to ease the development
  * of websites with PHP 5.3.
  *
@@ -12,25 +17,23 @@
  *
  * SprayFire is released under the Open-Source Initiative MIT license.
  *
- * @author Charles Sprayberry <cspray at gmail dot com>
- * @license OSI MIT License <http://www.opensource.org/licenses/mit-license.php>
- * @copyright Copyright (c) 2011, Charles Sprayberry
+ * @author Charles Sprayberry cspray at gmail dot com
+ * @copyright Copyright (c) 2011, Charles Sprayberry OSI MIT License <http://www.opensource.org/licenses/mit-license.php>
  */
-
-namespace libs\sprayfire\request;
 
 /**
- * This interface is to be used by all objects storing PHP superglobals; passing
- * the constructor by reference assures that the
- *
+ * @namespace libs.sprayfire.request
+ * @brief Contains all classes and interfaces needed to parse the requested URI
+ * and manage the HTTP data, both headers and normal GET/POST data, that get passed
+ * in each request.
  */
-interface HttpData extends \ArrayAccess, \Countable, \Iterator, \libs\sprayfire\datastructs\Overloadable {
+namespace libs\sprayfire\request {
 
     /**
-     * Assures that the array being passed to the HttpData object are closely linked
-     * together; changes to the object change the array injected and changes to
-     * the array change the object.
+     * @brief An interface for objects that are meant to work with and manipulate
+     * the HTTP superglobals available to PHP.
      *
+     * @details
      * !! WARNING !! If extending the base framework data storage classes you will
      * also need to provide a property in that class and assign the passed array
      * by reference to that property.
@@ -59,11 +62,21 @@ interface HttpData extends \ArrayAccess, \Countable, \Iterator, \libs\sprayfire\
      *      // to the object make changes to the array and changes to the array
      *      // make changes to the object
      * </pre>
-     *
-     * @param array &$data This should be one of the PHP superglobal arrays
      */
-    public function __construct(array &$data);
+    interface HttpData extends \ArrayAccess, \Countable, \Iterator, \libs\sprayfire\datastructs\Overloadable {
 
+        /**
+         * Assures that the array being passed to the HttpData object are closely linked
+         * together; changes to the object change the array injected and changes to
+         * the array change the object.
+         *
+         * @param &$data An array passed by reference
+         */
+        public function __construct(array &$data);
+
+    }
+
+    // End HttpData
 }
 
-// End HttpData
+// End libs.sprayfire.request

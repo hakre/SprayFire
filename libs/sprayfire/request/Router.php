@@ -1,6 +1,11 @@
 <?php
 
 /**
+ * @file
+ * @brief Holds the interface needed to be implemented by objects represetning
+ * $_GET, $_POST and other HTTP related superglobals.
+ *
+ * @details
  * SprayFire is a custom built framework intended to ease the development
  * of websites with PHP 5.3.
  *
@@ -12,39 +17,56 @@
  *
  * SprayFire is released under the Open-Source Initiative MIT license.
  *
- * @author Charles Sprayberry <cspray at gmail dot com>
- * @license OSI MIT License <http://www.opensource.org/licenses/mit-license.php>
- * @copyright Copyright (c) 2011, Charles Sprayberry
+ * @author Charles Sprayberry cspray at gmail dot com
+ * @copyright Copyright (c) 2011, Charles Sprayberry OSI MIT License <http://www.opensource.org/licenses/mit-license.php>
  */
-
-namespace libs\sprayfire\request;
 
 /**
- * An interface for an object that will interpret a URI and map the pattern to a
- * Controller::action() as defined in the \libs\sprayfire\config\Configuration
- * object passed to it.
- *
- * @see https://github.com/cspray/SprayFire/wiki/Routing
+ * @namespace libs.sprayfire.request
+ * @brief Contains all classes and interfaces needed to parse the requested URI
+ * and manage the HTTP data, both headers and normal GET/POST data, that get passed
+ * in each request.
  */
-interface Router {
+namespace libs\sprayfire\request {
 
     /**
-     * Should use the Configuration object passed to gather whatever details are
-     * necessary for the routing implementation to map a Uri object to a RoutedUri
-     * object.
+     * @brief Implementations should convert a libs.sprayfire.request.Uri object
+     * into a libs.sprayfire.request.RoutedUri object, using values from the
+     * libs.sprayfire.config.Configuration object that is passed in the constructor
+     * as defaults if needed.
      *
-     * @param \libs\sprayfire\config\Configuration $RoutesConfig
-     */
-    public function __construct(\libs\sprayfire\config\Configuration $RoutesConfig);
-
-    /**
-     * Should return a RoutedUri that is mapped off of the Uri object being passed.
+     * @details
+     * Implementations of this interface should not necessarily be responsible for
+     * the actual instantiation and invocation of the necessary controller objects.
+     * That responsibility is left to a different object that is better suited for
+     * the task.  Implementing classes should simply provide a RoutedUri object
+     * that can be used by the actual dispatching class.
      *
-     * @param \libs\sprayfire\request\Uri $Uri
-     * @return \libs\sprayfire\request\RoutedUri
+     * @see https://github.com/cspray/SprayFire/wiki/Routing
      */
-    public function getRoutedUri(\libs\sprayfire\request\Uri $Uri);
+    interface Router {
 
+        /**
+         * @brief Requires a libs.sprayfire.config.Configuration object to be injected;
+         * this object should store the necessary routing details to be able to
+         * successfully create a RoutedUri.
+         *
+         * @param $RoutesConfig libs.sprayfire.config.Configuration
+         */
+        public function __construct(\libs\sprayfire\config\Configuration $RoutesConfig);
+
+        /**
+         * @brief Should return a RoutedUri that is mapped off of the Uri object
+         * being passed.
+         *
+         * @param $Uri libs.sprayfire.request.Uri
+         * @return libs.sprayfire.request.RoutedUri
+         */
+        public function getRoutedUri(\libs\sprayfire\request\Uri $Uri);
+
+    }
+
+    // End Router
 }
 
-// End Router
+// End libs.sprayfire.request
