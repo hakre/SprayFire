@@ -38,39 +38,70 @@ namespace libs\sprayfire\request {
         /**
          * Holds the original, unaltered URI passed in the constructor.
          *
-         * @property $originalUri
+         * @property $originalUri string
          */
         protected $originalUri;
 
+        /**
+         * Holds the original URI with all special URL characeters decoded.
+         *
+         * @property $decodedUri string
+         */
         protected $decodedUri;
 
+        /**
+         * @brief Holds an array of URI fragments exploded by the URL separator '/'
+         *
+         * @property $decodedUri array
+         */
         protected $explodedUriFragments;
 
+        /**
+         * @brief Holds the part of the URI fragment corresponding to the controller
+         *
+         * @property $controller string
+         */
         protected $controller;
 
+        /**
+         * @brief The part of the URI fragment corresponding to the action
+         *
+         * @property $action string
+         */
         protected $action;
 
+        /**
+         * @brief An array holding the list of parameters or an empty array if
+         * none were passed
+         *
+         * @property $parameters array
+         */
         protected $parameters;
 
         /**
-         * Forces the injection of a URI string into the object, this object
-         * should forever be associated with the passed URI
+         * @brief Forces the injection of a URI string into the object, this object
+         * should forever be associated with the passed URI.
+         *
+         * @details
+         * This function will also assign the appropriate properties and
          *
          * @param $uri string
          */
         public function __construct($uri) {
             $this->originalUri = $uri;
             $this->decodedUri = \urldecode($uri);
-            $this->trimAndExplodeUri();
-            $this->parseUriFragments();
-            var_dump($this->parameters);
+            $this->explodedUriFragments = $this->trimAndExplodeDecodedUri();
+            $parsedUri = $this->parseUriFragments();
+            $this->controller = $parsedUri['controller'];
+            $this->action = $parsedUri['action'];
+            $this->parameters = $parsedUri['parameters'];
         }
 
         /**
          * @brief Removes the base directory from the requested URI and explodes
-         * the remaining URI fragment on the URI separator, '/'.
+         * the remaining URI fragment on the URI separator, '/'; sets the array of
          */
-        private function trimAndExplodeUri() {
+        private function trimAndExplodeDecodedUri() {
             $parsedUri = \parse_url($this->decodedUri);
             $trimPath = \preg_replace('/\/' . \basename(ROOT_PATH) . '\//', '', $parsedUri['path']);
             if (empty($trimPath)) {
@@ -78,56 +109,87 @@ namespace libs\sprayfire\request {
             } else {
                 $explodedPath = \explode('/', $trimPath);
             }
-            $this->explodedUriFragments = $explodedPath;
+            return $explodedPath;
         }
 
+        /**
+         * @brief Will turn an array of \a $explodedUriFragments into a parsed
+         * array indicating the appropriate controller, action and list of parameters.
+         *
+         * @details
+         * If the \a $explodedUriFragments do not have any values for the controller
+         * or action the libs.sprayfire.request.Uri constants appropriate for that
+         * value will be returned.  The parameter key will always return with some
+         * kind of array as its value.
+         *
+         * @return associative array with the following keys: 'controller', 'action', 'paramters
+         */
         private function parseUriFragments() {
             $uriFragments = $this->explodedUriFragments;
-
-            if (empty($uriFragments)) {
-                $this->controller = \libs\sprayfire\request\Uri::DEFAULT_CONTROLLER;
-                $this->action = \libs\sprayfire\request\Uri::DEFAULT_ACTION;
-                $this->parameters = array();
-                return;
+            $parsedFragments = array();
+            $controller = 'controller';
+            $action = 'action';
+            $parameters = 'parameters';
+            if (empty($uriFragments) || empty($uriFragments[0])) {
+                $parsedFragments[$controller] = \libs\sprayfire\request\Uri::DEFAULT_CONTROLLER;
+                $parsedFragments[$action] = \libs\sprayfire\request\Uri::DEFAULT_ACTION;
+                $parsedFragments[$parameters] = array();
+                return $parsedFragments;
             }
 
             if ($this->isParameterString($uriFragments[0])) {
-                $this->controller = \libs\sprayfire\request\Uri::DEFAULT_CONTROLLER;
-                $this->action = \libs\sprayfire\request\Uri::DEFAULT_ACTION;
-                $this->parameters = $this->removeParameterMarker($uriFragments);
-                return;
+                $parsedFragments[$controller] = \libs\sprayfire\request\Uri::DEFAULT_CONTROLLER;
+                $parsedFragments[$action] = \libs\sprayfire\request\Uri::DEFAULT_ACTION;
+                $parsedFragments[$parameters] = $this->removeParameterMarker($uriFragments);
+                return $parsedFragments;
             }
 
-            $this->controller = \array_shift($uriFragments);
+            $parsedFragments[$controller] = \array_shift($uriFragments);
 
             if (empty($uriFragments) || empty($uriFragments[0])) {
-                $this->action = \libs\sprayfire\request\Uri::DEFAULT_ACTION;
-                $this->parameters = array();
-                return;
+                $parsedFragments[$action] = \libs\sprayfire\request\Uri::DEFAULT_ACTION;
+                $parsedFragments[$parameters] = array();
+                return $parsedFragments;
             }
 
             if ($this->isParameterString($uriFragments[0])) {
-                $this->action = \libs\sprayfire\request\Uri::DEFAULT_ACTION;
-                $this->parameters = $this->removeParameterMarker($uriFragments);
-                return;
+                $parsedFragments[$action] = \libs\sprayfire\request\Uri::DEFAULT_ACTION;
+                $parsedFragments[$parameters] = $this->removeParameterMarker($uriFragments);
+                return $parsedFragments;
             }
 
-            $this->action = \array_shift($uriFragments);
+            $parsedFragments[$action] = \array_shift($uriFragments);
 
             if (empty($uriFragments) || empty($uriFragments[0])) {
-                $this->parameters = array();
-                return;
+                $parsedFragments[$parameters] = array();
+                return $parsedFragments;
             }
 
-            $this->parameters = $this->removeParameterMarker($uriFragments);
+            $parsedFragments[$parameters] = $this->removeParameterMarker($uriFragments);
+
+            return $parsedFragments;
         }
 
+        /**
+         * @brief Determines if the passed \a $value is a parameter string, which
+         * we signify as having a colon <code>:</code> as the first character in
+         * the string.
+         *
+         * @param $value string
+         * @return boolean
+         */
         private function isParameterString($value) {
             $pattern = '/^:./';
             $match = \preg_match($pattern, $value);
             return (boolean) $match;
         }
 
+        /**
+         * @brief Will remove the leading parameter marker from all values passed.
+         *
+         * @param $markedParameters array of parameters with possible leading colons
+         * @return array of parameters with no leading colons
+         */
         private function removeParameterMarker(array $markedParameters) {
             $unmarkedParameters = array();
             $pattern = '/^:/';
@@ -140,7 +202,7 @@ namespace libs\sprayfire\request {
 
         /**
          * @return The action fragment of the \a $originalUri or
-         *         libs.sprayfire.request.Uri::DEFAULT_ACTION
+         *         libs.sprayfire.request.Uri::DEFAULT_ACTION if none was passed
          */
         public function getAction() {
             return $this->action;
@@ -148,7 +210,7 @@ namespace libs\sprayfire\request {
 
         /**
          * @return The controller fragment of the \a $originalUri or
-         *         libs.sprayfire.request.Uri::DEFAULT_CONTROLLER
+         *         libs.sprayfire.request.Uri::DEFAULT_CONTROLLER if none was passed
          */
         public function getController() {
             return $this->controller;
