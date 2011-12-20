@@ -2,7 +2,8 @@
 
 /**
  * @file
- * @brief
+ * @brief Holds an interface that requires the injection of a SplFileInfo object
+ * representing the configuration info.
  *
  * @details
  * SprayFire is a custom built framework intended to ease the development
@@ -20,29 +21,31 @@
  * @copyright Copyright (c) 2011, Charles Sprayberry OSI MIT License <http://www.opensource.org/licenses/mit-license.php>
  */
 
-namespace libs\sprayfire\config;
-
 /**
- * An interface for configuration objects used by the application and framework.
- *
- * It is expected that the implementation objects will allow read-only properties
- * to hold the various information associated with a configuration.  Each type of
- * configuration object should ultimately read the configuration from a file.  The
- * ability to parse the given file should exist within the class not needing a
- * dependency.  It is expected that any given configuration object will be mutable,
- * allowing the imported configuration values to only be read.
- *
+ * @namespace libs.sprayfire.config
+ * @brief Holds interfaces and classes that convert configuration information into
+ * something usable for the application and framework.
  */
-interface Configuration extends \ArrayAccess, \libs\sprayfire\datastructs\Overloadable {
+namespace libs\sprayfire\config {
 
     /**
-     * Data can be any type, as long as after the object is constructed it is ready
-     * to be read from either as an object or as an array.
-     *
-     * @param $FileInfo SplFileInfo holding the path to the configuration file
+     * @brief An interface that requires implementing objects to accept a SplFileInfo
+     * object representing a configuration file and that the values in that configuration
+     * file should be accessible through object or array notation.
      */
-    public function __construct(\SplFileInfo $FileInfo);
+    interface Configuration extends \ArrayAccess, \libs\sprayfire\datastructs\Overloadable {
+
+        /**
+         * @brief Requires the injection of a SplFileInfo object
+         *
+         * @param $FileInfo SplFileInfo holding the path to the configuration file
+         */
+        public function __construct(\SplFileInfo $FileInfo);
+
+    }
+
+    // End Configuration
 
 }
 
-// End Configuration
+// End libs.sprayfire.config
