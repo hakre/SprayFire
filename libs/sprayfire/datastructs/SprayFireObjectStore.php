@@ -35,7 +35,7 @@ namespace libs\sprayfire\datastructs {
      * of objects associated with a key and iterating over the objects stored in the
      * array.
      */
-    class SprayFireObjectStore extends MutableIterator implements \libs\sprayfire\datastructs\ObjectStorage {
+    class SprayFireObjectStore extends \libs\sprayfire\core\CoreObject implements \libs\sprayfire\datastructs\ObjectStorage {
 
         /**
          * @brief Holds a ReflectionClass of the data type that should be implemented by objects
@@ -45,6 +45,8 @@ namespace libs\sprayfire\datastructs {
          */
         protected $ReflectedParentType;
 
+        protected $data = array();
+
         /**
          * @brief Will initiate the object storage as an empty array and assign the passed
          * ReflectionClass to the appropriate class property.
@@ -52,7 +54,6 @@ namespace libs\sprayfire\datastructs {
          * @param $ReflectedObjectType A ReflectionClass object
          */
         public function __construct(\ReflectionClass $ReflectedObjectType) {
-            parent::__construct(array());
             $this->ReflectedParentType = $ReflectedObjectType;
         }
 
@@ -97,6 +98,12 @@ namespace libs\sprayfire\datastructs {
             return \count($this) <= 0;
         }
 
+        public function removeObject($key) {
+            if (\array_key_exists($key, $this->data)) {
+                unset($this->data[$key]);
+            }
+        }
+
         /**
          * @brief Will return the object associated with the key, if that key exists, or return
          * null.
@@ -105,31 +112,10 @@ namespace libs\sprayfire\datastructs {
          * @return libs.sprayfire.core.Object
          */
         public function getObject($key) {
-            return $this->get($key);
-        }
-
-        /**
-         * @brief Hooks into the DataStorage set method to complete the requirements
-         * of the libs.sprayfire.core.ObjectStorage interface.
-         *
-         * @details
-         * Will assign the passed object to the specified key, notice that this may
-         * result in the overwriting of an existing key.
-         *
-         * @param $key string The index for this object
-         * @param $Object libs.sprayfire.core.Object to be added
-         * @throws InvalidArgumentException
-         * @return libs.sprayfire.core.Object
-         */
-        public function setObject($key, \libs\sprayfire\core\Object $Object) {
-            return $this->set($key, $Object);
-        }
-
-        public function removeObject($key) {
-            if (array_key_exists($key, $this->data)) {
-                unset($this->data[$key]);
-                $this->skipNextIteration = true;
+            if (\array_key_exists($key, $this->data)) {
+                return $this->data[$key];
             }
+            return null;
         }
 
         /**
@@ -138,23 +124,20 @@ namespace libs\sprayfire\datastructs {
          * throws an exception if it does not.
          *
          * @details
-         * We are not type hinting \a $value \a in this function so that we are
-         * properly overriding the parent function; throwing an exception if the
-         * value is not the correct type will handle this "break" in type hinting.
-         * Furthermore the only method that should be invoking this is setObject
-         * as the other methods of accessing an overloadable project have been
-         * overriden.
+         * This method will only throw one exception type but that exception may
+         * be thrown for one of two reasons; (1) the \a $key \a is not a valid string
+         * or is empty (2) the \a $Object \a does not properly implement the type
+         * injected into the constructor
          *
          * @param $key A string or numeric index
          * @param $value Should implement libs.sprayfire.core.Object
          * @throws InvalidArgumentException
          * @return libs.sprayfire.core.Object
-         * @see libs.sprayfire.datastructs.MutableStorage
          */
-        protected function set($key, $value) {
+        public function setObject($key, \libs\sprayfire\core\Object $Object) {
             $this->throwExceptionIfKeyInvalid($key);
-            $this->throwExceptionIfObjectNotParentType($value);
-            return parent::set($key, $value);
+            $this->throwExceptionIfObjectNotParentType($Object);
+            $this->data[$key] = $Object;
         }
 
         /**
@@ -210,104 +193,15 @@ namespace libs\sprayfire\datastructs {
             return $isValid;
         }
 
-        // *********************************************************************
-        // *********************************************************************
-        // The below methods are overriden to adhere to the true contract of the
-        // libs.sprayfire.datastructs.ObjectStorage interface without having to do
-        // a runtime check to see if the set value properly implements the
-        // libs.sprayfire.core.Object interface.
-        // *********************************************************************
-        // *********************************************************************
-
-        /**
-         * @brief Overridden to throw an exception as we only want objects being
-         * stored in this data structure to be retrieved via getObject()
-         *
-         * @param $key string
-         * @throws libs.sprayfire.exceptions.UnsupportedOperationException
-         */
-        public function __get($key) {
-            throw new \libs\sprayfire\exceptions\UnsupportedOperationException('This method of adding an object is not supported; please use getObject()');
+        public function getIterator() {
+            return new \ArrayIterator($this->data);
         }
 
-        /**
-         * @brief Overridden to throw an exception as we only want objects being
-         * stored in this data structure to be retrieved via getObject()
-         *
-         * @param $key string
-         * @throws libs.sprayfire.exceptions.UnsupportedOperationException
-         */
-        public function offsetGet($key) {
-            throw new \libs\sprayfire\exceptions\UnsupportedOperationException('This method of adding an object is not supported; please use getObject()');
+        public function count() {
+            return \count($this->data);
         }
 
-        /**
-         * @brief Overridden to throw an exception as we only want objects being
-         * stored in this data structure via setObject()
-         *
-         * @param $key string
-         * @param $value mixed
-         */
-        public function __set($key, $value) {
-            throw new \libs\sprayfire\exceptions\UnsupportedOperationException('This method of setting an object is not supported; please use setObject()');
-        }
 
-        /**
-         * @brief Overridden to throw an exception as we only want objects being
-         * stored in this data structure via setObject()
-         *
-         * @param $key string
-         * @param $value mixed
-         */
-        public function offsetSet($key, $value) {
-            throw new \libs\sprayfire\exceptions\UnsupportedOperationException('This method of setting an object is not supported; please use setObject()');
-        }
-
-        /**
-         * @brief Overriden to throw an exception as only want the property to be
-         * checked for existence via other implemented means, such as contains()
-         * and indexOf().
-         *
-         * @param $key string
-         * @throws libs.sprayfire.exceptions.UnsupportedOperationException
-         */
-        public function __isset($key) {
-            throw new \libs\sprayfire\exceptions\UnsupportedOperationException('This method of determining an object\'s existence in the data storage is not supported; please contains() ');
-        }
-
-        /**
-         * @brief Overriden to throw an exception as only want the property to be
-         * checked for existence via other implemented means, such as contains()
-         * and indexOf().
-         *
-         * @param $key string
-         * @throws libs.sprayfire.exceptions.UnsupportedOperationException
-         */
-        public function offsetExists($key) {
-            throw new \libs\sprayfire\exceptions\UnsupportedOperationException('This method of determining an object\'s existence in the data storage is not supported; please contains() ');
-        }
-
-        /**
-         * @brief Overridden to throw an exception as we only want properties to
-         * be removed from this data structure through removeObject().
-         *
-         * @param $key string
-         * @throws libs.sprayfire.exceptions.UnsupportedOperationException
-         */
-        public function __unset($key) {
-            throw new \libs\sprayfire\exceptions\UnsupportedOperationException('This method of removing an object from storage is not supported; please use removeObject()');
-        }
-
-        /**
-         * @brief Overridden to throw an exception as we only want properties to
-         * be removed from this data structure through removeObject().
-         *
-         * @param $key string
-         * @throws libs.sprayfire.exceptions.UnsupportedOperationException
-         */
-        public function offsetUnset($key) {
-            throw new \libs\sprayfire\exceptions\UnsupportedOperationException('This method of removing an object from storage is not supported; please use removeObject()');
-        }
 
     }
 
