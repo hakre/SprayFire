@@ -20,49 +20,53 @@
  * @copyright Copyright (c) 2011, Charles Sprayberry
  */
 
-namespace libs\sprayfire\core;
-
-/**
- * This class is responsible for including framework and application classes
- * using PHP's autoload mechanism.
- */
-class ClassLoader extends \libs\sprayfire\core\CoreObject {
+namespace libs\sprayfire\core {
 
     /**
-     * Adds the class's autoloader function to the autoload register.
-     *
-     * @codeCoverageIgnore
+     * This class is responsible for including framework and application classes
+     * using PHP's autoload mechanism.
      */
-    public function setAutoLoader() {
-        \spl_autoload_register(array($this, 'loadClass'));
-    }
+    class ClassLoader extends \libs\sprayfire\core\CoreObject {
 
-    /**
-     * Will include the necessary class based on the fully namespaced class passed.
-     *
-     * @param $className The namespaced name of the class to load
-     */
-    private function loadClass($className) {
-        $convertedPath = $this->convertNamespacedClassToDirectoryPath($className);
-        if (\file_exists($convertedPath)) {
-            include $convertedPath;
+        /**
+         * Adds the class's autoloader function to the autoload register.
+         *
+         * @codeCoverageIgnore
+         */
+        public function setAutoLoader() {
+            \spl_autoload_register(array($this, 'loadClass'));
         }
+
+        /**
+         * Will include the necessary class based on the fully namespaced class passed.
+         *
+         * @param $className The namespaced name of the class to load
+         */
+        private function loadClass($className) {
+            $convertedPath = $this->convertNamespacedClassToDirectoryPath($className);
+            if (\file_exists($convertedPath)) {
+                include $convertedPath;
+            }
+        }
+
+        /**
+         * Will convert the `\` in namespaces to the appropriate directory separator
+         * and then determine the complete, absolute path to the requested class.
+         *
+         * @param $className Namespaced name of the class to load
+         * @return The complete path to the class
+         */
+        private function convertNamespacedClassToDirectoryPath($className) {
+            $convertedPath = ROOT_PATH . DS;
+            $convertedPath .= \str_replace('\\', DS, $className);
+            $convertedPath .= '.php';
+            return $convertedPath;
+        }
+
     }
 
-    /**
-     * Will convert the `\` in namespaces to the appropriate directory separator
-     * and then determine the complete, absolute path to the requested class.
-     *
-     * @param $className Namespaced name of the class to load
-     * @return The complete path to the class
-     */
-    private function convertNamespacedClassToDirectoryPath($className) {
-        $convertedPath = ROOT_PATH . DS;
-        $convertedPath .= \str_replace('\\', DS, $className);
-        $convertedPath .= '.php';
-        return $convertedPath;
-    }
+    // End ClassLoader
 
 }
 
-// End ClassLoader
+// libs.sprayfire.core

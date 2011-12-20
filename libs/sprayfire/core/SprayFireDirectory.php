@@ -2,7 +2,8 @@
 
 /**
  * @file
- * @brief
+ * @brief Holds a class to ease the creation of absolute paths for framework and
+ * application directories and files.
  *
  * @details
  * SprayFire is a custom built framework intended to ease the development
@@ -20,100 +21,166 @@
  * @copyright Copyright (c) 2011, Charles Sprayberry OSI MIT License <http://www.opensource.org/licenses/mit-license.php>
  */
 
-namespace libs\sprayfire\core;
-
 /**
- * This class is used as a wrapper for what would otherwise be a constant in the
- * framework.
+ * @namespace libs.sprayfire.core
+ * @brief Holds parts of the framework that are considered essential for SprayFire
+ * to operate.
  *
- * Ultimately though the methods in this class provide a very good functionality
- * that makes it easy to easily get a framework or application directory anywhere
- * in the framework.
+ * @details
+ * The classes and interfaces in this namespace are generally things that work
+ * with the file system, load classes and otherwise make sure the framework has
+ * a common foundation to work with.  Ultimately you can almost think of this as
+ * a "utility" namespace, but ultimately goes into the heart of the framework.
  */
-class SprayFireDirectory implements \libs\sprayfire\core\FrameworkPaths {
+namespace libs\sprayfire\core {
 
     /**
-     * @property string
-     */
-    private static $installRoot = null;
-
-    /**
-     * @property string
-     */
-    private static $frameworkRoot = null;
-
-    /**
-     * @property string
-     */
-    private static $appRoot = null;
-
-    /**
-     * @param $rootInstallationPath string
-     */
-    public static function setRootInstallationPath($rootInstallationPath) {
-        self::$installRoot = $rootInstallationPath;
-        self::$frameworkRoot = self::$installRoot . DS . 'libs' . DS . 'sprayfire';
-        self::$appRoot = self::$installRoot . DS . 'app';
-    }
-
-    /**
-     * @return string
-     */
-    public static function getAppPath() {
-        return self::$appRoot;
-    }
-
-    /**
-     * Converts a variable list of strings into a directory separated path that
-     * will be interpreted to be a sub directory in the ROOT_PATH/app/ dir
+     * @brief Used as a wrapper for what would otherwise be a series of global
+     * constants, ultimately providing much ore; please see the details for more
+     * info.
      *
-     * @return string
-     */
-    public static function getAppPathSubDirectory() {
-        $subDirList = \func_get_args();
-        if (\count($subDirList) === 0) {
-            return self::getAppPath();
-        }
-        $subDirPath = self::getSubDirectoryPath($subDirList);
-        return self::getAppPath() . DS . $subDirPath;
-    }
-
-    /**
-     * @return string
-     */
-    public static function getFrameworkPath() {
-        return self::$frameworkRoot;
-    }
-
-    /**
-     * Converts a variable list of strings into a directory separated path that
-     * will be interpreted as a sub directory in the ROOT_PATH/libs/sprayfire dir
+     * @details
+     * This class does much more than simply encapsulate a couple of global constants.
+     * This is absolutely the preferred method to retrieve paths to directories
+     * residing inside the /libs/sprayfire/ or /app/.  In addition, you can also
+     * resolve the absolute paths for files this way.  Check out the examples for
+     * more information.
      *
-     * @return string
+     * @example
+     * <pre>
+     *
+     * // Below are some examples of how to use the class and what paths are returned
+     * // For this example assume INSTALL_PATH is the primary directory for your
+     * // app, being the directory holding /libs/sprayfire/
+     *
+     * libs.sprayfire.core.SprayFireDirectory::getFrameworkPath();
+     *
+     * // return value = INSTALL_PATH/libs/sprayfire
+     *
+     * libs.sprayfire.core.SprayFireDirectory::getAppPath();
+     *
+     * // return value = INSTALL_PATH/app
+     *
+     * libs.sprayfire.core.SprayFireDirectory::getFrameworkPathSubDirectory('config');
+     *
+     * // return value = INSTALL_PATH/libs/sprayfire/
+     *
+     * libs.sprayfire.core.SprayFireDirectory::getAppPathSubDirectory('config', 'config.json');
+     *
+     * // return value = INSTALL_PATH/app/config/config.json
+     *
+     * // Hopefully this demonstrates how to effectively use this class to easily
+     * // create absolute paths to virtually any directory in the application.
+     *
+     * </pre>
+     *
      */
-    public static function getFrameworkPathSubDirectory() {
-        $subDirList = \func_get_args();
-        if (\count($subDirList) === 0) {
-            return self::getFrameworkPath();
+    class SprayFireDirectory {
+
+        /**
+         * @brief Holds the ROOT_PATH that should be used by the class
+         *
+         * @details
+         * Ultimately this property is used to facilitate testing, allowing us to
+         * set the install path to a test directory structure.  Setting this value
+         * will ultimately impact the directories that are returned.
+         *
+         * @property $installRoot
+         */
+        private static $installRoot = null;
+
+        /**
+         * @brief The absolute path to the root framework directory.
+         *
+         * @property $frameworkRoot
+         */
+        private static $frameworkRoot = null;
+
+        /**
+         *@brief The absolute path to the root app directory.
+         *
+         * @property $appRoot
+         */
+        private static $appRoot = null;
+
+        /**
+         * @param $rootInstallationPath string
+         */
+        public static function setRootInstallationPath($rootInstallationPath) {
+            self::$installRoot = $rootInstallationPath;
+            self::$frameworkRoot = self::$installRoot . DS . 'libs' . DS . 'sprayfire';
+            self::$appRoot = self::$installRoot . DS . 'app';
         }
-        $subDirPath = self::getSubDirectoryPath($subDirList);
-        $fullPath = self::getFrameworkPath() . DS . $subDirPath;
-        return $fullPath;
+
+        /**
+         * @return The absolute path to the root app folder, with no trailing separator
+         */
+        public static function getAppPath() {
+            return self::$appRoot;
+        }
+
+        /**
+         * @brief Converts a variable list of arguments to an absolute path in the
+         * ROOT_PATH/app/ directory.
+         *
+         * @return Absolute path to a sub directory or file in the root app folder, with no trailing separator
+         */
+        public static function getAppPathSubDirectory() {
+            $subDirList = \func_get_args();
+            if (\count($subDirList) === 0) {
+                return self::getAppPath();
+            }
+            $subDirPath = self::getSubDirectoryPath($subDirList);
+            return self::getAppPath() . DS . $subDirPath;
+        }
+
+        /**
+         * @return Absolute path to the root framework folder, with no trailing separator
+         */
+        public static function getFrameworkPath() {
+            return self::$frameworkRoot;
+        }
+
+        /**
+         * @brief Converts a variable list of arguments to an absolute path in the
+         * ROOT_PATH/libs/sprayfire/ directory
+         *
+         * @return Absolute path to a sub directory or file in the root framework folder, with no trailing separator
+         */
+        public static function getFrameworkPathSubDirectory() {
+            $subDirList = \func_get_args();
+            if (\count($subDirList) === 0) {
+                return self::getFrameworkPath();
+            }
+            $subDirPath = self::getSubDirectoryPath($subDirList);
+            $fullPath = self::getFrameworkPath() . DS . $subDirPath;
+            return $fullPath;
+        }
+
+        /**
+         * @brief Converts an array of strings into a sub-directory fragment with
+         * no trailing separator.
+         *
+         * @details
+         * This is implemented to make the creation of framework and app sub-directories
+         * as generic as possible.
+         *
+         * @param $subDirList array
+         * @return A sub directory fragment with no trailing separator
+         */
+        private static function getSubDirectoryPath(array $subDirList) {
+            $subDirPath = '';
+            foreach ($subDirList as $subDir) {
+                $subDirPath .= \trim($subDir) . DS;
+            }
+            $subDirPath = \rtrim($subDirPath, DS);
+            return $subDirPath;
+        }
+
     }
 
-    /**
-     * @param $subDirList array
-     * @return string
-     */
-    private static function getSubDirectoryPath(array $subDirList) {
-        $subDirPath = '';
-        foreach ($subDirList as $subDir) {
-            $subDirPath .= \trim($subDir) . DS;
-        }
-        $subDirPath = \rtrim($subDirPath, DS);
-        return $subDirPath;
-    }
+    // End SprayFireDirectory
 
 }
 
-// End SprayFireDirectory
+// End libs.sprayfire.core
