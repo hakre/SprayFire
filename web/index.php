@@ -24,7 +24,6 @@
      */
     defined('ROOT_PATH') or define('ROOT_PATH', dirname(__DIR__));
 
-    include ROOT_PATH . DS . 'libs' . DS . 'sprayfire' . DS . 'core' . DS . 'FrameworkPaths.php';
     include ROOT_PATH . DS . 'libs' . DS . 'sprayfire' . DS . 'core' . DS . 'SprayFireDirectory.php';
 
     SprayFireDirectory::setRootInstallationPath(ROOT_PATH);
@@ -47,4 +46,4 @@
         exit;
     }
 
-    var_dump($Config->app->version);
+    $Uri = new \libs\sprayfire\request\BaseUri($_SERVER['REQUEST_URI']);
