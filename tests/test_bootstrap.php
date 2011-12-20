@@ -9,8 +9,7 @@
      * @var string
      */
     defined('ROOT_PATH') or define('ROOT_PATH', dirname(dirname(__FILE__)));
-
-    include ROOT_PATH . DS . 'libs' . DS . 'sprayfire' . DS . 'core' . DS . 'FrameworkPaths.php';
+    
     include ROOT_PATH . DS . 'libs' . DS . 'sprayfire' . DS . 'core' . DS . 'SprayFireDirectory.php';
 
     \libs\sprayfire\core\SprayFireDirectory::setRootInstallationPath(ROOT_PATH);
