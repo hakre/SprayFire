@@ -119,106 +119,6 @@ class SprayFireObjectStoreTest extends PHPUnit_Framework_TestCase {
     }
 
     /**
-     * @expectedException \libs\sprayfire\exceptions\UnsupportedOperationException
-     */
-    public function testUsingOverloadedPropertySet() {
-
-        // note that the object type is not a framework object!
-        $Type = new \ReflectionClass('\\stdClass');
-        $Storage = new libs\sprayfire\datastructs\SprayFireObjectStore($Type);
-        $Storage->mykey = new \stdClass();
-    }
-
-    /**
-     * @expectedException \libs\sprayfire\exceptions\UnsupportedOperationException
-     */
-    public function testUsingArrayAccessSet() {
-        $Type = new \ReflectionClass('\\libs\\sprayfire\\core\\Object');
-        $Storage = new libs\sprayfire\datastructs\SprayFireObjectStore($Type);
-
-        $Object = new \tests\helpers\TestObject;
-        $Storage['mykey'] = $Object;
-    }
-
-    /**
-     * @expectedException \libs\sprayfire\exceptions\UnsupportedOperationException
-     */
-    public function testUsingOverloadedPropertyGet() {
-        $Type = new \ReflectionClass('\\libs\\sprayfire\\core\\Object');
-        $Storage = new libs\sprayfire\datastructs\SprayFireObjectStore($Type);
-
-        $Object = new \tests\helpers\TestObject;
-        $Storage->setObject('mykey', $Object);
-
-        $TheObject = $Storage->mykey;
-    }
-
-    /**
-     * @expectedException \libs\sprayfire\exceptions\UnsupportedOperationException
-     */
-    public function testUsingArrayAccessGet() {
-        $Type = new \ReflectionClass('\\libs\\sprayfire\\core\\Object');
-        $Storage = new libs\sprayfire\datastructs\SprayFireObjectStore($Type);
-
-        $Object = new \tests\helpers\TestObject;
-        $Storage->setObject('mykey', $Object);
-
-        $TheObject = $Storage['mykey'];
-    }
-
-    /**
-     * @expectedException \libs\sprayfire\exceptions\UnsupportedOperationException
-     */
-    public function testRemovingOverloadedProperty() {
-        $Type = new \ReflectionClass('\\libs\\sprayfire\\core\\Object');
-        $Storage = new libs\sprayfire\datastructs\SprayFireObjectStore($Type);
-
-        $Object = new \tests\helpers\TestObject;
-        $Storage->setObject('mykey', $Object);
-
-        unset($Storage->mykey);
-    }
-
-    /**
-     * @expectedException \libs\sprayfire\exceptions\UnsupportedOperationException
-     */
-    public function testRemovingArrayAccessProperty() {
-        $Type = new \ReflectionClass('\\libs\\sprayfire\\core\\Object');
-        $Storage = new libs\sprayfire\datastructs\SprayFireObjectStore($Type);
-
-        $Object = new \tests\helpers\TestObject;
-        $Storage->setObject('mykey', $Object);
-
-        unset($Storage['mykey']);
-    }
-
-    /**
-     * @expectedException \libs\sprayfire\exceptions\UnsupportedOperationException
-     */
-    public function testOverloadedPropertyIsset() {
-        $Type = new \ReflectionClass('\\libs\\sprayfire\\core\\Object');
-        $Storage = new libs\sprayfire\datastructs\SprayFireObjectStore($Type);
-
-        $Object = new \tests\helpers\TestObject;
-        $Storage->setObject('mykey', $Object);
-
-        isset($Storage->mykey);
-    }
-
-    /**
-     * @expectedException \libs\sprayfire\exceptions\UnsupportedOperationException
-     */
-    public function testUsingArrayAccessIsset() {
-        $Type = new \ReflectionClass('\\libs\\sprayfire\\core\\Object');
-        $Storage = new libs\sprayfire\datastructs\SprayFireObjectStore($Type);
-
-        $Object = new \tests\helpers\TestObject;
-        $Storage->setObject('mykey', $Object);
-
-        isset($Storage['mykey']);
-    }
-
-    /**
      * @expectedException \InvalidArgumentException
      */
     public function testNullKeyGiven() {
@@ -229,6 +129,17 @@ class SprayFireObjectStoreTest extends PHPUnit_Framework_TestCase {
         $Storage = new libs\sprayfire\datastructs\SprayFireObjectStore($Type);
 
         $Storage->setObject($key, $Object);
+    }
+
+    public function testGettingNonexistentKey() {
+        $key = 'noexist';
+        $Type = new ReflectionClass('\\libs\\sprayfire\\core\\Object');
+        $Storage = new libs\sprayfire\datastructs\SprayFireObjectStore($Type);
+
+        $Storage->setObject('i-do-exist', new \tests\helpers\TestObject);
+        $Noexist = $Storage->getObject($key);
+        $this->assertNull($Noexist);
+        $this->assertSame($Storage->count(), 1);
 
     }
 }
