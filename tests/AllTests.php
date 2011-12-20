@@ -15,7 +15,6 @@ include 'FrameworkBootstrapTest.php';
 include 'JsonConfigTest.php';
 include 'MutableStorageTest.php';
 include 'SprayFireObjectStoreTest.php';
-include 'BaseUriTest.php';
 
 /**
  *
@@ -29,11 +28,10 @@ class AllTests {
      */
     public static function suite() {
         $Suite = new PHPUnit_Framework_TestSuite();
-        //$Suite->addTestSuite('FrameworkBootstrapTest');
+        $Suite->addTestSuite('FrameworkBootstrapTest');
         $Suite->addTestSuite('JsonConfigTest');
         $Suite->addTestSuite('MutableStorageTest');
         $Suite->addTestSuite('SprayFireObjectStoreTest');
-        $Suite->addTestSuite('BaseUriTest');
 
         return $Suite;
     }
