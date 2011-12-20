@@ -2,7 +2,8 @@
 
 /**
  * @file
- * @brief
+ * @brief A class that extends libs.sprayfire.datastructs.DataStorage and allows
+ * for any data to be manipulated, removed or added to the structure.
  *
  * @details
  * SprayFire is a custom built framework intended to ease the development
@@ -27,15 +28,15 @@
 namespace libs\sprayfire\datastructs {
 
     /**
-     * A simple data storage object that holds key/value pairs and allows additional
+     * @brief A simple data storage object that holds key/value pairs and allows additional
      * keys to be added and existing keys to be manipulated or removed.
      */
     class MutableStorage extends \libs\sprayfire\datastructs\DataStorage {
 
         /**
-         * Will accept an array of data to store and gives the calling code an option
-         * to recursively convert all inner arrays into MutableStorage objects; ultimately
-         * this will allow for chaining within this object.
+         * @brief Requires an array of data is passed, optionally allowing the
+         * arrays within that data to be converted to MutableStorage objects as
+         * well.
          *
          * @param $data An array of data to store
          * @param $convertDeep True if arrays within the array should be converted to
@@ -75,8 +76,15 @@ namespace libs\sprayfire\datastructs {
         }
 
         /**
-         * Will take an array and convert all inner arrays into MutableStorage objects
-         * returning the outer array.
+         * @brief Converts all arrays in \a $data \a to MutableStorage objects,
+         * allowing for the chaining of properties in the created object.
+         *
+         * @details
+         * Note that if you extend MutableStorage and override this method an array
+         * value MUST be returned or an UnexpectedValueException will be thrown by
+         * the class constructor.  If self::__construct() is overridden as well
+         * and the data from convertDataDeep is not checked you will receive a
+         * type hint compile error if a non-array is passed to parent::__construct().
          *
          * @param $data array
          * @return array
@@ -91,8 +99,8 @@ namespace libs\sprayfire\datastructs {
         }
 
         /**
-         * Will loop through each of the values and recursively convert those values
-         * that are arrays into MutableStorage objects.
+         * @brief Will convert all the passed array, and all arrays within that
+         * array, to a libs.sprayfire.datastructs.MutableStorage object.
          *
          * @param $data array
          * @return libs.sprayfire.datastructs.MutableStorage
