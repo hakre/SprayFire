@@ -30,10 +30,9 @@ namespace libs\sprayfire\datastructs {
      * @brief The framework's primary implementation to store framework objects.
      *
      * @details
-     * It allows for the associating of framework objects with a key and the retrieval
-     * of that object using that key.  The data structure also allows for the removal
-     * of objects associated with a key and iterating over the objects stored in the
-     * array.
+     * Allows for the associating of framework objects with a key and the retrieval
+     * of that object using that key.  Also allows for the removal of an object
+     * associated with a key and iterating over the stored objects.
      */
     class SprayFireObjectStore extends \libs\sprayfire\core\CoreObject implements \libs\sprayfire\datastructs\ObjectStorage {
 
@@ -45,20 +44,25 @@ namespace libs\sprayfire\datastructs {
          */
         protected $ReflectedParentType;
 
+        /**
+         * @brief Holds the objects being stored in this data structure
+         *
+         * @property array
+         */
         protected $data = array();
 
         /**
          * @brief Will initiate the object storage as an empty array and assign the passed
          * ReflectionClass to the appropriate class property.
          *
-         * @param $ReflectedObjectType A ReflectionClass object
+         * @param $ReflectedObjectType ReflectionClass
          */
         public function __construct(\ReflectionClass $ReflectedObjectType) {
             $this->ReflectedParentType = $ReflectedObjectType;
         }
 
         /**
-         * @brief Will check if the storage has a bucket holding the passed object and return
+         * @brief Checks if the \a $Object \a exists in this data structure; returns
          * true if the object exists and false if it doesn't.
          *
          * @param $Object libs.sprayfire.core.Object
@@ -72,8 +76,8 @@ namespace libs\sprayfire\datastructs {
         }
 
         /**
-         * @brief Will return the string or numeric index associated with the given object or
-         * false if the object is not stored.
+         * @brief Return the string or numeric index associated with the given object
+         * or false if the object is not stored.
          *
          * @param $Object libs.sprayfire.core.Object
          * @return mixed \a $key \a type set or false on failure
@@ -98,6 +102,11 @@ namespace libs\sprayfire\datastructs {
             return \count($this) <= 0;
         }
 
+        /**
+         * @brief Remove the element associated with by the \a $key \a passed.
+         *
+         * @param $key string
+         */
         public function removeObject($key) {
             if (\array_key_exists($key, $this->data)) {
                 unset($this->data[$key]);
@@ -105,8 +114,8 @@ namespace libs\sprayfire\datastructs {
         }
 
         /**
-         * @brief Will return the object associated with the key, if that key exists, or return
-         * null.
+         * @brief Return the object associated with \a $key \a if it exists or
+         * null if it does not.
          *
          * @param $key string
          * @return libs.sprayfire.core.Object
@@ -119,8 +128,8 @@ namespace libs\sprayfire\datastructs {
         }
 
         /**
-         * @brief Determines whether or not the passed \a $value \a is a proepr
-         * object for this storage type, adds the \a $value \a if it does and
+         * @brief Determines whether or not the passed \a $Object \a is a proepr
+         * object for this storage type, adds the \a $Object \a if it does and
          * throws an exception if it does not.
          *
          * @details
@@ -130,7 +139,7 @@ namespace libs\sprayfire\datastructs {
          * injected into the constructor
          *
          * @param $key A string or numeric index
-         * @param $value Should implement libs.sprayfire.core.Object
+         * @param $Object Should implement libs.sprayfire.core.Object
          * @throws InvalidArgumentException
          * @return libs.sprayfire.core.Object
          */
@@ -161,8 +170,11 @@ namespace libs\sprayfire\datastructs {
         }
 
         /**
-         * Determines whether or not the passed \a $Object \a implements the parent
-         * type set by the constructor dependency.
+         * @brief Determines whether or not the passed \a $Object \a implements
+         * the parent type set by the constructor dependency.
+         *
+         * @details
+         * The objet is considered valid if any of the following are true:
          *
          * 1) Implements the interface passed in the constructor
          * 2) Is an instance of the class passed in the constructor
@@ -193,16 +205,24 @@ namespace libs\sprayfire\datastructs {
             return $isValid;
         }
 
+        /**
+         * @brief Satisfies the requirements of the IteratorAggregate interface
+         *
+         * @return ArrayIterator
+         */
         public function getIterator() {
             return new \ArrayIterator($this->data);
         }
 
+        /**
+         * @brief Satisfies the requirements of the Countable interface.
+         *
+         * @return int
+         */
         public function count() {
             return \count($this->data);
         }
-
-
-
+        
     }
 
     // End SprayFireObjectStore
