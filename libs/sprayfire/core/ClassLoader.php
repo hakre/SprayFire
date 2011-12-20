@@ -2,7 +2,8 @@
 
 /**
  * @file
- * @brief
+ * @brief Holds a class used as the framework autoloader, converting a namespaced
+ * class to an absolute directory.
  *
  * @details
  * SprayFire is a custom built framework intended to ease the development
@@ -20,16 +21,27 @@
  * @copyright Copyright (c) 2011, Charles Sprayberry
  */
 
+/**
+ * @namespace libs.sprayfire.core
+ * @brief Holds parts of the framework that are considered essential for SprayFire
+ * to operate.
+ *
+ * @details
+ * The classes and interfaces in this namespace are generally things that work
+ * with the file system, load classes and otherwise make sure the framework has
+ * a common foundation to work with.  Ultimately you can almost think of this as
+ * a "utility" namespace, but ultimately goes into the heart of the framework.
+ */
 namespace libs\sprayfire\core {
 
     /**
-     * This class is responsible for including framework and application classes
-     * using PHP's autoload mechanism.
+     * @brief Responsible for including namespaced framework and application classes,
+     * assuming they abide to the rules set forth by the framework.
      */
     class ClassLoader extends \libs\sprayfire\core\CoreObject {
 
         /**
-         * Adds the class's autoloader function to the autoload register.
+         * @brief Adds the class's autoloader function to the autoload register.
          *
          * @codeCoverageIgnore
          */
@@ -38,9 +50,9 @@ namespace libs\sprayfire\core {
         }
 
         /**
-         * Will include the necessary class based on the fully namespaced class passed.
+         * @brief Include the class based on the fully namespaced \a $className passed.
          *
-         * @param $className The namespaced name of the class to load
+         * @param $className The namespaced class to load
          */
         private function loadClass($className) {
             $convertedPath = $this->convertNamespacedClassToDirectoryPath($className);
@@ -50,8 +62,8 @@ namespace libs\sprayfire\core {
         }
 
         /**
-         * Will convert the `\` in namespaces to the appropriate directory separator
-         * and then determine the complete, absolute path to the requested class.
+         * @brief Converts the PHP namespace separator to the appropriate directory
+         * separator.
          *
          * @param $className Namespaced name of the class to load
          * @return The complete path to the class
