@@ -53,11 +53,15 @@ namespace libs\sprayfire\request {
 
         /**
          * Returned if the controller fragment of the URI is not set.
+         *
+         * @property DEFAULT_CONTROLLER
          */
         const DEFAULT_CONTROLLER = '%default_controller%';
 
         /**
          * Returned if the default action should be used.
+         *
+         * @property DEFAULT_ACTION
          */
         const DEFAULT_ACTION = '%default_action%';
 
