@@ -2,7 +2,8 @@
 
 /**
  * @file
- * @brief
+ * @brief An interface that should be implemented by data structures holding
+ * SprayFire objects.
  *
  * @details
  * SprayFire is a custom built framework intended to ease the development
@@ -27,24 +28,26 @@
 namespace libs\sprayfire\datastructs {
 
     /**
-     * Provides a data structure to store *framework* derived objects.
+     * @brief Provides an API to store SprayFire derived objects, iterate over them
+     * and store similar typed objects.
      *
-     * Please note that this data structure will only store classes implementing the
-     * libs.sprayfire.interfaces.Object interface.  If this interface is not implemented
-     * by the objects being added an InvalidArgumentException should be thrown to let
-     * the calling code know that the object is of the incorrect type.
+     * @details
+     * Please note that this data structure will only store classes implementing
+     * the libs.sprayfire.interfaces.Object interface.  If this interface is not
+     * implemented by the objects being added an InvalidArgumentException should
+     * be thrown to let the calling code know that the object is of the incorrect
+     * type.
      *
-     * Also, please note that this object provides a variety of means to store and gain
-     * access to the objects, including:
-     *
-     * 1) via object notation '->' *framework preferred
-     * 2) via array notation '[]'
-     * 3) via `getObject()` and `setObject()` methods
+     * The only way this data structure should be manipulated and interacted with
+     * is through the supplied interface; do not implement this interface through
+     * the MutableStore or ImmutableStorage objects as they allow for the storing
+     * of any data type through the libs.sprayfire.core.Overloadable and ArrayAccess
+     * interfaces.
      */
-    interface ObjectStorage extends \Iterator, \Countable {
+    interface ObjectStorage extends \IteratorAggregate, \Countable {
 
         /**
-         * This storage object should restrict the objects stored in it to a specific
+         * @brief This data structure should restrict the objects stored in it to a specific
          * class or interface; the type of class or interface should be passed via a
          * ReflectionClass object.
          *
@@ -54,42 +57,47 @@ namespace libs\sprayfire\datastructs {
         public function __construct(\ReflectionClass $ReflectedObjectType);
 
         /**
-         * Will return an Object if one exists for the given key or null.
+         * @brief Return an Object if one exists for the given key or null.
          *
          * @param $key string
-         * @return mixed
+         * @return libs.sprayfire.core.Object
          */
         public function getObject($key);
 
         /**
-         * Will assign the passed Object to the passed $key; should return some boolean
-         * indicator as to whether the object was set to the given $key.
+         * @brief Assigns the passed \a $Object \a to the given \a $key \a; if
+         * the key exists the value it stores will be overwritten by the new \a $Object \a.
          *
-         * If Object does not implement the proper type passed in the class constructor
-         * this method should throw an InvalidArgumentException and if the object
-         * storage being implemented does not allow for the setting of new or existing
-         * objects this method should throw a libs.sprayfire.exceptions.UnsupportedOperationException.
+         * @details
+         * If \a $Object \a does not implement the proper type passed in the class
+         * constructor this method should throw an InvalidArgumentException and if
+         * the object storage being implemented does not allow for the setting of
+         * new or existing objects this method should throw a
+         * libs.sprayfire.exceptions.UnsupportedOperationException.
          *
          * @param $key string
          * @param $Object libs.sprayfire.core.Object
-         * @return boolean
+         * @return void
          * @throws libs.sprayfire.exceptions.UnsupportedOperationException
          * @throws InvalidArgumentException
          */
         public function setObject($key, \libs\sprayfire\core\Object $Object);
 
         /**
-         * Will return a boolean value if the passed Object is stored; the Object::equals()
-         * method will be used to determine if the passed Object is contained within
-         * this store.
+         * @brief Returns a boolean value indicating whether the \a $Object \a is
+         * stored.
+         *
+         * @details
+         * libs.sprayfire.core.Object::equals() method will be used to determine
+         * if the passed Object is contained within this storage.
          *
          * @param $Object libs.sprayfire.core.Object
-         * @return boolean
+         * @return boolean true if \a $Object \a is stored; false if it isn't
          */
         public function contains(\libs\sprayfire\core\Object $Object);
 
         /**
-         * @brief Should remove the object associated with \a $key \a, there is no need
+         * @brief Remove the object associated with \a $key \a, there is no need
          * to return a value.
          *
          * @param $key string
@@ -98,9 +106,13 @@ namespace libs\sprayfire\datastructs {
         public function removeObject($key);
 
         /**
-         * Will return the index for the given index or false if the object does
-         * not exist in the store.  Note, this may not necessarily be a numeric index
-         * but instead a string index.
+         * @brief Return the index for \a $Object \a or false if the object does
+         * not exist in the storage.
+         *
+         * @details
+         * The value returned from this method is likely to be a string as compared
+         * to a numeric index; ultimately however it will return whatever index
+         * value was set for the \a $Object \a.
          *
          * @param $Object libs.sprayfire.core.Object
          * @return mixed
