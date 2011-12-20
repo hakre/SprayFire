@@ -99,8 +99,8 @@ namespace libs\sprayfire\datastructs {
         }
 
         /**
-         * @brief Will convert all the passed array, and all arrays within that
-         * array, to a libs.sprayfire.datastructs.MutableStorage object.
+         * @brief Will convert the passed array, and all arrays within that array,
+         * to a libs.sprayfire.datastructs.MutableStorage object.
          *
          * @param $data array
          * @return libs.sprayfire.datastructs.MutableStorage

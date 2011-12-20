@@ -2,7 +2,9 @@
 
 /**
  * @file
- * @brief
+ * @brief A simple key/value storage object that extends libs.sprayfire.datastructs.DataStorage
+ * and does not allow the data associated to be changed after the object has been
+ * constructed.
  *
  * @details
  * SprayFire is a custom built framework intended to ease the development
@@ -27,13 +29,20 @@
 namespace libs\sprayfire\datastructs {
 
     /**
-     * A simple key/value storage object that does not allow the data associated with
-     * to be changed after the object has been constructed.
+     * @brief An object that allows for data to be stored and to be assured that
+     * the data is not mutable.
+     *
+     * @details
+     * This object is immutable by the fact that after the object is constructed
+     * attempting to __set the object or offsetSet the object's properties will
+     * results in a libs.sprayfire.exceptions.UnsupportedOperationException will
+     * be thrown.  If a class extends this please ensure that it is a truly immutable
+     * object and does not have any "backdoors".
      */
     class ImmutableStorage extends \libs\sprayfire\datastructs\DataStorage {
 
         /**
-         * Accepts an array of data to store and gives the calling code the option to
+         * @brief Accepts an array of data to store and gives the calling code the option to
          * convert all inner arrays into ImmutableStorage objects.
          *
          * @param $data array
@@ -67,8 +76,15 @@ namespace libs\sprayfire\datastructs {
         }
 
         /**
-         * Is responsible for returning an array where all internal arrays have been
-         * converted to ImmutableStorage objects.
+         * @brief Converts all arrays in \a $data \a to ImmutableStorage objects,
+         * allowing for the chaining of properties in the created object.
+         *
+         * @details
+         * Note that if you extend ImmutableStorage and override this method an array
+         * value MUST be returned or a libs.sprayfire.exceptions.UnexpectedValueException
+         * will be thrown by the class constructor.  If self::__construct() is overridden
+         * as well and the data from convertDataDeep is not an array you will receive a
+         * type hint compile error when parent::__construct() is called.
          *
          * @param $data array
          * @return array
@@ -83,9 +99,8 @@ namespace libs\sprayfire\datastructs {
         }
 
         /**
-         * Will loop through each of the values and recursively convert those values
-         * that are arrays into ImmutableStorage objects; returning back an array of
-         * key/value pairs and ImmutableStorage objects of deeper key/value pairs.
+         * @brief Will convert the passed array, and all arrays within that array,
+         * to a libs.sprayfire.datastructs.ImmutableStorage object.
          *
          * @param $data array
          * @return libs.sprayfire.datastructs.ImmutableStorage
