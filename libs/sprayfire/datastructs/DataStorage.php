@@ -2,7 +2,8 @@
 
 /**
  * @file
- * @brief
+ * @brief Provides a generic means to store data through object (->) or array ([])
+ * notation.
  *
  * @details
  * SprayFire is a custom built framework intended to ease the development
@@ -27,8 +28,28 @@
 namespace libs\sprayfire\datastructs {
 
     /**
-     * Is the base class for objects needing to store data, retrieve a count of that
-     * data, and access that data through object '->' or array '[]' notation.
+     * @brief Stores data in a property and allows access to that data via object
+     * or array notation.
+     *
+     * @details
+     * This class provides a generic means to retrieve data based on a unique
+     * \a $key and determine if that \a $key has a non-null element associated
+     * with it.  Extending classes should provide the exact implementation details
+     * for how that \a $key and \a $value should be added to the appropriate property.
+     *
+     * To provide an easy way to provide both object and array notation access there
+     * are four protected methods that can be considered 'hooks', implementing or
+     * overriding the following methods will change the way this object works.
+     *
+     * Hook name           | Method's effected
+     * -------------------------------------------------------------------------
+     * set($key, $value)   | __set($key, $value), offsetSet($key, $value)
+     * -------------------------------------------------------------------------
+     * get($key)           | __get($key), offsetGet($key)
+     * -------------------------------------------------------------------------
+     * keyHasValue($key)   | __isset($key), offsetExists($key)
+     * -------------------------------------------------------------------------
+     * removeKey($key)     | __unset($key), offsetUnset($key)
      */
     abstract class DataStorage extends \libs\sprayfire\core\CoreObject implements \ArrayAccess, \Countable, \libs\sprayfire\datastructs\Overloadable {
 
