@@ -41,6 +41,7 @@ namespace libs\sprayfire\datastructs {
      * are four protected methods that can be considered 'hooks', implementing or
      * overriding the following methods will change the way this object works.
      *
+     * <pre>
      * Hook name           | Method's effected
      * -------------------------------------------------------------------------
      * set($key, $value)   | __set($key, $value), offsetSet($key, $value)
@@ -50,19 +51,33 @@ namespace libs\sprayfire\datastructs {
      * keyHasValue($key)   | __isset($key), offsetExists($key)
      * -------------------------------------------------------------------------
      * removeKey($key)     | __unset($key), offsetUnset($key)
+     * </pre>
+     *
+     * If you extend this class it should be expected that the object gets and
+     * sets data values via object or array notation.  If methods are also used
+     * to manipulate the data structure you should really evaluate whether or not
+     * this is the best option as you will still have to take into account the
+     * public methods that allow the object an array notation.
      */
     abstract class DataStorage extends \libs\sprayfire\core\CoreObject implements \ArrayAccess, \Countable, \libs\sprayfire\datastructs\Overloadable {
 
         /**
-         * The array holding the data being stored.
+         * An array holding the data being stored.
          *
-         * @property array
+         * @property $data
          */
         protected $data = array();
 
         /**
-         * Should accept an array, associative or numeric indexed, that stores the
-         * information for this object.
+         * @brief Should accept an array that has the information to store, or
+         * an empty array if an empty structure is to be created.
+         *
+         * @details
+         * If an associative indexed array is passed it is recommended that you
+         * only set string properties and do not use the structure as an array
+         * with numerically indexed keys.  However, the opposite applies if the
+         * structure is to hold numerically indexed keys work with it as an array
+         * and only store numerically indexed keys in it.
          *
          * @param $data array
          */
@@ -87,10 +102,9 @@ namespace libs\sprayfire\datastructs {
         }
 
         /**
-         * Is the framework 'hook' to retrieve the data associated with a given key;
-         * all methods that retrieve a value from the data array should call this
-         * method instead.
+         * @brief 'hook' to retrieve the data associated with a given key.
          *
+         * @details
          * If your class needs to change the way object are retrieved from the data
          * store simply override this function, ensuring that the proper value is
          * returned.
@@ -122,9 +136,8 @@ namespace libs\sprayfire\datastructs {
         }
 
         /**
-         * Is used by methods needing to determine if the given $key is part of the
-         * elements being stored and the key has a value associated with it; all methods
-         * needing to emulate `isset` functionality should call this method.
+         * @brief 'hook' to determine if a given \a $key exists and has a value
+         * associated with it.
          *
          * @param $key string
          * @return boolean
@@ -137,8 +150,10 @@ namespace libs\sprayfire\datastructs {
         }
 
         /**
-         * Is the method used by this class to determine whether or not the key exists.
+         * @brief An internally used method to determine if a given \a $key exists
+         * in the stored data.
          *
+         * @details
          * If your class needs to override this method please ensure a true boolean
          * type is returned.
          *
@@ -194,10 +209,9 @@ namespace libs\sprayfire\datastructs {
         }
 
         /**
-         * Should set the value in the data store associated with the passed key or
-         * a libs.sprayfire.exceptions.UnsupportedOperationException should be thrown
-         * if the class does not allow data to be set after __construct().
+         * @brief 'hook' to set the given \a $value for the associated \a $key.
          *
+         * @details
          * Please return the value set or false if there was an error.
          *
          * @param $key string
@@ -208,11 +222,9 @@ namespace libs\sprayfire\datastructs {
         abstract protected function set($key, $value);
 
         /**
-         * Should remove the value associated with the passed key from the data store;
-         * no value needs to be returned, simply ensure that the count for the data
-         * store is properly recalibrated.
+         * @brief 'hook' to remove the given \a $key from the stored data.
          *
-         * @param string $key
+         * @param $key string
          */
         abstract protected function removeKey($key);
 
