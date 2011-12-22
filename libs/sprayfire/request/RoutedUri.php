@@ -30,17 +30,25 @@
 namespace libs\sprayfire\request {
 
     /**
-     * @brief An extension of the Uri interface that should simply provide a means to get
-     * the routed URI string along with the routed controller, action and parameters.
+     * @brief An extension of the libs.sprayfire.request.Uri interface to allow
+     * for the setting of the original URI string used to map the RoutedUri object
+     * created and a means to retrieve the mapped URI string.
      */
     interface RoutedUri extends \libs\sprayfire\request\Uri {
 
         /**
-         * Should return the completely routed URI, to include the parameters.
-         *
-         * @return string
+         * @return The URI string that was passed in this objects contructor
          */
         public function getRoutedUri();
+
+        /**
+         * @brief Provides a means to set the original URI string that this RoutedUri
+         * was mapped from; this string should be returned by
+         * libs.sprayfire.request.Uri::getOriginalUri().
+         *
+         * @param $uri string
+         */
+        public function setOriginalUri($uri);
 
     }
 
