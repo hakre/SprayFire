@@ -1,0 +1,16 @@
+{
+    "sprayfire-docs": "Please see SprayFire Wiki on the Routing configuration file",
+    "routes": {
+        "route001": {
+            "request": {
+                "controller": "%default_controller%",
+                "action": "%default_action%",
+                "parameter-count": "*"
+            },
+            "mapped": {
+                "controller": "pages",
+                "action": "index"
+            }
+        }
+    }
+}
