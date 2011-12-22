@@ -15,6 +15,7 @@ include 'JsonConfigTest.php';
 include 'MutableStorageTest.php';
 include 'SprayFireObjectStoreTest.php';
 include 'BaseUriTest.php';
+include 'SprayFireUriTest.php';
 
 /**
  *
@@ -33,6 +34,7 @@ class AllTests {
         $Suite->addTestSuite('MutableStorageTest');
         $Suite->addTestSuite('SprayFireObjectStoreTest');
         $Suite->addTestSuite('BaseUriTest');
+        $Suite->addTestSuite('SprayFireUriTest');
 
         return $Suite;
     }
