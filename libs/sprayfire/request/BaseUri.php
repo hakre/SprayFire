@@ -111,7 +111,7 @@ namespace libs\sprayfire\request {
          *
          * @return associative array with the following keys: 'controller', 'action', 'paramters
          */
-        private function parseUriFragments($uriFragments) {
+        protected function parseUriFragments($uriFragments) {
             $parsedFragments = array();
             $controller = 'controller';
             $action = 'action';

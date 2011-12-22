@@ -46,4 +46,6 @@
         exit;
     }
 
-    $Uri = new \libs\sprayfire\request\BaseUri('/sprayfire/controller/action/param1');
+    $Uri = new \libs\sprayfire\request\BaseUri('/sprayfire/articles/:php/mysql_*+must+die');
+
+    var_dump($Uri);
