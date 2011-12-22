@@ -76,12 +76,7 @@ namespace libs\sprayfire\request {
         /**
          * @return string The original unaltered URI
          */
-        public function getRawUri();
-
-        /**
-         * @param $uri The complete routed URI path
-         */
-        public function setRoutedUri($uri);
+        public function getOriginalUri();
 
         /**
          * @return string The URI controller fragment or DEFAULT_CONTROLLER if no controller was given
