@@ -88,7 +88,7 @@ namespace libs\sprayfire\request {
          * @return array in controller, action, param1, param2, paramN order, the
          *         keys should be properly numerically index.
          */
-        private function trimAndExplodeUri($uri) {
+        protected function trimAndExplodeUri($uri) {
             $parsedUri = \parse_url($uri);
             $path = $parsedUri['path'];
             $path = \trim($path, '/');
@@ -165,7 +165,7 @@ namespace libs\sprayfire\request {
          * @param $value string
          * @return boolean
          */
-        private function isParameterString($value) {
+        protected function isParameterString($value) {
             if (\substr($value, 0, 1) === ':') {
                 return true;
             }
@@ -178,7 +178,7 @@ namespace libs\sprayfire\request {
          * @param $markedParameters array of parameters with possible leading colons
          * @return array of parameters with no leading colons
          */
-        private function removeParameterMarker(array $parameters) {
+        protected function removeParameterMarker(array $parameters) {
             $unmarkedParameters = array();
             foreach ($parameters as $param) {
                 if ($this->isParameterString($param)) {
@@ -196,7 +196,7 @@ namespace libs\sprayfire\request {
          *
          * @param $properties associative index array with 'controller, 'action' and 'parameters' keys
          */
-        private function setProperties(array $properties) {
+        protected function setProperties(array $properties) {
             $this->controller = $properties['controller'];
             $this->action = $properties['action'];
             $this->parameters = $properties['parameters'];
