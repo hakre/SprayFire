@@ -50,13 +50,6 @@ namespace libs\sprayfire\request {
         protected $decodedUri;
 
         /**
-         * @brief Holds an array of URI fragments exploded by the URL separator '/'
-         *
-         * @property $decodedUri array
-         */
-        protected $explodedUriFragments;
-
-        /**
          * @brief Holds the part of the URI fragment corresponding to the controller
          *
          * @property $controller string
@@ -89,27 +82,28 @@ namespace libs\sprayfire\request {
          */
         public function __construct($uri) {
             $this->originalUri = $uri;
-            $this->decodedUri = \urldecode($uri);
-            $this->explodedUriFragments = $this->trimAndExplodeDecodedUri();
-            $parsedUri = $this->parseUriFragments();
-            $this->controller = $parsedUri['controller'];
-            $this->action = $parsedUri['action'];
-            $this->parameters = $parsedUri['parameters'];
+            $decodedUri = \urldecode($uri);
+            $uriFragments = $this->trimAndExplodeUri($decodedUri);
+            $parsedUri = $this->parseUriFragments($uriFragments);
+            $this->setProperties($parsedUri);
         }
 
         /**
          * @brief Removes the base directory from the requested URI and explodes
          * the remaining URI fragment on the URI separator, '/'; sets the array of
+         *
+         * @return array in controller, action, param1, param2, paramN order, the
+         *         keys should be properly numerically index.
          */
-        private function trimAndExplodeDecodedUri() {
-            $parsedUri = \parse_url($this->decodedUri);
-            $trimPath = \preg_replace('/\/' . \basename(ROOT_PATH) . '\//', '', $parsedUri['path']);
-            if (empty($trimPath)) {
-                $explodedPath = array();
-            } else {
-                $explodedPath = \explode('/', $trimPath);
+        private function trimAndExplodeUri($uri) {
+            $parsedUri = \parse_url($uri);
+            $path = $parsedUri['path'];
+            $path = \ltrim($path, '/');
+            $explodedPath = \explode('/', $path);
+            if ($explodedPath[0] === \basename(\ROOT_PATH)) {
+                unset($explodedPath[0]);
             }
-            return $explodedPath;
+            return \array_values($explodedPath);
         }
 
         /**
@@ -124,13 +118,16 @@ namespace libs\sprayfire\request {
          *
          * @return associative array with the following keys: 'controller', 'action', 'paramters
          */
-        private function parseUriFragments() {
-            $uriFragments = $this->explodedUriFragments;
+        private function parseUriFragments($uriFragments) {
             $parsedFragments = array();
             $controller = 'controller';
             $action = 'action';
             $parameters = 'parameters';
+
+            var_dump($uriFragments);
+
             if (empty($uriFragments) || empty($uriFragments[0])) {
+                echo 'hitting here';
                 $parsedFragments[$controller] = \libs\sprayfire\request\Uri::DEFAULT_CONTROLLER;
                 $parsedFragments[$action] = \libs\sprayfire\request\Uri::DEFAULT_ACTION;
                 $parsedFragments[$parameters] = array();
@@ -199,6 +196,12 @@ namespace libs\sprayfire\request {
             return $unmarkedParameters;
         }
 
+        private function setProperties(array $properties) {
+            $this->controller = $properties['controller'];
+            $this->action = $properties['action'];
+            $this->parameters = $properties['parameters'];
+        }
+
 
         /**
          * @return The action fragment of the \a $originalUri or
@@ -230,6 +233,13 @@ namespace libs\sprayfire\request {
             return $this->originalUri;
         }
 
+        public function setRoutedUri($uri) {
+            $uriFragments = $this->trimAndExplodeUri($uri);
+            var_dump($uriFragments);
+            $parsedUri = $this->parseUriFragments($uriFragments);
+            var_dump($parsedUri);
+            $this->setProperties($parsedUri);
+        }
     }
 
     // End BaseUri

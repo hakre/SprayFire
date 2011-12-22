@@ -30,6 +30,23 @@ class BaseUriTest extends PHPUnit_Framework_TestCase {
         $this->assertSame(\libs\sprayfire\request\Uri::DEFAULT_CONTROLLER, $Uri->getController());
         $this->assertSame(\libs\sprayfire\request\Uri::DEFAULT_ACTION, $Uri->getAction());
         $this->assertSame(array(), $Uri->getParameters());
+
+        $routedUri = '/pages/index';
+        $Uri->setRoutedUri($routedUri);
+        $this->assertSame($originalUri, $Uri->getRawUri());
+        $this->assertSame('pages', $Uri->getController());
+        $this->assertSame('index', $Uri->getAction());
+        $this->assertSame(array(), $Uri->getParameters());
+    }
+
+    public function testBaseUriWithNoFrameworkOnlyController() {
+        $originalUri = '/pages/';
+        $Uri = new libs\sprayfire\request\BaseUri($originalUri);
+
+        $this->assertSame($originalUri, $Uri->getRawUri());
+        $this->assertSame('pages', $Uri->getController());
+        $this->assertSame(\libs\sprayfire\request\Uri::DEFAULT_ACTION, $Uri->getAction());
+        $this->assertSame(array(), $Uri->getParameters());
     }
 
     public function testBaseUriOriginalControllerActionParam() {

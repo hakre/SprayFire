@@ -46,4 +46,4 @@
         exit;
     }
 
-    $Uri = new \libs\sprayfire\request\BaseUri($_SERVER['REQUEST_URI']);
+    $Uri = new \libs\sprayfire\request\BaseUri('/sprayfire/controller/action/param1');

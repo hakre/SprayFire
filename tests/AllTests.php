@@ -11,7 +11,6 @@
  * @copyright Copyright (c) 2011, Charles Sprayberry
  */
 
-include 'FrameworkBootstrapTest.php';
 include 'JsonConfigTest.php';
 include 'MutableStorageTest.php';
 include 'SprayFireObjectStoreTest.php';
