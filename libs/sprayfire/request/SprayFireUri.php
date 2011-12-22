@@ -30,9 +30,47 @@
 namespace libs\sprayfire\request {
 
     /**
-     * @brief 
+     * @brief Framework's implementation of a RoutedUri, provides a means to retrieve
+     * a controller, action and parameters, the routed URI string and the original
+     * URI string that was mapped to the routed.
      */
     class SprayFireUri extends \libs\sprayfire\request\BaseUri implements \libs\sprayfire\request\RoutedUri {
+
+        /**
+         * The URI string passed to the constructor representing the fully routed
+         * URI string.
+         *
+         * @property $routedUri
+         */
+        protected $routedUri;
+
+        /**
+         * @brief Will take a routed URI string and then set the appropriate URI
+         * properties based on the parsing of that string.
+         *
+         * @param $uri The routed URI string
+         */
+        public function __construct($uri) {
+            $this->routedUri = $uri;
+            $decodedUri = \urldecode($uri);
+            $uriFragments = $this->trimAndExplodeUri($decodedUri);
+            $parsedUri = $this->parseUriFragments($uriFragments);
+            $this->setProperties($parsedUri);
+        }
+
+        /**
+         * @param $uri The original string used to map the routed URI
+         */
+        public function setOriginalUri($uri) {
+            $this->originalUri = $uri;
+        }
+
+        /**
+         * @return The routed URI string passed to the constructor
+         */
+        public function getRoutedUri() {
+            return $this->routedUri;
+        }
 
     }
 
