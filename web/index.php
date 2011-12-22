@@ -35,17 +35,26 @@
     $ClassLoader = new ClassLoader();
     $ClassLoader->setAutoloader();
 
-    $configFile = SprayFireDirectory::getAppPathSubDirectory('config', 'json', 'configuration.json');
-    $File = new \SplFileInfo($configFile);
+    $primaryConfigPath = SprayFireDirectory::getAppPathSubDirectory('config', 'json', 'configuration.json');
+    $PrimaryConfigFile = new \SplFileInfo($primaryConfigPath);
 
     try {
-        $Config = new libs\sprayfire\config\JsonConfig($File);
+        $PrimaryConfig = new libs\sprayfire\config\JsonConfig($PrimaryConfigFile);
     } catch (\InvalidArgumentException $InvalArgException) {
         // this is a temporary measure until a completed system is in place.
         var_dump($InvalArgException);
         exit;
     }
 
-    $Uri = new \libs\sprayfire\request\BaseUri('/sprayfire/articles/:php/mysql_*+must+die');
+    echo 'The framework version ' . $PrimaryConfig->framework->version;
 
-    var_dump($Uri);
+    $routesConfigPath = SprayFireDirectory::getAppPathSubDirectory('config', 'json', 'routes.json');
+    $RoutesConfigFile = new \SplFileInfo($routesConfigPath);
+    try {
+        $RoutesConfig = new libs\sprayfire\config\JsonConfig($RoutesConfigFile);
+    } catch (\InvalidArgumentException $InvalArgExc) {
+        var_dump($InvalArgExc);
+        exit;
+    }
+
+    $Uri = new \libs\sprayfire\request\BaseUri('/sprayfire/articles/:php/mysql_*+must+die');
