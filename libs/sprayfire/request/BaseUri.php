@@ -43,13 +43,6 @@ namespace libs\sprayfire\request {
         protected $originalUri;
 
         /**
-         * Holds the original URI with all special URL characeters decoded.
-         *
-         * @property $decodedUri string
-         */
-        protected $decodedUri;
-
-        /**
          * @brief Holds the part of the URI fragment corresponding to the controller
          *
          * @property $controller string
@@ -89,8 +82,8 @@ namespace libs\sprayfire\request {
         }
 
         /**
-         * @brief Removes the base directory from the requested URI and explodes
-         * the remaining URI fragment on the URI separator, '/'; sets the array of
+         * @brief Will remove leading and forward '/' and the root install directory
+         * and return a 0-index array containing the remaining fragments.
          *
          * @return array in controller, action, param1, param2, paramN order, the
          *         keys should be properly numerically index.
@@ -98,7 +91,7 @@ namespace libs\sprayfire\request {
         private function trimAndExplodeUri($uri) {
             $parsedUri = \parse_url($uri);
             $path = $parsedUri['path'];
-            $path = \ltrim($path, '/');
+            $path = \trim($path, '/');
             $explodedPath = \explode('/', $path);
             if ($explodedPath[0] === \basename(\ROOT_PATH)) {
                 unset($explodedPath[0]);
@@ -124,10 +117,7 @@ namespace libs\sprayfire\request {
             $action = 'action';
             $parameters = 'parameters';
 
-            var_dump($uriFragments);
-
             if (empty($uriFragments) || empty($uriFragments[0])) {
-                echo 'hitting here';
                 $parsedFragments[$controller] = \libs\sprayfire\request\Uri::DEFAULT_CONTROLLER;
                 $parsedFragments[$action] = \libs\sprayfire\request\Uri::DEFAULT_ACTION;
                 $parsedFragments[$parameters] = array();
@@ -169,16 +159,17 @@ namespace libs\sprayfire\request {
 
         /**
          * @brief Determines if the passed \a $value is a parameter string, which
-         * we signify as having a colon <code>:</code> as the first character in
+         * we signify as having a colon <code>:</code> in the first character of
          * the string.
          *
          * @param $value string
          * @return boolean
          */
         private function isParameterString($value) {
-            $pattern = '/^:./';
-            $match = \preg_match($pattern, $value);
-            return (boolean) $match;
+            if (\substr($value, 0, 1) === ':') {
+                return true;
+            }
+            return false;
         }
 
         /**
@@ -187,15 +178,24 @@ namespace libs\sprayfire\request {
          * @param $markedParameters array of parameters with possible leading colons
          * @return array of parameters with no leading colons
          */
-        private function removeParameterMarker(array $markedParameters) {
+        private function removeParameterMarker(array $parameters) {
             $unmarkedParameters = array();
-            $pattern = '/^:/';
-            foreach ($markedParameters as $param) {
-                $unmarkedParameters[] = \preg_replace($pattern, '', $param);
+            foreach ($parameters as $param) {
+                if ($this->isParameterString($param)) {
+                    $unmarkedParameters[] = \substr($param, 1);
+                } else {
+                    $unmarkedParameters[] = $param;
+                }
             }
             return $unmarkedParameters;
         }
 
+        /**
+         * @brief Will set the appropriate properties value based on the \a $properties
+         * passed.
+         *
+         * @param $properties associative index array with 'controller, 'action' and 'parameters' keys
+         */
         private function setProperties(array $properties) {
             $this->controller = $properties['controller'];
             $this->action = $properties['action'];
@@ -229,17 +229,10 @@ namespace libs\sprayfire\request {
         /**
          * @return The original unaltered URI passed to this object
          */
-        public function getRawUri() {
+        public function getOriginalUri() {
             return $this->originalUri;
         }
 
-        public function setRoutedUri($uri) {
-            $uriFragments = $this->trimAndExplodeUri($uri);
-            var_dump($uriFragments);
-            $parsedUri = $this->parseUriFragments($uriFragments);
-            var_dump($parsedUri);
-            $this->setProperties($parsedUri);
-        }
     }
 
     // End BaseUri
