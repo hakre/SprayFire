@@ -42,7 +42,7 @@ class JsonConfigTest extends PHPUnit_Framework_TestCase {
     }
 
     public function testJsonConfigObject() {
-        $File = new SplFileInfo(\libs\sprayfire\core\SprayFireDirectory::getAppPathSubDirectory('config', 'test-config.json'));
+        $File = new SplFileInfo(\libs\sprayfire\core\SprayFireDirectory::getAppPathSubDirectory('config', 'json', 'test-config.json'));
         $Config = new libs\sprayfire\config\JsonConfig($File);
 
         $expectedNoExist = null;
@@ -81,7 +81,7 @@ class JsonConfigTest extends PHPUnit_Framework_TestCase {
         $actualAppVersion = $Config->app->version;
         $this->assertSame($expectedAppVersion, $actualAppVersion);
 
-        $expectedToString = 'libs\sprayfire\config\JsonConfig::ROOT_PATH/tests/mockframework/app/config/test-config.json';
+        $expectedToString = 'libs\sprayfire\config\JsonConfig::ROOT_PATH/tests/mockframework/app/config/json/test-config.json';
         $actualToString = $Config->__toString();
         $this->assertSame($expectedToString, $actualToString);
     }
@@ -98,7 +98,7 @@ class JsonConfigTest extends PHPUnit_Framework_TestCase {
      * @expectedException \InvalidArgumentException
      */
     public function testInvalidJsonFile() {
-        $File = new SplFileInfo(\libs\sprayfire\core\SprayFireDirectory::getFrameworkPathSubDirectory('config', 'test-invalid-config.json'));
+        $File = new SplFileInfo(\libs\sprayfire\core\SprayFireDirectory::getFrameworkPathSubDirectory('config', 'json', 'test-invalid-config.json'));
         $Config = new libs\sprayfire\config\JsonConfig($File);
     }
 
@@ -106,7 +106,7 @@ class JsonConfigTest extends PHPUnit_Framework_TestCase {
      * @expectedException \UnexpectedValueException
      */
     public function testInvalidChildReturn() {
-        $File = new SplFileInfo(\libs\sprayfire\core\SprayFireDirectory::getAppPathSubDirectory('config', 'test-config.json'));
+        $File = new SplFileInfo(\libs\sprayfire\core\SprayFireDirectory::getAppPathSubDirectory('config', 'json', 'test-config.json'));
         $Config = new CrappyJsonConfig($File);
     }
 
