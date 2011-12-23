@@ -7,9 +7,14 @@
 
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-
-<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
   $(document).ready(function() { searchBox.OnSelectItem(0); });
@@ -46,10 +51,10 @@
 <script type="text/javascript">
 var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </script>
+<script type="text/javascript" src="dynsections.js"></script>
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
@@ -79,6 +84,19 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     </ul>
   </div>
 </div>
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+  initNavTree('_json_config_8php.html','');
+</script>
+<div id="doc-content">
 <div class="header">
   <div class="headertitle">
 <div class="title">/Library/WebServer/Documents/sprayfire/libs/sprayfire/config/JsonConfig.php</div>  </div>
@@ -86,76 +104,52 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="contents">
 <a href="_json_config_8php.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 &lt;?php
 <a name="l00002"></a>00002 
-<a name="l00020"></a><a class="code" href="namespacelibs_1_1sprayfire_1_1config.html">00020</a> <span class="keyword">namespace </span>libs\sprayfire\config;
-<a name="l00021"></a>00021 
-<a name="l00058"></a><a class="code" href="classlibs_1_1sprayfire_1_1config_1_1_json_config.html">00058</a> <span class="keyword">class </span><a class="code" href="classlibs_1_1sprayfire_1_1config_1_1_json_config.html">JsonConfig</a> <span class="keyword">extends</span> \libs\sprayfire\datastructs\ImmutableStorage implements \libs\sprayfire\interfaces\Configuration {
-<a name="l00059"></a>00059 
-<a name="l00066"></a>00066     <span class="keyword">private</span> $ConfigFileInfo;
-<a name="l00067"></a>00067 
-<a name="l00075"></a>00075     <span class="keyword">private</span> $commentKeys = array(<span class="stringliteral">&#39;_sprayfire-docs&#39;</span>, <span class="stringliteral">&#39;sprayfire-docs&#39;</span>);
-<a name="l00076"></a>00076 
-<a name="l00092"></a><a class="code" href="classlibs_1_1sprayfire_1_1config_1_1_json_config.html#a8fc3aeec64c4f5cf1391fed0d4578093">00092</a>     <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="classlibs_1_1sprayfire_1_1config_1_1_json_config.html#a8fc3aeec64c4f5cf1391fed0d4578093">__construct</a>(\SplFileInfo $FileInfo) {
-<a name="l00093"></a>00093         $this-&gt;ConfigFileInfo = $FileInfo;
-<a name="l00094"></a>00094         $data = $this-&gt;getMasterData($this-&gt;getDecodedJson());
-<a name="l00095"></a>00095         <span class="keywordflow">if</span> (!is_array($data)) {
-<a name="l00096"></a>00096             <span class="keywordflow">throw</span> new \UnexpectedValueException(<span class="stringliteral">&#39;The value returned from JsonConfig::getMasterData is not an array, ensure that your implementation properly returns an array.&#39;</span>);
-<a name="l00097"></a>00097         }
-<a name="l00098"></a>00098         parent::__construct($data);
-<a name="l00099"></a>00099     }
-<a name="l00100"></a>00100 
-<a name="l00110"></a>00110     <span class="keyword">private</span> <span class="keyword">function</span> getDecodedJson() {
-<a name="l00111"></a>00111         $decodedJson = \json_decode($this-&gt;getFileContents(), <span class="keyword">true</span>);
-<a name="l00112"></a>00112         $lastJsonError = \json_last_error();
-<a name="l00113"></a>00113         <span class="keywordflow">if</span> ($lastJsonError !== JSON_ERROR_NONE || \is_null($decodedJson)) {
-<a name="l00114"></a>00114             \error_log(<span class="stringliteral">&#39;The last JSON error was &#39;</span> . $lastJsonError);
-<a name="l00115"></a>00115             <span class="keywordflow">throw</span> new \InvalidArgumentException(<span class="stringliteral">&#39;There was an error parsing the JSON configuration file passed.  Please see error log for more info.&#39;</span>);
-<a name="l00116"></a>00116         }
-<a name="l00117"></a>00117         <span class="keywordflow">return</span> $decodedJson;
-<a name="l00118"></a>00118     }
+<a name="l00030"></a>00030 <span class="keyword">namespace </span>libs\sprayfire\config;
+<a name="l00031"></a>00031 use \SplFileInfo as SplFileInfo;
+<a name="l00032"></a>00032 use \InvalidArgumentException as InvalidArgumentException;
+<a name="l00033"></a>00033 use libs\sprayfire\config\Configuration as Configuration;
+<a name="l00034"></a>00034 use libs\sprayfire\datastructs\ImmutableStorage as ImmutableStorage;
+<a name="l00035"></a>00035 
+<a name="l00068"></a><a class="code" href="classlibs_1_1sprayfire_1_1config_1_1_json_config.html">00068</a>     <span class="keyword">class </span><a class="code" href="classlibs_1_1sprayfire_1_1config_1_1_json_config.html">JsonConfig</a> <span class="keyword">extends</span> ImmutableStorage implements <a class="code" href="interfacelibs_1_1sprayfire_1_1config_1_1_configuration.html" title="An interface that requires implementing objects to accept a SplFileInfo object representing a configu...">Configuration</a> {
+<a name="l00069"></a>00069 
+<a name="l00076"></a><a class="code" href="classlibs_1_1sprayfire_1_1config_1_1_json_config.html#afeaeb0b5df84f81dee377c7632881dd2">00076</a>         <span class="keyword">private</span> <a class="code" href="classlibs_1_1sprayfire_1_1config_1_1_json_config.html#afeaeb0b5df84f81dee377c7632881dd2">$ConfigFileInfo</a>;
+<a name="l00077"></a>00077 
+<a name="l00085"></a><a class="code" href="classlibs_1_1sprayfire_1_1config_1_1_json_config.html#af90124d5170ede3713f08f1224e66f97">00085</a>         <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="classlibs_1_1sprayfire_1_1config_1_1_json_config.html#af90124d5170ede3713f08f1224e66f97" title="Parses a file represented by the $FileInfo object and prepares the JsonConfig object to have key/valu...">__construct</a>(SplFileInfo $FileInfo) {
+<a name="l00086"></a>00086             $this-&gt;ConfigFileInfo = $FileInfo;
+<a name="l00087"></a>00087             $data = $this-&gt;getDecodedJson();
+<a name="l00088"></a>00088             parent::__construct($data);
+<a name="l00089"></a>00089         }
+<a name="l00090"></a>00090 
+<a name="l00098"></a><a class="code" href="classlibs_1_1sprayfire_1_1config_1_1_json_config.html#a3017632303e1dd197ea0a5abcfb8b666">00098</a>         <span class="keyword">private</span> <span class="keyword">function</span> <a class="code" href="classlibs_1_1sprayfire_1_1config_1_1_json_config.html#a3017632303e1dd197ea0a5abcfb8b666" title="Converts the JSON configuration file passed into an associative array.">getDecodedJson</a>() {
+<a name="l00099"></a>00099             $decodedJson = \json_decode($this-&gt;getFileContents(), <span class="keyword">true</span>);
+<a name="l00100"></a>00100             $lastJsonError = \json_last_error();
+<a name="l00101"></a>00101             <span class="keywordflow">if</span> ($lastJsonError !== JSON_ERROR_NONE || \is_null($decodedJson)) {
+<a name="l00102"></a>00102                 \error_log(<span class="stringliteral">&#39;The last JSON error was &#39;</span> . $lastJsonError);
+<a name="l00103"></a>00103                 <span class="keywordflow">throw</span> <span class="keyword">new</span> InvalidArgumentException(<span class="stringliteral">&#39;There was an error parsing the JSON configuration file passed.  Please see error log for more info.&#39;</span>);
+<a name="l00104"></a>00104             }
+<a name="l00105"></a>00105             <span class="keywordflow">return</span> $decodedJson;
+<a name="l00106"></a>00106         }
+<a name="l00107"></a>00107 
+<a name="l00112"></a><a class="code" href="classlibs_1_1sprayfire_1_1config_1_1_json_config.html#a549591b2dc2f9bce3d15cc798a4ba641">00112</a>         <span class="keyword">private</span> <span class="keyword">function</span> <a class="code" href="classlibs_1_1sprayfire_1_1config_1_1_json_config.html#a549591b2dc2f9bce3d15cc798a4ba641">getFileContents</a>() {
+<a name="l00113"></a>00113             <span class="keywordflow">if</span> (!$this-&gt;ConfigFileInfo-&gt;isFile() &amp;&amp; !$this-&gt;ConfigFileInfo-&gt;isLink()) {
+<a name="l00114"></a>00114                 <span class="keywordflow">throw</span> <span class="keyword">new</span> InvalidArgumentException(<span class="stringliteral">&#39;There is an error with the path to the configuration file.&#39;</span>);
+<a name="l00115"></a>00115             }
+<a name="l00116"></a>00116             $fileInfo = \file_get_contents($this-&gt;ConfigFileInfo-&gt;getRealPath());
+<a name="l00117"></a>00117             <span class="keywordflow">return</span> $fileInfo;
+<a name="l00118"></a>00118         }
 <a name="l00119"></a>00119 
-<a name="l00126"></a>00126     <span class="keyword">private</span> <span class="keyword">function</span> getFileContents() {
-<a name="l00127"></a>00127         <span class="keywordflow">if</span> (!$this-&gt;ConfigFileInfo-&gt;isFile() &amp;&amp; !$this-&gt;ConfigFileInfo-&gt;isLink()) {
-<a name="l00128"></a>00128             <span class="keywordflow">throw</span> new \InvalidArgumentException(<span class="stringliteral">&#39;There is an error with the path to the configuration file.&#39;</span>);
-<a name="l00129"></a>00129         }
-<a name="l00130"></a>00130         $fileInfo = \file_get_contents($this-&gt;ConfigFileInfo-&gt;getRealPath());
-<a name="l00131"></a>00131         <span class="keywordflow">return</span> $fileInfo;
-<a name="l00132"></a>00132     }
-<a name="l00133"></a>00133 
-<a name="l00147"></a><a class="code" href="classlibs_1_1sprayfire_1_1config_1_1_json_config.html#a2934b84c3d3d0f7277136f501e9b4db5">00147</a>     <span class="keyword">protected</span> <span class="keyword">function</span> <a class="code" href="classlibs_1_1sprayfire_1_1config_1_1_json_config.html#a2934b84c3d3d0f7277136f501e9b4db5">getMasterData</a>(array $decodedJson) {
-<a name="l00148"></a>00148         <span class="keywordflow">foreach</span> ($decodedJson as $key =&gt; $value) {
-<a name="l00149"></a>00149             <span class="keywordflow">if</span> (\in_array($key, $this-&gt;commentKeys)) {
-<a name="l00150"></a>00150                 unset($decodedJson[$key]);
-<a name="l00151"></a>00151                 <span class="keywordflow">continue</span>;
-<a name="l00152"></a>00152             }
-<a name="l00153"></a>00153             <span class="keywordflow">if</span> (\is_array($value)) {
-<a name="l00154"></a>00154                 $decodedJson[$key] = $this-&gt;convertArrayToImmutableObject($value);
-<a name="l00155"></a>00155             }
-<a name="l00156"></a>00156         }
-<a name="l00157"></a>00157         <span class="keywordflow">return</span> $decodedJson;
-<a name="l00158"></a>00158     }
-<a name="l00159"></a>00159 
-<a name="l00167"></a>00167     <span class="keyword">private</span> <span class="keyword">function</span> convertArrayToImmutableObject(array $data) {
-<a name="l00168"></a>00168         <span class="keywordflow">foreach</span> ($data as $key =&gt; $value) {
-<a name="l00169"></a>00169             <span class="keywordflow">if</span> (\in_array($key, $this-&gt;commentKeys)) {
-<a name="l00170"></a>00170                 unset($data[$key]);
-<a name="l00171"></a>00171                 <span class="keywordflow">continue</span>;
-<a name="l00172"></a>00172             }
-<a name="l00173"></a>00173             <span class="keywordflow">if</span> (\is_array($value)) {
-<a name="l00174"></a>00174                 $data[$key] = $this-&gt;convertArrayToImmutableObject($value);
-<a name="l00175"></a>00175             }
-<a name="l00176"></a>00176         }
-<a name="l00177"></a>00177         <span class="keywordflow">return</span> new \libs\sprayfire\datastructs\ImmutableStorage($data);
-<a name="l00178"></a>00178     }
-<a name="l00179"></a>00179 
-<a name="l00183"></a><a class="code" href="classlibs_1_1sprayfire_1_1config_1_1_json_config.html#a7659a13f560e9d83b747d46ab90112f7">00183</a>     <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="classlibs_1_1sprayfire_1_1config_1_1_json_config.html#a7659a13f560e9d83b747d46ab90112f7">__toString</a>() {
-<a name="l00184"></a>00184         $escapedRootPath = <span class="charliteral">&#39;/&#39;</span> . \preg_replace(<span class="stringliteral">&#39;/\//&#39;</span>, <span class="charliteral">&#39;\/&#39;</span>, ROOT_PATH) . <span class="charliteral">&#39;/&#39;</span>;
-<a name="l00185"></a>00185         <span class="keywordflow">return</span> parent::__toString() . <span class="stringliteral">&#39;::&#39;</span> . <span class="stringliteral">&#39;ROOT_PATH&#39;</span> . \preg_replace($escapedRootPath, <span class="stringliteral">&#39;&#39;</span>, $this-&gt;ConfigFileInfo-&gt;getPathname());
-<a name="l00186"></a>00186     }
-<a name="l00187"></a>00187     
-<a name="l00188"></a>00188 }
-<a name="l00189"></a>00189 
-<a name="l00190"></a>00190 <span class="comment">// End JsonConfig</span>
+<a name="l00124"></a><a class="code" href="classlibs_1_1sprayfire_1_1config_1_1_json_config.html#a7659a13f560e9d83b747d46ab90112f7">00124</a>         <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="classlibs_1_1sprayfire_1_1config_1_1_json_config.html#a7659a13f560e9d83b747d46ab90112f7">__toString</a>() {
+<a name="l00125"></a>00125             $escapedRootPath = <span class="charliteral">&#39;/&#39;</span> . \preg_replace(<span class="stringliteral">&#39;/\//&#39;</span>, <span class="charliteral">&#39;\/&#39;</span>, ROOT_PATH) . <span class="charliteral">&#39;/&#39;</span>;
+<a name="l00126"></a>00126             <span class="keywordflow">return</span> parent::__toString() . <span class="stringliteral">&#39;::&#39;</span> . <span class="stringliteral">&#39;ROOT_PATH&#39;</span> . \preg_replace($escapedRootPath, <span class="stringliteral">&#39;&#39;</span>, $this-&gt;ConfigFileInfo-&gt;getPathname());
+<a name="l00127"></a>00127         }
+<a name="l00128"></a>00128 
+<a name="l00129"></a>00129     }
+<a name="l00130"></a>00130 
+<a name="l00131"></a>00131     <span class="comment">// End JsonConfig</span>
+<a name="l00132"></a>00132 
+<a name="l00133"></a>00133 <span class="comment">// End libs.sprayfire.config</span>
 </pre></div></div><!-- contents -->
+</div>
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -170,13 +164,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
+  <div id="nav-path" class="navpath">
+    <ul>
+      <li class="navelem"><a class="el" href="_json_config_8php.html">JsonConfig.php</a>      </li>
 
+    <li class="footer">Generated on Fri Dec 23 2011 18:16:43 for SprayFire by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
+   </ul>
+ </div>
 
-<hr class="footer"/><address class="footer"><small>
-Generated on Sat Dec 17 2011 00:29:34 for SprayFire by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.7.6.1
-</small></address>
 
 </body>
 </html>
