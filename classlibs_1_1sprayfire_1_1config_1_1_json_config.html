@@ -7,9 +7,14 @@
 
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-
-<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
   $(document).ready(function() { searchBox.OnSelectItem(0); });
@@ -46,10 +51,10 @@
 <script type="text/javascript">
 var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </script>
+<script type="text/javascript" src="dynsections.js"></script>
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
@@ -80,6 +85,198 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="functions.html"><span>Data&#160;Fields</span></a></li>
     </ul>
   </div>
+</div>
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+  initNavTree('classlibs_1_1sprayfire_1_1config_1_1_json_config.html','');
+</script>
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a>  </div>
+  <div class="headertitle">
+<div class="title">libs\sprayfire\config\JsonConfig Class Reference</div>  </div>
+</div><!--header-->
+<div class="contents">
+<!-- doxytag: class="libs::sprayfire::config::JsonConfig" --><!-- doxytag: inherits="libs::sprayfire::datastructs::ImmutableStorage,libs::sprayfire::config::Configuration" --><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for libs\sprayfire\config\JsonConfig:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="classlibs_1_1sprayfire_1_1config_1_1_json_config__inherit__graph.png" border="0" usemap="#libs\sprayfire\config\_json_config_inherit__map" alt="Inheritance graph"/></div>
+<map name="libs\sprayfire\config\_json_config_inherit__map" id="libs\sprayfire\config\_json_config_inherit__map">
+<area shape="rect" id="node2" href="classlibs_1_1sprayfire_1_1datastructs_1_1_immutable_storage.html" title="An object that allows for data to be stored and to be assured that the data is not mutable..." alt="" coords="5,702,283,847"/><area shape="rect" id="node4" href="classlibs_1_1sprayfire_1_1datastructs_1_1_data_storage.html" title="Stores data in a property and allows access to that data via object or array notation." alt="" coords="34,347,277,653"/><area shape="rect" id="node6" href="classlibs_1_1sprayfire_1_1core_1_1_core_object.html" title="SprayFire&#39;s implementation of the libs.sprayfire.core.Object interface, allowing easy access to some ..." alt="" coords="58,177,253,290"/><area shape="rect" id="node8" href="interfacelibs_1_1sprayfire_1_1core_1_1_object.html" title="An interface for basic framework objects." alt="" coords="72,6,240,119"/><area shape="rect" id="node10" href="interfacelibs_1_1sprayfire_1_1datastructs_1_1_overloadable.html" title="An interface that forces the implementation of the magic methods that allow an object to access non&#45;e..." alt="" coords="281,169,529,298"/><area shape="rect" id="node12" href="interfacelibs_1_1sprayfire_1_1config_1_1_configuration.html" title="An interface that requires implementing objects to accept a SplFileInfo object representing a configu..." alt="" coords="307,734,524,815"/></map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for libs\sprayfire\config\JsonConfig:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="classlibs_1_1sprayfire_1_1config_1_1_json_config__coll__graph.png" border="0" usemap="#libs\sprayfire\config\_json_config_coll__map" alt="Collaboration graph"/></div>
+<map name="libs\sprayfire\config\_json_config_coll__map" id="libs\sprayfire\config\_json_config_coll__map">
+<area shape="rect" id="node2" href="classlibs_1_1sprayfire_1_1datastructs_1_1_immutable_storage.html" title="An object that allows for data to be stored and to be assured that the data is not mutable..." alt="" coords="5,702,283,847"/><area shape="rect" id="node4" href="classlibs_1_1sprayfire_1_1datastructs_1_1_data_storage.html" title="Stores data in a property and allows access to that data via object or array notation." alt="" coords="34,347,277,653"/><area shape="rect" id="node6" href="classlibs_1_1sprayfire_1_1core_1_1_core_object.html" title="SprayFire&#39;s implementation of the libs.sprayfire.core.Object interface, allowing easy access to some ..." alt="" coords="58,177,253,290"/><area shape="rect" id="node8" href="interfacelibs_1_1sprayfire_1_1core_1_1_object.html" title="An interface for basic framework objects." alt="" coords="72,6,240,119"/><area shape="rect" id="node10" href="interfacelibs_1_1sprayfire_1_1datastructs_1_1_overloadable.html" title="An interface that forces the implementation of the magic methods that allow an object to access non&#45;e..." alt="" coords="281,169,529,298"/><area shape="rect" id="node12" href="interfacelibs_1_1sprayfire_1_1config_1_1_configuration.html" title="An interface that requires implementing objects to accept a SplFileInfo object representing a configu..." alt="" coords="307,734,524,815"/></map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr><td colspan="2"><h2><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1config_1_1_json_config.html#af90124d5170ede3713f08f1224e66f97">__construct</a> (SplFileInfo $FileInfo)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses a file represented by the <em>$FileInfo</em> object and prepares the <a class="el" href="classlibs_1_1sprayfire_1_1config_1_1_json_config.html">JsonConfig</a> object to have key/value pairs chainable.  <a href="#af90124d5170ede3713f08f1224e66f97"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1config_1_1_json_config.html#a7659a13f560e9d83b747d46ab90112f7">__toString</a> ()</td></tr>
+<tr><td colspan="2"><h2><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1config_1_1_json_config.html#a3017632303e1dd197ea0a5abcfb8b666">getDecodedJson</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts the JSON configuration file passed into an associative array.  <a href="#a3017632303e1dd197ea0a5abcfb8b666"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1config_1_1_json_config.html#a549591b2dc2f9bce3d15cc798a4ba641">getFileContents</a> ()</td></tr>
+<tr><td colspan="2"><h2><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1config_1_1_json_config.html#afeaeb0b5df84f81dee377c7632881dd2">$ConfigFileInfo</a></td></tr>
+</table>
+<hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
+<div class="textblock">
+<p>Definition at line <a class="el" href="_json_config_8php_source.html#l00068">68</a> of file <a class="el" href="_json_config_8php_source.html">JsonConfig.php</a>.</p>
+</div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="af90124d5170ede3713f08f1224e66f97"></a><!-- doxytag: member="libs::sprayfire::config::JsonConfig::__construct" ref="af90124d5170ede3713f08f1224e66f97" args="(SplFileInfo $FileInfo)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">libs\sprayfire\config\<a class="el" href="classlibs_1_1sprayfire_1_1config_1_1_json_config.html#af90124d5170ede3713f08f1224e66f97">JsonConfig::__construct</a> </td>
+          <td>(</td>
+          <td class="paramtype">SplFileInfo $&#160;</td>
+          <td class="paramname"><em>FileInfo</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Parses a file represented by the <em>$FileInfo</em> object and prepares the <a class="el" href="classlibs_1_1sprayfire_1_1config_1_1_json_config.html">JsonConfig</a> object to have key/value pairs chainable. </p>
+<dl class="params"><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">$FileInfo</td><td>SplFileInfo object </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt><b>Exceptions:</b></dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">InvalidArgumentException</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implements <a class="el" href="interfacelibs_1_1sprayfire_1_1config_1_1_configuration.html#aef22ada4ad70a45b5047094d92e220b9">libs\sprayfire\config\Configuration</a>.</p>
+
+<p>Definition at line <a class="el" href="_json_config_8php_source.html#l00085">85</a> of file <a class="el" href="_json_config_8php_source.html">JsonConfig.php</a>.</p>
+
+</div>
+</div>
+<hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="a7659a13f560e9d83b747d46ab90112f7"></a><!-- doxytag: member="libs::sprayfire::config::JsonConfig::__toString" ref="a7659a13f560e9d83b747d46ab90112f7" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">libs\sprayfire\config\<a class="el" href="classlibs_1_1sprayfire_1_1config_1_1_json_config.html#a7659a13f560e9d83b747d46ab90112f7">JsonConfig::__toString</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns the namespaced class and sub-directory fragment for the associated configuration file. </dd></dl>
+
+<p>Reimplemented from <a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_core_object.html#a5e54d8b82b3d6126e10a1c185bf548cc">libs\sprayfire\core\CoreObject</a>.</p>
+
+<p>Definition at line <a class="el" href="_json_config_8php_source.html#l00124">124</a> of file <a class="el" href="_json_config_8php_source.html">JsonConfig.php</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a3017632303e1dd197ea0a5abcfb8b666"></a><!-- doxytag: member="libs::sprayfire::config::JsonConfig::getDecodedJson" ref="a3017632303e1dd197ea0a5abcfb8b666" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">libs\sprayfire\config\<a class="el" href="classlibs_1_1sprayfire_1_1config_1_1_json_config.html#a3017632303e1dd197ea0a5abcfb8b666">JsonConfig::getDecodedJson</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Converts the JSON configuration file passed into an associative array. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Associative array representing key/value pairs held in JSON config </dd></dl>
+<dl class="exception"><dt><b>Exceptions:</b></dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">InvalidArgumentException</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="_json_config_8php_source.html#l00098">98</a> of file <a class="el" href="_json_config_8php_source.html">JsonConfig.php</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a549591b2dc2f9bce3d15cc798a4ba641"></a><!-- doxytag: member="libs::sprayfire::config::JsonConfig::getFileContents" ref="a549591b2dc2f9bce3d15cc798a4ba641" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">libs\sprayfire\config\<a class="el" href="classlibs_1_1sprayfire_1_1config_1_1_json_config.html#a549591b2dc2f9bce3d15cc798a4ba641">JsonConfig::getFileContents</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<dl class="return"><dt><b>Returns:</b></dt><dd>The contents of the file represented by <em>$ConfigFileInfo</em> </dd></dl>
+<dl class="exception"><dt><b>Exceptions:</b></dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">InvalidArgumentException</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="_json_config_8php_source.html#l00112">112</a> of file <a class="el" href="_json_config_8php_source.html">JsonConfig.php</a>.</p>
+
+</div>
+</div>
+<hr/><h2>Field Documentation</h2>
+<a class="anchor" id="afeaeb0b5df84f81dee377c7632881dd2"></a><!-- doxytag: member="libs::sprayfire::config::JsonConfig::$ConfigFileInfo" ref="afeaeb0b5df84f81dee377c7632881dd2" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">libs::sprayfire::config\JsonConfig::$ConfigFileInfo<code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Holds the SplFileInfo object passed in the constructor.</p>
+<dl class="see"><dt><b>See also:</b></dt><dd><a href="http://us3.php.net/manual/en/class.splfileinfo.php">http://us3.php.net/manual/en/class.splfileinfo.php</a> </dd></dl>
+
+<p>Definition at line <a class="el" href="_json_config_8php_source.html#l00076">76</a> of file <a class="el" href="_json_config_8php_source.html">JsonConfig.php</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>/Library/WebServer/Documents/sprayfire/libs/sprayfire/config/<a class="el" href="_json_config_8php_source.html">JsonConfig.php</a></li>
+</ul>
+</div><!-- contents -->
+</div>
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -100,148 +297,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li class="navelem"><a class="el" href="namespacelibs_1_1sprayfire.html">sprayfire</a>      </li>
       <li class="navelem"><a class="el" href="namespacelibs_1_1sprayfire_1_1config.html">config</a>      </li>
       <li class="navelem"><a class="el" href="classlibs_1_1sprayfire_1_1config_1_1_json_config.html">JsonConfig</a>      </li>
-    </ul>
-  </div>
-</div>
-<div class="header">
-  <div class="summary">
-<a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pro-methods">Protected Member Functions</a>  </div>
-  <div class="headertitle">
-<div class="title">libs\sprayfire\config\JsonConfig Class Reference</div>  </div>
-</div><!--header-->
-<div class="contents">
-<!-- doxytag: class="libs::sprayfire::config::JsonConfig" --><!-- doxytag: inherits="libs::sprayfire::datastructs::ImmutableStorage,libs::sprayfire::interfaces::Configuration" --><div class="dynheader">
-Inheritance diagram for libs\sprayfire\config\JsonConfig:</div>
-<div class="dyncontent">
-<div class="center"><img src="classlibs_1_1sprayfire_1_1config_1_1_json_config__inherit__graph.png" border="0" usemap="#libs\sprayfire\config\_json_config_inherit__map" alt="Inheritance graph"/></div>
-<map name="libs\sprayfire\config\_json_config_inherit__map" id="libs\sprayfire\config\_json_config_inherit__map">
-<area shape="rect" id="node2" href="classlibs_1_1sprayfire_1_1datastructs_1_1_immutable_storage.html" title="{libs\\sprayfire\\datastructs\\ImmutableStorage\n||# set()\l# removeKey()\l}" alt="" coords="5,734,283,831"/><area shape="rect" id="node4" href="classlibs_1_1sprayfire_1_1datastructs_1_1_data_storage.html" title="{libs\\sprayfire\\datastructs\\DataStorage\n|# $data\l# $count\l|+ __construct()\l+ __get()\l+ offsetGet()\l+ __isset()\l+ offsetExists()\l+ __set()\l+ offsetSet()\l+ __unset()\l+ offsetUnset()\l+ count()\l# get()\l# keyHasValue()\l# keyInData()\l# recalibrateCount()\l# set()\l# removeKey()\l}" alt="" coords="42,347,285,685"/><area shape="rect" id="node6" href="classlibs_1_1sprayfire_1_1core_1_1_core_object.html" title="{libs\\sprayfire\\core\\CoreObject\n||+ hashCode()\l+ equals()\l+ __toString()\l}" alt="" coords="66,177,261,290"/><area shape="rect" id="node8" href="interfacelibs_1_1sprayfire_1_1interfaces_1_1_object.html" title="{libs\\sprayfire\\interfaces\\Object\n||+ equals()\l+ hashCode()\l+ __toString()\l}" alt="" coords="64,6,263,119"/><area shape="rect" id="node10" href="interfacelibs_1_1sprayfire_1_1interfaces_1_1_overloadable.html" title="{libs\\sprayfire\\interfaces\\Overloadable\n||+ __get()\l+ __set()\l+ __isset()\l+ __unset()\l}" alt="" coords="292,169,532,298"/><area shape="rect" id="node12" href="interfacelibs_1_1sprayfire_1_1interfaces_1_1_configuration.html" title="{libs\\sprayfire\\interfaces\\Configuration\n||+ __construct()\l}" alt="" coords="306,742,547,823"/></map>
-<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
-<table class="memberdecls">
-<tr><td colspan="2"><h2><a name="pub-methods"></a>
-Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1config_1_1_json_config.html#a8fc3aeec64c4f5cf1391fed0d4578093">__construct</a> (\SplFileInfo $FileInfo)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1config_1_1_json_config.html#a7659a13f560e9d83b747d46ab90112f7">__toString</a> ()</td></tr>
-<tr><td colspan="2"><h2><a name="pro-methods"></a>
-Protected Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1config_1_1_json_config.html#a2934b84c3d3d0f7277136f501e9b4db5">getMasterData</a> (array $decodedJson)</td></tr>
-</table>
-<hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
-<div class="textblock">
-<p>Definition at line <a class="el" href="_json_config_8php_source.html#l00058">58</a> of file <a class="el" href="_json_config_8php_source.html">JsonConfig.php</a>.</p>
-</div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a8fc3aeec64c4f5cf1391fed0d4578093"></a><!-- doxytag: member="libs::sprayfire::config::JsonConfig::__construct" ref="a8fc3aeec64c4f5cf1391fed0d4578093" args="(\SplFileInfo $FileInfo)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">libs\sprayfire\config\<a class="el" href="classlibs_1_1sprayfire_1_1config_1_1_json_config.html#a8fc3aeec64c4f5cf1391fed0d4578093">JsonConfig::__construct</a> </td>
-          <td>(</td>
-          <td class="paramtype">\SplFileInfo $&#160;</td>
-          <td class="paramname"><em>FileInfo</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-<p>Will take an SplFileInfo object, return the complete path for the file held by that object, convert the data in that file to a JSON array and then convert the nested arrays into ImmutableStorageObjects providing a means to chain together JSON keys through object or array access notation.</p>
-<p>Note, JSON objects passed to this object will be chainable arbirtrarily deep, only limited to the stack depth allowed by `json_decode()`.</p>
-<dl class="params"><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramname">\SplFileInfo</td><td>$FileInfo </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="exception"><dt><b>Exceptions:</b></dt><dd>
-  <table class="exception">
-    <tr><td class="paramname">\InvalidArgumentException</td><td></td></tr>
-    <tr><td class="paramname">\UnexpectedValueException</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
 
-<p>Implements <a class="el" href="interfacelibs_1_1sprayfire_1_1interfaces_1_1_configuration.html#a602508f146e8a5d25a9b3ab714094a77">libs\sprayfire\interfaces\Configuration</a>.</p>
+    <li class="footer">Generated on Fri Dec 23 2011 18:16:43 for SprayFire by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
+   </ul>
+ </div>
 
-<p>Definition at line <a class="el" href="_json_config_8php_source.html#l00092">92</a> of file <a class="el" href="_json_config_8php_source.html">JsonConfig.php</a>.</p>
-
-</div>
-</div>
-<hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a7659a13f560e9d83b747d46ab90112f7"></a><!-- doxytag: member="libs::sprayfire::config::JsonConfig::__toString" ref="a7659a13f560e9d83b747d46ab90112f7" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">libs\sprayfire\config\<a class="el" href="classlibs_1_1sprayfire_1_1config_1_1_json_config.html#a7659a13f560e9d83b747d46ab90112f7">JsonConfig::__toString</a> </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-<dl class="return"><dt><b>Returns:</b></dt><dd>string </dd></dl>
-
-<p>Reimplemented from <a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_core_object.html#a5e54d8b82b3d6126e10a1c185bf548cc">libs\sprayfire\core\CoreObject</a>.</p>
-
-<p>Definition at line <a class="el" href="_json_config_8php_source.html#l00183">183</a> of file <a class="el" href="_json_config_8php_source.html">JsonConfig.php</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a2934b84c3d3d0f7277136f501e9b4db5"></a><!-- doxytag: member="libs::sprayfire::config::JsonConfig::getMasterData" ref="a2934b84c3d3d0f7277136f501e9b4db5" args="(array $decodedJson)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">libs\sprayfire\config\<a class="el" href="classlibs_1_1sprayfire_1_1config_1_1_json_config.html#a2934b84c3d3d0f7277136f501e9b4db5">JsonConfig::getMasterData</a> </td>
-          <td>(</td>
-          <td class="paramtype">array $&#160;</td>
-          <td class="paramname"><em>decodedJson</em></td><td>)</td>
-          <td><code> [protected]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-<p>Will loop through each value held in the decoded JSON, converting those values that are arrays into ImmutableStorage objects.</p>
-<p>Please note, if this exception does not return array the __construct will throw an . If this function is overridden in child classes PLEASE ensure that this function returns an array, even if the array is empty to signify a problem with the configuration that is not detrimental enough to halt execution.</p>
-<dl class="params"><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramtype">array</td><td class="paramname">$decodedJson</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>array </dd></dl>
-
-<p>Definition at line <a class="el" href="_json_config_8php_source.html#l00147">147</a> of file <a class="el" href="_json_config_8php_source.html">JsonConfig.php</a>.</p>
-
-</div>
-</div>
-<hr/>The documentation for this class was generated from the following file:<ul>
-<li>/Library/WebServer/Documents/sprayfire/libs/sprayfire/config/<a class="el" href="_json_config_8php_source.html">JsonConfig.php</a></li>
-</ul>
-</div><!-- contents -->
-<!-- window showing the filter options -->
-<div id="MSearchSelectWindow"
-     onmouseover="return searchBox.OnSearchSelectShow()"
-     onmouseout="return searchBox.OnSearchSelectHide()"
-     onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a></div>
-
-<!-- iframe showing the search results (closed by default) -->
-<div id="MSearchResultsWindow">
-<iframe src="javascript:void(0)" frameborder="0" 
-        name="MSearchResults" id="MSearchResults">
-</iframe>
-</div>
-
-
-
-<hr class="footer"/><address class="footer"><small>
-Generated on Sat Dec 17 2011 00:29:34 for SprayFire by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.7.6.1
-</small></address>
 
 </body>
 </html>

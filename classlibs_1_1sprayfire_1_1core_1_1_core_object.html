@@ -7,9 +7,14 @@
 
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-
-<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
   $(document).ready(function() { searchBox.OnSelectItem(0); });
@@ -46,10 +51,10 @@
 <script type="text/javascript">
 var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </script>
+<script type="text/javascript" src="dynsections.js"></script>
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
@@ -80,6 +85,143 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="functions.html"><span>Data&#160;Fields</span></a></li>
     </ul>
   </div>
+</div>
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+  initNavTree('classlibs_1_1sprayfire_1_1core_1_1_core_object.html','');
+</script>
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a>  </div>
+  <div class="headertitle">
+<div class="title">libs\sprayfire\core\CoreObject Class Reference</div>  </div>
+</div><!--header-->
+<div class="contents">
+<!-- doxytag: class="libs::sprayfire::core::CoreObject" --><!-- doxytag: inherits="libs::sprayfire::core::Object" -->
+<p>SprayFire's implementation of the <a class="el" href="interfacelibs_1_1sprayfire_1_1core_1_1_object.html" title="An interface for basic framework objects.">libs.sprayfire.core.Object</a> interface, allowing easy access to some of the functionality required by this interface simply by extending <a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_core_object.html" title="SprayFire&#39;s implementation of the libs.sprayfire.core.Object interface, allowing easy access to some ...">CoreObject</a>.  
+ <a href="classlibs_1_1sprayfire_1_1core_1_1_core_object.html#details">More...</a></p>
+<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for libs\sprayfire\core\CoreObject:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="classlibs_1_1sprayfire_1_1core_1_1_core_object__inherit__graph.png" border="0" usemap="#libs\sprayfire\core\_core_object_inherit__map" alt="Inheritance graph"/></div>
+<map name="libs\sprayfire\core\_core_object_inherit__map" id="libs\sprayfire\core\_core_object_inherit__map">
+<area shape="rect" id="node5" href="classlibs_1_1sprayfire_1_1bootstrap_1_1_framework_bootstrap.html" title="The framework&#39;s bootstrap, implementing necessary startup details for the framework and the applicati..." alt="" coords="5,355,288,613"/><area shape="rect" id="node7" href="classlibs_1_1sprayfire_1_1core_1_1_class_loader.html" title="Responsible for including namespaced framework and application classes, assuming they abide to the ru..." alt="" coords="312,427,600,541"/><area shape="rect" id="node9" href="classlibs_1_1sprayfire_1_1datastructs_1_1_data_storage.html" title="Stores data in a property and allows access to that data via object or array notation." alt="" coords="625,331,868,637"/><area shape="rect" id="node19" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html" title="The framework&#39;s primary implementation to store framework objects." alt="" coords="893,347,1189,621"/><area shape="rect" id="node21" href="classlibs_1_1sprayfire_1_1request_1_1_base_uri.html" title="A base implementation to convert a URI into the appropriate fragments, will also urldecode() the orig..." alt="" coords="1214,347,1409,621"/><area shape="rect" id="node25" href="classlibs_1_1sprayfire_1_1request_1_1_spray_fire_router.html" title="Will take a libs.sprayfire.config.JsonConfig object to determine the mapped URI to use for the reques..." alt="" coords="1434,371,1680,597"/><area shape="rect" id="node2" href="interfacelibs_1_1sprayfire_1_1core_1_1_object.html" title="An interface for basic framework objects." alt="" coords="809,6,977,119"/><area shape="rect" id="node11" href="classlibs_1_1sprayfire_1_1datastructs_1_1_immutable_storage.html" title="An object that allows for data to be stored and to be assured that the data is not mutable..." alt="" coords="461,686,739,831"/><area shape="rect" id="node15" href="classlibs_1_1sprayfire_1_1datastructs_1_1_mutable_storage.html" title="A simple data storage object that holds key/value pairs and allows additional keys to be added and ex..." alt="" coords="763,686,1025,831"/><area shape="rect" id="node13" href="classlibs_1_1sprayfire_1_1config_1_1_json_config.html" title="{libs\\sprayfire\\config\\JsonConfig\n|&#45; $ConfigFileInfo\l|+ __construct()\l+ __toString()\l&#45; getDecodedJson()\l&#45; getFileContents()\l}" alt="" coords="497,881,703,1010"/><area shape="rect" id="node17" href="classlibs_1_1sprayfire_1_1request_1_1_spray_fire_http_data.html" title="Will allow for an array to be passed, the values of that array to be treated as an object..." alt="" coords="765,897,1023,994"/><area shape="rect" id="node23" href="classlibs_1_1sprayfire_1_1request_1_1_spray_fire_uri.html" title="Framework&#39;s implementation of a RoutedUri, provides a means to retrieve a controller, action and parameters, the routed URI string and the original URI string that was mapped to the routed." alt="" coords="1201,702,1423,815"/></map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for libs\sprayfire\core\CoreObject:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="classlibs_1_1sprayfire_1_1core_1_1_core_object__coll__graph.png" border="0" usemap="#libs\sprayfire\core\_core_object_coll__map" alt="Collaboration graph"/></div>
+<map name="libs\sprayfire\core\_core_object_coll__map" id="libs\sprayfire\core\_core_object_coll__map">
+<area shape="rect" id="node2" href="interfacelibs_1_1sprayfire_1_1core_1_1_object.html" title="An interface for basic framework objects." alt="" coords="19,6,187,119"/></map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr><td colspan="2"><h2><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_core_object.html#a078eb7203e46740562340c0d34ff7e62">hashCode</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_core_object.html#a027842e8fb26c183b9aafbf2072416a0">equals</a> (<a class="el" href="interfacelibs_1_1sprayfire_1_1core_1_1_object.html">Object</a> $CompareObject)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Default implementation, compares the <a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_core_object.html#a078eb7203e46740562340c0d34ff7e62">libs.sprayfire.core.CoreObject::hashCode()</a> return value to the passed <em>$CompareObject</em>.  <a href="#a027842e8fb26c183b9aafbf2072416a0"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_core_object.html#a5e54d8b82b3d6126e10a1c185bf548cc">__toString</a> ()</td></tr>
+</table>
+<hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
+<div class="textblock"><p>SprayFire's implementation of the <a class="el" href="interfacelibs_1_1sprayfire_1_1core_1_1_object.html" title="An interface for basic framework objects.">libs.sprayfire.core.Object</a> interface, allowing easy access to some of the functionality required by this interface simply by extending <a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_core_object.html" title="SprayFire&#39;s implementation of the libs.sprayfire.core.Object interface, allowing easy access to some ...">CoreObject</a>. </p>
+<p>Virtually all of the framework objects used by your application will extend this class. So, if you use the framework as its intended to be used this functionality should be provided to you "out-of-the-box". When you start creating your own objects be sure they somehow trace back to this object or an implementation of <a class="el" href="interfacelibs_1_1sprayfire_1_1core_1_1_object.html" title="An interface for basic framework objects.">libs.sprayfire.core.Object</a> or unexpected consequences may occur. </p>
+
+<p>Definition at line <a class="el" href="_core_object_8php_source.html#l00051">51</a> of file <a class="el" href="_core_object_8php_source.html">CoreObject.php</a>.</p>
+</div><hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="a5e54d8b82b3d6126e10a1c185bf548cc"></a><!-- doxytag: member="libs::sprayfire::core::CoreObject::__toString" ref="a5e54d8b82b3d6126e10a1c185bf548cc" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">libs\sprayfire\core\<a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_core_object.html#a5e54d8b82b3d6126e10a1c185bf548cc">CoreObject::__toString</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<dl class="return"><dt><b>Returns:</b></dt><dd>A string representation of the calling object </dd></dl>
+
+<p>Implements <a class="el" href="interfacelibs_1_1sprayfire_1_1core_1_1_object.html#ab0fb1539adb1c425a255789eb347042a">libs\sprayfire\core\Object</a>.</p>
+
+<p>Reimplemented in <a class="el" href="classlibs_1_1sprayfire_1_1config_1_1_json_config.html#a7659a13f560e9d83b747d46ab90112f7">libs\sprayfire\config\JsonConfig</a>.</p>
+
+<p>Definition at line <a class="el" href="_core_object_8php_source.html#l00083">83</a> of file <a class="el" href="_core_object_8php_source.html">CoreObject.php</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a027842e8fb26c183b9aafbf2072416a0"></a><!-- doxytag: member="libs::sprayfire::core::CoreObject::equals" ref="a027842e8fb26c183b9aafbf2072416a0" args="(Object $CompareObject)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">libs\sprayfire\core\<a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_core_object.html#a027842e8fb26c183b9aafbf2072416a0">CoreObject::equals</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="interfacelibs_1_1sprayfire_1_1core_1_1_object.html">Object</a> $&#160;</td>
+          <td class="paramname"><em>CompareObject</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Default implementation, compares the <a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_core_object.html#a078eb7203e46740562340c0d34ff7e62">libs.sprayfire.core.CoreObject::hashCode()</a> return value to the passed <em>$CompareObject</em>. </p>
+<p>If your objects need to implement a Comparator be sure to override the implementation of this class.</p>
+<dl class="params"><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">$CompareObject</td><td>A <a class="el" href="interfacelibs_1_1sprayfire_1_1core_1_1_object.html" title="An interface for basic framework objects.">libs.sprayfire.core.Object</a> to compare to this one for equality </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>True if the calling object and <em>$CompareObject</em> are equal, false if not </dd></dl>
+
+<p>Implements <a class="el" href="interfacelibs_1_1sprayfire_1_1core_1_1_object.html#a218ca626fa811421403e25eaa46075d0">libs\sprayfire\core\Object</a>.</p>
+
+<p>Definition at line <a class="el" href="_core_object_8php_source.html#l00073">73</a> of file <a class="el" href="_core_object_8php_source.html">CoreObject.php</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a078eb7203e46740562340c0d34ff7e62"></a><!-- doxytag: member="libs::sprayfire::core::CoreObject::hashCode" ref="a078eb7203e46740562340c0d34ff7e62" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">libs\sprayfire\core\<a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_core_object.html#a078eb7203e46740562340c0d34ff7e62">CoreObject::hashCode</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td><code> [final]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<dl class="return"><dt><b>Returns:</b></dt><dd>A unique identifying string based on the internal memory pointer </dd></dl>
+<dl class="see"><dt><b>See also:</b></dt><dd><a href="http://us3.php.net/manual/en/function.spl-object-hash.php">http://us3.php.net/manual/en/function.spl-object-hash.php</a> </dd></dl>
+
+<p>Implements <a class="el" href="interfacelibs_1_1sprayfire_1_1core_1_1_object.html#a0660e60fdc00fa5485d31746727901eb">libs\sprayfire\core\Object</a>.</p>
+
+<p>Definition at line <a class="el" href="_core_object_8php_source.html#l00057">57</a> of file <a class="el" href="_core_object_8php_source.html">CoreObject.php</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>/Library/WebServer/Documents/sprayfire/libs/sprayfire/core/<a class="el" href="_core_object_8php_source.html">CoreObject.php</a></li>
+</ul>
+</div><!-- contents -->
+</div>
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -100,133 +242,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li class="navelem"><a class="el" href="namespacelibs_1_1sprayfire.html">sprayfire</a>      </li>
       <li class="navelem"><a class="el" href="namespacelibs_1_1sprayfire_1_1core.html">core</a>      </li>
       <li class="navelem"><a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_core_object.html">CoreObject</a>      </li>
-    </ul>
-  </div>
-</div>
-<div class="header">
-  <div class="summary">
-<a href="#pub-methods">Public Member Functions</a>  </div>
-  <div class="headertitle">
-<div class="title">libs\sprayfire\core\CoreObject Class Reference</div>  </div>
-</div><!--header-->
-<div class="contents">
-<!-- doxytag: class="libs::sprayfire::core::CoreObject" --><!-- doxytag: inherits="libs::sprayfire::interfaces::Object" --><div class="dynheader">
-Inheritance diagram for libs\sprayfire\core\CoreObject:</div>
-<div class="dyncontent">
-<div class="center"><img src="classlibs_1_1sprayfire_1_1core_1_1_core_object__inherit__graph.png" border="0" usemap="#libs\sprayfire\core\_core_object_inherit__map" alt="Inheritance graph"/></div>
-<map name="libs\sprayfire\core\_core_object_inherit__map" id="libs\sprayfire\core\_core_object_inherit__map">
-<area shape="rect" id="node5" href="classlibs_1_1sprayfire_1_1core_1_1_class_loader.html" title="{libs\\sprayfire\\core\\ClassLoader\n||+ setAutoLoader()\l}" alt="" coords="4,459,208,541"/><area shape="rect" id="node7" href="classlibs_1_1sprayfire_1_1core_1_1_framework_bootstrap.html" title="{libs\\sprayfire\\core\\FrameworkBootstrap\n||+ __construct()\l+ runBootstrap()\l}" alt="" coords="233,451,485,549"/><area shape="rect" id="node9" href="classlibs_1_1sprayfire_1_1datastructs_1_1_data_storage.html" title="{libs\\sprayfire\\datastructs\\DataStorage\n|# $data\l# $count\l|+ __construct()\l+ __get()\l+ offsetGet()\l+ __isset()\l+ offsetExists()\l+ __set()\l+ offsetSet()\l+ __unset()\l+ offsetUnset()\l+ count()\l# get()\l# keyHasValue()\l# keyInData()\l# recalibrateCount()\l# set()\l# removeKey()\l}" alt="" coords="510,331,753,669"/><area shape="rect" id="node2" href="interfacelibs_1_1sprayfire_1_1interfaces_1_1_object.html" title="{libs\\sprayfire\\interfaces\\Object\n||+ equals()\l+ hashCode()\l+ __toString()\l}" alt="" coords="260,6,459,119"/><area shape="rect" id="node11" href="classlibs_1_1sprayfire_1_1datastructs_1_1_immutable_storage.html" title="{libs\\sprayfire\\datastructs\\ImmutableStorage\n||# set()\l# removeKey()\l}" alt="" coords="346,718,624,815"/><area shape="rect" id="node15" href="classlibs_1_1sprayfire_1_1datastructs_1_1_mutable_storage.html" title="{libs\\sprayfire\\datastructs\\MutableStorage\n||# set()\l# removeKey()\l}" alt="" coords="649,718,911,815"/><area shape="rect" id="node13" href="classlibs_1_1sprayfire_1_1config_1_1_json_config.html" title="{libs\\sprayfire\\config\\JsonConfig\n||+ __construct()\l+ __toString()\l# getMasterData()\l}" alt="" coords="382,905,588,1018"/><area shape="rect" id="node17" href="classlibs_1_1sprayfire_1_1datastructs_1_1_mutable_iterator.html" title="{libs\\sprayfire\\datastructs\\MutableIterator\n|# $skipNextIteration\l|+ __construct()\l+ current()\l+ key()\l+ next()\l+ rewind()\l+ valid()\l# set()\l# removeKey()\l}" alt="" coords="651,865,908,1058"/><area shape="rect" id="node19" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html" title="{libs\\sprayfire\\datastructs\\SprayFireObjectStore\n|# $ReflectedParentType\l|+ __construct()\l+ contains()\l+ indexOf()\l+ isEmpty()\l+ getObject()\l+ setObject()\l# set()\l# throwExceptionIfNotFrameworkObject()\l# isFrameworkObject()\l# throwExceptionIfObjectNotParentType()\l# isObjectParentType()\l}" alt="" coords="632,1107,928,1349"/></map>
-<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
-<table class="memberdecls">
-<tr><td colspan="2"><h2><a name="pub-methods"></a>
-Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_core_object.html#a078eb7203e46740562340c0d34ff7e62">hashCode</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_core_object.html#ad0bfc349b08c27241bbfc5bd70ec1bc8">equals</a> (\libs\sprayfire\interfaces\Object $CompareObject)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_core_object.html#a5e54d8b82b3d6126e10a1c185bf548cc">__toString</a> ()</td></tr>
-</table>
-<hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
-<div class="textblock"><p>The base object for all application classes; provides easy access to implementation of the  interface. </p>
 
-<p>Definition at line <a class="el" href="_core_object_8php_source.html#l00027">27</a> of file <a class="el" href="_core_object_8php_source.html">CoreObject.php</a>.</p>
-</div><hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a5e54d8b82b3d6126e10a1c185bf548cc"></a><!-- doxytag: member="libs::sprayfire::core::CoreObject::__toString" ref="a5e54d8b82b3d6126e10a1c185bf548cc" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">libs\sprayfire\core\<a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_core_object.html#a5e54d8b82b3d6126e10a1c185bf548cc">CoreObject::__toString</a> </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-<dl class="return"><dt><b>Returns:</b></dt><dd>string </dd></dl>
+    <li class="footer">Generated on Fri Dec 23 2011 18:16:43 for SprayFire by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
+   </ul>
+ </div>
 
-<p>Implements <a class="el" href="interfacelibs_1_1sprayfire_1_1interfaces_1_1_object.html#aea8bbe6b77bf8b79e5e61dc79fd570f9">libs\sprayfire\interfaces\Object</a>.</p>
-
-<p>Reimplemented in <a class="el" href="classlibs_1_1sprayfire_1_1config_1_1_json_config.html#a7659a13f560e9d83b747d46ab90112f7">libs\sprayfire\config\JsonConfig</a>.</p>
-
-<p>Definition at line <a class="el" href="_core_object_8php_source.html#l00059">59</a> of file <a class="el" href="_core_object_8php_source.html">CoreObject.php</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ad0bfc349b08c27241bbfc5bd70ec1bc8"></a><!-- doxytag: member="libs::sprayfire::core::CoreObject::equals" ref="ad0bfc349b08c27241bbfc5bd70ec1bc8" args="(\libs\sprayfire\interfaces\Object $CompareObject)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">libs\sprayfire\core\<a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_core_object.html#ad0bfc349b08c27241bbfc5bd70ec1bc8">CoreObject::equals</a> </td>
-          <td>(</td>
-          <td class="paramtype">\libs\sprayfire\interfaces\Object $&#160;</td>
-          <td class="paramname"><em>CompareObject</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-<p>The default implemenation for the equals function, will compare the hash code of the object passed and the calling object.</p>
-<p>If your objects need to implement a Comparator be sure to override the implementation of this class.</p>
-<dl class="params"><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramname">\libs\sprayfire\interfaces\Object</td><td>$CompareObject </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>boolean </dd></dl>
-
-<p>Definition at line <a class="el" href="_core_object_8php_source.html#l00049">49</a> of file <a class="el" href="_core_object_8php_source.html">CoreObject.php</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a078eb7203e46740562340c0d34ff7e62"></a><!-- doxytag: member="libs::sprayfire::core::CoreObject::hashCode" ref="a078eb7203e46740562340c0d34ff7e62" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">libs\sprayfire\core\<a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_core_object.html#a078eb7203e46740562340c0d34ff7e62">CoreObject::hashCode</a> </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td><code> [final]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-<p>Returns a unique identifier for the calling object.</p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>string </dd></dl>
-
-<p>Implements <a class="el" href="interfacelibs_1_1sprayfire_1_1interfaces_1_1_object.html#ae6b27cfe583a3d9219ac6e3c99c9ab41">libs\sprayfire\interfaces\Object</a>.</p>
-
-<p>Definition at line <a class="el" href="_core_object_8php_source.html#l00034">34</a> of file <a class="el" href="_core_object_8php_source.html">CoreObject.php</a>.</p>
-
-</div>
-</div>
-<hr/>The documentation for this class was generated from the following file:<ul>
-<li>/Library/WebServer/Documents/sprayfire/libs/sprayfire/core/<a class="el" href="_core_object_8php_source.html">CoreObject.php</a></li>
-</ul>
-</div><!-- contents -->
-<!-- window showing the filter options -->
-<div id="MSearchSelectWindow"
-     onmouseover="return searchBox.OnSearchSelectShow()"
-     onmouseout="return searchBox.OnSearchSelectHide()"
-     onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a></div>
-
-<!-- iframe showing the search results (closed by default) -->
-<div id="MSearchResultsWindow">
-<iframe src="javascript:void(0)" frameborder="0" 
-        name="MSearchResults" id="MSearchResults">
-</iframe>
-</div>
-
-
-
-<hr class="footer"/><address class="footer"><small>
-Generated on Sat Dec 17 2011 00:29:34 for SprayFire by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.7.6.1
-</small></address>
 
 </body>
 </html>

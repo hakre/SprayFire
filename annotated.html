@@ -7,9 +7,14 @@
 
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-
-<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
   $(document).ready(function() { searchBox.OnSelectItem(0); });
@@ -46,10 +51,10 @@
 <script type="text/javascript">
 var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </script>
+<script type="text/javascript" src="dynsections.js"></script>
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
@@ -81,31 +86,50 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     </ul>
   </div>
 </div>
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+  initNavTree('annotated.html','');
+</script>
+<div id="doc-content">
 <div class="header">
   <div class="headertitle">
 <div class="title">Data Structures</div>  </div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock">Here are the data structures with brief descriptions:</div><table>
-  <tr><td class="indexkey"><a class="el" href="interfacelibs_1_1sprayfire_1_1interfaces_1_1_bootstrapper.html">libs\sprayfire\interfaces\Bootstrapper</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_class_loader.html">libs\sprayfire\core\ClassLoader</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="interfacelibs_1_1sprayfire_1_1interfaces_1_1_configuration.html">libs\sprayfire\interfaces\Configuration</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_core_object.html">libs\sprayfire\core\CoreObject</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_data_storage.html">libs\sprayfire\datastructs\DataStorage</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_framework_bootstrap.html">libs\sprayfire\core\FrameworkBootstrap</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="interfacelibs_1_1sprayfire_1_1interfaces_1_1_framework_paths.html">libs\sprayfire\interfaces\FrameworkPaths</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_immutable_storage.html">libs\sprayfire\datastructs\ImmutableStorage</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="interfacelibs_1_1sprayfire_1_1bootstrap_1_1_bootstrapper.html">libs\sprayfire\bootstrap\Bootstrapper</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="classlibs_1_1sprayfire_1_1bootstrap_1_1_framework_bootstrap.html">libs\sprayfire\bootstrap\FrameworkBootstrap</a></td><td class="indexvalue">The framework's bootstrap, implementing necessary startup details for the framework and the application </td></tr>
+  <tr><td class="indexkey"><a class="el" href="interfacelibs_1_1sprayfire_1_1config_1_1_configuration.html">libs\sprayfire\config\Configuration</a></td><td class="indexvalue">An interface that requires implementing objects to accept a SplFileInfo object representing a configuration file and that the values in that configuration file should be accessible through object or array notation </td></tr>
   <tr><td class="indexkey"><a class="el" href="classlibs_1_1sprayfire_1_1config_1_1_json_config.html">libs\sprayfire\config\JsonConfig</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_mutable_iterator.html">libs\sprayfire\datastructs\MutableIterator</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_mutable_storage.html">libs\sprayfire\datastructs\MutableStorage</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="interfacelibs_1_1sprayfire_1_1interfaces_1_1_object.html">libs\sprayfire\interfaces\Object</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="interfacelibs_1_1sprayfire_1_1interfaces_1_1_object_storage.html">libs\sprayfire\interfaces\ObjectStorage</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="classlibs_1_1sprayfire_1_1exceptions_1_1_operation_failed_exception.html">libs\sprayfire\exceptions\OperationFailedException</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="interfacelibs_1_1sprayfire_1_1interfaces_1_1_overloadable.html">libs\sprayfire\interfaces\Overloadable</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="classlibs_1_1sprayfire_1_1exceptions_1_1_php_failure_exception.html">libs\sprayfire\exceptions\PhpFailureException</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_class_loader.html">libs\sprayfire\core\ClassLoader</a></td><td class="indexvalue">Responsible for including namespaced framework and application classes, assuming they abide to the rules set forth by the framework </td></tr>
+  <tr><td class="indexkey"><a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_core_object.html">libs\sprayfire\core\CoreObject</a></td><td class="indexvalue">SprayFire's implementation of the <a class="el" href="interfacelibs_1_1sprayfire_1_1core_1_1_object.html" title="An interface for basic framework objects.">libs.sprayfire.core.Object</a> interface, allowing easy access to some of the functionality required by this interface simply by extending <a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_core_object.html" title="SprayFire&#39;s implementation of the libs.sprayfire.core.Object interface, allowing easy access to some ...">CoreObject</a> </td></tr>
+  <tr><td class="indexkey"><a class="el" href="interfacelibs_1_1sprayfire_1_1core_1_1_object.html">libs\sprayfire\core\Object</a></td><td class="indexvalue">An interface for basic framework objects </td></tr>
   <tr><td class="indexkey"><a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_spray_fire_directory.html">libs\sprayfire\core\SprayFireDirectory</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html">libs\sprayfire\datastructs\SprayFireObjectStore</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="classlibs_1_1sprayfire_1_1exceptions_1_1_unsupported_operation_exception.html">libs\sprayfire\exceptions\UnsupportedOperationException</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_data_storage.html">libs\sprayfire\datastructs\DataStorage</a></td><td class="indexvalue">Stores data in a property and allows access to that data via object or array notation </td></tr>
+  <tr><td class="indexkey"><a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_immutable_storage.html">libs\sprayfire\datastructs\ImmutableStorage</a></td><td class="indexvalue">An object that allows for data to be stored and to be assured that the data is not mutable </td></tr>
+  <tr><td class="indexkey"><a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_mutable_storage.html">libs\sprayfire\datastructs\MutableStorage</a></td><td class="indexvalue">A simple data storage object that holds key/value pairs and allows additional keys to be added and existing keys to be manipulated or removed </td></tr>
+  <tr><td class="indexkey"><a class="el" href="interfacelibs_1_1sprayfire_1_1datastructs_1_1_object_storage.html">libs\sprayfire\datastructs\ObjectStorage</a></td><td class="indexvalue">Provides an API to store SprayFire derived objects, iterate over them and store similar typed objects </td></tr>
+  <tr><td class="indexkey"><a class="el" href="interfacelibs_1_1sprayfire_1_1datastructs_1_1_overloadable.html">libs\sprayfire\datastructs\Overloadable</a></td><td class="indexvalue">An interface that forces the implementation of the magic methods that allow an object to access non-existing or inaccessible properties </td></tr>
+  <tr><td class="indexkey"><a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html">libs\sprayfire\datastructs\SprayFireObjectStore</a></td><td class="indexvalue">The framework's primary implementation to store framework objects </td></tr>
+  <tr><td class="indexkey"><a class="el" href="classlibs_1_1sprayfire_1_1exceptions_1_1_unsupported_operation_exception.html">libs\sprayfire\exceptions\UnsupportedOperationException</a></td><td class="indexvalue">Thrown when a method implemented from an interface should not be callable by that specific implementation </td></tr>
+  <tr><td class="indexkey"><a class="el" href="classlibs_1_1sprayfire_1_1request_1_1_base_uri.html">libs\sprayfire\request\BaseUri</a></td><td class="indexvalue">A base implementation to convert a URI into the appropriate fragments, will also urldecode() the original URI passed </td></tr>
+  <tr><td class="indexkey"><a class="el" href="interfacelibs_1_1sprayfire_1_1request_1_1_http_data.html">libs\sprayfire\request\HttpData</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="interfacelibs_1_1sprayfire_1_1request_1_1_http_data_container.html">libs\sprayfire\request\HttpDataContainer</a></td><td class="indexvalue">An interface used to store various HTTP data sent in the current request </td></tr>
+  <tr><td class="indexkey"><a class="el" href="interfacelibs_1_1sprayfire_1_1request_1_1_request.html">libs\sprayfire\request\Request</a></td><td class="indexvalue">Provides a way to pass several objects to the front controller and the application components in regard to the request sent; including the mapped URI controller and action as well as the PHP superglobals as objects </td></tr>
+  <tr><td class="indexkey"><a class="el" href="interfacelibs_1_1sprayfire_1_1request_1_1_routed_uri.html">libs\sprayfire\request\RoutedUri</a></td><td class="indexvalue">An extension of the <a class="el" href="interfacelibs_1_1sprayfire_1_1request_1_1_uri.html" title="Implementations should convert a string into appropriate fragments for the requested contoller...">libs.sprayfire.request.Uri</a> interface to allow for the setting of the original URI string used to map the <a class="el" href="interfacelibs_1_1sprayfire_1_1request_1_1_routed_uri.html" title="An extension of the libs.sprayfire.request.Uri interface to allow for the setting of the original URI...">RoutedUri</a> object created and a means to retrieve the mapped URI string </td></tr>
+  <tr><td class="indexkey"><a class="el" href="interfacelibs_1_1sprayfire_1_1request_1_1_router.html">libs\sprayfire\request\Router</a></td><td class="indexvalue">Implementations should convert a <a class="el" href="interfacelibs_1_1sprayfire_1_1request_1_1_uri.html" title="Implementations should convert a string into appropriate fragments for the requested contoller...">libs.sprayfire.request.Uri</a> object into a <a class="el" href="interfacelibs_1_1sprayfire_1_1request_1_1_routed_uri.html" title="An extension of the libs.sprayfire.request.Uri interface to allow for the setting of the original URI...">libs.sprayfire.request.RoutedUri</a> object, using values from the <a class="el" href="interfacelibs_1_1sprayfire_1_1config_1_1_configuration.html" title="An interface that requires implementing objects to accept a SplFileInfo object representing a configu...">libs.sprayfire.config.Configuration</a> object that is passed in the constructor as defaults if needed </td></tr>
+  <tr><td class="indexkey"><a class="el" href="classlibs_1_1sprayfire_1_1request_1_1_spray_fire_http_data.html">libs\sprayfire\request\SprayFireHttpData</a></td><td class="indexvalue">Will allow for an array to be passed, the values of that array to be treated as an object, and for changes to the array or the object to make changes to the other </td></tr>
+  <tr><td class="indexkey"><a class="el" href="classlibs_1_1sprayfire_1_1request_1_1_spray_fire_router.html">libs\sprayfire\request\SprayFireRouter</a></td><td class="indexvalue">Will take a <a class="el" href="classlibs_1_1sprayfire_1_1config_1_1_json_config.html">libs.sprayfire.config.JsonConfig</a> object to determine the mapped URI to use for the request and convert any <a class="el" href="interfacelibs_1_1sprayfire_1_1request_1_1_uri.html" title="Implementations should convert a string into appropriate fragments for the requested contoller...">libs.sprayfire.request.Uri</a> object passed into an appropriate <a class="el" href="interfacelibs_1_1sprayfire_1_1request_1_1_routed_uri.html" title="An extension of the libs.sprayfire.request.Uri interface to allow for the setting of the original URI...">libs.sprayfire.request.RoutedUri</a> object </td></tr>
+  <tr><td class="indexkey"><a class="el" href="classlibs_1_1sprayfire_1_1request_1_1_spray_fire_uri.html">libs\sprayfire\request\SprayFireUri</a></td><td class="indexvalue">Framework's implementation of a <a class="el" href="interfacelibs_1_1sprayfire_1_1request_1_1_routed_uri.html" title="An extension of the libs.sprayfire.request.Uri interface to allow for the setting of the original URI...">RoutedUri</a>, provides a means to retrieve a controller, action and parameters, the routed URI string and the original URI string that was mapped to the routed </td></tr>
+  <tr><td class="indexkey"><a class="el" href="interfacelibs_1_1sprayfire_1_1request_1_1_uri.html">libs\sprayfire\request\Uri</a></td><td class="indexvalue">Implementations should convert a string into appropriate fragments for the requested contoller, action and parameters </td></tr>
 </table>
 </div><!-- contents -->
 <!-- window showing the filter options -->
@@ -122,13 +146,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
+</div>
+  <div id="nav-path" class="navpath">
+    <ul>
 
+    <li class="footer">Generated on Fri Dec 23 2011 18:16:43 for SprayFire by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
+   </ul>
+ </div>
 
-<hr class="footer"/><address class="footer"><small>
-Generated on Sat Dec 17 2011 00:29:34 for SprayFire by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.7.6.1
-</small></address>
 
 </body>
 </html>

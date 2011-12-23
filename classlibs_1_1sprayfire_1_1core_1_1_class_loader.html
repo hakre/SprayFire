@@ -7,9 +7,14 @@
 
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-
-<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
   $(document).ready(function() { searchBox.OnSelectItem(0); });
@@ -46,10 +51,10 @@
 <script type="text/javascript">
 var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </script>
+<script type="text/javascript" src="dynsections.js"></script>
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
@@ -80,6 +85,147 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="functions.html"><span>Data&#160;Fields</span></a></li>
     </ul>
   </div>
+</div>
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+  initNavTree('classlibs_1_1sprayfire_1_1core_1_1_class_loader.html','');
+</script>
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a>  </div>
+  <div class="headertitle">
+<div class="title">libs\sprayfire\core\ClassLoader Class Reference</div>  </div>
+</div><!--header-->
+<div class="contents">
+<!-- doxytag: class="libs::sprayfire::core::ClassLoader" --><!-- doxytag: inherits="libs::sprayfire::core::CoreObject" -->
+<p>Responsible for including namespaced framework and application classes, assuming they abide to the rules set forth by the framework.  
+ <a href="classlibs_1_1sprayfire_1_1core_1_1_class_loader.html#details">More...</a></p>
+<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for libs\sprayfire\core\ClassLoader:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="classlibs_1_1sprayfire_1_1core_1_1_class_loader__inherit__graph.png" border="0" usemap="#libs\sprayfire\core\_class_loader_inherit__map" alt="Inheritance graph"/></div>
+<map name="libs\sprayfire\core\_class_loader_inherit__map" id="libs\sprayfire\core\_class_loader_inherit__map">
+<area shape="rect" id="node2" href="classlibs_1_1sprayfire_1_1core_1_1_core_object.html" title="SprayFire&#39;s implementation of the libs.sprayfire.core.Object interface, allowing easy access to some ..." alt="" coords="51,169,247,282"/><area shape="rect" id="node4" href="interfacelibs_1_1sprayfire_1_1core_1_1_object.html" title="An interface for basic framework objects." alt="" coords="65,6,233,119"/></map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for libs\sprayfire\core\ClassLoader:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="classlibs_1_1sprayfire_1_1core_1_1_class_loader__coll__graph.png" border="0" usemap="#libs\sprayfire\core\_class_loader_coll__map" alt="Collaboration graph"/></div>
+<map name="libs\sprayfire\core\_class_loader_coll__map" id="libs\sprayfire\core\_class_loader_coll__map">
+<area shape="rect" id="node2" href="classlibs_1_1sprayfire_1_1core_1_1_core_object.html" title="SprayFire&#39;s implementation of the libs.sprayfire.core.Object interface, allowing easy access to some ..." alt="" coords="51,169,247,282"/><area shape="rect" id="node4" href="interfacelibs_1_1sprayfire_1_1core_1_1_object.html" title="An interface for basic framework objects." alt="" coords="65,6,233,119"/></map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr><td colspan="2"><h2><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_class_loader.html#a955b6144c7e5f0d2ba711dd5532f82a0">setAutoLoader</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds the class's autoloader function to the autoload register.  <a href="#a955b6144c7e5f0d2ba711dd5532f82a0"></a><br/></td></tr>
+<tr><td colspan="2"><h2><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_class_loader.html#a54c6b7529425875e94d455e6c985288b">loadClass</a> ($className)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Include the class based on the fully namespaced <em>$className</em> passed.  <a href="#a54c6b7529425875e94d455e6c985288b"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_class_loader.html#a3262425634e07a9a7338b1520343c322">convertNamespacedClassToDirectoryPath</a> ($className)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts the PHP namespace separator to the appropriate directory separator.  <a href="#a3262425634e07a9a7338b1520343c322"></a><br/></td></tr>
+</table>
+<hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
+<div class="textblock"><p>Responsible for including namespaced framework and application classes, assuming they abide to the rules set forth by the framework. </p>
+
+<p>Definition at line <a class="el" href="_class_loader_8php_source.html#l00043">43</a> of file <a class="el" href="_class_loader_8php_source.html">ClassLoader.php</a>.</p>
+</div><hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="a3262425634e07a9a7338b1520343c322"></a><!-- doxytag: member="libs::sprayfire::core::ClassLoader::convertNamespacedClassToDirectoryPath" ref="a3262425634e07a9a7338b1520343c322" args="($className)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">libs\sprayfire\core\<a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_class_loader.html#a3262425634e07a9a7338b1520343c322">ClassLoader::convertNamespacedClassToDirectoryPath</a> </td>
+          <td>(</td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>className</em></td><td>)</td>
+          <td><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Converts the PHP namespace separator to the appropriate directory separator. </p>
+<dl class="params"><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">$className</td><td>Namespaced name of the class to load </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The complete path to the class </dd></dl>
+
+<p>Definition at line <a class="el" href="_class_loader_8php_source.html#l00073">73</a> of file <a class="el" href="_class_loader_8php_source.html">ClassLoader.php</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a54c6b7529425875e94d455e6c985288b"></a><!-- doxytag: member="libs::sprayfire::core::ClassLoader::loadClass" ref="a54c6b7529425875e94d455e6c985288b" args="($className)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">libs\sprayfire\core\<a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_class_loader.html#a54c6b7529425875e94d455e6c985288b">ClassLoader::loadClass</a> </td>
+          <td>(</td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>className</em></td><td>)</td>
+          <td><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Include the class based on the fully namespaced <em>$className</em> passed. </p>
+<dl class="params"><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">$className</td><td>The namespaced class to load </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="_class_loader_8php_source.html#l00059">59</a> of file <a class="el" href="_class_loader_8php_source.html">ClassLoader.php</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a955b6144c7e5f0d2ba711dd5532f82a0"></a><!-- doxytag: member="libs::sprayfire::core::ClassLoader::setAutoLoader" ref="a955b6144c7e5f0d2ba711dd5532f82a0" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">libs\sprayfire\core\<a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_class_loader.html#a955b6144c7e5f0d2ba711dd5532f82a0">ClassLoader::setAutoLoader</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Adds the class's autoloader function to the autoload register. </p>
+<dl class="user"><dt><b>We are ignoring this code in test coverage</b></dt><dd></dd></dl>
+
+<p>Definition at line <a class="el" href="_class_loader_8php_source.html#l00050">50</a> of file <a class="el" href="_class_loader_8php_source.html">ClassLoader.php</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>/Library/WebServer/Documents/sprayfire/libs/sprayfire/core/<a class="el" href="_class_loader_8php_source.html">ClassLoader.php</a></li>
+</ul>
+</div><!-- contents -->
+</div>
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -100,77 +246,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li class="navelem"><a class="el" href="namespacelibs_1_1sprayfire.html">sprayfire</a>      </li>
       <li class="navelem"><a class="el" href="namespacelibs_1_1sprayfire_1_1core.html">core</a>      </li>
       <li class="navelem"><a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_class_loader.html">ClassLoader</a>      </li>
-    </ul>
-  </div>
-</div>
-<div class="header">
-  <div class="summary">
-<a href="#pub-methods">Public Member Functions</a>  </div>
-  <div class="headertitle">
-<div class="title">libs\sprayfire\core\ClassLoader Class Reference</div>  </div>
-</div><!--header-->
-<div class="contents">
-<!-- doxytag: class="libs::sprayfire::core::ClassLoader" --><!-- doxytag: inherits="libs::sprayfire::core::CoreObject" --><div class="dynheader">
-Inheritance diagram for libs\sprayfire\core\ClassLoader:</div>
-<div class="dyncontent">
-<div class="center"><img src="classlibs_1_1sprayfire_1_1core_1_1_class_loader__inherit__graph.png" border="0" usemap="#libs\sprayfire\core\_class_loader_inherit__map" alt="Inheritance graph"/></div>
-<map name="libs\sprayfire\core\_class_loader_inherit__map" id="libs\sprayfire\core\_class_loader_inherit__map">
-<area shape="rect" id="node2" href="classlibs_1_1sprayfire_1_1core_1_1_core_object.html" title="{libs\\sprayfire\\core\\CoreObject\n||+ hashCode()\l+ equals()\l+ __toString()\l}" alt="" coords="8,169,204,282"/><area shape="rect" id="node4" href="interfacelibs_1_1sprayfire_1_1interfaces_1_1_object.html" title="{libs\\sprayfire\\interfaces\\Object\n||+ equals()\l+ hashCode()\l+ __toString()\l}" alt="" coords="7,6,205,119"/></map>
-<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
-<table class="memberdecls">
-<tr><td colspan="2"><h2><a name="pub-methods"></a>
-Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_class_loader.html#a955b6144c7e5f0d2ba711dd5532f82a0">setAutoLoader</a> ()</td></tr>
-</table>
-<hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
-<div class="textblock"><p>This class is responsible for including framework and application classes using PHP's autoload mechanism. </p>
 
-<p>Definition at line <a class="el" href="_class_loader_8php_source.html#l00026">26</a> of file <a class="el" href="_class_loader_8php_source.html">ClassLoader.php</a>.</p>
-</div><hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a955b6144c7e5f0d2ba711dd5532f82a0"></a><!-- doxytag: member="libs::sprayfire::core::ClassLoader::setAutoLoader" ref="a955b6144c7e5f0d2ba711dd5532f82a0" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">libs\sprayfire\core\<a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_class_loader.html#a955b6144c7e5f0d2ba711dd5532f82a0">ClassLoader::setAutoLoader</a> </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-<p>Adds the class's autoloader function to the autoload register.</p>
+    <li class="footer">Generated on Fri Dec 23 2011 18:16:43 for SprayFire by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
+   </ul>
+ </div>
 
-<p>Definition at line <a class="el" href="_class_loader_8php_source.html#l00033">33</a> of file <a class="el" href="_class_loader_8php_source.html">ClassLoader.php</a>.</p>
-
-</div>
-</div>
-<hr/>The documentation for this class was generated from the following file:<ul>
-<li>/Library/WebServer/Documents/sprayfire/libs/sprayfire/core/<a class="el" href="_class_loader_8php_source.html">ClassLoader.php</a></li>
-</ul>
-</div><!-- contents -->
-<!-- window showing the filter options -->
-<div id="MSearchSelectWindow"
-     onmouseover="return searchBox.OnSearchSelectShow()"
-     onmouseout="return searchBox.OnSearchSelectHide()"
-     onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a></div>
-
-<!-- iframe showing the search results (closed by default) -->
-<div id="MSearchResultsWindow">
-<iframe src="javascript:void(0)" frameborder="0" 
-        name="MSearchResults" id="MSearchResults">
-</iframe>
-</div>
-
-
-
-<hr class="footer"/><address class="footer"><small>
-Generated on Sat Dec 17 2011 00:29:34 for SprayFire by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.7.6.1
-</small></address>
 
 </body>
 </html>
