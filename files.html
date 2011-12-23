@@ -7,9 +7,14 @@
 
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-
-<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
   $(document).ready(function() { searchBox.OnSelectItem(0); });
@@ -46,10 +51,10 @@
 <script type="text/javascript">
 var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </script>
+<script type="text/javascript" src="dynsections.js"></script>
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
@@ -79,31 +84,50 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     </ul>
   </div>
 </div>
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+  initNavTree('files.html','');
+</script>
+<div id="doc-content">
 <div class="header">
   <div class="headertitle">
 <div class="title">File List</div>  </div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock">Here is a list of all files with brief descriptions:</div><table>
-  <tr><td class="indexkey">/Library/WebServer/Documents/sprayfire/libs/sprayfire/config/<a class="el" href="_json_config_8php.html">JsonConfig.php</a> <a href="_json_config_8php_source.html">[code]</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey">/Library/WebServer/Documents/sprayfire/libs/sprayfire/core/<a class="el" href="_class_loader_8php.html">ClassLoader.php</a> <a href="_class_loader_8php_source.html">[code]</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey">/Library/WebServer/Documents/sprayfire/libs/sprayfire/core/<a class="el" href="_core_object_8php.html">CoreObject.php</a> <a href="_core_object_8php_source.html">[code]</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey">/Library/WebServer/Documents/sprayfire/libs/sprayfire/core/<a class="el" href="_framework_bootstrap_8php.html">FrameworkBootstrap.php</a> <a href="_framework_bootstrap_8php_source.html">[code]</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey">/Library/WebServer/Documents/sprayfire/libs/sprayfire/core/<a class="el" href="_spray_fire_directory_8php.html">SprayFireDirectory.php</a> <a href="_spray_fire_directory_8php_source.html">[code]</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey">/Library/WebServer/Documents/sprayfire/libs/sprayfire/datastructs/<a class="el" href="_data_storage_8php.html">DataStorage.php</a> <a href="_data_storage_8php_source.html">[code]</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey">/Library/WebServer/Documents/sprayfire/libs/sprayfire/datastructs/<a class="el" href="_immutable_storage_8php.html">ImmutableStorage.php</a> <a href="_immutable_storage_8php_source.html">[code]</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey">/Library/WebServer/Documents/sprayfire/libs/sprayfire/datastructs/<a class="el" href="_mutable_iterator_8php.html">MutableIterator.php</a> <a href="_mutable_iterator_8php_source.html">[code]</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey">/Library/WebServer/Documents/sprayfire/libs/sprayfire/datastructs/<a class="el" href="_mutable_storage_8php.html">MutableStorage.php</a> <a href="_mutable_storage_8php_source.html">[code]</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey">/Library/WebServer/Documents/sprayfire/libs/sprayfire/datastructs/<a class="el" href="_spray_fire_object_store_8php.html">SprayFireObjectStore.php</a> <a href="_spray_fire_object_store_8php_source.html">[code]</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey">/Library/WebServer/Documents/sprayfire/libs/sprayfire/exceptions/<a class="el" href="_operation_failed_exception_8php.html">OperationFailedException.php</a> <a href="_operation_failed_exception_8php_source.html">[code]</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey">/Library/WebServer/Documents/sprayfire/libs/sprayfire/exceptions/<a class="el" href="_php_failure_exception_8php.html">PhpFailureException.php</a> <a href="_php_failure_exception_8php_source.html">[code]</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey">/Library/WebServer/Documents/sprayfire/libs/sprayfire/exceptions/<a class="el" href="_unsupported_operation_exception_8php.html">UnsupportedOperationException.php</a> <a href="_unsupported_operation_exception_8php_source.html">[code]</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey">/Library/WebServer/Documents/sprayfire/libs/sprayfire/interfaces/<a class="el" href="_bootstrapper_8php.html">Bootstrapper.php</a> <a href="_bootstrapper_8php_source.html">[code]</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey">/Library/WebServer/Documents/sprayfire/libs/sprayfire/interfaces/<a class="el" href="_configuration_8php.html">Configuration.php</a> <a href="_configuration_8php_source.html">[code]</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey">/Library/WebServer/Documents/sprayfire/libs/sprayfire/interfaces/<a class="el" href="_framework_paths_8php.html">FrameworkPaths.php</a> <a href="_framework_paths_8php_source.html">[code]</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey">/Library/WebServer/Documents/sprayfire/libs/sprayfire/interfaces/<a class="el" href="_object_8php.html">Object.php</a> <a href="_object_8php_source.html">[code]</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey">/Library/WebServer/Documents/sprayfire/libs/sprayfire/interfaces/<a class="el" href="_object_storage_8php.html">ObjectStorage.php</a> <a href="_object_storage_8php_source.html">[code]</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey">/Library/WebServer/Documents/sprayfire/libs/sprayfire/interfaces/<a class="el" href="_overloadable_8php.html">Overloadable.php</a> <a href="_overloadable_8php_source.html">[code]</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey">/Library/WebServer/Documents/sprayfire/libs/sprayfire/bootstrap/<a class="el" href="_bootstrapper_8php.html">Bootstrapper.php</a> <a href="_bootstrapper_8php_source.html">[code]</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey">/Library/WebServer/Documents/sprayfire/libs/sprayfire/bootstrap/<a class="el" href="_framework_bootstrap_8php.html">FrameworkBootstrap.php</a> <a href="_framework_bootstrap_8php_source.html">[code]</a></td><td class="indexvalue">Holds the class that takes care of framework bootstrapping procedures and instantiates and invokes the application bootstraps </td></tr>
+  <tr><td class="indexkey">/Library/WebServer/Documents/sprayfire/libs/sprayfire/config/<a class="el" href="_configuration_8php.html">Configuration.php</a> <a href="_configuration_8php_source.html">[code]</a></td><td class="indexvalue">Holds an interface that requires the injection of a SplFileInfo object representing the configuration info </td></tr>
+  <tr><td class="indexkey">/Library/WebServer/Documents/sprayfire/libs/sprayfire/config/<a class="el" href="_json_config_8php.html">JsonConfig.php</a> <a href="_json_config_8php_source.html">[code]</a></td><td class="indexvalue">Holds a <a class="el" href="interfacelibs_1_1sprayfire_1_1config_1_1_configuration.html" title="An interface that requires implementing objects to accept a SplFileInfo object representing a configu...">libs.sprayfire.config.Configuration</a> object that will convert a JSON configuration file into a chainable ImmutableStorage object </td></tr>
+  <tr><td class="indexkey">/Library/WebServer/Documents/sprayfire/libs/sprayfire/core/<a class="el" href="_class_loader_8php.html">ClassLoader.php</a> <a href="_class_loader_8php_source.html">[code]</a></td><td class="indexvalue">Holds a class used as the framework autoloader, converting a namespaced class to an absolute directory </td></tr>
+  <tr><td class="indexkey">/Library/WebServer/Documents/sprayfire/libs/sprayfire/core/<a class="el" href="_core_object_8php.html">CoreObject.php</a> <a href="_core_object_8php_source.html">[code]</a></td><td class="indexvalue">The framework's implementation of the <a class="el" href="interfacelibs_1_1sprayfire_1_1core_1_1_object.html" title="An interface for basic framework objects.">libs.sprayfire.core.Object</a> interface </td></tr>
+  <tr><td class="indexkey">/Library/WebServer/Documents/sprayfire/libs/sprayfire/core/<a class="el" href="_object_8php.html">Object.php</a> <a href="_object_8php_source.html">[code]</a></td><td class="indexvalue">An interface representing a basic framework object, used as a means to ensure some very basic, common object functionality </td></tr>
+  <tr><td class="indexkey">/Library/WebServer/Documents/sprayfire/libs/sprayfire/core/<a class="el" href="_spray_fire_directory_8php.html">SprayFireDirectory.php</a> <a href="_spray_fire_directory_8php_source.html">[code]</a></td><td class="indexvalue">Holds a class to ease the creation of absolute paths for framework and application directories and files </td></tr>
+  <tr><td class="indexkey">/Library/WebServer/Documents/sprayfire/libs/sprayfire/datastructs/<a class="el" href="_data_storage_8php.html">DataStorage.php</a> <a href="_data_storage_8php_source.html">[code]</a></td><td class="indexvalue">Provides a generic means to store data through object (-&gt;) or array ([]) notation </td></tr>
+  <tr><td class="indexkey">/Library/WebServer/Documents/sprayfire/libs/sprayfire/datastructs/<a class="el" href="_immutable_storage_8php.html">ImmutableStorage.php</a> <a href="_immutable_storage_8php_source.html">[code]</a></td><td class="indexvalue">A simple key/value storage object that extends <a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_data_storage.html" title="Stores data in a property and allows access to that data via object or array notation.">libs.sprayfire.datastructs.DataStorage</a> and does not allow the data associated to be changed after the object has been constructed </td></tr>
+  <tr><td class="indexkey">/Library/WebServer/Documents/sprayfire/libs/sprayfire/datastructs/<a class="el" href="_mutable_storage_8php.html">MutableStorage.php</a> <a href="_mutable_storage_8php_source.html">[code]</a></td><td class="indexvalue">A class that extends <a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_data_storage.html" title="Stores data in a property and allows access to that data via object or array notation.">libs.sprayfire.datastructs.DataStorage</a> and allows for any data to be manipulated, removed or added to the structure </td></tr>
+  <tr><td class="indexkey">/Library/WebServer/Documents/sprayfire/libs/sprayfire/datastructs/<a class="el" href="_object_storage_8php.html">ObjectStorage.php</a> <a href="_object_storage_8php_source.html">[code]</a></td><td class="indexvalue">An interface that should be implemented by data structures holding SprayFire objects </td></tr>
+  <tr><td class="indexkey">/Library/WebServer/Documents/sprayfire/libs/sprayfire/datastructs/<a class="el" href="_overloadable_8php.html">Overloadable.php</a> <a href="_overloadable_8php_source.html">[code]</a></td><td class="indexvalue">An interface for classes that should have data accessible through overloaded properties </td></tr>
+  <tr><td class="indexkey">/Library/WebServer/Documents/sprayfire/libs/sprayfire/datastructs/<a class="el" href="_spray_fire_object_store_8php.html">SprayFireObjectStore.php</a> <a href="_spray_fire_object_store_8php_source.html">[code]</a></td><td class="indexvalue">Framework's implementation of an ObjectStorage data structure </td></tr>
+  <tr><td class="indexkey">/Library/WebServer/Documents/sprayfire/libs/sprayfire/exceptions/<a class="el" href="_unsupported_operation_exception_8php.html">UnsupportedOperationException.php</a> <a href="_unsupported_operation_exception_8php_source.html">[code]</a></td><td class="indexvalue">Holds an exception that should be thrown if a method implemented by an interface should not be callable for a specific implementation </td></tr>
+  <tr><td class="indexkey">/Library/WebServer/Documents/sprayfire/libs/sprayfire/request/<a class="el" href="_base_uri_8php.html">BaseUri.php</a> <a href="_base_uri_8php_source.html">[code]</a></td><td class="indexvalue">Holds a class that implements the basic functionality to split a URI into its appropriate controller, action and parameter fragments </td></tr>
+  <tr><td class="indexkey">/Library/WebServer/Documents/sprayfire/libs/sprayfire/request/<a class="el" href="_http_data_8php.html">HttpData.php</a> <a href="_http_data_8php_source.html">[code]</a></td><td class="indexvalue">Holds an interface to allow PHP superglobal objects to be manipulated in an object oriented fashion </td></tr>
+  <tr><td class="indexkey">/Library/WebServer/Documents/sprayfire/libs/sprayfire/request/<a class="el" href="_http_data_container_8php.html">HttpDataContainer.php</a> <a href="_http_data_container_8php_source.html">[code]</a></td><td class="indexvalue">Holds an interface used to store the various HTTP related superglobals as objects to later be used by application components </td></tr>
+  <tr><td class="indexkey">/Library/WebServer/Documents/sprayfire/libs/sprayfire/request/<a class="el" href="_request_8php.html">Request.php</a> <a href="_request_8php_source.html">[code]</a></td><td class="indexvalue">Holds the interface needing to be implemented by an object representing the request information </td></tr>
+  <tr><td class="indexkey">/Library/WebServer/Documents/sprayfire/libs/sprayfire/request/<a class="el" href="_routed_uri_8php.html">RoutedUri.php</a> <a href="_routed_uri_8php_source.html">[code]</a></td><td class="indexvalue">Holds the interface for a Uri object that has been properly routed to a mapped controller and action </td></tr>
+  <tr><td class="indexkey">/Library/WebServer/Documents/sprayfire/libs/sprayfire/request/<a class="el" href="_router_8php.html">Router.php</a> <a href="_router_8php_source.html">[code]</a></td><td class="indexvalue">Holds the interface needed to be implemented by objects represetning $_GET, $_POST and other HTTP related superglobals </td></tr>
+  <tr><td class="indexkey">/Library/WebServer/Documents/sprayfire/libs/sprayfire/request/<a class="el" href="_spray_fire_http_data_8php.html">SprayFireHttpData.php</a> <a href="_spray_fire_http_data_8php_source.html">[code]</a></td><td class="indexvalue">The framework's implementation of the <a class="el" href="interfacelibs_1_1sprayfire_1_1request_1_1_http_data.html">libs.sprayfire.request.HttpData</a> interface </td></tr>
+  <tr><td class="indexkey">/Library/WebServer/Documents/sprayfire/libs/sprayfire/request/<a class="el" href="_spray_fire_router_8php.html">SprayFireRouter.php</a> <a href="_spray_fire_router_8php_source.html">[code]</a></td><td class="indexvalue">The framework's implementation of the <a class="el" href="interfacelibs_1_1sprayfire_1_1request_1_1_router.html" title="Implementations should convert a libs.sprayfire.request.Uri object into a libs.sprayfire.request.RoutedUri object, using values from the libs.sprayfire.config.Configuration object that is passed in the constructor as defaults if needed.">libs.sprayfire.request.Router</a> interface that allows for a Uri to be parsed and converted into a RoutedUri based on a <a class="el" href="interfacelibs_1_1sprayfire_1_1config_1_1_configuration.html" title="An interface that requires implementing objects to accept a SplFileInfo object representing a configu...">libs.sprayfire.config.Configuration</a> object passed in the constructor of the router </td></tr>
+  <tr><td class="indexkey">/Library/WebServer/Documents/sprayfire/libs/sprayfire/request/<a class="el" href="_spray_fire_uri_8php.html">SprayFireUri.php</a> <a href="_spray_fire_uri_8php_source.html">[code]</a></td><td class="indexvalue">The framework's implementation of the RoutedUri interface; is the object returned from SprayFireRouter </td></tr>
+  <tr><td class="indexkey">/Library/WebServer/Documents/sprayfire/libs/sprayfire/request/<a class="el" href="_uri_8php.html">Uri.php</a> <a href="_uri_8php_source.html">[code]</a></td><td class="indexvalue">The interface necessary to turn a URI string into the appropriate fragments needed to process the request </td></tr>
   <tr><td class="indexkey">/Library/WebServer/Documents/sprayfire/web/<a class="el" href="index_8php.html">index.php</a> <a href="index_8php_source.html">[code]</a></td><td class="indexvalue"></td></tr>
 </table>
 </div><!-- contents -->
@@ -121,13 +145,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
+</div>
+  <div id="nav-path" class="navpath">
+    <ul>
 
+    <li class="footer">Generated on Fri Dec 23 2011 18:16:43 for SprayFire by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
+   </ul>
+ </div>
 
-<hr class="footer"/><address class="footer"><small>
-Generated on Sat Dec 17 2011 00:29:34 for SprayFire by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.7.6.1
-</small></address>
 
 </body>
 </html>
