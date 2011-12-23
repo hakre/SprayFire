@@ -7,9 +7,14 @@
 
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-
-<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
   $(document).ready(function() { searchBox.OnSelectItem(0); });
@@ -46,10 +51,10 @@
 <script type="text/javascript">
 var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </script>
+<script type="text/javascript" src="dynsections.js"></script>
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
@@ -79,6 +84,19 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     </ul>
   </div>
 </div>
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+  initNavTree('index_8php.html','');
+</script>
+<div id="doc-content">
 <div class="header">
   <div class="headertitle">
 <div class="title">/Library/WebServer/Documents/sprayfire/web/index.php</div>  </div>
@@ -89,29 +107,67 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00014"></a>00014     use libs\sprayfire\core\SprayFireDirectory,
 <a name="l00015"></a>00015         libs\sprayfire\core\ClassLoader;
 <a name="l00016"></a>00016 
-<a name="l00020"></a><a class="code" href="index_8php.html#a49d3ac219e0b9c9011a48b89ede3fb79">00020</a>     defined(<span class="stringliteral">&#39;DS&#39;</span>) or define(&#39;DS&#39;, <a class="code" href="index_8php.html#a49d3ac219e0b9c9011a48b89ede3fb79">DIRECTORY_SEPARATOR</a>);
+<a name="l00020"></a><a class="code" href="index_8php.html#a24cf58281a7e15b7b16b4e8f36a2c349">00020</a>     defined(<span class="stringliteral">&#39;DS&#39;</span>) or define(&#39;DS&#39;, <a class="code" href="index_8php.html#a24cf58281a7e15b7b16b4e8f36a2c349">DIRECTORY_SEPARATOR</a>);
 <a name="l00021"></a>00021 
 <a name="l00025"></a>00025     defined(&#39;ROOT_PATH&#39;) or define(&#39;ROOT_PATH&#39;, dirname(__DIR__));
 <a name="l00026"></a>00026 
-<a name="l00027"></a>00027     include ROOT_PATH . DS . &#39;libs&#39; . DS . &#39;sprayfire&#39; . DS . &#39;interfaces&#39; . DS . &#39;FrameworkPaths.php&#39;;
-<a name="l00028"></a>00028     include ROOT_PATH . DS . &#39;libs&#39; . DS . &#39;sprayfire&#39; . DS . &#39;core&#39; . DS . &#39;SprayFireDirectory.php&#39;;
-<a name="l00029"></a>00029 
-<a name="l00030"></a>00030     SprayFireDirectory::setRootInstallationPath(ROOT_PATH);
+<a name="l00027"></a>00027     <span class="comment">// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</span>
+<a name="l00028"></a>00028     <span class="comment">// The below variables can be changed and manipulated to adjust the implementation</span>
+<a name="l00029"></a>00029     <span class="comment">// details of the framework&#39;s initialization process.</span>
+<a name="l00030"></a>00030     <span class="comment">// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</span>
 <a name="l00031"></a>00031 
-<a name="l00032"></a>00032     include SprayFireDirectory::getFrameworkPathSubDirectory(&#39;interfaces&#39;, &#39;Object.php&#39;);
-<a name="l00033"></a>00033     include SprayFireDirectory::getFrameworkPathSubDirectory(&#39;core&#39;, &#39;CoreObject.php&#39;);
-<a name="l00034"></a>00034     include SprayFireDirectory::getFrameworkPathSubDirectory(&#39;core&#39;, &#39;ClassLoader.php&#39;);
-<a name="l00035"></a>00035 
-<a name="l00036"></a><a class="code" href="index_8php.html#ad07bb9ede37769ce0fcd6ca4dfdae4df">00036</a>     <a class="code" href="index_8php.html#ad07bb9ede37769ce0fcd6ca4dfdae4df">$ClassLoader</a> = new ClassLoader();
-<a name="l00037"></a>00037     <a class="code" href="index_8php.html#ad07bb9ede37769ce0fcd6ca4dfdae4df">$ClassLoader</a>-&gt;setAutoloader();
-<a name="l00038"></a>00038 
-<a name="l00039"></a><a class="code" href="index_8php.html#a3e265c431ca42bf2f20753540bb64d00">00039</a>     <a class="code" href="index_8php.html#a3e265c431ca42bf2f20753540bb64d00">$configFile</a> = SprayFireDirectory::getAppPathSubDirectory(&#39;config&#39;, &#39;json&#39;, &#39;configuration.json&#39;);
-<a name="l00040"></a><a class="code" href="index_8php.html#a34cd105e27a4cb6632047ddfdfaa07e8">00040</a>     <a class="code" href="index_8php.html#a34cd105e27a4cb6632047ddfdfaa07e8">$File</a> = new \SplFileInfo(<a class="code" href="index_8php.html#a3e265c431ca42bf2f20753540bb64d00">$configFile</a>);
-<a name="l00041"></a>00041 
-<a name="l00042"></a><a class="code" href="index_8php.html#ac2e162a2e94a6861acb555bb17919717">00042</a>     <a class="code" href="index_8php.html#ac2e162a2e94a6861acb555bb17919717">$Config</a> = new libs\sprayfire\config\JsonConfig(<a class="code" href="index_8php.html#a34cd105e27a4cb6632047ddfdfaa07e8">$File</a>);
+<a name="l00036"></a><a class="code" href="index_8php.html#affa7972ad7b119c0a18af57e4fa33a44">00036</a>     <a class="code" href="index_8php.html#affa7972ad7b119c0a18af57e4fa33a44">$ClassLoaderName</a> = &#39;\\libs\\sprayfire\\core\\ClassLoader&#39;;
+<a name="l00037"></a>00037 
+<a name="l00042"></a><a class="code" href="index_8php.html#a5a0c078cde41f26211a6afec9c09e00e">00042</a>     <a class="code" href="index_8php.html#a5a0c078cde41f26211a6afec9c09e00e">$primaryConfigPath</a> = array(&#39;config&#39;, &#39;json&#39;, &#39;configuration.json&#39;);
 <a name="l00043"></a>00043 
-<a name="l00044"></a>00044     var_dump(<a class="code" href="index_8php.html#ac2e162a2e94a6861acb555bb17919717">$Config</a>-&gt;app-&gt;__toString());
+<a name="l00044"></a>00044     <span class="comment">// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</span>
+<a name="l00045"></a>00045     <span class="comment">// Ends the variables that allow for the changing of SprayFire implementation</span>
+<a name="l00046"></a>00046     <span class="comment">//</span>
+<a name="l00047"></a>00047     <span class="comment">// PLEASE DO NOT ALTER CODE BELOW THIS LINE!  DO SO AT YOUR OWN RISK!</span>
+<a name="l00048"></a>00048     <span class="comment">// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</span>
+<a name="l00049"></a>00049 
+<a name="l00050"></a>00050 <span class="comment">// XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</span>
+<a name="l00051"></a>00051 
+<a name="l00052"></a>00052     include ROOT_PATH . DS . &#39;libs&#39; . DS . &#39;sprayfire&#39; . DS . &#39;core&#39; . DS . &#39;SprayFireDirectory.php&#39;;
+<a name="l00053"></a>00053 
+<a name="l00054"></a>00054     SprayFireDirectory::setRootInstallationPath(ROOT_PATH);
+<a name="l00055"></a>00055 
+<a name="l00056"></a>00056     include SprayFireDirectory::getFrameworkPathSubDirectory(&#39;core&#39;, &#39;Object.php&#39;);
+<a name="l00057"></a>00057     include SprayFireDirectory::getFrameworkPathSubDirectory(&#39;core&#39;, &#39;CoreObject.php&#39;);
+<a name="l00058"></a>00058     include SprayFireDirectory::getFrameworkPathSubDirectory(&#39;core&#39;, &#39;ClassLoader.php&#39;);
+<a name="l00059"></a>00059 
+<a name="l00060"></a><a class="code" href="index_8php.html#ad07bb9ede37769ce0fcd6ca4dfdae4df">00060</a>     <a class="code" href="index_8php.html#ad07bb9ede37769ce0fcd6ca4dfdae4df">$ClassLoader</a> = new <a class="code" href="index_8php.html#affa7972ad7b119c0a18af57e4fa33a44">$ClassLoaderName</a>();
+<a name="l00061"></a>00061     <a class="code" href="index_8php.html#ad07bb9ede37769ce0fcd6ca4dfdae4df">$ClassLoader</a>-&gt;setAutoloader();
+<a name="l00062"></a>00062 
+<a name="l00063"></a>00063     <a class="code" href="index_8php.html#a5a0c078cde41f26211a6afec9c09e00e">$primaryConfigPath</a> = SprayFireDirectory::getAppPathSubDirectory(&#39;config&#39;, &#39;json&#39;, &#39;configuration.json&#39;);
+<a name="l00064"></a><a class="code" href="index_8php.html#a8318861ebabd5fce0634ef7e1a47f129">00064</a>     <a class="code" href="index_8php.html#a8318861ebabd5fce0634ef7e1a47f129">$PrimaryConfigFile</a> = new \SplFileInfo(<a class="code" href="index_8php.html#a5a0c078cde41f26211a6afec9c09e00e">$primaryConfigPath</a>);
+<a name="l00065"></a>00065 
+<a name="l00066"></a>00066     try {
+<a name="l00067"></a>00067         $PrimaryConfig = <span class="keyword">new</span> libs\sprayfire\config\JsonConfig(<a class="code" href="index_8php.html#a8318861ebabd5fce0634ef7e1a47f129">$PrimaryConfigFile</a>);
+<a name="l00068"></a>00068     } <span class="keywordflow">catch</span> (\InvalidArgumentException $InvalArgException) {
+<a name="l00069"></a>00069         <span class="comment">// this is a temporary measure until a completed system is in place.</span>
+<a name="l00070"></a>00070         var_dump($InvalArgException);
+<a name="l00071"></a>00071         exit;
+<a name="l00072"></a>00072     }
+<a name="l00073"></a>00073 
+<a name="l00074"></a>00074     echo <span class="stringliteral">&#39;The framework version &#39;</span> . $PrimaryConfig-&gt;framework-&gt;version;
+<a name="l00075"></a>00075 
+<a name="l00076"></a><a class="code" href="index_8php.html#a137e9188b5edc651e2ca88634d163695">00076</a>     <a class="code" href="index_8php.html#a137e9188b5edc651e2ca88634d163695">$routesConfigPath</a> = SprayFireDirectory::getAppPathSubDirectory(<span class="stringliteral">&#39;config&#39;</span>, <span class="stringliteral">&#39;json&#39;</span>, <span class="stringliteral">&#39;routes.json&#39;</span>);
+<a name="l00077"></a><a class="code" href="index_8php.html#a411abdfd2a6cf7748b507efed53ae860">00077</a>     <a class="code" href="index_8php.html#a411abdfd2a6cf7748b507efed53ae860">$RoutesConfigFile</a> = new \SplFileInfo(<a class="code" href="index_8php.html#a137e9188b5edc651e2ca88634d163695">$routesConfigPath</a>);
+<a name="l00078"></a>00078     <span class="keywordflow">try</span> {
+<a name="l00079"></a>00079         $RoutesConfig = <span class="keyword">new</span> libs\sprayfire\config\JsonConfig(<a class="code" href="index_8php.html#a411abdfd2a6cf7748b507efed53ae860">$RoutesConfigFile</a>);
+<a name="l00080"></a>00080     } <span class="keywordflow">catch</span> (\InvalidArgumentException $InvalArgExc) {
+<a name="l00081"></a>00081         var_dump($InvalArgExc);
+<a name="l00082"></a>00082         exit;
+<a name="l00083"></a>00083     }
+<a name="l00084"></a>00084 
+<a name="l00085"></a>00085     $Router = new \libs\sprayfire\request\SprayFireRouter($RoutesConfig);
+<a name="l00086"></a>00086 
+<a name="l00087"></a><a class="code" href="index_8php.html#a97d77fc8c9a9509f68577d5cc585680b">00087</a>     <a class="code" href="index_8php.html#a97d77fc8c9a9509f68577d5cc585680b">$Uri</a> = new \libs\sprayfire\request\BaseUri($_SERVER[<span class="stringliteral">&#39;REQUEST_URI&#39;</span>]);
+<a name="l00088"></a>00088 
+<a name="l00089"></a>00089     var_dump($Router-&gt;getRoutedUri(<a class="code" href="index_8php.html#a97d77fc8c9a9509f68577d5cc585680b">$Uri</a>));
 </pre></div></div><!-- contents -->
+</div>
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -126,13 +182,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
+  <div id="nav-path" class="navpath">
+    <ul>
+      <li class="navelem"><a class="el" href="index_8php.html">index.php</a>      </li>
 
+    <li class="footer">Generated on Fri Dec 23 2011 18:16:43 for SprayFire by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
+   </ul>
+ </div>
 
-<hr class="footer"/><address class="footer"><small>
-Generated on Sat Dec 17 2011 00:29:34 for SprayFire by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.7.6.1
-</small></address>
 
 </body>
 </html>

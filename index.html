@@ -3,13 +3,18 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
-<title>SprayFire: Main Page</title>
+<title>SprayFire: SprayFire API Documentation</title>
 
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-
-<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
   $(document).ready(function() { searchBox.OnSelectItem(0); });
@@ -46,10 +51,10 @@
 <script type="text/javascript">
 var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </script>
+<script type="text/javascript" src="dynsections.js"></script>
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li class="current"><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
@@ -73,12 +78,60 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     </ul>
   </div>
 </div>
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+  initNavTree('index.html','');
+</script>
+<div id="doc-content">
 <div class="header">
   <div class="headertitle">
-<div class="title">SprayFire Documentation</div>  </div>
+<div class="title">SprayFire API Documentation </div>  </div>
 </div><!--header-->
 <div class="contents">
-</div><!-- contents -->
+<div class="textblock"><pre>
+ SprayFire is a fully unit-tested, light-weight PHP framework for developers who
+ want to make simple, secure, dynamic website content.  Some of the features built
+ into SprayFire will include:</pre><pre><ul>
+<li>Full support of PHP 5.3+, most importantly including the use of namespaces</li>
+<li>Prepared statements for all CRUD functionality</li>
+<li>Automatic escaping of output on responses</li>
+<li>A simple but flexible templating system using built in PHP functionality</li>
+<li>An interface driven, fully extensible API allowing virtually any component of
+ the framework to be implemented at the application's needs</li>
+<li>A completely domain driven Model interpretation utilizing a custom-built data
+ persistence solution.</li>
+<li>Easy support for outside plugins and libraries that support PHP 5.3+.</li>
+<li>A reimagining of the normal "MVC" design pattern into something we here at SprayFire
+ like to call "MRC", or Model-Response-Controller.  Please check out the wiki for
+ more information on exactly how SprayFire interprets this design pattern.</li>
+</ul>
+</pre><pre> !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</pre><pre> SprayFire is currently in development stage, the interface and API provided by the
+ framework is completely subject to change at this point and nothing found in the
+ code at this point is considered 'stable'.  At the moment, consider SprayFire to
+ be in a very 'volatile' state.</pre><pre> The framework wiki is a more reliable, stable source for information on the current
+ state of the framework and the future of SprayFire.</pre><pre> !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</pre><pre> Please check out the [framework wiki](<a href="https://github.com/cspray/SprayFire/wiki/">https://github.com/cspray/SprayFire/wiki/</a>) for more information!</pre><pre> Please check out the [API documentation](<a href="https://cspray.github.com/SprayFire">https://cspray.github.com/SprayFire</a></pre><pre> Testing Instructions
+ ================================================================================
+ Framework objects that can be reasonably unit tested will have those tests stored
+ in {framework_dir}/tests/.  At the moment all tests have to be run individually,
+ using the following directions:</pre><pre> 1. Ensure PHPUnit is installed and in the include path on your computer.
+ 2. Change directory to {framework_dir}/tests/.
+ 3. Run each test by inputting the following command in your terminal</pre><pre> phpunit --bootstrap test_bootstrap.php {ClassNameTest} /path/to/{ClassNameTest}.php</pre><pre> Please note that there is an AllTests suite that will, well, run all tests.</pre><pre> The SprayFire development team consists of:
+ ================================================================================</pre><pre> Charles Sprayberry
+ Lead Developer and Creator
+ Benevolent Dictator for Life
+ twitter: charlesspray
+ github: cspray/SprayFire
+ </pre> </div></div><!-- contents -->
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -93,13 +146,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
+</div>
+  <div id="nav-path" class="navpath">
+    <ul>
 
+    <li class="footer">Generated on Fri Dec 23 2011 18:16:43 for SprayFire by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
+   </ul>
+ </div>
 
-<hr class="footer"/><address class="footer"><small>
-Generated on Sat Dec 17 2011 00:29:34 for SprayFire by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.7.6.1
-</small></address>
 
 </body>
 </html>

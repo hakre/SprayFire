@@ -1,3 +1,3 @@
 <map id="G" name="G">
-<area shape="rect" id="node1" href="$classlibs_1_1sprayfire_1_1exceptions_1_1_unsupported_operation_exception.html" title="libs\\sprayfire\\exceptions\\UnsupportedOperationException" alt="" coords="6,5,367,33"/>
+<area shape="rect" id="node1" href="$interfacelibs_1_1sprayfire_1_1request_1_1_http_data_container.html" title="An interface used to store various HTTP data sent in the current request." alt="" coords="5,5,264,33"/>
 </map>

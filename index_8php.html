@@ -7,9 +7,14 @@
 
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-
-<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
   $(document).ready(function() { searchBox.OnSelectItem(0); });
@@ -46,10 +51,10 @@
 <script type="text/javascript">
 var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </script>
+<script type="text/javascript" src="dynsections.js"></script>
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
@@ -79,6 +84,19 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     </ul>
   </div>
 </div>
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+  initNavTree('index_8php.html','');
+</script>
+<div id="doc-content">
 <div class="header">
   <div class="summary">
 <a href="#var-members">Variables</a>  </div>
@@ -91,11 +109,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">defined('DS') or define('DS'&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="index_8php.html#a49d3ac219e0b9c9011a48b89ede3fb79">DIRECTORY_SEPARATOR</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="index_8php.html#ad07bb9ede37769ce0fcd6ca4dfdae4df">$ClassLoader</a> = new ClassLoader()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="index_8php.html#a3e265c431ca42bf2f20753540bb64d00">$configFile</a> = SprayFireDirectory::getAppPathSubDirectory('config', 'json', 'configuration.json')</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="index_8php.html#a34cd105e27a4cb6632047ddfdfaa07e8">$File</a> = new \SplFileInfo($configFile)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="index_8php.html#ac2e162a2e94a6861acb555bb17919717">$Config</a> = new libs\sprayfire\config\JsonConfig($File)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">defined('DS') or define('DS'&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="index_8php.html#a24cf58281a7e15b7b16b4e8f36a2c349">DIRECTORY_SEPARATOR</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="index_8php.html#affa7972ad7b119c0a18af57e4fa33a44">$ClassLoaderName</a> = '\\libs\\sprayfire\\core\\ClassLoader'</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="index_8php.html#a5a0c078cde41f26211a6afec9c09e00e">$primaryConfigPath</a> = array('config', 'json', 'configuration.json')</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="index_8php.html#ad07bb9ede37769ce0fcd6ca4dfdae4df">$ClassLoader</a> = new $ClassLoaderName()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="index_8php.html#a8318861ebabd5fce0634ef7e1a47f129">$PrimaryConfigFile</a> = new \SplFileInfo($primaryConfigPath)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="index_8php.html#a137e9188b5edc651e2ca88634d163695">$routesConfigPath</a> = SprayFireDirectory::getAppPathSubDirectory('config', 'json', 'routes.json')</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="index_8php.html#a411abdfd2a6cf7748b507efed53ae860">$RoutesConfigFile</a> = new \SplFileInfo($routesConfigPath)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="index_8php.html#a97d77fc8c9a9509f68577d5cc585680b">$Uri</a> = new \libs\sprayfire\request\BaseUri($_SERVER['REQUEST_URI'])</td></tr>
 </table>
 <hr/><h2>Variable Documentation</h2>
 <a class="anchor" id="ad07bb9ede37769ce0fcd6ca4dfdae4df"></a><!-- doxytag: member="index.php::$ClassLoader" ref="ad07bb9ede37769ce0fcd6ca4dfdae4df" args="" -->
@@ -103,7 +124,22 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">$ClassLoader = new ClassLoader()</td>
+          <td class="memname">$ClassLoader = new $ClassLoaderName()</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="index_8php_source.html#l00060">60</a> of file <a class="el" href="index_8php_source.html">index.php</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="affa7972ad7b119c0a18af57e4fa33a44"></a><!-- doxytag: member="index.php::$ClassLoaderName" ref="affa7972ad7b119c0a18af57e4fa33a44" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">$ClassLoaderName = '\\libs\\sprayfire\\core\\ClassLoader'</td>
         </tr>
       </table>
 </div>
@@ -113,12 +149,27 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ac2e162a2e94a6861acb555bb17919717"></a><!-- doxytag: member="index.php::$Config" ref="ac2e162a2e94a6861acb555bb17919717" args="" -->
+<a class="anchor" id="a8318861ebabd5fce0634ef7e1a47f129"></a><!-- doxytag: member="index.php::$PrimaryConfigFile" ref="a8318861ebabd5fce0634ef7e1a47f129" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">$Config = new libs\sprayfire\config\JsonConfig($File)</td>
+          <td class="memname">$PrimaryConfigFile = new \SplFileInfo($primaryConfigPath)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="index_8php_source.html#l00064">64</a> of file <a class="el" href="index_8php_source.html">index.php</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a5a0c078cde41f26211a6afec9c09e00e"></a><!-- doxytag: member="index.php::$primaryConfigPath" ref="a5a0c078cde41f26211a6afec9c09e00e" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">$primaryConfigPath = array('config', 'json', 'configuration.json')</td>
         </tr>
       </table>
 </div>
@@ -128,42 +179,57 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a3e265c431ca42bf2f20753540bb64d00"></a><!-- doxytag: member="index.php::$configFile" ref="a3e265c431ca42bf2f20753540bb64d00" args="" -->
+<a class="anchor" id="a411abdfd2a6cf7748b507efed53ae860"></a><!-- doxytag: member="index.php::$RoutesConfigFile" ref="a411abdfd2a6cf7748b507efed53ae860" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">$configFile = SprayFireDirectory::getAppPathSubDirectory('config', 'json', 'configuration.json')</td>
+          <td class="memname">$RoutesConfigFile = new \SplFileInfo($routesConfigPath)</td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="index_8php_source.html#l00039">39</a> of file <a class="el" href="index_8php_source.html">index.php</a>.</p>
+<p>Definition at line <a class="el" href="index_8php_source.html#l00077">77</a> of file <a class="el" href="index_8php_source.html">index.php</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a34cd105e27a4cb6632047ddfdfaa07e8"></a><!-- doxytag: member="index.php::$File" ref="a34cd105e27a4cb6632047ddfdfaa07e8" args="" -->
+<a class="anchor" id="a137e9188b5edc651e2ca88634d163695"></a><!-- doxytag: member="index.php::$routesConfigPath" ref="a137e9188b5edc651e2ca88634d163695" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">$File = new \SplFileInfo($configFile)</td>
+          <td class="memname">$routesConfigPath = SprayFireDirectory::getAppPathSubDirectory('config', 'json', 'routes.json')</td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="index_8php_source.html#l00040">40</a> of file <a class="el" href="index_8php_source.html">index.php</a>.</p>
+<p>Definition at line <a class="el" href="index_8php_source.html#l00076">76</a> of file <a class="el" href="index_8php_source.html">index.php</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a49d3ac219e0b9c9011a48b89ede3fb79"></a><!-- doxytag: member="index.php::DIRECTORY_SEPARATOR" ref="a49d3ac219e0b9c9011a48b89ede3fb79" args="" -->
+<a class="anchor" id="a97d77fc8c9a9509f68577d5cc585680b"></a><!-- doxytag: member="index.php::$Uri" ref="a97d77fc8c9a9509f68577d5cc585680b" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">defined ('DS') or define('DS' <a class="el" href="index_8php.html#a49d3ac219e0b9c9011a48b89ede3fb79">DIRECTORY_SEPARATOR</a></td>
+          <td class="memname">$Uri = new \libs\sprayfire\request\BaseUri($_SERVER['REQUEST_URI'])</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="index_8php_source.html#l00087">87</a> of file <a class="el" href="index_8php_source.html">index.php</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a24cf58281a7e15b7b16b4e8f36a2c349"></a><!-- doxytag: member="index.php::DIRECTORY_SEPARATOR" ref="a24cf58281a7e15b7b16b4e8f36a2c349" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">DS A short alias to <a class="el" href="index_8php.html#a24cf58281a7e15b7b16b4e8f36a2c349">DIRECTORY_SEPARATOR</a></td>
         </tr>
       </table>
 </div>
@@ -174,6 +240,7 @@ Variables</h2></td></tr>
 </div>
 </div>
 </div><!-- contents -->
+</div>
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -188,13 +255,16 @@ Variables</h2></td></tr>
 </iframe>
 </div>
 
+  <div id="nav-path" class="navpath">
+    <ul>
+      <li class="navelem"><a class="el" href="index_8php.html">index.php</a>      </li>
 
+    <li class="footer">Generated on Fri Dec 23 2011 18:16:43 for SprayFire by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
+   </ul>
+ </div>
 
-<hr class="footer"/><address class="footer"><small>
-Generated on Sat Dec 17 2011 00:29:34 for SprayFire by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.7.6.1
-</small></address>
 
 </body>
 </html>
