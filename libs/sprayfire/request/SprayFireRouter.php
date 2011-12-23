@@ -144,7 +144,7 @@ namespace libs\sprayfire\request {
          * holding a specific parameter count whild the 'wild-card' key holds a
          * <code>SprayFireURIPattern</code> holding a wild card parameter count.
          *
-         * @param $Uri \libs\sprayfire\request\Uri
+         * @param $Uri libs.sprayfire.request\Uri
          * @return array
          */
         private function getSprayFireURIPatterns(\libs\sprayfire\request\Uri $Uri) {
@@ -184,7 +184,7 @@ namespace libs\sprayfire\request {
          * @brief Will return an associative array with 2 keys, 'controller' and
          * 'action', that will be used to determine the routed URI string to generate.
          *
-         * @param $Uri \libs\sprayfire\request\Uri
+         * @param $Uri libs.sprayfire.request.Uri
          * @return array
          */
         private function getControllerAndActionToUse(\libs\sprayfire\request\Uri $Uri) {
