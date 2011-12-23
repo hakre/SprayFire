@@ -57,4 +57,8 @@
         exit;
     }
 
-    $Uri = new \libs\sprayfire\request\BaseUri('/sprayfire/articles/:php/mysql_*+must+die');
+    $Router = new \libs\sprayfire\request\SprayFireRouter($RoutesConfig);
+
+    $Uri = new \libs\sprayfire\request\BaseUri($_SERVER['REQUEST_URI']);
+
+    var_dump($Router->getRoutedUri($Uri));
