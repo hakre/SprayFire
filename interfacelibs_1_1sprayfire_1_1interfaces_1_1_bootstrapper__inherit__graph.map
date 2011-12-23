@@ -1,3 +1,3 @@
 <map id="G" name="G">
-<area shape="rect" id="node3" href="$classlibs_1_1sprayfire_1_1core_1_1_framework_bootstrap.html" title="{libs\\sprayfire\\core\\FrameworkBootstrap\n||+ __construct()\l+ runBootstrap()\l}" alt="" coords="4,153,256,250"/>
+<area shape="rect" id="node3" href="$classlibs_1_1sprayfire_1_1core_1_1_framework_bootstrap.html" title="{libs\\sprayfire\\core\\FrameworkBootstrap\n|&#45; $FrameworkConfiguration\l|+ __construct()\l+ runBootstrap()\l&#45; runAppBootstrap()\l&#45; getAppBootstrapObjects()\l&#45; getListOfBootstrapFiles()\l&#45; getAppBootstrapNamespace()\l&#45; removeFileExtension()\l&#45; removeInvalidBootstrappers()\l&#45; implementsBootstrapperInterface()\l&#45; createBootstrapperObjects()\l&#45; runAllBootstraps()\l&#45; runPostAppBootstrap()\l}" alt="" coords="4,153,256,410"/>
 </map>
