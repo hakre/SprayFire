@@ -17,6 +17,7 @@ include 'SprayFireObjectStoreTest.php';
 include 'BaseUriTest.php';
 include 'SprayFireRouterTest.php';
 include 'SprayFireUriTest.php';
+include 'SprayFireHttpDataTest.php';
 
 /**
  *
@@ -37,6 +38,7 @@ class AllTests {
         $Suite->addTestSuite('SprayFireRouterTest');
         $Suite->addTestSuite('BaseUriTest');
         $Suite->addTestSuite('SprayFireUriTest');
+        $Suite->addTestSuite('SprayFireHttpDataTest');
 
         return $Suite;
     }
