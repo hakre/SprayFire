@@ -175,7 +175,7 @@ namespace libs\sprayfire\request {
         /**
          * @brief Will remove the leading parameter marker from all values passed.
          *
-         * @param $markedParameters array of parameters with possible leading colons
+         * @param $parameters array of parameters with possible leading colons
          * @return array of parameters with no leading colons
          */
         protected function removeParameterMarker(array $parameters) {
