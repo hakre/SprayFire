@@ -3,13 +3,18 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
-<title>SprayFire: /Library/WebServer/Documents/sprayfire/libs/sprayfire/core/FrameworkBootstrap.php File Reference</title>
+<title>SprayFire: /Library/WebServer/Documents/sprayfire/libs/sprayfire/bootstrap/FrameworkBootstrap.php File Reference</title>
 
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-
-<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
   $(document).ready(function() { searchBox.OnSelectItem(0); });
@@ -46,10 +51,10 @@
 <script type="text/javascript">
 var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </script>
+<script type="text/javascript" src="dynsections.js"></script>
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
@@ -79,25 +84,54 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     </ul>
   </div>
 </div>
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+  initNavTree('_framework_bootstrap_8php.html','');
+</script>
+<div id="doc-content">
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Data Structures</a> &#124;
 <a href="#namespaces">Namespaces</a>  </div>
   <div class="headertitle">
-<div class="title">/Library/WebServer/Documents/sprayfire/libs/sprayfire/core/FrameworkBootstrap.php File Reference</div>  </div>
+<div class="title">/Library/WebServer/Documents/sprayfire/libs/sprayfire/bootstrap/FrameworkBootstrap.php File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Holds the class that takes care of framework bootstrapping procedures and instantiates and invokes the application bootstraps.  
+<a href="#details">More...</a></p>
 
 <p><a href="_framework_bootstrap_8php_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="nested-classes"></a>
 Data Structures</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_framework_bootstrap.html">libs\sprayfire\core\FrameworkBootstrap</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1bootstrap_1_1_framework_bootstrap.html">libs\sprayfire\bootstrap\FrameworkBootstrap</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The framework's bootstrap, implementing necessary startup details for the framework and the application.  <a href="classlibs_1_1sprayfire_1_1bootstrap_1_1_framework_bootstrap.html#details">More...</a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="namespaces"></a>
 Namespaces</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacelibs_1_1sprayfire_1_1core.html">libs\sprayfire\core</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacelibs_1_1sprayfire_1_1bootstrap.html">libs\sprayfire\bootstrap</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight"><p>Holds interfaces and classes responsible for bootstrapping procedures. </p>
+<br/></td></tr>
 </table>
-</div><!-- contents -->
+<hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
+<div class="textblock"><p>Holds the class that takes care of framework bootstrapping procedures and instantiates and invokes the application bootstraps. </p>
+<p>SprayFire is a custom built framework intended to ease the development of websites with PHP 5.3.</p>
+<p>SprayFire makes use of namespaces, a custom-built ORM layer, a completely object oriented approach and minimal invasiveness so you can make the framework do what YOU want to do. Some things we take seriously over here at SprayFire includes clean, readable source, completely unit tested implementations and not polluting the global scope.</p>
+<p>SprayFire is released under the Open-Source Initiative MIT license.</p>
+<dl class="author"><dt><b>Author:</b></dt><dd>Charles Sprayberry cspray at gmail dot com </dd></dl>
+<dl class="copyright"><dt><b>Copyright:</b></dt><dd>Copyright (c) 2011, Charles Sprayberry OSI MIT License &lt;<a href="http://www.opensource.org/licenses/mit-license.php">http://www.opensource.org/licenses/mit-license.php</a>&gt; </dd></dl>
+
+<p>Definition in file <a class="el" href="_framework_bootstrap_8php_source.html">FrameworkBootstrap.php</a>.</p>
+</div></div><!-- contents -->
+</div>
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -112,13 +146,16 @@ Namespaces</h2></td></tr>
 </iframe>
 </div>
 
+  <div id="nav-path" class="navpath">
+    <ul>
+      <li class="navelem"><a class="el" href="_framework_bootstrap_8php.html">FrameworkBootstrap.php</a>      </li>
 
+    <li class="footer">Generated on Fri Dec 23 2011 18:16:43 for SprayFire by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
+   </ul>
+ </div>
 
-<hr class="footer"/><address class="footer"><small>
-Generated on Sat Dec 17 2011 00:29:34 for SprayFire by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.7.6.1
-</small></address>
 
 </body>
 </html>
