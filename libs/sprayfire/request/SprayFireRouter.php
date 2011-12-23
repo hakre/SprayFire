@@ -37,12 +37,12 @@ namespace libs\sprayfire\request {
      * object passed into an appropriate libs.sprayfire.request.RoutedUri object.
      *
      * @details
-     * This class **GUARANTEES** that when `SprayFireRouter:;getRoutedUri($Uri)`
+     * This class **GUARANTEES** that when <code>SprayFireRouter::getRoutedUri($Uri)</code>
      * is invoked an appropriate object will be returned, even if an invalid
      * configuration file is used.
      *
      */
-    class SprayFireRouter implements \libs\sprayfire\request\Router {
+    class SprayFireRouter extends \libs\sprayfire\core\CoreObject implements \libs\sprayfire\request\Router {
 
         /**
          * @brief The libs.sprayfire.config.Configuration object holding the routing
@@ -53,7 +53,7 @@ namespace libs\sprayfire\request {
         protected $RoutesConfig;
 
         /**
-         * @brief The default controller to use if the \a %default_controller% flag
+         * @brief The default controller to use if the %default_controller% flag
          * is used in the routes.json configuration file or no controller is specified
          * in a particular mapping.
          *
@@ -62,7 +62,7 @@ namespace libs\sprayfire\request {
         protected $defaultController;
 
         /**
-         * @brief The default action to use if the \a %default_action% flag is used
+         * @brief The default action to use if the %default_action% flag is used
          * in the routes.json configuration file or no action is specified in a
          * particular mapping.
          *
@@ -144,7 +144,7 @@ namespace libs\sprayfire\request {
          * holding a specific parameter count whild the 'wild-card' key holds a
          * <code>SprayFireURIPattern</code> holding a wild card parameter count.
          *
-         * @param $Uri libs.sprayfire.request\Uri
+         * @param $Uri libs.sprayfire.request.Uri
          * @return array
          */
         private function getSprayFireURIPatterns(\libs\sprayfire\request\Uri $Uri) {
@@ -179,11 +179,10 @@ namespace libs\sprayfire\request {
         }
 
         /**
-         * @brief Will return an associative array with 2 keys, 'controller' and
-         * 'action', that will be used to determine the routed URI string to generate.
-         *
          * @param $Uri libs.sprayfire.request.Uri
-         * @return array
+         * @return return an associative array with 2 keys, \a controller and
+         *         \a action, that will be used to determine the routed URI string
+         *         to generate.
          */
         private function getControllerAndActionToUse(\libs\sprayfire\request\Uri $Uri) {
             $data = array();
@@ -206,8 +205,8 @@ namespace libs\sprayfire\request {
          * \a $RoutesConfig, the \a $sprayFireUriPatterns to search for and the
          * \a $controllerAndAction that was requested.
          *
-         * @param $sprayFireUriPatterns array
-         * @param $controllerAndAction array
+         * @param $sprayFireUriPatterns  associative array from getSprayFireURIPatterns()
+         * @param $controllerAndAction associative array from getControllerAndActionToUse()
          * @return string Please note that this value does not have any parameters attached to it
          */
         private function getMappedUriString(array $sprayFireUriPatterns, array $controllerAndAction) {
@@ -234,10 +233,9 @@ namespace libs\sprayfire\request {
         }
 
         /**
-         *
-         * @param $ConfigFragment libs.sprayfire.datastructs.
-         * @param array $controllerAndAction
-         * @return array
+         * @param $ConfigFragment libs.sprayfire.datastructs.ImmutableStorage from \a $RoutesConfig
+         * @param $controllerAndAction associative array returned from getControllerAndActionToUse()
+         * @return string value representing controller fragment
          */
         private function getMappedController($ConfigFragment, array $controllerAndAction) {
             if (isset($ConfigFragment->controller)) {
@@ -249,6 +247,11 @@ namespace libs\sprayfire\request {
             return $controllerAndAction['controller'];
         }
 
+        /**
+         * @param $ConfigFragment libs.sprayfire.datastructs.ImmutableStorage from \a $RoutesConfig
+         * @param $controllerAndAction associative array returned from getControllerAndActionToUse()
+         * @return string value representing action fragment
+         */
         private function getMappedAction($ConfigFragment, array $controllerAndAction) {
             if (isset($ConfigFragment->action)) {
                 if ($ConfigFragment->action === \libs\sprayfire\request\Uri::DEFAULT_ACTION) {
@@ -260,12 +263,9 @@ namespace libs\sprayfire\request {
         }
 
         /**
-         * @brief Will take a list of parameter values and convert them into an
-         * appropriate URI-like string.
-         *
          * @param $mappedUri string
          * @param $parameters array
-         * @return string
+         * @return A string with \a $parameters appended to \a $mappedUri, separated by '/'
          */
         private function getUriWithParameters($mappedUri, array $parameters) {
             foreach ($parameters as $param) {
