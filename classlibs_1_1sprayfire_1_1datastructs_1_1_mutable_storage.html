@@ -7,9 +7,14 @@
 
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-
-<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
   $(document).ready(function() { searchBox.OnSelectItem(0); });
@@ -46,10 +51,10 @@
 <script type="text/javascript">
 var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </script>
+<script type="text/javascript" src="dynsections.js"></script>
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
@@ -80,64 +85,173 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="functions.html"><span>Data&#160;Fields</span></a></li>
     </ul>
   </div>
-<!-- window showing the filter options -->
-<div id="MSearchSelectWindow"
-     onmouseover="return searchBox.OnSearchSelectShow()"
-     onmouseout="return searchBox.OnSearchSelectHide()"
-     onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a></div>
-
-<!-- iframe showing the search results (closed by default) -->
-<div id="MSearchResultsWindow">
-<iframe src="javascript:void(0)" frameborder="0" 
-        name="MSearchResults" id="MSearchResults">
-</iframe>
 </div>
-
-  <div id="nav-path" class="navpath">
-    <ul>
-      <li class="navelem"><a class="el" href="namespacelibs.html">libs</a>      </li>
-      <li class="navelem"><a class="el" href="namespacelibs_1_1sprayfire.html">sprayfire</a>      </li>
-      <li class="navelem"><a class="el" href="namespacelibs_1_1sprayfire_1_1datastructs.html">datastructs</a>      </li>
-      <li class="navelem"><a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_mutable_storage.html">MutableStorage</a>      </li>
-    </ul>
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
   </div>
 </div>
+<script type="text/javascript">
+  initNavTree('classlibs_1_1sprayfire_1_1datastructs_1_1_mutable_storage.html','');
+</script>
+<div id="doc-content">
 <div class="header">
   <div class="summary">
-<a href="#pro-methods">Protected Member Functions</a>  </div>
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a>  </div>
   <div class="headertitle">
 <div class="title">libs\sprayfire\datastructs\MutableStorage Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<!-- doxytag: class="libs::sprayfire::datastructs::MutableStorage" --><!-- doxytag: inherits="libs::sprayfire::datastructs::DataStorage" --><div class="dynheader">
-Inheritance diagram for libs\sprayfire\datastructs\MutableStorage:</div>
-<div class="dyncontent">
+<!-- doxytag: class="libs::sprayfire::datastructs::MutableStorage" --><!-- doxytag: inherits="libs::sprayfire::datastructs::DataStorage" -->
+<p>A simple data storage object that holds key/value pairs and allows additional keys to be added and existing keys to be manipulated or removed.  
+ <a href="classlibs_1_1sprayfire_1_1datastructs_1_1_mutable_storage.html#details">More...</a></p>
+<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for libs\sprayfire\datastructs\MutableStorage:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="classlibs_1_1sprayfire_1_1datastructs_1_1_mutable_storage__inherit__graph.png" border="0" usemap="#libs\sprayfire\datastructs\_mutable_storage_inherit__map" alt="Inheritance graph"/></div>
 <map name="libs\sprayfire\datastructs\_mutable_storage_inherit__map" id="libs\sprayfire\datastructs\_mutable_storage_inherit__map">
-<area shape="rect" id="node11" href="classlibs_1_1sprayfire_1_1datastructs_1_1_mutable_iterator.html" title="{libs\\sprayfire\\datastructs\\MutableIterator\n|# $skipNextIteration\l|+ __construct()\l+ current()\l+ key()\l+ next()\l+ rewind()\l+ valid()\l# set()\l# removeKey()\l}" alt="" coords="96,881,353,1074"/><area shape="rect" id="node2" href="classlibs_1_1sprayfire_1_1datastructs_1_1_data_storage.html" title="{libs\\sprayfire\\datastructs\\DataStorage\n|# $data\l# $count\l|+ __construct()\l+ __get()\l+ offsetGet()\l+ __isset()\l+ offsetExists()\l+ __set()\l+ offsetSet()\l+ __unset()\l+ offsetUnset()\l+ count()\l# get()\l# keyHasValue()\l# keyInData()\l# recalibrateCount()\l# set()\l# removeKey()\l}" alt="" coords="104,347,347,685"/><area shape="rect" id="node4" href="classlibs_1_1sprayfire_1_1core_1_1_core_object.html" title="{libs\\sprayfire\\core\\CoreObject\n||+ hashCode()\l+ equals()\l+ __toString()\l}" alt="" coords="6,177,201,290"/><area shape="rect" id="node6" href="interfacelibs_1_1sprayfire_1_1interfaces_1_1_object.html" title="{libs\\sprayfire\\interfaces\\Object\n||+ equals()\l+ hashCode()\l+ __toString()\l}" alt="" coords="4,6,203,119"/><area shape="rect" id="node8" href="interfacelibs_1_1sprayfire_1_1interfaces_1_1_overloadable.html" title="{libs\\sprayfire\\interfaces\\Overloadable\n||+ __get()\l+ __set()\l+ __isset()\l+ __unset()\l}" alt="" coords="226,169,467,298"/><area shape="rect" id="node13" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html" title="{libs\\sprayfire\\datastructs\\SprayFireObjectStore\n|# $ReflectedParentType\l|+ __construct()\l+ contains()\l+ indexOf()\l+ isEmpty()\l+ getObject()\l+ setObject()\l# set()\l# throwExceptionIfNotFrameworkObject()\l# isFrameworkObject()\l# throwExceptionIfObjectNotParentType()\l# isObjectParentType()\l}" alt="" coords="77,1123,373,1365"/></map>
-<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<area shape="rect" id="node11" href="classlibs_1_1sprayfire_1_1request_1_1_spray_fire_http_data.html" title="Will allow for an array to be passed, the values of that array to be treated as an object..." alt="" coords="96,897,353,994"/><area shape="rect" id="node2" href="classlibs_1_1sprayfire_1_1datastructs_1_1_data_storage.html" title="Stores data in a property and allows access to that data via object or array notation." alt="" coords="104,347,347,653"/><area shape="rect" id="node4" href="classlibs_1_1sprayfire_1_1core_1_1_core_object.html" title="SprayFire&#39;s implementation of the libs.sprayfire.core.Object interface, allowing easy access to some ..." alt="" coords="4,177,200,290"/><area shape="rect" id="node6" href="interfacelibs_1_1sprayfire_1_1core_1_1_object.html" title="An interface for basic framework objects." alt="" coords="19,6,187,119"/><area shape="rect" id="node8" href="interfacelibs_1_1sprayfire_1_1datastructs_1_1_overloadable.html" title="An interface that forces the implementation of the magic methods that allow an object to access non&#45;e..." alt="" coords="225,169,473,298"/></map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for libs\sprayfire\datastructs\MutableStorage:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="classlibs_1_1sprayfire_1_1datastructs_1_1_mutable_storage__coll__graph.png" border="0" usemap="#libs\sprayfire\datastructs\_mutable_storage_coll__map" alt="Collaboration graph"/></div>
+<map name="libs\sprayfire\datastructs\_mutable_storage_coll__map" id="libs\sprayfire\datastructs\_mutable_storage_coll__map">
+<area shape="rect" id="node2" href="classlibs_1_1sprayfire_1_1datastructs_1_1_data_storage.html" title="Stores data in a property and allows access to that data via object or array notation." alt="" coords="104,347,347,653"/><area shape="rect" id="node4" href="classlibs_1_1sprayfire_1_1core_1_1_core_object.html" title="SprayFire&#39;s implementation of the libs.sprayfire.core.Object interface, allowing easy access to some ..." alt="" coords="4,177,200,290"/><area shape="rect" id="node6" href="interfacelibs_1_1sprayfire_1_1core_1_1_object.html" title="An interface for basic framework objects." alt="" coords="19,6,187,119"/><area shape="rect" id="node8" href="interfacelibs_1_1sprayfire_1_1datastructs_1_1_overloadable.html" title="An interface that forces the implementation of the magic methods that allow an object to access non&#45;e..." alt="" coords="225,169,473,298"/></map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
+<tr><td colspan="2"><h2><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_mutable_storage.html#a4745eca82bf07be34aea106b31cd51da">__construct</a> (array $data, $convertDeep=true)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Requires an array of data is passed, optionally allowing the arrays within that data to be converted to <a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_mutable_storage.html" title="A simple data storage object that holds key/value pairs and allows additional keys to be added and ex...">MutableStorage</a> objects as well.  <a href="#a4745eca82bf07be34aea106b31cd51da"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_mutable_storage.html#a75c0fcb9b9a94fc60d79e27da0ef16c5">set</a> ($key, $value)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_mutable_storage.html#a7a0fe476b2bbf4b2d783b8f693419eb3">removeKey</a> ($key)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_mutable_storage.html#a25fc722b4e2db617bae4c4142e5626ff">convertDataDeep</a> (array $data)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts all arrays in <em>$data</em> <em>to</em> <a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_mutable_storage.html" title="A simple data storage object that holds key/value pairs and allows additional keys to be added and ex...">MutableStorage</a> objects, allowing for the chaining of properties in the created object.  <a href="#a25fc722b4e2db617bae4c4142e5626ff"></a><br/></td></tr>
+<tr><td colspan="2"><h2><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_mutable_storage.html#a2bfc91126513075734a5ff5cd37d4190">convertArrayToMutableObject</a> (array $data)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Will convert the passed array, and all arrays within that array, to a <a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_mutable_storage.html" title="A simple data storage object that holds key/value pairs and allows additional keys to be added and ex...">libs.sprayfire.datastructs.MutableStorage</a> object.  <a href="#a2bfc91126513075734a5ff5cd37d4190"></a><br/></td></tr>
 </table>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
-<div class="textblock"><p>A simple data storage object that holds key/value pairs.</p>
-<p>This class is intended to be extended to implement the specific behavior needed for that storage. One, or more, of the four protected methods:</p>
-<p><a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_data_storage.html#a034d1022d02022d8d40d05b8c3abbd9e">get()</a> <a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_mutable_storage.html#a75c0fcb9b9a94fc60d79e27da0ef16c5">set()</a> <a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_data_storage.html#a85e47e79e8490cc05610d74dd60270b3">keyHasValue()</a> <a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_mutable_storage.html#a7a0fe476b2bbf4b2d783b8f693419eb3">removeKey()</a></p>
-<p>needs to be overriden. For example, <a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_immutable_storage.html">ImmutableStorage</a> overrides <a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_mutable_storage.html#a75c0fcb9b9a94fc60d79e27da0ef16c5">set()</a> and <a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_mutable_storage.html#a7a0fe476b2bbf4b2d783b8f693419eb3">removeKey()</a> to throw </p>
-<dl class="exception"><dt><b>Exceptions:</b></dt><dd>
-  <table class="exception">
-    <tr><td class="paramname"></td><td>when the object is attempting to be changed. If you do not need to override one or more of the above methods then simply use an array, as that is effectively what this object is but with object notation access in addition to array notation access.</td></tr>
+<div class="textblock"><p>A simple data storage object that holds key/value pairs and allows additional keys to be added and existing keys to be manipulated or removed. </p>
+
+<p>Definition at line <a class="el" href="_mutable_storage_8php_source.html#l00037">37</a> of file <a class="el" href="_mutable_storage_8php_source.html">MutableStorage.php</a>.</p>
+</div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a4745eca82bf07be34aea106b31cd51da"></a><!-- doxytag: member="libs::sprayfire::datastructs::MutableStorage::__construct" ref="a4745eca82bf07be34aea106b31cd51da" args="(array $data, $convertDeep=true)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">libs\sprayfire\datastructs\<a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_mutable_storage.html#a4745eca82bf07be34aea106b31cd51da">MutableStorage::__construct</a> </td>
+          <td>(</td>
+          <td class="paramtype">array $&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>convertDeep</em> = <code>true</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Requires an array of data is passed, optionally allowing the arrays within that data to be converted to <a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_mutable_storage.html" title="A simple data storage object that holds key/value pairs and allows additional keys to be added and ex...">MutableStorage</a> objects as well. </p>
+<dl class="params"><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">$data</td><td>An array of data to store </td></tr>
+    <tr><td class="paramname">$convertDeep</td><td>True if arrays within the array should be converted to objects as well. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd>The basic get and isset functionality of this object needs to be abstracted out into an abstract <a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_data_storage.html">DataStorage</a> class. This <a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_data_storage.html">DataStorage</a> class should force the implementation of the <a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_mutable_storage.html#a75c0fcb9b9a94fc60d79e27da0ef16c5">set()</a> and <a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_mutable_storage.html#a7a0fe476b2bbf4b2d783b8f693419eb3">removeKey()</a> methods. The <a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_data_storage.html">DataStorage</a> class should implement Overloadable, ArrayAccess and Countable. </dd></dl>
+<dl class="exception"><dt><b>Exceptions:</b></dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">UnexpectedValueException</td><td>If extending objects do not properly return an array from convertDataDeep </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="_mutable_storage_8php_source.html#l00044">44</a> of file <a class="el" href="_mutable_storage_8php_source.html">MutableStorage.php</a>.</p>
-</div><hr/><h2>Member Function Documentation</h2>
+<p>Definition at line <a class="el" href="_mutable_storage_8php_source.html#l00050">50</a> of file <a class="el" href="_mutable_storage_8php_source.html">MutableStorage.php</a>.</p>
+
+</div>
+</div>
+<hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="a2bfc91126513075734a5ff5cd37d4190"></a><!-- doxytag: member="libs::sprayfire::datastructs::MutableStorage::convertArrayToMutableObject" ref="a2bfc91126513075734a5ff5cd37d4190" args="(array $data)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">libs\sprayfire\datastructs\<a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_mutable_storage.html#a2bfc91126513075734a5ff5cd37d4190">MutableStorage::convertArrayToMutableObject</a> </td>
+          <td>(</td>
+          <td class="paramtype">array $&#160;</td>
+          <td class="paramname"><em>data</em></td><td>)</td>
+          <td><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Will convert the passed array, and all arrays within that array, to a <a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_mutable_storage.html" title="A simple data storage object that holds key/value pairs and allows additional keys to be added and ex...">libs.sprayfire.datastructs.MutableStorage</a> object. </p>
+<dl class="params"><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">$data</td><td>array </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd><a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_mutable_storage.html" title="A simple data storage object that holds key/value pairs and allows additional keys to be added and ex...">libs.sprayfire.datastructs.MutableStorage</a> </dd></dl>
+
+<p>Definition at line <a class="el" href="_mutable_storage_8php_source.html#l00111">111</a> of file <a class="el" href="_mutable_storage_8php_source.html">MutableStorage.php</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a25fc722b4e2db617bae4c4142e5626ff"></a><!-- doxytag: member="libs::sprayfire::datastructs::MutableStorage::convertDataDeep" ref="a25fc722b4e2db617bae4c4142e5626ff" args="(array $data)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">libs\sprayfire\datastructs\<a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_mutable_storage.html#a25fc722b4e2db617bae4c4142e5626ff">MutableStorage::convertDataDeep</a> </td>
+          <td>(</td>
+          <td class="paramtype">array $&#160;</td>
+          <td class="paramname"><em>data</em></td><td>)</td>
+          <td><code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Converts all arrays in <em>$data</em> <em>to</em> <a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_mutable_storage.html" title="A simple data storage object that holds key/value pairs and allows additional keys to be added and ex...">MutableStorage</a> objects, allowing for the chaining of properties in the created object. </p>
+<p>Note that if you extend <a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_mutable_storage.html" title="A simple data storage object that holds key/value pairs and allows additional keys to be added and ex...">MutableStorage</a> and override this method an array value MUST be returned or an UnexpectedValueException will be thrown by the class constructor. If self::__construct() is overridden as well and the data from convertDataDeep is not checked you will receive a type hint compile error if a non-array is passed to parent::__construct().</p>
+<dl class="params"><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">$data</td><td>array </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>array </dd></dl>
+
+<p>Definition at line <a class="el" href="_mutable_storage_8php_source.html#l00095">95</a> of file <a class="el" href="_mutable_storage_8php_source.html">MutableStorage.php</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a7a0fe476b2bbf4b2d783b8f693419eb3"></a><!-- doxytag: member="libs::sprayfire::datastructs::MutableStorage::removeKey" ref="a7a0fe476b2bbf4b2d783b8f693419eb3" args="($key)" -->
 <div class="memitem">
 <div class="memproto">
@@ -154,16 +268,14 @@ Protected Member Functions</h2></td></tr>
 <div class="memdoc">
 <dl class="params"><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramtype">string</td><td class="paramname">$key</td><td></td></tr>
+    <tr><td class="paramname">$key</td><td>string </td></tr>
   </table>
   </dd>
 </dl>
 
 <p>Reimplemented from <a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_data_storage.html#aa335ae1c013e9b2773ac799ba7300590">libs\sprayfire\datastructs\DataStorage</a>.</p>
 
-<p>Reimplemented in <a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_mutable_iterator.html#a3d7870349a2089894cda30eb2badf2d9">libs\sprayfire\datastructs\MutableIterator</a>.</p>
-
-<p>Definition at line <a class="el" href="_mutable_storage_8php_source.html#l00061">61</a> of file <a class="el" href="_mutable_storage_8php_source.html">MutableStorage.php</a>.</p>
+<p>Definition at line <a class="el" href="_mutable_storage_8php_source.html#l00075">75</a> of file <a class="el" href="_mutable_storage_8php_source.html">MutableStorage.php</a>.</p>
 
 </div>
 </div>
@@ -193,8 +305,8 @@ Protected Member Functions</h2></td></tr>
 <div class="memdoc">
 <dl class="params"><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramtype">string</td><td class="paramname">$key</td><td></td></tr>
-    <tr><td class="paramtype">mixed</td><td class="paramname">$value</td><td></td></tr>
+    <tr><td class="paramname">$key</td><td>string </td></tr>
+    <tr><td class="paramname">$value</td><td>mixed </td></tr>
   </table>
   </dd>
 </dl>
@@ -202,9 +314,7 @@ Protected Member Functions</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_data_storage.html#a650a41fdd098749cb526027731b98507">libs\sprayfire\datastructs\DataStorage</a>.</p>
 
-<p>Reimplemented in <a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#a9780e116918c7fb0c2292990dcb0f44f">libs\sprayfire\datastructs\SprayFireObjectStore</a>, and <a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_mutable_iterator.html#a4d07b6bc458f8a857ffb20688a487bb0">libs\sprayfire\datastructs\MutableIterator</a>.</p>
-
-<p>Definition at line <a class="el" href="_mutable_storage_8php_source.html#l00051">51</a> of file <a class="el" href="_mutable_storage_8php_source.html">MutableStorage.php</a>.</p>
+<p>Definition at line <a class="el" href="_mutable_storage_8php_source.html#l00065">65</a> of file <a class="el" href="_mutable_storage_8php_source.html">MutableStorage.php</a>.</p>
 
 </div>
 </div>
@@ -212,6 +322,7 @@ Protected Member Functions</h2></td></tr>
 <li>/Library/WebServer/Documents/sprayfire/libs/sprayfire/datastructs/<a class="el" href="_mutable_storage_8php_source.html">MutableStorage.php</a></li>
 </ul>
 </div><!-- contents -->
+</div>
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -226,13 +337,19 @@ Protected Member Functions</h2></td></tr>
 </iframe>
 </div>
 
+  <div id="nav-path" class="navpath">
+    <ul>
+      <li class="navelem"><a class="el" href="namespacelibs.html">libs</a>      </li>
+      <li class="navelem"><a class="el" href="namespacelibs_1_1sprayfire.html">sprayfire</a>      </li>
+      <li class="navelem"><a class="el" href="namespacelibs_1_1sprayfire_1_1datastructs.html">datastructs</a>      </li>
+      <li class="navelem"><a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_mutable_storage.html">MutableStorage</a>      </li>
 
+    <li class="footer">Generated on Fri Dec 23 2011 18:16:43 for SprayFire by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
+   </ul>
+ </div>
 
-<hr class="footer"/><address class="footer"><small>
-Generated on Sat Dec 17 2011 00:29:34 for SprayFire by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.7.6.1
-</small></address>
 
 </body>
 </html>

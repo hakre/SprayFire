@@ -7,9 +7,14 @@
 
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-
-<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
   $(document).ready(function() { searchBox.OnSelectItem(0); });
@@ -46,10 +51,10 @@
 <script type="text/javascript">
 var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </script>
+<script type="text/javascript" src="dynsections.js"></script>
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
@@ -80,49 +85,51 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="functions.html"><span>Data&#160;Fields</span></a></li>
     </ul>
   </div>
-<!-- window showing the filter options -->
-<div id="MSearchSelectWindow"
-     onmouseover="return searchBox.OnSearchSelectShow()"
-     onmouseout="return searchBox.OnSearchSelectHide()"
-     onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a></div>
-
-<!-- iframe showing the search results (closed by default) -->
-<div id="MSearchResultsWindow">
-<iframe src="javascript:void(0)" frameborder="0" 
-        name="MSearchResults" id="MSearchResults">
-</iframe>
 </div>
-
-  <div id="nav-path" class="navpath">
-    <ul>
-      <li class="navelem"><a class="el" href="namespacelibs.html">libs</a>      </li>
-      <li class="navelem"><a class="el" href="namespacelibs_1_1sprayfire.html">sprayfire</a>      </li>
-      <li class="navelem"><a class="el" href="namespacelibs_1_1sprayfire_1_1datastructs.html">datastructs</a>      </li>
-      <li class="navelem"><a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_mutable_iterator.html">MutableIterator</a>      </li>
-    </ul>
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
   </div>
 </div>
+<script type="text/javascript">
+  initNavTree('classlibs_1_1sprayfire_1_1datastructs_1_1_mutable_iterator.html','');
+</script>
+<div id="doc-content">
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
-<a href="#pro-attribs">Protected Attributes</a>  </div>
+<a href="#pro-attribs">Protected Attributes</a> &#124;
+<a href="#pri-attribs">Private Attributes</a>  </div>
   <div class="headertitle">
 <div class="title">libs\sprayfire\datastructs\MutableIterator Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<!-- doxytag: class="libs::sprayfire::datastructs::MutableIterator" --><!-- doxytag: inherits="libs::sprayfire::datastructs::MutableStorage" --><div class="dynheader">
-Inheritance diagram for libs\sprayfire\datastructs\MutableIterator:</div>
-<div class="dyncontent">
+<!-- doxytag: class="libs::sprayfire::datastructs::MutableIterator" --><!-- doxytag: inherits="libs::sprayfire::datastructs::MutableStorage" --><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for libs\sprayfire\datastructs\MutableIterator:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="classlibs_1_1sprayfire_1_1datastructs_1_1_mutable_iterator__inherit__graph.png" border="0" usemap="#libs\sprayfire\datastructs\_mutable_iterator_inherit__map" alt="Inheritance graph"/></div>
 <map name="libs\sprayfire\datastructs\_mutable_iterator_inherit__map" id="libs\sprayfire\datastructs\_mutable_iterator_inherit__map">
-<area shape="rect" id="node13" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html" title="{libs\\sprayfire\\datastructs\\SprayFireObjectStore\n|# $ReflectedParentType\l|+ __construct()\l+ contains()\l+ indexOf()\l+ isEmpty()\l+ getObject()\l+ setObject()\l# set()\l# throwExceptionIfNotFrameworkObject()\l# isFrameworkObject()\l# throwExceptionIfObjectNotParentType()\l# isObjectParentType()\l}" alt="" coords="77,1123,373,1365"/><area shape="rect" id="node2" href="classlibs_1_1sprayfire_1_1datastructs_1_1_mutable_storage.html" title="{libs\\sprayfire\\datastructs\\MutableStorage\n||# set()\l# removeKey()\l}" alt="" coords="94,734,356,831"/><area shape="rect" id="node4" href="classlibs_1_1sprayfire_1_1datastructs_1_1_data_storage.html" title="{libs\\sprayfire\\datastructs\\DataStorage\n|# $data\l# $count\l|+ __construct()\l+ __get()\l+ offsetGet()\l+ __isset()\l+ offsetExists()\l+ __set()\l+ offsetSet()\l+ __unset()\l+ offsetUnset()\l+ count()\l# get()\l# keyHasValue()\l# keyInData()\l# recalibrateCount()\l# set()\l# removeKey()\l}" alt="" coords="104,347,347,685"/><area shape="rect" id="node6" href="classlibs_1_1sprayfire_1_1core_1_1_core_object.html" title="{libs\\sprayfire\\core\\CoreObject\n||+ hashCode()\l+ equals()\l+ __toString()\l}" alt="" coords="6,177,201,290"/><area shape="rect" id="node8" href="interfacelibs_1_1sprayfire_1_1interfaces_1_1_object.html" title="{libs\\sprayfire\\interfaces\\Object\n||+ equals()\l+ hashCode()\l+ __toString()\l}" alt="" coords="4,6,203,119"/><area shape="rect" id="node10" href="interfacelibs_1_1sprayfire_1_1interfaces_1_1_overloadable.html" title="{libs\\sprayfire\\interfaces\\Overloadable\n||+ __get()\l+ __set()\l+ __isset()\l+ __unset()\l}" alt="" coords="226,169,467,298"/></map>
-<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<area shape="rect" id="node13" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html" title="The framework&#39;s primary implementation to store framework objects." alt="" coords="77,1139,373,1429"/><area shape="rect" id="node2" href="classlibs_1_1sprayfire_1_1datastructs_1_1_mutable_storage.html" title="{libs\\sprayfire\\datastructs\\MutableStorage\n||+ __construct()\l# set()\l# removeKey()\l# convertDataDeep()\l&#45; convertArrayToMutableObject()\l}" alt="" coords="94,702,356,847"/><area shape="rect" id="node4" href="classlibs_1_1sprayfire_1_1datastructs_1_1_data_storage.html" title="{libs\\sprayfire\\datastructs\\DataStorage\n|# $data\l|+ __construct()\l+ __get()\l+ offsetGet()\l+ __isset()\l+ offsetExists()\l+ __set()\l+ offsetSet()\l+ __unset()\l+ offsetUnset()\l+ count()\l# get()\l# keyHasValue()\l# keyInData()\l# set()\l# removeKey()\l}" alt="" coords="104,347,347,653"/><area shape="rect" id="node6" href="classlibs_1_1sprayfire_1_1core_1_1_core_object.html" title="{libs\\sprayfire\\core\\CoreObject\n||+ hashCode()\l+ equals()\l+ __toString()\l}" alt="" coords="4,177,200,290"/><area shape="rect" id="node8" href="interfacelibs_1_1sprayfire_1_1core_1_1_object.html" title="{libs\\sprayfire\\core\\Object\n||+ equals()\l+ hashCode()\l+ __toString()\l}" alt="" coords="19,6,187,119"/><area shape="rect" id="node10" href="interfacelibs_1_1sprayfire_1_1datastructs_1_1_overloadable.html" title="An interface that forces the implementation of the magic methods that allow an object to access non&#45;e..." alt="" coords="225,169,473,298"/></map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for libs\sprayfire\datastructs\MutableIterator:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="classlibs_1_1sprayfire_1_1datastructs_1_1_mutable_iterator__coll__graph.png" border="0" usemap="#libs\sprayfire\datastructs\_mutable_iterator_coll__map" alt="Collaboration graph"/></div>
+<map name="libs\sprayfire\datastructs\_mutable_iterator_coll__map" id="libs\sprayfire\datastructs\_mutable_iterator_coll__map">
+<area shape="rect" id="node2" href="classlibs_1_1sprayfire_1_1datastructs_1_1_mutable_storage.html" title="{libs\\sprayfire\\datastructs\\MutableStorage\n||+ __construct()\l# set()\l# removeKey()\l# convertDataDeep()\l&#45; convertArrayToMutableObject()\l}" alt="" coords="94,702,356,847"/><area shape="rect" id="node4" href="classlibs_1_1sprayfire_1_1datastructs_1_1_data_storage.html" title="{libs\\sprayfire\\datastructs\\DataStorage\n|# $data\l|+ __construct()\l+ __get()\l+ offsetGet()\l+ __isset()\l+ offsetExists()\l+ __set()\l+ offsetSet()\l+ __unset()\l+ offsetUnset()\l+ count()\l# get()\l# keyHasValue()\l# keyInData()\l# set()\l# removeKey()\l}" alt="" coords="104,347,347,653"/><area shape="rect" id="node6" href="classlibs_1_1sprayfire_1_1core_1_1_core_object.html" title="{libs\\sprayfire\\core\\CoreObject\n||+ hashCode()\l+ equals()\l+ __toString()\l}" alt="" coords="4,177,200,290"/><area shape="rect" id="node8" href="interfacelibs_1_1sprayfire_1_1core_1_1_object.html" title="{libs\\sprayfire\\core\\Object\n||+ equals()\l+ hashCode()\l+ __toString()\l}" alt="" coords="19,6,187,119"/><area shape="rect" id="node10" href="interfacelibs_1_1sprayfire_1_1datastructs_1_1_overloadable.html" title="An interface that forces the implementation of the magic methods that allow an object to access non&#45;e..." alt="" coords="225,169,473,298"/></map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_mutable_iterator.html#aa30b7c927f6775d1ab4f7e9e2b576ae1">__construct</a> (array $data)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_mutable_iterator.html#ae969200da2566cd81a560556b291a585">current</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_mutable_iterator.html#a8e631007f4e82dabccef96958dd61641">key</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_mutable_iterator.html#a6c5ddaa58c6483cdeed70633225efe68">next</a> ()</td></tr>
@@ -135,42 +142,16 @@ Protected Member Functions</h2></td></tr>
 <tr><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_mutable_iterator.html#aa35ee8891cc55467c768fdc7d16e557d">$skipNextIteration</a> = false</td></tr>
+<tr><td colspan="2"><h2><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_mutable_iterator.html#a6328de42f971e8339bb8a2ffcccc83b7">$index</a> = 0</td></tr>
 </table>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>This class is a data storage that also acts as an iterator, allowing objects extending this class to be used in a foreach loop.</p>
-<p>This code is heavily influenced by the Zend Framework 2 Zend class. <a href="https://github.com/zendframework/zf2/blob/master/library/Zend/Config/Config.php">https://github.com/zendframework/zf2/blob/master/library/Zend/Config/Config.php</a> </p>
+<p>This code is heavily influenced by the Zend Framework 2 Zend.Config.Config class. <a href="https://github.com/zendframework/zf2/blob/master/library/Zend/Config/Config.php">https://github.com/zendframework/zf2/blob/master/library/Zend/Config/Config.php</a> </p>
 
-<p>Definition at line <a class="el" href="_mutable_iterator_8php_source.html#l00029">29</a> of file <a class="el" href="_mutable_iterator_8php_source.html">MutableIterator.php</a>.</p>
-</div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="aa30b7c927f6775d1ab4f7e9e2b576ae1"></a><!-- doxytag: member="libs::sprayfire::datastructs::MutableIterator::__construct" ref="aa30b7c927f6775d1ab4f7e9e2b576ae1" args="(array $data)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">libs\sprayfire\datastructs\<a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_mutable_iterator.html#aa30b7c927f6775d1ab4f7e9e2b576ae1">MutableIterator::__construct</a> </td>
-          <td>(</td>
-          <td class="paramtype">array $&#160;</td>
-          <td class="paramname"><em>data</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-<p>Overridden to ensure that the iterator can set the proper count for the storage when the object is created.</p>
-<dl class="params"><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramtype">array</td><td class="paramname">$data</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Reimplemented from <a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_data_storage.html#a3163069227734a06452097655e3dfcb9">libs\sprayfire\datastructs\DataStorage</a>.</p>
-
-<p>Definition at line <a class="el" href="_mutable_iterator_8php_source.html#l00052">52</a> of file <a class="el" href="_mutable_iterator_8php_source.html">MutableIterator.php</a>.</p>
-
-</div>
-</div>
-<hr/><h2>Member Function Documentation</h2>
+<p>Definition at line <a class="el" href="_mutable_iterator_8php_source.html#l00036">36</a> of file <a class="el" href="_mutable_iterator_8php_source.html">MutableIterator.php</a>.</p>
+</div><hr/><h2>Member Function Documentation</h2>
 <a class="anchor" id="ae969200da2566cd81a560556b291a585"></a><!-- doxytag: member="libs::sprayfire::datastructs::MutableIterator::current" ref="ae969200da2566cd81a560556b291a585" args="()" -->
 <div class="memitem">
 <div class="memproto">
@@ -187,7 +168,7 @@ Protected Attributes</h2></td></tr>
 <p>Will return whetever value is held by the current pointer of the data storage.</p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>mixed </dd></dl>
 
-<p>Definition at line <a class="el" href="_mutable_iterator_8php_source.html#l00062">62</a> of file <a class="el" href="_mutable_iterator_8php_source.html">MutableIterator.php</a>.</p>
+<p>Definition at line <a class="el" href="_mutable_iterator_8php_source.html#l00058">58</a> of file <a class="el" href="_mutable_iterator_8php_source.html">MutableIterator.php</a>.</p>
 
 </div>
 </div>
@@ -207,7 +188,7 @@ Protected Attributes</h2></td></tr>
 <p>Will return the key that is storing the current value; this can be an int or a string.</p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>mixed </dd></dl>
 
-<p>Definition at line <a class="el" href="_mutable_iterator_8php_source.html#l00073">73</a> of file <a class="el" href="_mutable_iterator_8php_source.html">MutableIterator.php</a>.</p>
+<p>Definition at line <a class="el" href="_mutable_iterator_8php_source.html#l00069">69</a> of file <a class="el" href="_mutable_iterator_8php_source.html">MutableIterator.php</a>.</p>
 
 </div>
 </div>
@@ -227,7 +208,7 @@ Protected Attributes</h2></td></tr>
 <p>Will advance the internal pointer of the array.</p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="_mutable_iterator_8php_source.html#l00082">82</a> of file <a class="el" href="_mutable_iterator_8php_source.html">MutableIterator.php</a>.</p>
+<p>Definition at line <a class="el" href="_mutable_iterator_8php_source.html#l00078">78</a> of file <a class="el" href="_mutable_iterator_8php_source.html">MutableIterator.php</a>.</p>
 
 </div>
 </div>
@@ -248,14 +229,14 @@ Protected Attributes</h2></td></tr>
 <p>Overrides the inherited removeKey method to ensure that the new number of buckets are counted and to ensure the skipNextIteration flag is set to true.</p>
 <dl class="params"><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramtype">string</td><td class="paramname">$key</td><td></td></tr>
+    <tr><td class="paramname">$key</td><td>string </td></tr>
   </table>
   </dd>
 </dl>
 
 <p>Reimplemented from <a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_mutable_storage.html#a7a0fe476b2bbf4b2d783b8f693419eb3">libs\sprayfire\datastructs\MutableStorage</a>.</p>
 
-<p>Definition at line <a class="el" href="_mutable_iterator_8php_source.html#l00131">131</a> of file <a class="el" href="_mutable_iterator_8php_source.html">MutableIterator.php</a>.</p>
+<p>Definition at line <a class="el" href="_mutable_iterator_8php_source.html#l00125">125</a> of file <a class="el" href="_mutable_iterator_8php_source.html">MutableIterator.php</a>.</p>
 
 </div>
 </div>
@@ -274,7 +255,7 @@ Protected Attributes</h2></td></tr>
 <div class="memdoc">
 <p>Will reset the internal array pointer and set the Iterator to be looped through. </p>
 
-<p>Definition at line <a class="el" href="_mutable_iterator_8php_source.html#l00095">95</a> of file <a class="el" href="_mutable_iterator_8php_source.html">MutableIterator.php</a>.</p>
+<p>Definition at line <a class="el" href="_mutable_iterator_8php_source.html#l00091">91</a> of file <a class="el" href="_mutable_iterator_8php_source.html">MutableIterator.php</a>.</p>
 
 </div>
 </div>
@@ -305,8 +286,8 @@ Protected Attributes</h2></td></tr>
 <p>Overrides the inherited set method to ensure the number of buckets in the storage are being counted.</p>
 <dl class="params"><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramtype">string</td><td class="paramname">$key</td><td></td></tr>
-    <tr><td class="paramtype">mixed</td><td class="paramname">$value</td><td></td></tr>
+    <tr><td class="paramname">$key</td><td>string </td></tr>
+    <tr><td class="paramname">$value</td><td>mixed </td></tr>
   </table>
   </dd>
 </dl>
@@ -316,7 +297,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Reimplemented in <a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#a9780e116918c7fb0c2292990dcb0f44f">libs\sprayfire\datastructs\SprayFireObjectStore</a>.</p>
 
-<p>Definition at line <a class="el" href="_mutable_iterator_8php_source.html#l00119">119</a> of file <a class="el" href="_mutable_iterator_8php_source.html">MutableIterator.php</a>.</p>
+<p>Definition at line <a class="el" href="_mutable_iterator_8php_source.html#l00115">115</a> of file <a class="el" href="_mutable_iterator_8php_source.html">MutableIterator.php</a>.</p>
 
 </div>
 </div>
@@ -336,11 +317,26 @@ Protected Attributes</h2></td></tr>
 <p>Will return whether or not the loop should continue; once the index is &gt;= count this function will return false.</p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>boolean </dd></dl>
 
-<p>Definition at line <a class="el" href="_mutable_iterator_8php_source.html#l00107">107</a> of file <a class="el" href="_mutable_iterator_8php_source.html">MutableIterator.php</a>.</p>
+<p>Definition at line <a class="el" href="_mutable_iterator_8php_source.html#l00103">103</a> of file <a class="el" href="_mutable_iterator_8php_source.html">MutableIterator.php</a>.</p>
 
 </div>
 </div>
 <hr/><h2>Field Documentation</h2>
+<a class="anchor" id="a6328de42f971e8339bb8a2ffcccc83b7"></a><!-- doxytag: member="libs::sprayfire::datastructs::MutableIterator::$index" ref="a6328de42f971e8339bb8a2ffcccc83b7" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">libs::sprayfire::datastructs\MutableIterator::$index = 0<code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="_mutable_iterator_8php_source.html#l00043">43</a> of file <a class="el" href="_mutable_iterator_8php_source.html">MutableIterator.php</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="aa35ee8891cc55467c768fdc7d16e557d"></a><!-- doxytag: member="libs::sprayfire::datastructs::MutableIterator::$skipNextIteration" ref="aa35ee8891cc55467c768fdc7d16e557d" args="" -->
 <div class="memitem">
 <div class="memproto">
@@ -352,7 +348,7 @@ Protected Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="_mutable_iterator_8php_source.html#l00044">44</a> of file <a class="el" href="_mutable_iterator_8php_source.html">MutableIterator.php</a>.</p>
+<p>Definition at line <a class="el" href="_mutable_iterator_8php_source.html#l00051">51</a> of file <a class="el" href="_mutable_iterator_8php_source.html">MutableIterator.php</a>.</p>
 
 </div>
 </div>
@@ -360,6 +356,7 @@ Protected Attributes</h2></td></tr>
 <li>/Library/WebServer/Documents/sprayfire/libs/sprayfire/datastructs/<a class="el" href="_mutable_iterator_8php_source.html">MutableIterator.php</a></li>
 </ul>
 </div><!-- contents -->
+</div>
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -374,13 +371,19 @@ Protected Attributes</h2></td></tr>
 </iframe>
 </div>
 
+  <div id="nav-path" class="navpath">
+    <ul>
+      <li class="navelem"><a class="el" href="namespacelibs.html">libs</a>      </li>
+      <li class="navelem"><a class="el" href="namespacelibs_1_1sprayfire.html">sprayfire</a>      </li>
+      <li class="navelem"><a class="el" href="namespacelibs_1_1sprayfire_1_1datastructs.html">datastructs</a>      </li>
+      <li class="navelem"><a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_mutable_iterator.html">MutableIterator</a>      </li>
 
+    <li class="footer">Generated on Mon Dec 19 2011 15:17:11 for SprayFire by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
+   </ul>
+ </div>
 
-<hr class="footer"/><address class="footer"><small>
-Generated on Sat Dec 17 2011 00:29:34 for SprayFire by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.7.6.1
-</small></address>
 
 </body>
 </html>

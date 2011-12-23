@@ -7,9 +7,14 @@
 
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-
-<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
   $(document).ready(function() { searchBox.OnSelectItem(0); });
@@ -46,10 +51,10 @@
 <script type="text/javascript">
 var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </script>
+<script type="text/javascript" src="dynsections.js"></script>
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
@@ -80,6 +85,478 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="functions.html"><span>Data&#160;Fields</span></a></li>
     </ul>
   </div>
+</div>
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+  initNavTree('classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html','');
+</script>
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a>  </div>
+  <div class="headertitle">
+<div class="title">libs\sprayfire\datastructs\SprayFireObjectStore Class Reference</div>  </div>
+</div><!--header-->
+<div class="contents">
+<!-- doxytag: class="libs::sprayfire::datastructs::SprayFireObjectStore" --><!-- doxytag: inherits="libs::sprayfire::core::CoreObject,libs::sprayfire::datastructs::ObjectStorage" -->
+<p>The framework's primary implementation to store framework objects.  
+ <a href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#details">More...</a></p>
+<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for libs\sprayfire\datastructs\SprayFireObjectStore:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store__inherit__graph.png" border="0" usemap="#libs\sprayfire\datastructs\_spray_fire_object_store_inherit__map" alt="Inheritance graph"/></div>
+<map name="libs\sprayfire\datastructs\_spray_fire_object_store_inherit__map" id="libs\sprayfire\datastructs\_spray_fire_object_store_inherit__map">
+<area shape="rect" id="node2" href="classlibs_1_1sprayfire_1_1core_1_1_core_object.html" title="SprayFire&#39;s implementation of the libs.sprayfire.core.Object interface, allowing easy access to some ..." alt="" coords="4,201,200,314"/><area shape="rect" id="node4" href="interfacelibs_1_1sprayfire_1_1core_1_1_object.html" title="An interface for basic framework objects." alt="" coords="19,6,187,119"/><area shape="rect" id="node6" href="interfacelibs_1_1sprayfire_1_1datastructs_1_1_object_storage.html" title="Provides an API to store SprayFire derived objects, iterate over them and store similar typed objects..." alt="" coords="225,169,479,346"/></map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for libs\sprayfire\datastructs\SprayFireObjectStore:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store__coll__graph.png" border="0" usemap="#libs\sprayfire\datastructs\_spray_fire_object_store_coll__map" alt="Collaboration graph"/></div>
+<map name="libs\sprayfire\datastructs\_spray_fire_object_store_coll__map" id="libs\sprayfire\datastructs\_spray_fire_object_store_coll__map">
+<area shape="rect" id="node2" href="classlibs_1_1sprayfire_1_1core_1_1_core_object.html" title="SprayFire&#39;s implementation of the libs.sprayfire.core.Object interface, allowing easy access to some ..." alt="" coords="4,201,200,314"/><area shape="rect" id="node4" href="interfacelibs_1_1sprayfire_1_1core_1_1_object.html" title="An interface for basic framework objects." alt="" coords="19,6,187,119"/><area shape="rect" id="node6" href="interfacelibs_1_1sprayfire_1_1datastructs_1_1_object_storage.html" title="Provides an API to store SprayFire derived objects, iterate over them and store similar typed objects..." alt="" coords="225,169,479,346"/></map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr><td colspan="2"><h2><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#a91ac2762aaaea1ba862e415d648bf511">__construct</a> (ReflectionClass $ReflectedObjectType)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Will initiate the object storage as an empty array and assign the passed ReflectionClass to the appropriate class property.  <a href="#a91ac2762aaaea1ba862e415d648bf511"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#a0fd8743472dda33006dbc96689728384">contains</a> (Object $Object)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the <em>$Object</em> <em>exists</em> in this data structure; returns true if the object exists and false if it doesn't.  <a href="#a0fd8743472dda33006dbc96689728384"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#a09ce421b67841f62ff81a0b0a0b2a831">indexOf</a> (Object $Object)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the string or numeric index associated with the given object or false if the object is not stored.  <a href="#a09ce421b67841f62ff81a0b0a0b2a831"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#a9f80df23020b4c1b1e73ecb07f16218f">isEmpty</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether or not this object has any objects stored in it.  <a href="#a9f80df23020b4c1b1e73ecb07f16218f"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#ad370438769c50df325de905781eda60e">removeObject</a> ($key)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove the element associated with by the <em>$key</em> <em>passed</em>.  <a href="#ad370438769c50df325de905781eda60e"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#af06faf1f8430cb7da101bb48005d10f0">getObject</a> ($key)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the object associated with <em>$key</em> <em>if</em> it exists or null if it does not.  <a href="#af06faf1f8430cb7da101bb48005d10f0"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#a657fa0fc7008deb86d66b26130795064">setObject</a> ($key, Object $Object)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines whether or not the passed <em>$Object</em> <em>is</em> a proepr object for this storage type, adds the <em>$Object</em> <em>if</em> it does and throws an exception if it does not.  <a href="#a657fa0fc7008deb86d66b26130795064"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#a96fb167f8d86cc07704c0ab80015815f">getIterator</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Satisfies the requirements of the IteratorAggregate interface.  <a href="#a96fb167f8d86cc07704c0ab80015815f"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#ae1ea7ead5dd47edee973a4a1b7af0fc3">count</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Satisfies the requirements of the Countable interface.  <a href="#ae1ea7ead5dd47edee973a4a1b7af0fc3"></a><br/></td></tr>
+<tr><td colspan="2"><h2><a name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#a4e07f992ddf1ed43cc1c277a6e6de4e8">throwExceptionIfKeyInvalid</a> ($key)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#acc354dd74702878c76f8a785001ed48e">throwExceptionIfObjectNotParentType</a> (\libs\sprayfire\core\Object $Object)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#a8a51c2dd9f69a0541588566fc63103ed">isObjectParentType</a> (Object $Object)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines whether or not the passed <em>$Object</em> <em>implements</em> the parent type set by the constructor dependency.  <a href="#a8a51c2dd9f69a0541588566fc63103ed"></a><br/></td></tr>
+<tr><td colspan="2"><h2><a name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#adef91171d84c247cd71b6c6502fe65b5">$ReflectedParentType</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#a8caebc80de6c69f352846303e6961e54">$data</a> = array()</td></tr>
+</table>
+<hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
+<div class="textblock"><p>The framework's primary implementation to store framework objects. </p>
+<p>Allows for the associating of framework objects with a key and the retrieval of that object using that key. Also allows for the removal of an object associated with a key and iterating over the stored objects. </p>
+
+<p>Definition at line <a class="el" href="_spray_fire_object_store_8php_source.html#l00044">44</a> of file <a class="el" href="_spray_fire_object_store_8php_source.html">SprayFireObjectStore.php</a>.</p>
+</div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a91ac2762aaaea1ba862e415d648bf511"></a><!-- doxytag: member="libs::sprayfire::datastructs::SprayFireObjectStore::__construct" ref="a91ac2762aaaea1ba862e415d648bf511" args="(ReflectionClass $ReflectedObjectType)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">libs\sprayfire\datastructs\<a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#a91ac2762aaaea1ba862e415d648bf511">SprayFireObjectStore::__construct</a> </td>
+          <td>(</td>
+          <td class="paramtype">ReflectionClass $&#160;</td>
+          <td class="paramname"><em>ReflectedObjectType</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Will initiate the object storage as an empty array and assign the passed ReflectionClass to the appropriate class property. </p>
+<dl class="params"><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">$ReflectedObjectType</td><td>ReflectionClass </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implements <a class="el" href="interfacelibs_1_1sprayfire_1_1datastructs_1_1_object_storage.html#a9b938704691cfe08856c39febaa1ddb8">libs\sprayfire\datastructs\ObjectStorage</a>.</p>
+
+<p>Definition at line <a class="el" href="_spray_fire_object_store_8php_source.html#l00067">67</a> of file <a class="el" href="_spray_fire_object_store_8php_source.html">SprayFireObjectStore.php</a>.</p>
+
+</div>
+</div>
+<hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="a0fd8743472dda33006dbc96689728384"></a><!-- doxytag: member="libs::sprayfire::datastructs::SprayFireObjectStore::contains" ref="a0fd8743472dda33006dbc96689728384" args="(Object $Object)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">libs\sprayfire\datastructs\<a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#a0fd8743472dda33006dbc96689728384">SprayFireObjectStore::contains</a> </td>
+          <td>(</td>
+          <td class="paramtype">Object $&#160;</td>
+          <td class="paramname"><em>Object</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Checks if the <em>$Object</em> <em>exists</em> in this data structure; returns true if the object exists and false if it doesn't. </p>
+<dl class="params"><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">$Object</td><td><a class="el" href="interfacelibs_1_1sprayfire_1_1core_1_1_object.html" title="An interface for basic framework objects.">libs.sprayfire.core.Object</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>boolean </dd></dl>
+
+<p>Implements <a class="el" href="interfacelibs_1_1sprayfire_1_1datastructs_1_1_object_storage.html#a9865459f9288eb6c9551a88b2c7b21ce">libs\sprayfire\datastructs\ObjectStorage</a>.</p>
+
+<p>Definition at line <a class="el" href="_spray_fire_object_store_8php_source.html#l00078">78</a> of file <a class="el" href="_spray_fire_object_store_8php_source.html">SprayFireObjectStore.php</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae1ea7ead5dd47edee973a4a1b7af0fc3"></a><!-- doxytag: member="libs::sprayfire::datastructs::SprayFireObjectStore::count" ref="ae1ea7ead5dd47edee973a4a1b7af0fc3" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">libs\sprayfire\datastructs\<a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#ae1ea7ead5dd47edee973a4a1b7af0fc3">SprayFireObjectStore::count</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Satisfies the requirements of the Countable interface. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>int </dd></dl>
+
+<p>Definition at line <a class="el" href="_spray_fire_object_store_8php_source.html#l00229">229</a> of file <a class="el" href="_spray_fire_object_store_8php_source.html">SprayFireObjectStore.php</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a96fb167f8d86cc07704c0ab80015815f"></a><!-- doxytag: member="libs::sprayfire::datastructs::SprayFireObjectStore::getIterator" ref="a96fb167f8d86cc07704c0ab80015815f" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">libs\sprayfire\datastructs\<a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#a96fb167f8d86cc07704c0ab80015815f">SprayFireObjectStore::getIterator</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Satisfies the requirements of the IteratorAggregate interface. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>ArrayIterator </dd></dl>
+
+<p>Definition at line <a class="el" href="_spray_fire_object_store_8php_source.html#l00220">220</a> of file <a class="el" href="_spray_fire_object_store_8php_source.html">SprayFireObjectStore.php</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af06faf1f8430cb7da101bb48005d10f0"></a><!-- doxytag: member="libs::sprayfire::datastructs::SprayFireObjectStore::getObject" ref="af06faf1f8430cb7da101bb48005d10f0" args="($key)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">libs\sprayfire\datastructs\<a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#af06faf1f8430cb7da101bb48005d10f0">SprayFireObjectStore::getObject</a> </td>
+          <td>(</td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Return the object associated with <em>$key</em> <em>if</em> it exists or null if it does not. </p>
+<dl class="params"><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">$key</td><td>string </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd><a class="el" href="interfacelibs_1_1sprayfire_1_1core_1_1_object.html" title="An interface for basic framework objects.">libs.sprayfire.core.Object</a> </dd></dl>
+
+<p>Implements <a class="el" href="interfacelibs_1_1sprayfire_1_1datastructs_1_1_object_storage.html#a5db6e42b77ec7a5e9f88c01e00991c85">libs\sprayfire\datastructs\ObjectStorage</a>.</p>
+
+<p>Definition at line <a class="el" href="_spray_fire_object_store_8php_source.html#l00130">130</a> of file <a class="el" href="_spray_fire_object_store_8php_source.html">SprayFireObjectStore.php</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a09ce421b67841f62ff81a0b0a0b2a831"></a><!-- doxytag: member="libs::sprayfire::datastructs::SprayFireObjectStore::indexOf" ref="a09ce421b67841f62ff81a0b0a0b2a831" args="(Object $Object)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">libs\sprayfire\datastructs\<a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#a09ce421b67841f62ff81a0b0a0b2a831">SprayFireObjectStore::indexOf</a> </td>
+          <td>(</td>
+          <td class="paramtype">Object $&#160;</td>
+          <td class="paramname"><em>Object</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Return the string or numeric index associated with the given object or false if the object is not stored. </p>
+<dl class="params"><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">$Object</td><td><a class="el" href="interfacelibs_1_1sprayfire_1_1core_1_1_object.html" title="An interface for basic framework objects.">libs.sprayfire.core.Object</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>mixed <em>$key</em> <em>type</em> set or false on failure </dd></dl>
+
+<p>Implements <a class="el" href="interfacelibs_1_1sprayfire_1_1datastructs_1_1_object_storage.html#a47bc5ab309dbaf50a67bec2893b28ab8">libs\sprayfire\datastructs\ObjectStorage</a>.</p>
+
+<p>Definition at line <a class="el" href="_spray_fire_object_store_8php_source.html#l00092">92</a> of file <a class="el" href="_spray_fire_object_store_8php_source.html">SprayFireObjectStore.php</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9f80df23020b4c1b1e73ecb07f16218f"></a><!-- doxytag: member="libs::sprayfire::datastructs::SprayFireObjectStore::isEmpty" ref="a9f80df23020b4c1b1e73ecb07f16218f" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">libs\sprayfire\datastructs\<a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#a9f80df23020b4c1b1e73ecb07f16218f">SprayFireObjectStore::isEmpty</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Returns whether or not this object has any objects stored in it. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>boolean </dd></dl>
+
+<p>Implements <a class="el" href="interfacelibs_1_1sprayfire_1_1datastructs_1_1_object_storage.html#a1f98e36d4e336135f78b7725f34ab168">libs\sprayfire\datastructs\ObjectStorage</a>.</p>
+
+<p>Definition at line <a class="el" href="_spray_fire_object_store_8php_source.html#l00108">108</a> of file <a class="el" href="_spray_fire_object_store_8php_source.html">SprayFireObjectStore.php</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a8a51c2dd9f69a0541588566fc63103ed"></a><!-- doxytag: member="libs::sprayfire::datastructs::SprayFireObjectStore::isObjectParentType" ref="a8a51c2dd9f69a0541588566fc63103ed" args="(Object $Object)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">libs\sprayfire\datastructs\<a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#a8a51c2dd9f69a0541588566fc63103ed">SprayFireObjectStore::isObjectParentType</a> </td>
+          <td>(</td>
+          <td class="paramtype">Object $&#160;</td>
+          <td class="paramname"><em>Object</em></td><td>)</td>
+          <td><code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Determines whether or not the passed <em>$Object</em> <em>implements</em> the parent type set by the constructor dependency. </p>
+<p>The objet is considered valid if any of the following are true:</p>
+<p>1) Implements the interface passed in the constructor 2) Is an instance of the class passed in the constructor 3) Is a subclass of the class passed in the constructor</p>
+<dl class="params"><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">$Object</td><td><a class="el" href="interfacelibs_1_1sprayfire_1_1core_1_1_object.html" title="An interface for basic framework objects.">libs.sprayfire.core.Object</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>boolean </dd></dl>
+
+<p>Definition at line <a class="el" href="_spray_fire_object_store_8php_source.html#l00193">193</a> of file <a class="el" href="_spray_fire_object_store_8php_source.html">SprayFireObjectStore.php</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad370438769c50df325de905781eda60e"></a><!-- doxytag: member="libs::sprayfire::datastructs::SprayFireObjectStore::removeObject" ref="ad370438769c50df325de905781eda60e" args="($key)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">libs\sprayfire\datastructs\<a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#ad370438769c50df325de905781eda60e">SprayFireObjectStore::removeObject</a> </td>
+          <td>(</td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Remove the element associated with by the <em>$key</em> <em>passed</em>. </p>
+<dl class="params"><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">$key</td><td>string </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implements <a class="el" href="interfacelibs_1_1sprayfire_1_1datastructs_1_1_object_storage.html#a47be9eaed522c5fe5e245d36da8fe93c">libs\sprayfire\datastructs\ObjectStorage</a>.</p>
+
+<p>Definition at line <a class="el" href="_spray_fire_object_store_8php_source.html#l00117">117</a> of file <a class="el" href="_spray_fire_object_store_8php_source.html">SprayFireObjectStore.php</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a657fa0fc7008deb86d66b26130795064"></a><!-- doxytag: member="libs::sprayfire::datastructs::SprayFireObjectStore::setObject" ref="a657fa0fc7008deb86d66b26130795064" args="($key, Object $Object)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">libs\sprayfire\datastructs\<a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#a657fa0fc7008deb86d66b26130795064">SprayFireObjectStore::setObject</a> </td>
+          <td>(</td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Object $&#160;</td>
+          <td class="paramname"><em>Object</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Determines whether or not the passed <em>$Object</em> <em>is</em> a proepr object for this storage type, adds the <em>$Object</em> <em>if</em> it does and throws an exception if it does not. </p>
+<p>This method will only throw one exception type but that exception may be thrown for one of two reasons; (1) the <em>$key</em> <em>is</em> not a valid string or is empty (2) the <em>$Object</em> <em>does</em> not properly implement the type injected into the constructor</p>
+<dl class="params"><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">$key</td><td>A string or numeric index </td></tr>
+    <tr><td class="paramname">$Object</td><td>Should implement <a class="el" href="interfacelibs_1_1sprayfire_1_1core_1_1_object.html" title="An interface for basic framework objects.">libs.sprayfire.core.Object</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt><b>Exceptions:</b></dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">InvalidArgumentException</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd><a class="el" href="interfacelibs_1_1sprayfire_1_1core_1_1_object.html" title="An interface for basic framework objects.">libs.sprayfire.core.Object</a> </dd></dl>
+
+<p>Implements <a class="el" href="interfacelibs_1_1sprayfire_1_1datastructs_1_1_object_storage.html#aea55f18fc38816c06e8436414d33e66f">libs\sprayfire\datastructs\ObjectStorage</a>.</p>
+
+<p>Definition at line <a class="el" href="_spray_fire_object_store_8php_source.html#l00153">153</a> of file <a class="el" href="_spray_fire_object_store_8php_source.html">SprayFireObjectStore.php</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a4e07f992ddf1ed43cc1c277a6e6de4e8"></a><!-- doxytag: member="libs::sprayfire::datastructs::SprayFireObjectStore::throwExceptionIfKeyInvalid" ref="a4e07f992ddf1ed43cc1c277a6e6de4e8" args="($key)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">libs\sprayfire\datastructs\<a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#a4e07f992ddf1ed43cc1c277a6e6de4e8">SprayFireObjectStore::throwExceptionIfKeyInvalid</a> </td>
+          <td>(</td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td><code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<dl class="params"><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">$key</td><td>string </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt><b>Exceptions:</b></dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">InvalidArgumentException</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="_spray_fire_object_store_8php_source.html#l00163">163</a> of file <a class="el" href="_spray_fire_object_store_8php_source.html">SprayFireObjectStore.php</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="acc354dd74702878c76f8a785001ed48e"></a><!-- doxytag: member="libs::sprayfire::datastructs::SprayFireObjectStore::throwExceptionIfObjectNotParentType" ref="acc354dd74702878c76f8a785001ed48e" args="(\libs\sprayfire\core\Object $Object)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">libs\sprayfire\datastructs\<a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#acc354dd74702878c76f8a785001ed48e">SprayFireObjectStore::throwExceptionIfObjectNotParentType</a> </td>
+          <td>(</td>
+          <td class="paramtype">\libs\sprayfire\core\Object $&#160;</td>
+          <td class="paramname"><em>Object</em></td><td>)</td>
+          <td><code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<dl class="params"><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">$Object</td><td><a class="el" href="interfacelibs_1_1sprayfire_1_1core_1_1_object.html" title="An interface for basic framework objects.">libs.sprayfire.core.Object</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt><b>Exceptions:</b></dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">InvalidArgumentException</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="_spray_fire_object_store_8php_source.html#l00173">173</a> of file <a class="el" href="_spray_fire_object_store_8php_source.html">SprayFireObjectStore.php</a>.</p>
+
+</div>
+</div>
+<hr/><h2>Field Documentation</h2>
+<a class="anchor" id="a8caebc80de6c69f352846303e6961e54"></a><!-- doxytag: member="libs::sprayfire::datastructs::SprayFireObjectStore::$data" ref="a8caebc80de6c69f352846303e6961e54" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">libs::sprayfire::datastructs\SprayFireObjectStore::$data = array()<code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="_spray_fire_object_store_8php_source.html#l00059">59</a> of file <a class="el" href="_spray_fire_object_store_8php_source.html">SprayFireObjectStore.php</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="adef91171d84c247cd71b6c6502fe65b5"></a><!-- doxytag: member="libs::sprayfire::datastructs::SprayFireObjectStore::$ReflectedParentType" ref="adef91171d84c247cd71b6c6502fe65b5" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">libs::sprayfire::datastructs\SprayFireObjectStore::$ReflectedParentType<code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="_spray_fire_object_store_8php_source.html#l00052">52</a> of file <a class="el" href="_spray_fire_object_store_8php_source.html">SprayFireObjectStore.php</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>/Library/WebServer/Documents/sprayfire/libs/sprayfire/datastructs/<a class="el" href="_spray_fire_object_store_8php_source.html">SprayFireObjectStore.php</a></li>
+</ul>
+</div><!-- contents -->
+</div>
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -100,434 +577,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li class="navelem"><a class="el" href="namespacelibs_1_1sprayfire.html">sprayfire</a>      </li>
       <li class="navelem"><a class="el" href="namespacelibs_1_1sprayfire_1_1datastructs.html">datastructs</a>      </li>
       <li class="navelem"><a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html">SprayFireObjectStore</a>      </li>
-    </ul>
-  </div>
-</div>
-<div class="header">
-  <div class="summary">
-<a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pro-methods">Protected Member Functions</a> &#124;
-<a href="#pro-attribs">Protected Attributes</a>  </div>
-  <div class="headertitle">
-<div class="title">libs\sprayfire\datastructs\SprayFireObjectStore Class Reference</div>  </div>
-</div><!--header-->
-<div class="contents">
-<!-- doxytag: class="libs::sprayfire::datastructs::SprayFireObjectStore" --><!-- doxytag: inherits="libs::sprayfire::datastructs::MutableIterator,libs::sprayfire::interfaces::ObjectStorage" --><div class="dynheader">
-Inheritance diagram for libs\sprayfire\datastructs\SprayFireObjectStore:</div>
-<div class="dyncontent">
-<div class="center"><img src="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store__inherit__graph.png" border="0" usemap="#libs\sprayfire\datastructs\_spray_fire_object_store_inherit__map" alt="Inheritance graph"/></div>
-<map name="libs\sprayfire\datastructs\_spray_fire_object_store_inherit__map" id="libs\sprayfire\datastructs\_spray_fire_object_store_inherit__map">
-<area shape="rect" id="node2" href="classlibs_1_1sprayfire_1_1datastructs_1_1_mutable_iterator.html" title="{libs\\sprayfire\\datastructs\\MutableIterator\n|# $skipNextIteration\l|+ __construct()\l+ current()\l+ key()\l+ next()\l+ rewind()\l+ valid()\l# set()\l# removeKey()\l}" alt="" coords="35,945,292,1138"/><area shape="rect" id="node4" href="classlibs_1_1sprayfire_1_1datastructs_1_1_mutable_storage.html" title="{libs\\sprayfire\\datastructs\\MutableStorage\n||# set()\l# removeKey()\l}" alt="" coords="5,766,267,863"/><area shape="rect" id="node6" href="classlibs_1_1sprayfire_1_1datastructs_1_1_data_storage.html" title="{libs\\sprayfire\\datastructs\\DataStorage\n|# $data\l# $count\l|+ __construct()\l+ __get()\l+ offsetGet()\l+ __isset()\l+ offsetExists()\l+ __set()\l+ offsetSet()\l+ __unset()\l+ offsetUnset()\l+ count()\l# get()\l# keyHasValue()\l# keyInData()\l# recalibrateCount()\l# set()\l# removeKey()\l}" alt="" coords="32,347,275,685"/><area shape="rect" id="node8" href="classlibs_1_1sprayfire_1_1core_1_1_core_object.html" title="{libs\\sprayfire\\core\\CoreObject\n||+ hashCode()\l+ equals()\l+ __toString()\l}" alt="" coords="55,177,251,290"/><area shape="rect" id="node10" href="interfacelibs_1_1sprayfire_1_1interfaces_1_1_object.html" title="{libs\\sprayfire\\interfaces\\Object\n||+ equals()\l+ hashCode()\l+ __toString()\l}" alt="" coords="53,6,252,119"/><area shape="rect" id="node12" href="interfacelibs_1_1sprayfire_1_1interfaces_1_1_overloadable.html" title="{libs\\sprayfire\\interfaces\\Overloadable\n||+ __get()\l+ __set()\l+ __isset()\l+ __unset()\l}" alt="" coords="280,169,520,298"/><area shape="rect" id="node14" href="interfacelibs_1_1sprayfire_1_1interfaces_1_1_object_storage.html" title="{libs\\sprayfire\\interfaces\\ObjectStorage\n||+ __construct()\l+ getObject()\l+ setObject()\l+ contains()\l+ indexOf()\l+ isEmpty()\l}" alt="" coords="291,734,537,895"/></map>
-<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
-<table class="memberdecls">
-<tr><td colspan="2"><h2><a name="pub-methods"></a>
-Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#a0d4be50adadff7517b3653d113f4d43a">__construct</a> (\ReflectionClass $ReflectedObjectType)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#a6a7cff2b0a695cba2628ce9c87dcd325">contains</a> (\libs\sprayfire\interfaces\Object $Object)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#a3b3280aaf5158319051e1e63c3eb489a">indexOf</a> (\libs\sprayfire\interfaces\Object $Object)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#a9f80df23020b4c1b1e73ecb07f16218f">isEmpty</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#af06faf1f8430cb7da101bb48005d10f0">getObject</a> ($<a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_mutable_iterator.html#a8e631007f4e82dabccef96958dd61641">key</a>)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#ad2d4de6cbe7bc38dbbf98100d0121582">setObject</a> ($<a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_mutable_iterator.html#a8e631007f4e82dabccef96958dd61641">key</a>,\libs\sprayfire\interfaces\Object $Object)</td></tr>
-<tr><td colspan="2"><h2><a name="pro-methods"></a>
-Protected Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#a9780e116918c7fb0c2292990dcb0f44f">set</a> ($<a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_mutable_iterator.html#a8e631007f4e82dabccef96958dd61641">key</a>, $value)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#ae2af114b47f8080b2d261c36bdbcf9e0">throwExceptionIfNotFrameworkObject</a> ($value)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#a517acdf130a44ff848c3c2da37f9b5bc">isFrameworkObject</a> ($Object)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#a2433d49683c555d1e276d488e8299c39">throwExceptionIfObjectNotParentType</a> ($value)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#a6b7e6c461cd73dd3ec03a5fac3d6ee07">isObjectParentType</a> ($value)</td></tr>
-<tr><td colspan="2"><h2><a name="pro-attribs"></a>
-Protected Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#adef91171d84c247cd71b6c6502fe65b5">$ReflectedParentType</a></td></tr>
-</table>
-<hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
-<div class="textblock"><p>This is the framework's primary data structure to store framework objects.</p>
-<p>It allows for the associating of framework objects with a key and the retrieval of that object using that key. The data structure also allows for the removal of objects associated with a key and iterating over the objects stored in the array. </p>
 
-<p>Definition at line <a class="el" href="_spray_fire_object_store_8php_source.html#l00030">30</a> of file <a class="el" href="_spray_fire_object_store_8php_source.html">SprayFireObjectStore.php</a>.</p>
-</div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a0d4be50adadff7517b3653d113f4d43a"></a><!-- doxytag: member="libs::sprayfire::datastructs::SprayFireObjectStore::__construct" ref="a0d4be50adadff7517b3653d113f4d43a" args="(\ReflectionClass $ReflectedObjectType)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">libs\sprayfire\datastructs\<a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#a0d4be50adadff7517b3653d113f4d43a">SprayFireObjectStore::__construct</a> </td>
-          <td>(</td>
-          <td class="paramtype">\ReflectionClass $&#160;</td>
-          <td class="paramname"><em>ReflectedObjectType</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-<p>Will initiate the object storage as an empty array and assign the passed ReflectionClass to the appropriate class property.</p>
-<dl class="params"><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramname">\ReflectionClass</td><td>$ReflectedObjectType </td></tr>
-  </table>
-  </dd>
-</dl>
+    <li class="footer">Generated on Fri Dec 23 2011 18:16:43 for SprayFire by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
+   </ul>
+ </div>
 
-<p>Implements <a class="el" href="interfacelibs_1_1sprayfire_1_1interfaces_1_1_object_storage.html#a57e8d35de64cbe77541034ba57af2f8f">libs\sprayfire\interfaces\ObjectStorage</a>.</p>
-
-<p>Definition at line <a class="el" href="_spray_fire_object_store_8php_source.html#l00054">54</a> of file <a class="el" href="_spray_fire_object_store_8php_source.html">SprayFireObjectStore.php</a>.</p>
-
-</div>
-</div>
-<hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a6a7cff2b0a695cba2628ce9c87dcd325"></a><!-- doxytag: member="libs::sprayfire::datastructs::SprayFireObjectStore::contains" ref="a6a7cff2b0a695cba2628ce9c87dcd325" args="(\libs\sprayfire\interfaces\Object $Object)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">libs\sprayfire\datastructs\<a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#a6a7cff2b0a695cba2628ce9c87dcd325">SprayFireObjectStore::contains</a> </td>
-          <td>(</td>
-          <td class="paramtype">\libs\sprayfire\interfaces\Object $&#160;</td>
-          <td class="paramname"><em>Object</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-<p>Will check if the storage has a bucket holding the passed object and return true if the object exists and false if it doesn't.</p>
-<dl class="params"><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramname">\libs\sprayfire\interfaces\Object</td><td>$Object </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>boolean </dd></dl>
-
-<p>Definition at line <a class="el" href="_spray_fire_object_store_8php_source.html#l00067">67</a> of file <a class="el" href="_spray_fire_object_store_8php_source.html">SprayFireObjectStore.php</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="af06faf1f8430cb7da101bb48005d10f0"></a><!-- doxytag: member="libs::sprayfire::datastructs::SprayFireObjectStore::getObject" ref="af06faf1f8430cb7da101bb48005d10f0" args="($key)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">libs\sprayfire\datastructs\<a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#af06faf1f8430cb7da101bb48005d10f0">SprayFireObjectStore::getObject</a> </td>
-          <td>(</td>
-          <td class="paramtype">$&#160;</td>
-          <td class="paramname"><em>key</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-<p>Will return the object associated with the key, if that key exists, or return null.</p>
-<dl class="params"><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramtype">string</td><td class="paramname">$key</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>mixed </dd></dl>
-
-<p>Implements <a class="el" href="interfacelibs_1_1sprayfire_1_1interfaces_1_1_object_storage.html#a45d40d03b4365a1ce9ea9023adb906f1">libs\sprayfire\interfaces\ObjectStorage</a>.</p>
-
-<p>Definition at line <a class="el" href="_spray_fire_object_store_8php_source.html#l00108">108</a> of file <a class="el" href="_spray_fire_object_store_8php_source.html">SprayFireObjectStore.php</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a3b3280aaf5158319051e1e63c3eb489a"></a><!-- doxytag: member="libs::sprayfire::datastructs::SprayFireObjectStore::indexOf" ref="a3b3280aaf5158319051e1e63c3eb489a" args="(\libs\sprayfire\interfaces\Object $Object)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">libs\sprayfire\datastructs\<a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#a3b3280aaf5158319051e1e63c3eb489a">SprayFireObjectStore::indexOf</a> </td>
-          <td>(</td>
-          <td class="paramtype">\libs\sprayfire\interfaces\Object $&#160;</td>
-          <td class="paramname"><em>Object</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-<p>Will return the string or numeric index associated with the given object or false if the object is not stored.</p>
-<dl class="params"><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramname">\libs\sprayfire\interfaces\Object</td><td>$Object </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>mixed </dd></dl>
-
-<p>Definition at line <a class="el" href="_spray_fire_object_store_8php_source.html#l00081">81</a> of file <a class="el" href="_spray_fire_object_store_8php_source.html">SprayFireObjectStore.php</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a9f80df23020b4c1b1e73ecb07f16218f"></a><!-- doxytag: member="libs::sprayfire::datastructs::SprayFireObjectStore::isEmpty" ref="a9f80df23020b4c1b1e73ecb07f16218f" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">libs\sprayfire\datastructs\<a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#a9f80df23020b4c1b1e73ecb07f16218f">SprayFireObjectStore::isEmpty</a> </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-<p>Returns whether or not this object has any objects stored in it.</p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>boolean </dd></dl>
-
-<p>Implements <a class="el" href="interfacelibs_1_1sprayfire_1_1interfaces_1_1_object_storage.html#a2d99cf4a1d29003ab885d2421ee67bc7">libs\sprayfire\interfaces\ObjectStorage</a>.</p>
-
-<p>Definition at line <a class="el" href="_spray_fire_object_store_8php_source.html#l00097">97</a> of file <a class="el" href="_spray_fire_object_store_8php_source.html">SprayFireObjectStore.php</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a517acdf130a44ff848c3c2da37f9b5bc"></a><!-- doxytag: member="libs::sprayfire::datastructs::SprayFireObjectStore::isFrameworkObject" ref="a517acdf130a44ff848c3c2da37f9b5bc" args="($Object)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">libs\sprayfire\datastructs\<a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#a517acdf130a44ff848c3c2da37f9b5bc">SprayFireObjectStore::isFrameworkObject</a> </td>
-          <td>(</td>
-          <td class="paramtype">$&#160;</td>
-          <td class="paramname"><em>Object</em></td><td>)</td>
-          <td><code> [protected]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-<p>Method is here to ensure that the object being added to the store is a proper framework object; this has to be checked as there is not type hinting for the __set and offsetSet methods in the parent classes and thus any object type could be added.</p>
-<p>We are checking this when objects are set as it would be impossible to tell from the passed ReflectionClass if the type properly implements the Object interface as the type may itelf be an interface that does not extend the Object interface.</p>
-<dl class="params"><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramtype">mixed</td><td class="paramname">$Object</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>boolean </dd></dl>
-
-<p>Definition at line <a class="el" href="_spray_fire_object_store_8php_source.html#l00170">170</a> of file <a class="el" href="_spray_fire_object_store_8php_source.html">SprayFireObjectStore.php</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a6b7e6c461cd73dd3ec03a5fac3d6ee07"></a><!-- doxytag: member="libs::sprayfire::datastructs::SprayFireObjectStore::isObjectParentType" ref="a6b7e6c461cd73dd3ec03a5fac3d6ee07" args="($value)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">libs\sprayfire\datastructs\<a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#a6b7e6c461cd73dd3ec03a5fac3d6ee07">SprayFireObjectStore::isObjectParentType</a> </td>
-          <td>(</td>
-          <td class="paramtype">$&#160;</td>
-          <td class="paramname"><em>value</em></td><td>)</td>
-          <td><code> [protected]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-<p>Determines whether or not the passed $value</p>
-<p>1) Implements the interface passed in the constructor 2) Is an instance of the class passed in the constructor 3) Is a subclass of the class passed in the constructor</p>
-<dl class="params"><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramtype">stdClass</td><td class="paramname">$value</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>boolean </dd></dl>
-
-<p>Definition at line <a class="el" href="_spray_fire_object_store_8php_source.html#l00205">205</a> of file <a class="el" href="_spray_fire_object_store_8php_source.html">SprayFireObjectStore.php</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a9780e116918c7fb0c2292990dcb0f44f"></a><!-- doxytag: member="libs::sprayfire::datastructs::SprayFireObjectStore::set" ref="a9780e116918c7fb0c2292990dcb0f44f" args="($key, $value)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">libs\sprayfire\datastructs\<a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#a9780e116918c7fb0c2292990dcb0f44f">SprayFireObjectStore::set</a> </td>
-          <td>(</td>
-          <td class="paramtype">$&#160;</td>
-          <td class="paramname"><em>key</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">$&#160;</td>
-          <td class="paramname"><em>value</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td><code> [protected]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-<p>We are not type hinting this function so that we are properly overriding the parent function; throwing an exception if the value is not the correct type will handle this "break" in type hinting.</p>
-<dl class="params"><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramtype">string</td><td class="paramname">$key</td><td></td></tr>
-    <tr><td class="paramtype"></td><td class="paramname">\libs\sprayfire\interfaces\Object</td><td>$value </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="exception"><dt><b>Exceptions:</b></dt><dd>
-  <table class="exception">
-    <tr><td class="paramname">\InvalidArgumentException</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>mixed </dd></dl>
-
-<p>Reimplemented from <a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_mutable_iterator.html#a4d07b6bc458f8a857ffb20688a487bb0">libs\sprayfire\datastructs\MutableIterator</a>.</p>
-
-<p>Definition at line <a class="el" href="_spray_fire_object_store_8php_source.html#l00135">135</a> of file <a class="el" href="_spray_fire_object_store_8php_source.html">SprayFireObjectStore.php</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ad2d4de6cbe7bc38dbbf98100d0121582"></a><!-- doxytag: member="libs::sprayfire::datastructs::SprayFireObjectStore::setObject" ref="ad2d4de6cbe7bc38dbbf98100d0121582" args="($key,\libs\sprayfire\interfaces\Object $Object)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">libs\sprayfire\datastructs\<a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#ad2d4de6cbe7bc38dbbf98100d0121582">SprayFireObjectStore::setObject</a> </td>
-          <td>(</td>
-          <td class="paramtype">$&#160;</td>
-          <td class="paramname"><em>key</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">\libs\sprayfire\interfaces\Object $&#160;</td>
-          <td class="paramname"><em>Object</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-<p>Will assign the passed object to the specified key, notice that this may result in the overwriting of an existing key.</p>
-<dl class="params"><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramtype">string</td><td class="paramname">$key</td><td></td></tr>
-    <tr><td class="paramtype"></td><td class="paramname">\libs\sprayfire\interfaces\Object</td><td>$Object </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="exception"><dt><b>Exceptions:</b></dt><dd>
-  <table class="exception">
-    <tr><td class="paramname">\InvalidArgumentException</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>mixed </dd></dl>
-
-<p>Definition at line <a class="el" href="_spray_fire_object_store_8php_source.html#l00121">121</a> of file <a class="el" href="_spray_fire_object_store_8php_source.html">SprayFireObjectStore.php</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ae2af114b47f8080b2d261c36bdbcf9e0"></a><!-- doxytag: member="libs::sprayfire::datastructs::SprayFireObjectStore::throwExceptionIfNotFrameworkObject" ref="ae2af114b47f8080b2d261c36bdbcf9e0" args="($value)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">libs\sprayfire\datastructs\<a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#ae2af114b47f8080b2d261c36bdbcf9e0">SprayFireObjectStore::throwExceptionIfNotFrameworkObject</a> </td>
-          <td>(</td>
-          <td class="paramtype">$&#160;</td>
-          <td class="paramname"><em>value</em></td><td>)</td>
-          <td><code> [protected]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-<dl class="params"><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramtype">mixed</td><td class="paramname">$value</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="exception"><dt><b>Exceptions:</b></dt><dd>
-  <table class="exception">
-    <tr><td class="paramname">\InvalidArgumentException</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="_spray_fire_object_store_8php_source.html#l00150">150</a> of file <a class="el" href="_spray_fire_object_store_8php_source.html">SprayFireObjectStore.php</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a2433d49683c555d1e276d488e8299c39"></a><!-- doxytag: member="libs::sprayfire::datastructs::SprayFireObjectStore::throwExceptionIfObjectNotParentType" ref="a2433d49683c555d1e276d488e8299c39" args="($value)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">libs\sprayfire\datastructs\<a class="el" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#a2433d49683c555d1e276d488e8299c39">SprayFireObjectStore::throwExceptionIfObjectNotParentType</a> </td>
-          <td>(</td>
-          <td class="paramtype">$&#160;</td>
-          <td class="paramname"><em>value</em></td><td>)</td>
-          <td><code> [protected]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-<dl class="params"><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramname">\libs\sprayfire\interfaces\Object</td><td>$value </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="exception"><dt><b>Exceptions:</b></dt><dd>
-  <table class="exception">
-    <tr><td class="paramname">\InvalidArgumentException</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="_spray_fire_object_store_8php_source.html#l00189">189</a> of file <a class="el" href="_spray_fire_object_store_8php_source.html">SprayFireObjectStore.php</a>.</p>
-
-</div>
-</div>
-<hr/><h2>Field Documentation</h2>
-<a class="anchor" id="adef91171d84c247cd71b6c6502fe65b5"></a><!-- doxytag: member="libs::sprayfire::datastructs::SprayFireObjectStore::$ReflectedParentType" ref="adef91171d84c247cd71b6c6502fe65b5" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">libs::sprayfire::datastructs\SprayFireObjectStore::$ReflectedParentType<code> [protected]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Definition at line <a class="el" href="_spray_fire_object_store_8php_source.html#l00038">38</a> of file <a class="el" href="_spray_fire_object_store_8php_source.html">SprayFireObjectStore.php</a>.</p>
-
-</div>
-</div>
-<hr/>The documentation for this class was generated from the following file:<ul>
-<li>/Library/WebServer/Documents/sprayfire/libs/sprayfire/datastructs/<a class="el" href="_spray_fire_object_store_8php_source.html">SprayFireObjectStore.php</a></li>
-</ul>
-</div><!-- contents -->
-<!-- window showing the filter options -->
-<div id="MSearchSelectWindow"
-     onmouseover="return searchBox.OnSearchSelectShow()"
-     onmouseout="return searchBox.OnSearchSelectHide()"
-     onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a></div>
-
-<!-- iframe showing the search results (closed by default) -->
-<div id="MSearchResultsWindow">
-<iframe src="javascript:void(0)" frameborder="0" 
-        name="MSearchResults" id="MSearchResults">
-</iframe>
-</div>
-
-
-
-<hr class="footer"/><address class="footer"><small>
-Generated on Sat Dec 17 2011 00:29:34 for SprayFire by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.7.6.1
-</small></address>
 
 </body>
 </html>
