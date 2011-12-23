@@ -15,6 +15,7 @@ include 'JsonConfigTest.php';
 include 'MutableStorageTest.php';
 include 'SprayFireObjectStoreTest.php';
 include 'BaseUriTest.php';
+include 'SprayFireDirectoryTest.php';
 include 'SprayFireRouterTest.php';
 include 'SprayFireUriTest.php';
 include 'SprayFireHttpDataTest.php';
@@ -37,6 +38,7 @@ class AllTests {
         $Suite->addTestSuite('SprayFireObjectStoreTest');
         $Suite->addTestSuite('SprayFireRouterTest');
         $Suite->addTestSuite('BaseUriTest');
+        $Suite->addTestSuite('SprayFireDirectoryTest');
         $Suite->addTestSuite('SprayFireUriTest');
         $Suite->addTestSuite('SprayFireHttpDataTest');
 
