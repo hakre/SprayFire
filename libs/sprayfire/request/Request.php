@@ -6,19 +6,14 @@
  * the request information.
  *
  * @details
- * SprayFire is a custom built framework intended to ease the development
- * of websites with PHP 5.3.
- *
- * SprayFire makes use of namespaces, a custom-built ORM layer, a completely
- * object oriented approach and minimal invasiveness so you can make the framework
- * do what YOU want to do.  Some things we take seriously over here at SprayFire
- * includes clean, readable source, completely unit tested implementations and
- * not polluting the global scope.
+ * SprayFire is a fully unit-tested, light-weight PHP framework for developers who
+ * want to make simple, secure, dynamic website content.
  *
  * SprayFire is released under the Open-Source Initiative MIT license.
+ * OSI MIT License <http://www.opensource.org/licenses/mit-license.php>
  *
  * @author Charles Sprayberry cspray at gmail dot com
- * @copyright Copyright (c) 2011, Charles Sprayberry OSI MIT License <http://www.opensource.org/licenses/mit-license.php>
+ * @copyright Copyright (c) 2011, Charles Sprayberry
  */
 
 /**
@@ -28,7 +23,9 @@
  * in each request.
  */
 
-namespace libs\sprayfire\request {
+namespace libs\sprayfire\request;
+use libs\sprayfire\request\RoutedUri as RoutedUri;
+use libs\sprayfire\request\HttpDataContainer as HttpDataContainer;
 
     /**
      * @brief Provides a way to pass several objects to the front controller and
@@ -41,7 +38,7 @@ namespace libs\sprayfire\request {
          * @param $RoutedUri A libs.sprayfire.request.RoutedUri object that holds
          *        the controller, action and parameters to invoke for this request.
          */
-        public function __construct(\libs\sprayfire\request\RoutedUri $RoutedUri);
+        public function __construct(RoutedUri $RoutedUri);
 
         /**
          * @brief Provides a way to pass a variety of HTTP super global data to
@@ -50,7 +47,7 @@ namespace libs\sprayfire\request {
          * @param $HttpDataContainer a libs.sprayfire.request.HttpDataContainer object
          *        holding the appropriate super globals for this request.
          */
-        public function setHttpDataContainer(\libs\sprayfire\request\HttpDataContainer $HttpDataContainer);
+        public function setHttpDataContainer(HttpDataContainer $HttpDataContainer);
 
         /**
          * @return A libs.sprayfire.request.HttpData object holding the request
@@ -61,6 +58,5 @@ namespace libs\sprayfire\request {
     }
 
     // End Request
-}
 
 // End libs.sprayfire

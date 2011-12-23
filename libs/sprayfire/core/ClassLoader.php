@@ -6,16 +6,11 @@
  * class to an absolute directory.
  *
  * @details
- * SprayFire is a custom built framework intended to ease the development
- * of websites with PHP 5.3.
- *
- * SprayFire makes use of namespaces, a custom-built ORM layer, a completely
- * object oriented approach and minimal invasiveness so you can make the framework
- * do what YOU want to do.  Some things we take seriously over here at SprayFire
- * includes clean, readable source, completely unit tested implementations and
- * not polluting the global scope.
+ * SprayFire is a fully unit-tested, light-weight PHP framework for developers who
+ * want to make simple, secure, dynamic website content.
  *
  * SprayFire is released under the Open-Source Initiative MIT license.
+ * OSI MIT License <http://www.opensource.org/licenses/mit-license.php>
  *
  * @author Charles Sprayberry cspray at gmail dot com
  * @copyright Copyright (c) 2011, Charles Sprayberry
@@ -32,13 +27,14 @@
  * a common foundation to work with.  Ultimately you can almost think of this as
  * a "utility" namespace, but ultimately goes into the heart of the framework.
  */
-namespace libs\sprayfire\core {
+namespace libs\sprayfire\core;
+use libs\sprayfire\core\CoreObject as CoreObject;
 
     /**
      * @brief Responsible for including namespaced framework and application classes,
      * assuming they abide to the rules set forth by the framework.
      */
-    class ClassLoader extends \libs\sprayfire\core\CoreObject {
+    class ClassLoader extends CoreObject {
 
         /**
          * @brief Adds the class's autoloader function to the autoload register.
@@ -78,7 +74,5 @@ namespace libs\sprayfire\core {
     }
 
     // End ClassLoader
-
-}
 
 // libs.sprayfire.core

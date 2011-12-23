@@ -6,19 +6,14 @@
  * into its appropriate controller, action and parameter fragments.
  *
  * @details
- * SprayFire is a custom built framework intended to ease the development
- * of websites with PHP 5.3.
- *
- * SprayFire makes use of namespaces, a custom-built ORM layer, a completely
- * object oriented approach and minimal invasiveness so you can make the framework
- * do what YOU want to do.  Some things we take seriously over here at SprayFire
- * includes clean, readable source, completely unit tested implementations and
- * not polluting the global scope.
+ * SprayFire is a fully unit-tested, light-weight PHP framework for developers who
+ * want to make simple, secure, dynamic website content.
  *
  * SprayFire is released under the Open-Source Initiative MIT license.
+ * OSI MIT License <http://www.opensource.org/licenses/mit-license.php>
  *
  * @author Charles Sprayberry cspray at gmail dot com
- * @copyright Copyright (c) 2011, Charles Sprayberry OSI MIT License <http://www.opensource.org/licenses/mit-license.php>
+ * @copyright Copyright (c) 2011, Charles Sprayberry
  */
 
 /**
@@ -27,13 +22,15 @@
  * and manage the HTTP data, both headers and normal GET/POST data, that get passed
  * in each request.
  */
-namespace libs\sprayfire\request {
+namespace libs\sprayfire\request;
+use libs\sprayfire\core\CoreObject as CoreObject;
+use libs\sprayfire\request\Uri as Uri;
 
     /**
      * @brief A base implementation to convert a URI into the appropriate fragments,
      * will also urldecode() the original URI passed.
      */
-    class BaseUri extends \libs\sprayfire\core\CoreObject implements \libs\sprayfire\request\Uri {
+    class BaseUri extends CoreObject implements Uri {
 
         /**
          * Holds the original, unaltered URI passed in the constructor.
@@ -118,15 +115,15 @@ namespace libs\sprayfire\request {
             $parameters = 'parameters';
 
             if (empty($uriFragments) || empty($uriFragments[0])) {
-                $parsedFragments[$controller] = \libs\sprayfire\request\Uri::DEFAULT_CONTROLLER;
-                $parsedFragments[$action] = \libs\sprayfire\request\Uri::DEFAULT_ACTION;
+                $parsedFragments[$controller] = Uri::DEFAULT_CONTROLLER;
+                $parsedFragments[$action] = Uri::DEFAULT_ACTION;
                 $parsedFragments[$parameters] = array();
                 return $parsedFragments;
             }
 
             if ($this->isParameterString($uriFragments[0])) {
-                $parsedFragments[$controller] = \libs\sprayfire\request\Uri::DEFAULT_CONTROLLER;
-                $parsedFragments[$action] = \libs\sprayfire\request\Uri::DEFAULT_ACTION;
+                $parsedFragments[$controller] = Uri::DEFAULT_CONTROLLER;
+                $parsedFragments[$action] = Uri::DEFAULT_ACTION;
                 $parsedFragments[$parameters] = $this->removeParameterMarker($uriFragments);
                 return $parsedFragments;
             }
@@ -134,13 +131,13 @@ namespace libs\sprayfire\request {
             $parsedFragments[$controller] = \array_shift($uriFragments);
 
             if (empty($uriFragments) || empty($uriFragments[0])) {
-                $parsedFragments[$action] = \libs\sprayfire\request\Uri::DEFAULT_ACTION;
+                $parsedFragments[$action] = Uri::DEFAULT_ACTION;
                 $parsedFragments[$parameters] = array();
                 return $parsedFragments;
             }
 
             if ($this->isParameterString($uriFragments[0])) {
-                $parsedFragments[$action] = \libs\sprayfire\request\Uri::DEFAULT_ACTION;
+                $parsedFragments[$action] = Uri::DEFAULT_ACTION;
                 $parsedFragments[$parameters] = $this->removeParameterMarker($uriFragments);
                 return $parsedFragments;
             }
@@ -236,7 +233,5 @@ namespace libs\sprayfire\request {
     }
 
     // End BaseUri
-
-}
 
 // End libs.sprayfire.request

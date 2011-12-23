@@ -6,26 +6,25 @@
  * SprayFire objects.
  *
  * @details
- * SprayFire is a custom built framework intended to ease the development
- * of websites with PHP 5.3.
- *
- * SprayFire makes use of namespaces, a custom-built ORM layer, a completely
- * object oriented approach and minimal invasiveness so you can make the framework
- * do what YOU want to do.  Some things we take seriously over here at SprayFire
- * includes clean, readable source, completely unit tested implementations and
- * not polluting the global scope.
+ * SprayFire is a fully unit-tested, light-weight PHP framework for developers who
+ * want to make simple, secure, dynamic website content.
  *
  * SprayFire is released under the Open-Source Initiative MIT license.
+ * OSI MIT License <http://www.opensource.org/licenses/mit-license.php>
  *
  * @author Charles Sprayberry cspray at gmail dot com
- * @copyright Copyright (c) 2011, Charles Sprayberry OSI MIT License <http://www.opensource.org/licenses/mit-license.php>
+ * @copyright Copyright (c) 2011, Charles Sprayberry
  */
 
 /**
  * @namespace libs.sprayfire.datastructs
  * @brief Holds the API used by the framework to store and transfer sets of data.
  */
-namespace libs\sprayfire\datastructs {
+namespace libs\sprayfire\datastructs;
+use \IteratorAggregate as IteratorAggregate;
+use \Countable as Countable;
+use \ReflectionClass as ReflectionClass;
+use libs\sprayfire\core\Object as Object;
 
     /**
      * @brief Provides an API to store SprayFire derived objects, iterate over them
@@ -43,7 +42,7 @@ namespace libs\sprayfire\datastructs {
      * objects as they allow for the storing of any data type through the libs.sprayfire.datastructs.Overloadable
      * and ArrayAccess interfaces.
      */
-    interface ObjectStorage extends \IteratorAggregate, \Countable {
+    interface ObjectStorage extends IteratorAggregate, Countable {
 
         /**
          * @brief This data structure should restrict the objects stored in it to a
@@ -53,7 +52,7 @@ namespace libs\sprayfire\datastructs {
          * @param $ReflectedObjectType ReflectionClass
          * @throws InvalidArgumentException
          */
-        public function __construct(\ReflectionClass $ReflectedObjectType);
+        public function __construct(ReflectionClass $ReflectedObjectType);
 
         /**
          * @brief Return an Object if one exists for the given key or null.
@@ -81,7 +80,7 @@ namespace libs\sprayfire\datastructs {
          * @throws libs.sprayfire.exceptions.UnsupportedOperationException
          * @throws InvalidArgumentException
          */
-        public function setObject($key, \libs\sprayfire\core\Object $Object);
+        public function setObject($key, Object $Object);
 
         /**
          * @brief Returns a boolean value indicating whether the \a $Object is
@@ -94,7 +93,7 @@ namespace libs\sprayfire\datastructs {
          * @param $Object libs.sprayfire.core.Object
          * @return boolean true if \a $Object is stored; false if it isn't
          */
-        public function contains(\libs\sprayfire\core\Object $Object);
+        public function contains(Object $Object);
 
         /**
          * @brief Remove the object associated with \a $key, there is no need
@@ -117,7 +116,7 @@ namespace libs\sprayfire\datastructs {
          * @param $Object libs.sprayfire.core.Object
          * @return mixed
          */
-        public function indexOf(\libs\sprayfire\core\Object $Object);
+        public function indexOf(Object $Object);
 
         /**
          * @return boolean
@@ -127,7 +126,5 @@ namespace libs\sprayfire\datastructs {
     }
 
     // End ObjectStorage
-
-}
 
 // End libs.sprayfire.datastructs

@@ -6,19 +6,14 @@
  * interface.
  *
  * @details
- * SprayFire is a custom built framework intended to ease the development
- * of websites with PHP 5.3.
- *
- * SprayFire makes use of namespaces, a custom-built ORM layer, a completely
- * object oriented approach and minimal invasiveness so you can make the framework
- * do what YOU want to do.  Some things we take seriously over here at SprayFire
- * includes clean, readable source, completely unit tested implementations and
- * not polluting the global scope.
+ * SprayFire is a fully unit-tested, light-weight PHP framework for developers who
+ * want to make simple, secure, dynamic website content.
  *
  * SprayFire is released under the Open-Source Initiative MIT license.
+ * OSI MIT License <http://www.opensource.org/licenses/mit-license.php>
  *
  * @author Charles Sprayberry cspray at gmail dot com
- * @copyright Copyright (c) 2011, Charles Sprayberry OSI MIT License <http://www.opensource.org/licenses/mit-license.php>
+ * @copyright Copyright (c) 2011, Charles Sprayberry
  */
 
 /**
@@ -27,14 +22,18 @@
  * and manage the HTTP data, both headers and normal GET/POST data, that get passed
  * in each request.
  */
-namespace libs\sprayfire\request {
+namespace libs\sprayfire\request;
+use \ArrayIterator as ArrayIterator;
+use \IteratorAggregate as IteratorAggregate;
+use libs\sprayfire\datastructs\MutableStorage as MutableStorage;
+use libs\sprayfire\request\HttpData as HttpData;
 
     /**
      * @brief Will allow for an array to be passed, the values of that array to be
      * treated as an object, and for changes to the array or the object to make
      * changes to the other.
      */
-    class SprayFireHttpData extends \libs\sprayfire\datastructs\MutableStorage implements \IteratorAggregate, \libs\sprayfire\request\HttpData {
+    class SprayFireHttpData extends MutableStorage implements IteratorAggregate, HttpData {
 
         /**
          * @param $data An array passed by reference
@@ -47,12 +46,11 @@ namespace libs\sprayfire\request {
          * @return \ArrayIterator
          */
         public function getIterator() {
-            return new \ArrayIterator($this->data);
+            return new ArrayIterator($this->data);
         }
 
     }
 
     // End SprayFireHttpData
-}
 
 // End libs.sprayfire

@@ -6,19 +6,14 @@
  * a JSON configuration file into a chainable ImmutableStorage object.
  *
  * @details
- * SprayFire is a custom built framework intended to ease the development
- * of websites with PHP 5.3.
- *
- * SprayFire makes use of namespaces, a custom-built ORM layer, a completely
- * object oriented approach and minimal invasiveness so you can make the framework
- * do what YOU want to do.  Some things we take seriously over here at SprayFire
- * includes clean, readable source, completely unit tested implementations and
- * not polluting the global scope.
+ * SprayFire is a fully unit-tested, light-weight PHP framework for developers who
+ * want to make simple, secure, dynamic website content.
  *
  * SprayFire is released under the Open-Source Initiative MIT license.
+ * OSI MIT License <http://www.opensource.org/licenses/mit-license.php>
  *
  * @author Charles Sprayberry cspray at gmail dot com
- * @copyright Copyright (c) 2011, Charles Sprayberry OSI MIT License <http://www.opensource.org/licenses/mit-license.php>
+ * @copyright Copyright (c) 2011, Charles Sprayberry
  */
 
 /**
@@ -26,7 +21,11 @@
  * @brief Holds interfaces and classes that convert configuration information into
  * something usable for the application and framework.
  */
-namespace libs\sprayfire\config {
+namespace libs\sprayfire\config;
+use \SplFileInfo as SplFileInfo;
+use \InvalidArgumentException as InvalidArgumentException;
+use libs\sprayfire\config\Configuration as Configuration;
+use libs\sprayfire\datastructs\ImmutableStorage as ImmutableStorage;
 
     /**
      * @brief Parses a JSON configuration file into a chainable object, either by
@@ -60,7 +59,7 @@ namespace libs\sprayfire\config {
      * echo $Config->app->{'development-settings'}->{'display-errors'};   // 1
      * </pre>
      */
-    class JsonConfig extends \libs\sprayfire\datastructs\ImmutableStorage implements \libs\sprayfire\config\Configuration {
+    class JsonConfig extends ImmutableStorage implements Configuration {
 
         /**
          * Holds the SplFileInfo object passed in the constructor.
@@ -77,7 +76,7 @@ namespace libs\sprayfire\config {
          * @param $FileInfo SplFileInfo object
          * @throws InvalidArgumentException
          */
-        public function __construct(\SplFileInfo $FileInfo) {
+        public function __construct(SplFileInfo $FileInfo) {
             $this->ConfigFileInfo = $FileInfo;
             $data = $this->getDecodedJson();
             parent::__construct($data);
@@ -95,7 +94,7 @@ namespace libs\sprayfire\config {
             $lastJsonError = \json_last_error();
             if ($lastJsonError !== JSON_ERROR_NONE || \is_null($decodedJson)) {
                 \error_log('The last JSON error was ' . $lastJsonError);
-                throw new \InvalidArgumentException('There was an error parsing the JSON configuration file passed.  Please see error log for more info.');
+                throw new InvalidArgumentException('There was an error parsing the JSON configuration file passed.  Please see error log for more info.');
             }
             return $decodedJson;
         }
@@ -106,7 +105,7 @@ namespace libs\sprayfire\config {
          */
         private function getFileContents() {
             if (!$this->ConfigFileInfo->isFile() && !$this->ConfigFileInfo->isLink()) {
-                throw new \InvalidArgumentException('There is an error with the path to the configuration file.');
+                throw new InvalidArgumentException('There is an error with the path to the configuration file.');
             }
             $fileInfo = \file_get_contents($this->ConfigFileInfo->getRealPath());
             return $fileInfo;
@@ -124,7 +123,5 @@ namespace libs\sprayfire\config {
     }
 
     // End JsonConfig
-
-}
 
 // End libs.sprayfire.config

@@ -7,26 +7,24 @@
  * constructed.
  *
  * @details
- * SprayFire is a custom built framework intended to ease the development
- * of websites with PHP 5.3.
- *
- * SprayFire makes use of namespaces, a custom-built ORM layer, a completely
- * object oriented approach and minimal invasiveness so you can make the framework
- * do what YOU want to do.  Some things we take seriously over here at SprayFire
- * includes clean, readable source, completely unit tested implementations and
- * not polluting the global scope.
+ * SprayFire is a fully unit-tested, light-weight PHP framework for developers who
+ * want to make simple, secure, dynamic website content.
  *
  * SprayFire is released under the Open-Source Initiative MIT license.
+ * OSI MIT License <http://www.opensource.org/licenses/mit-license.php>
  *
  * @author Charles Sprayberry cspray at gmail dot com
- * @copyright Copyright (c) 2011, Charles Sprayberry OSI MIT License <http://www.opensource.org/licenses/mit-license.php>
+ * @copyright Copyright (c) 2011, Charles Sprayberry
  */
 
 /**
  * @namespace libs.sprayfire.datastructs
  * @brief Holds the API used by the framework to store and transfer sets of data.
  */
-namespace libs\sprayfire\datastructs {
+namespace libs\sprayfire\datastructs;
+use \UnexpectedValueException as UnexpectedValueException;
+use libs\sprayfire\datastructs\DataStorage as DataStorage;
+use libs\sprayfire\exceptions\UnsupportedOperationException as UnsupportedOperationException;
 
     /**
      * @brief An object that allows for data to be stored and to be assured that
@@ -39,7 +37,7 @@ namespace libs\sprayfire\datastructs {
      * be thrown.  If a class extends this please ensure that it is a truly immutable
      * object and does not have any "backdoors".
      */
-    class ImmutableStorage extends \libs\sprayfire\datastructs\DataStorage {
+    class ImmutableStorage extends DataStorage {
 
         /**
          * @brief Accepts an array of data to store and gives the calling code the option to
@@ -53,7 +51,7 @@ namespace libs\sprayfire\datastructs {
                 $data = $this->convertDataDeep($data);
             }
             if (!\is_array($data)) {
-                throw new \UnexpectedValueException('The data returned from convertDataDeep must be an array.');
+                throw new UnexpectedValueException('The data returned from convertDataDeep must be an array.');
             }
             parent::__construct($data);
         }
@@ -64,7 +62,7 @@ namespace libs\sprayfire\datastructs {
          * @throws libs.sprayfire.exceptions.UnsupportedOperationException
          */
         protected function set($key, $value) {
-            throw new \libs\sprayfire\exceptions\UnsupportedOperationException('Attempting to set the value of an immutable object.');
+            throw new UnsupportedOperationException('Attempting to set the value of an immutable object.');
         }
 
         /**
@@ -72,7 +70,7 @@ namespace libs\sprayfire\datastructs {
          * @throws libs.sprayfire.exceptions.UnsupportedOperationException
          */
         protected function removeKey($key) {
-            throw new \libs\sprayfire\exceptions\UnsupportedOperationException('Attempting to remove the value of an immutable object.');
+            throw new UnsupportedOperationException('Attempting to remove the value of an immutable object.');
         }
 
         /**
@@ -111,13 +109,11 @@ namespace libs\sprayfire\datastructs {
                     $data[$key] = $this->convertArrayToImmutableObject($value);
                 }
             }
-            return new \libs\sprayfire\datastructs\ImmutableStorage($data);
+            return new ImmutableStorage($data);
         }
 
     }
 
     // End ImmutableStorage
-
-}
 
 // End libs.sprayfire.datastructs

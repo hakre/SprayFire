@@ -8,19 +8,14 @@
  * of the router.
  *
  * @details
- * SprayFire is a custom built framework intended to ease the development
- * of websites with PHP 5.3.
- *
- * SprayFire makes use of namespaces, a custom-built ORM layer, a completely
- * object oriented approach and minimal invasiveness so you can make the framework
- * do what YOU want to do.  Some things we take seriously over here at SprayFire
- * includes clean, readable source, completely unit tested implementations and
- * not polluting the global scope.
+ * SprayFire is a fully unit-tested, light-weight PHP framework for developers who
+ * want to make simple, secure, dynamic website content.
  *
  * SprayFire is released under the Open-Source Initiative MIT license.
+ * OSI MIT License <http://www.opensource.org/licenses/mit-license.php>
  *
  * @author Charles Sprayberry cspray at gmail dot com
- * @copyright Copyright (c) 2011, Charles Sprayberry OSI MIT License <http://www.opensource.org/licenses/mit-license.php>
+ * @copyright Copyright (c) 2011, Charles Sprayberry
  */
 
 /**
@@ -29,7 +24,12 @@
  * and manage the HTTP data, both headers and normal GET/POST data, that get passed
  * in each request.
  */
-namespace libs\sprayfire\request {
+namespace libs\sprayfire\request;
+use libs\sprayfire\core\CoreObject as CoreObject;
+use libs\sprayfire\config\Configuration as Configuration;
+use libs\sprayfire\request\Router as Router;
+use libs\sprayfire\request\Uri as Uri;
+use libs\sprayfire\request\SprayFireUri as SprayFireUri;
 
     /**
      * @brief Will take a libs.sprayfire.config.JsonConfig object to determine the
@@ -42,7 +42,7 @@ namespace libs\sprayfire\request {
      * configuration file is used.
      *
      */
-    class SprayFireRouter extends \libs\sprayfire\core\CoreObject implements \libs\sprayfire\request\Router {
+    class SprayFireRouter extends CoreObject implements Router {
 
         /**
          * @brief The libs.sprayfire.config.Configuration object holding the routing
@@ -91,7 +91,7 @@ namespace libs\sprayfire\request {
          *
          * @param $RoutesConfig libs.sprayfire.config.Configuration
          */
-        public function __construct(\libs\sprayfire\config\Configuration $RoutesConfig) {
+        public function __construct(Configuration $RoutesConfig) {
             $this->RoutesConfig = $RoutesConfig;
 
             if (!isset($RoutesConfig->defaults->controller)) {
@@ -128,12 +128,12 @@ namespace libs\sprayfire\request {
          * @return libs.sprayfire.request.RoutedUri This implementation returns
          *         a libs.sprayfire.request.SprayFireUri specifically
          */
-        public function getRoutedUri(\libs\sprayfire\request\Uri $Uri) {
+        public function getRoutedUri(Uri $Uri) {
             $sprayFireUriPatterns = $this->getSprayFireURIPatterns($Uri);
             $controllerAndAction = $this->getControllerAndActionToUse($Uri);
             $mappedUriString = $this->getMappedUriString($sprayFireUriPatterns, $controllerAndAction);
             $finalUriString = $this->getUriWithParameters($mappedUriString, $Uri->getParameters());
-            $RoutedUri = new \libs\sprayfire\request\SprayFireUri($finalUriString);
+            $RoutedUri = new SprayFireUri($finalUriString);
             $RoutedUri->setOriginalUri($Uri->getOriginalUri());
             return $RoutedUri;
         }
@@ -147,7 +147,7 @@ namespace libs\sprayfire\request {
          * @param $Uri libs.sprayfire.request.Uri
          * @return array
          */
-        private function getSprayFireURIPatterns(\libs\sprayfire\request\Uri $Uri) {
+        private function getSprayFireURIPatterns(Uri $Uri) {
             $defaultControllerPattern = 'DC';
             $defaultActionPattern = 'DA';
             $parameterWildCard = '*';
@@ -159,14 +159,14 @@ namespace libs\sprayfire\request {
             $sprayFireURIPattern = '';
 
             $requestedController = \strtolower($Uri->getController());
-            if ($requestedController === \libs\sprayfire\request\Uri::DEFAULT_CONTROLLER) {
+            if ($requestedController === Uri::DEFAULT_CONTROLLER) {
                 $sprayFireURIPattern .= $defaultControllerPattern . '-';
             } else {
                 $sprayFireURIPattern .= $requestedController . '-';
             }
 
             $requestedAction = \strtolower($Uri->getAction());
-            if ($requestedAction === \libs\sprayfire\request\Uri::DEFAULT_ACTION) {
+            if ($requestedAction === Uri::DEFAULT_ACTION) {
                 $sprayFireURIPattern .= $defaultActionPattern . '-';
             } else {
                 $sprayFireURIPattern .= $requestedAction .'-';
@@ -184,15 +184,15 @@ namespace libs\sprayfire\request {
          *         \a action, that will be used to determine the routed URI string
          *         to generate.
          */
-        private function getControllerAndActionToUse(\libs\sprayfire\request\Uri $Uri) {
+        private function getControllerAndActionToUse(Uri $Uri) {
             $data = array();
-            if ($Uri->getController() === \libs\sprayfire\request\Uri::DEFAULT_CONTROLLER) {
+            if ($Uri->getController() === Uri::DEFAULT_CONTROLLER) {
                 $data['controller'] = $this->defaultController;
             } else {
                 $data['controller'] = $Uri->getController();
             }
 
-            if ($Uri->getAction() === \libs\sprayfire\request\Uri::DEFAULT_ACTION) {
+            if ($Uri->getAction() === Uri::DEFAULT_ACTION) {
                 $data['action'] = $this->defaultAction;
             } else {
                 $data['action'] = $Uri->getAction();
@@ -239,7 +239,7 @@ namespace libs\sprayfire\request {
          */
         private function getMappedController($ConfigFragment, array $controllerAndAction) {
             if (isset($ConfigFragment->controller)) {
-                if ($ConfigFragment->controller === \libs\sprayfire\request\Uri::DEFAULT_CONTROLLER) {
+                if ($ConfigFragment->controller === Uri::DEFAULT_CONTROLLER) {
                     return $this->defaultController;
                 }
                 return $ConfigFragment->controller;
@@ -254,7 +254,7 @@ namespace libs\sprayfire\request {
          */
         private function getMappedAction($ConfigFragment, array $controllerAndAction) {
             if (isset($ConfigFragment->action)) {
-                if ($ConfigFragment->action === \libs\sprayfire\request\Uri::DEFAULT_ACTION) {
+                if ($ConfigFragment->action === Uri::DEFAULT_ACTION) {
                     return $this->defaultAction;
                 }
                 return $ConfigFragment->action;
@@ -277,6 +277,5 @@ namespace libs\sprayfire\request {
     }
 
     // End SprayFireRouter
-}
 
 // End libs.sprayfire

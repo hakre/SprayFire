@@ -6,19 +6,14 @@
  * $_GET, $_POST and other HTTP related superglobals.
  *
  * @details
- * SprayFire is a custom built framework intended to ease the development
- * of websites with PHP 5.3.
- *
- * SprayFire makes use of namespaces, a custom-built ORM layer, a completely
- * object oriented approach and minimal invasiveness so you can make the framework
- * do what YOU want to do.  Some things we take seriously over here at SprayFire
- * includes clean, readable source, completely unit tested implementations and
- * not polluting the global scope.
+ * SprayFire is a fully unit-tested, light-weight PHP framework for developers who
+ * want to make simple, secure, dynamic website content.
  *
  * SprayFire is released under the Open-Source Initiative MIT license.
+ * OSI MIT License <http://www.opensource.org/licenses/mit-license.php>
  *
  * @author Charles Sprayberry cspray at gmail dot com
- * @copyright Copyright (c) 2011, Charles Sprayberry OSI MIT License <http://www.opensource.org/licenses/mit-license.php>
+ * @copyright Copyright (c) 2011, Charles Sprayberry
  */
 
 /**
@@ -27,7 +22,9 @@
  * and manage the HTTP data, both headers and normal GET/POST data, that get passed
  * in each request.
  */
-namespace libs\sprayfire\request {
+namespace libs\sprayfire\request;
+use libs\sprayfire\request\Uri as Uri;
+use libs\sprayfire\config\Configuration as Configuration;
 
     /**
      * @brief Implementations should convert a libs.sprayfire.request.Uri object
@@ -53,7 +50,7 @@ namespace libs\sprayfire\request {
          *
          * @param $RoutesConfig libs.sprayfire.config.Configuration
          */
-        public function __construct(\libs\sprayfire\config\Configuration $RoutesConfig);
+        public function __construct(Configuration $RoutesConfig);
 
         /**
          * @brief Should return a RoutedUri that is mapped off of the Uri object
@@ -62,11 +59,10 @@ namespace libs\sprayfire\request {
          * @param $Uri libs.sprayfire.request.Uri
          * @return libs.sprayfire.request.RoutedUri
          */
-        public function getRoutedUri(\libs\sprayfire\request\Uri $Uri);
+        public function getRoutedUri(Uri $Uri);
 
     }
 
     // End Router
-}
 
 // End libs.sprayfire.request

@@ -6,19 +6,14 @@
  * application directories and files.
  *
  * @details
- * SprayFire is a custom built framework intended to ease the development
- * of websites with PHP 5.3.
- *
- * SprayFire makes use of namespaces, a custom-built ORM layer, a completely
- * object oriented approach and minimal invasiveness so you can make the framework
- * do what YOU want to do.  Some things we take seriously over here at SprayFire
- * includes clean, readable source, completely unit tested implementations and
- * not polluting the global scope.
+ * SprayFire is a fully unit-tested, light-weight PHP framework for developers who
+ * want to make simple, secure, dynamic website content.
  *
  * SprayFire is released under the Open-Source Initiative MIT license.
+ * OSI MIT License <http://www.opensource.org/licenses/mit-license.php>
  *
  * @author Charles Sprayberry cspray at gmail dot com
- * @copyright Copyright (c) 2011, Charles Sprayberry OSI MIT License <http://www.opensource.org/licenses/mit-license.php>
+ * @copyright Copyright (c) 2011, Charles Sprayberry
  */
 
 /**
@@ -32,7 +27,7 @@
  * a common foundation to work with.  Ultimately you can almost think of this as
  * a "utility" namespace, but ultimately goes into the heart of the framework.
  */
-namespace libs\sprayfire\core {
+namespace libs\sprayfire\core;
 
     /**
      * @brief Used as a wrapper for what would otherwise be a series of global
@@ -190,7 +185,5 @@ namespace libs\sprayfire\core {
     }
 
     // End SprayFireDirectory
-
-}
 
 // End libs.sprayfire.core

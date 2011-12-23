@@ -5,16 +5,11 @@
  * @brief The framework's implementation of the libs.sprayfire.core.Object interface.
  *
  * @details
- * SprayFire is a custom built framework intended to ease the development
- * of websites with PHP 5.3.
- *
- * SprayFire makes use of namespaces, a custom-built ORM layer, a completely
- * object oriented approach and minimal invasiveness so you can make the framework
- * do what YOU want to do.  Some things we take seriously over here at SprayFire
- * includes clean, readable source, completely unit tested implementations and
- * not polluting the global scope.
+ * SprayFire is a fully unit-tested, light-weight PHP framework for developers who
+ * want to make simple, secure, dynamic website content.
  *
  * SprayFire is released under the Open-Source Initiative MIT license.
+ * OSI MIT License <http://www.opensource.org/licenses/mit-license.php>
  *
  * @author Charles Sprayberry cspray at gmail dot com
  * @copyright Copyright (c) 2011, Charles Sprayberry
@@ -31,7 +26,8 @@
  * a common foundation to work with.  Ultimately you can almost think of this as
  * a "utility" namespace, but ultimately goes into the heart of the framework.
  */
-namespace libs\sprayfire\core {
+namespace libs\sprayfire\core;
+use libs\sprayfire\core\Object as Object;
 
     /**
      * @brief SprayFire's implementation of the libs.sprayfire.core.Object interface,
@@ -46,7 +42,7 @@ namespace libs\sprayfire\core {
      * or an implementation of libs.sprayfire.core.Object or unexpected consequences
      * may occur.
      */
-    abstract class CoreObject implements \libs\sprayfire\core\Object {
+    abstract class CoreObject implements Object {
 
         /**
          * @return A unique identifying string based on the internal memory pointer
@@ -68,7 +64,7 @@ namespace libs\sprayfire\core {
          * @param $CompareObject A libs.sprayfire.core.Object to compare to this one for equality
          * @return True if the calling object and \a $CompareObject are equal, false if not
          */
-        public function equals(\libs\sprayfire\core\Object $CompareObject) {
+        public function equals(Object $CompareObject) {
             $thisHash = $this->hashCode();
             $compareHash = $CompareObject->hashCode();
             $areHashesEqual = $thisHash === $compareHash;
@@ -85,6 +81,5 @@ namespace libs\sprayfire\core {
     }
 
     // End CoreObject
-}
 
 // End libs.sprayfire.core

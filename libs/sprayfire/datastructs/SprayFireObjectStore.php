@@ -5,26 +5,27 @@
  * @brief Framework's implementation of an ObjectStorage data structure.
  *
  * @details
- * SprayFire is a custom built framework intended to ease the development
- * of websites with PHP 5.3.
- *
- * SprayFire makes use of namespaces, a custom-built ORM layer, a completely
- * object oriented approach and minimal invasiveness so you can make the framework
- * do what YOU want to do.  Some things we take seriously over here at SprayFire
- * includes clean, readable source, completely unit tested implementations and
- * not polluting the global scope.
+ * SprayFire is a fully unit-tested, light-weight PHP framework for developers who
+ * want to make simple, secure, dynamic website content.
  *
  * SprayFire is released under the Open-Source Initiative MIT license.
+ * OSI MIT License <http://www.opensource.org/licenses/mit-license.php>
  *
  * @author Charles Sprayberry cspray at gmail dot com
- * @copyright Copyright (c) 2011, Charles Sprayberry OSI MIT License <http://www.opensource.org/licenses/mit-license.php>
+ * @copyright Copyright (c) 2011, Charles Sprayberry
  */
 
 /**
  * @namespace libs.sprayfire.datastructs
  * @brief Holds the API used by the framework to store and transfer sets of data.
  */
-namespace libs\sprayfire\datastructs {
+namespace libs\sprayfire\datastructs;
+use \InvalidArgumentException as InvalidArgumentException;
+use \ReflectionClass as ReflectionClass;
+use \ReflectionException as ReflectionException;
+use libs\sprayfire\core\Object as Object;
+use libs\sprayfire\core\CoreObject as CoreObject;
+use libs\sprayfire\datastructs\ObjectStorage as ObjectStorage;
 
     /**
      * @brief The framework's primary implementation to store framework objects.
@@ -34,7 +35,7 @@ namespace libs\sprayfire\datastructs {
      * of that object using that key.  Also allows for the removal of an object
      * associated with a key and iterating over the stored objects.
      */
-    class SprayFireObjectStore extends \libs\sprayfire\core\CoreObject implements \libs\sprayfire\datastructs\ObjectStorage {
+    class SprayFireObjectStore extends CoreObject implements ObjectStorage {
 
         /**
          * @brief Holds a ReflectionClass of the data type that should be implemented by objects
@@ -57,7 +58,7 @@ namespace libs\sprayfire\datastructs {
          *
          * @param $ReflectedObjectType ReflectionClass
          */
-        public function __construct(\ReflectionClass $ReflectedObjectType) {
+        public function __construct(ReflectionClass $ReflectedObjectType) {
             $this->ReflectedParentType = $ReflectedObjectType;
         }
 
@@ -68,7 +69,7 @@ namespace libs\sprayfire\datastructs {
          * @param $Object libs.sprayfire.core.Object
          * @return boolean
          */
-        public function contains(\libs\sprayfire\core\Object $Object) {
+        public function contains(Object $Object) {
             if ($this->indexOf($Object) === false) {
                 return false;
             }
@@ -82,7 +83,7 @@ namespace libs\sprayfire\datastructs {
          * @param $Object libs.sprayfire.core.Object
          * @return mixed \a $key \a type set or false on failure
          */
-        public function indexOf(\libs\sprayfire\core\Object $Object) {
+        public function indexOf(Object $Object) {
             $index = false;
             foreach ($this->data as $key => $StoredObject) {
                 if ($Object->equals($StoredObject)) {
@@ -143,7 +144,7 @@ namespace libs\sprayfire\datastructs {
          * @throws InvalidArgumentException
          * @return libs.sprayfire.core.Object
          */
-        public function setObject($key, \libs\sprayfire\core\Object $Object) {
+        public function setObject($key, Object $Object) {
             $this->throwExceptionIfKeyInvalid($key);
             $this->throwExceptionIfObjectNotParentType($Object);
             $this->data[$key] = $Object;
@@ -155,7 +156,7 @@ namespace libs\sprayfire\datastructs {
          */
         protected function throwExceptionIfKeyInvalid($key) {
             if (empty($key) || !\is_string($key)) {
-                throw new \InvalidArgumentException('The key for an object may not be an empty or non-string value.');
+                throw new InvalidArgumentException('The key for an object may not be an empty or non-string value.');
             }
         }
 
@@ -165,7 +166,7 @@ namespace libs\sprayfire\datastructs {
          */
         protected function throwExceptionIfObjectNotParentType(\libs\sprayfire\core\Object $Object) {
             if (!\is_object($Object) || !$this->isObjectParentType($Object)) {
-                throw new \InvalidArgumentException('The value being set does not properly implement the parent type for this store.');
+                throw new InvalidArgumentException('The value being set does not properly implement the parent type for this store.');
             }
         }
 
@@ -183,11 +184,11 @@ namespace libs\sprayfire\datastructs {
          * @param $Object libs.sprayfire.core.Object
          * @return boolean
          */
-        protected function isObjectParentType(\libs\sprayfire\core\Object $Object) {
+        protected function isObjectParentType(Object $Object) {
             $isValid = false;
             $parentName = $this->ReflectedParentType->getName();
             try {
-                $ReflectedObject = new \ReflectionClass($Object);
+                $ReflectedObject = new ReflectionClass($Object);
                 if ($this->ReflectedParentType->isInterface()) {
                     if ($ReflectedObject->implementsInterface($parentName)) {
                         $isValid = true;
@@ -197,7 +198,7 @@ namespace libs\sprayfire\datastructs {
                         $isValid = true;
                     }
                 }
-            } catch (\ReflectionException $ReflectionExc) {
+            } catch (ReflectionException $ReflectionExc) {
                 // @codeCoverageIgnoreStart
                 error_log($ReflectionExc->getMessage());
                 // @codeCoverageIgnoreEnd
@@ -222,11 +223,9 @@ namespace libs\sprayfire\datastructs {
         public function count() {
             return \count($this->data);
         }
-        
+
     }
 
     // End SprayFireObjectStore
-
-}
 
 // End libs.sprayfire.core
