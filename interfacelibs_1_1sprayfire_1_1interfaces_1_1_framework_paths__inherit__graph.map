@@ -1,3 +1,3 @@
 <map id="G" name="G">
-<area shape="rect" id="node3" href="$classlibs_1_1sprayfire_1_1core_1_1_spray_fire_directory.html" title="{libs\\sprayfire\\core\\SprayFireDirectory\n||+ setRootInstallationPath()\l+ getAppPath()\l+ getAppPathSubDirectory()\l+ getFrameworkPath()\l+ getFrameworkPathSubDirectory()\l}" alt="" coords="16,201,256,346"/>
+<area shape="rect" id="node3" href="$classlibs_1_1sprayfire_1_1core_1_1_spray_fire_directory.html" title="{libs\\sprayfire\\core\\SprayFireDirectory\n|&#45; $installRoot\l&#45; $frameworkRoot\l&#45; $appRoot\l|+ setRootInstallationPath()\l+ getAppPath()\l+ getAppPathSubDirectory()\l+ getFrameworkPath()\l+ getFrameworkPathSubDirectory()\l&#45; getSubDirectoryPath()\l}" alt="" coords="16,201,256,394"/>
 </map>
