@@ -1,0 +1,6 @@
+<map id="G" name="G">
+<area shape="rect" id="node1" href="$interfacelibs_1_1sprayfire_1_1request_1_1_uri.html" title="Implementations should convert a string into appropriate fragments for the requested contoller..." alt="" coords="5,31,171,59"/>
+<area shape="rect" id="node3" href="$classlibs_1_1sprayfire_1_1request_1_1_base_uri.html" title="A base implementation to convert a URI into the appropriate fragments, will also urldecode() the orig..." alt="" coords="225,5,420,33"/>
+<area shape="rect" id="node7" href="$interfacelibs_1_1sprayfire_1_1request_1_1_routed_uri.html" title="An extension of the libs.sprayfire.request.Uri interface to allow for the setting of the original URI..." alt="" coords="219,57,427,85"/>
+<area shape="rect" id="node5" href="$classlibs_1_1sprayfire_1_1request_1_1_spray_fire_uri.html" title="Framework&#39;s implementation of a RoutedUri, provides a means to retrieve a controller, action and parameters, the routed URI string and the original URI string that was mapped to the routed." alt="" coords="475,31,698,59"/>
+</map>

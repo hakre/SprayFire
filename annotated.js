@@ -1,0 +1,28 @@
+var annotated =
+[
+    [ "libs\\sprayfire\\bootstrap\\Bootstrapper", "interfacelibs_1_1sprayfire_1_1bootstrap_1_1_bootstrapper.html", "interfacelibs_1_1sprayfire_1_1bootstrap_1_1_bootstrapper" ],
+    [ "libs\\sprayfire\\bootstrap\\FrameworkBootstrap", "classlibs_1_1sprayfire_1_1bootstrap_1_1_framework_bootstrap.html", "classlibs_1_1sprayfire_1_1bootstrap_1_1_framework_bootstrap" ],
+    [ "libs\\sprayfire\\config\\Configuration", "interfacelibs_1_1sprayfire_1_1config_1_1_configuration.html", "interfacelibs_1_1sprayfire_1_1config_1_1_configuration" ],
+    [ "libs\\sprayfire\\config\\JsonConfig", "classlibs_1_1sprayfire_1_1config_1_1_json_config.html", "classlibs_1_1sprayfire_1_1config_1_1_json_config" ],
+    [ "libs\\sprayfire\\core\\ClassLoader", "classlibs_1_1sprayfire_1_1core_1_1_class_loader.html", "classlibs_1_1sprayfire_1_1core_1_1_class_loader" ],
+    [ "libs\\sprayfire\\core\\CoreObject", "classlibs_1_1sprayfire_1_1core_1_1_core_object.html", "classlibs_1_1sprayfire_1_1core_1_1_core_object" ],
+    [ "libs\\sprayfire\\core\\Object", "interfacelibs_1_1sprayfire_1_1core_1_1_object.html", "interfacelibs_1_1sprayfire_1_1core_1_1_object" ],
+    [ "libs\\sprayfire\\core\\SprayFireDirectory", "classlibs_1_1sprayfire_1_1core_1_1_spray_fire_directory.html", "classlibs_1_1sprayfire_1_1core_1_1_spray_fire_directory" ],
+    [ "libs\\sprayfire\\datastructs\\DataStorage", "classlibs_1_1sprayfire_1_1datastructs_1_1_data_storage.html", "classlibs_1_1sprayfire_1_1datastructs_1_1_data_storage" ],
+    [ "libs\\sprayfire\\datastructs\\ImmutableStorage", "classlibs_1_1sprayfire_1_1datastructs_1_1_immutable_storage.html", "classlibs_1_1sprayfire_1_1datastructs_1_1_immutable_storage" ],
+    [ "libs\\sprayfire\\datastructs\\MutableStorage", "classlibs_1_1sprayfire_1_1datastructs_1_1_mutable_storage.html", "classlibs_1_1sprayfire_1_1datastructs_1_1_mutable_storage" ],
+    [ "libs\\sprayfire\\datastructs\\ObjectStorage", "interfacelibs_1_1sprayfire_1_1datastructs_1_1_object_storage.html", "interfacelibs_1_1sprayfire_1_1datastructs_1_1_object_storage" ],
+    [ "libs\\sprayfire\\datastructs\\Overloadable", "interfacelibs_1_1sprayfire_1_1datastructs_1_1_overloadable.html", "interfacelibs_1_1sprayfire_1_1datastructs_1_1_overloadable" ],
+    [ "libs\\sprayfire\\datastructs\\SprayFireObjectStore", "classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html", "classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store" ],
+    [ "libs\\sprayfire\\exceptions\\UnsupportedOperationException", "classlibs_1_1sprayfire_1_1exceptions_1_1_unsupported_operation_exception.html", null ],
+    [ "libs\\sprayfire\\request\\BaseUri", "classlibs_1_1sprayfire_1_1request_1_1_base_uri.html", "classlibs_1_1sprayfire_1_1request_1_1_base_uri" ],
+    [ "libs\\sprayfire\\request\\HttpData", "interfacelibs_1_1sprayfire_1_1request_1_1_http_data.html", "interfacelibs_1_1sprayfire_1_1request_1_1_http_data" ],
+    [ "libs\\sprayfire\\request\\HttpDataContainer", "interfacelibs_1_1sprayfire_1_1request_1_1_http_data_container.html", "interfacelibs_1_1sprayfire_1_1request_1_1_http_data_container" ],
+    [ "libs\\sprayfire\\request\\Request", "interfacelibs_1_1sprayfire_1_1request_1_1_request.html", "interfacelibs_1_1sprayfire_1_1request_1_1_request" ],
+    [ "libs\\sprayfire\\request\\RoutedUri", "interfacelibs_1_1sprayfire_1_1request_1_1_routed_uri.html", "interfacelibs_1_1sprayfire_1_1request_1_1_routed_uri" ],
+    [ "libs\\sprayfire\\request\\Router", "interfacelibs_1_1sprayfire_1_1request_1_1_router.html", "interfacelibs_1_1sprayfire_1_1request_1_1_router" ],
+    [ "libs\\sprayfire\\request\\SprayFireHttpData", "classlibs_1_1sprayfire_1_1request_1_1_spray_fire_http_data.html", "classlibs_1_1sprayfire_1_1request_1_1_spray_fire_http_data" ],
+    [ "libs\\sprayfire\\request\\SprayFireRouter", "classlibs_1_1sprayfire_1_1request_1_1_spray_fire_router.html", "classlibs_1_1sprayfire_1_1request_1_1_spray_fire_router" ],
+    [ "libs\\sprayfire\\request\\SprayFireUri", "classlibs_1_1sprayfire_1_1request_1_1_spray_fire_uri.html", "classlibs_1_1sprayfire_1_1request_1_1_spray_fire_uri" ],
+    [ "libs\\sprayfire\\request\\Uri", "interfacelibs_1_1sprayfire_1_1request_1_1_uri.html", "interfacelibs_1_1sprayfire_1_1request_1_1_uri" ]
+];

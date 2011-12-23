@@ -1,0 +1,5 @@
+<map id="G" name="G">
+<area shape="rect" id="node2" href="$classlibs_1_1sprayfire_1_1core_1_1_core_object.html" title="SprayFire&#39;s implementation of the libs.sprayfire.core.Object interface, allowing easy access to some ..." alt="" coords="4,193,200,306"/>
+<area shape="rect" id="node4" href="$interfacelibs_1_1sprayfire_1_1core_1_1_object.html" title="An interface for basic framework objects." alt="" coords="19,6,187,119"/>
+<area shape="rect" id="node6" href="$interfacelibs_1_1sprayfire_1_1request_1_1_uri.html" title="Implementations should convert a string into appropriate fragments for the requested contoller..." alt="" coords="225,169,415,330"/>
+</map>

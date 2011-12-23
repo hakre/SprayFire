@@ -1,0 +1,4 @@
+<map id="G" name="G">
+<area shape="rect" id="node5" href="$classlibs_1_1sprayfire_1_1request_1_1_spray_fire_uri.html" title="Framework&#39;s implementation of a RoutedUri, provides a means to retrieve a controller, action and parameters, the routed URI string and the original URI string that was mapped to the routed." alt="" coords="5,363,227,477"/>
+<area shape="rect" id="node2" href="$interfacelibs_1_1sprayfire_1_1request_1_1_uri.html" title="Implementations should convert a string into appropriate fragments for the requested contoller..." alt="" coords="21,6,211,167"/>
+</map>

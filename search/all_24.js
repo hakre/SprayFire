@@ -1,11 +1,25 @@
 var searchData=
 [
+  ['_24action',['$action',['../classlibs_1_1sprayfire_1_1request_1_1_base_uri.html#af1d254142ee4718edbdf5f45e7c542ec',1,'libs::sprayfire::request::BaseUri']]],
+  ['_24approot',['$appRoot',['../classlibs_1_1sprayfire_1_1core_1_1_spray_fire_directory.html#af81fe8065da4bfc64b3b52abe000fd95',1,'libs::sprayfire::core::SprayFireDirectory']]],
   ['_24classloader',['$ClassLoader',['../index_8php.html#ad07bb9ede37769ce0fcd6ca4dfdae4df',1,'index.php']]],
-  ['_24config',['$Config',['../index_8php.html#ac2e162a2e94a6861acb555bb17919717',1,'index.php']]],
-  ['_24configfile',['$configFile',['../index_8php.html#a3e265c431ca42bf2f20753540bb64d00',1,'index.php']]],
-  ['_24count',['$count',['../classlibs_1_1sprayfire_1_1datastructs_1_1_data_storage.html#a5ea20e77ab21a8e50b5e74c9e8e3c692',1,'libs::sprayfire::datastructs::DataStorage']]],
-  ['_24data',['$data',['../classlibs_1_1sprayfire_1_1datastructs_1_1_data_storage.html#ad83f88a1bd8434196bed9baf68fb5075',1,'libs::sprayfire::datastructs::DataStorage']]],
-  ['_24file',['$File',['../index_8php.html#a34cd105e27a4cb6632047ddfdfaa07e8',1,'index.php']]],
+  ['_24classloadername',['$ClassLoaderName',['../index_8php.html#affa7972ad7b119c0a18af57e4fa33a44',1,'index.php']]],
+  ['_24configfileinfo',['$ConfigFileInfo',['../classlibs_1_1sprayfire_1_1config_1_1_json_config.html#afeaeb0b5df84f81dee377c7632881dd2',1,'libs::sprayfire::config::JsonConfig']]],
+  ['_24controller',['$controller',['../classlibs_1_1sprayfire_1_1request_1_1_base_uri.html#aab4677672e280bd0badc8e79f28e24c4',1,'libs::sprayfire::request::BaseUri']]],
+  ['_24data',['$data',['../classlibs_1_1sprayfire_1_1datastructs_1_1_data_storage.html#ad83f88a1bd8434196bed9baf68fb5075',1,'libs::sprayfire::datastructs::DataStorage\$data()'],['../classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#a8caebc80de6c69f352846303e6961e54',1,'libs::sprayfire::datastructs::SprayFireObjectStore\$data()']]],
+  ['_24defaultaction',['$defaultAction',['../classlibs_1_1sprayfire_1_1request_1_1_spray_fire_router.html#a96cb3665127565b7bf8c3d7912982d9b',1,'libs::sprayfire::request::SprayFireRouter']]],
+  ['_24defaultcontroller',['$defaultController',['../classlibs_1_1sprayfire_1_1request_1_1_spray_fire_router.html#ae4f4cb28f7064004a7ab27a046093ca3',1,'libs::sprayfire::request::SprayFireRouter']]],
+  ['_24frameworkconfiguration',['$FrameworkConfiguration',['../classlibs_1_1sprayfire_1_1bootstrap_1_1_framework_bootstrap.html#ab9ef214caeeae09972803a8adcd6d207',1,'libs::sprayfire::bootstrap::FrameworkBootstrap']]],
+  ['_24frameworkroot',['$frameworkRoot',['../classlibs_1_1sprayfire_1_1core_1_1_spray_fire_directory.html#ac628714f396fa03a6928f5817c69f56e',1,'libs::sprayfire::core::SprayFireDirectory']]],
+  ['_24installroot',['$installRoot',['../classlibs_1_1sprayfire_1_1core_1_1_spray_fire_directory.html#aebc4275dbd92496f88b854e938821ecb',1,'libs::sprayfire::core::SprayFireDirectory']]],
+  ['_24originaluri',['$originalUri',['../classlibs_1_1sprayfire_1_1request_1_1_base_uri.html#af8b5286118f1d77ac77d87a76c86ebf8',1,'libs::sprayfire::request::BaseUri']]],
+  ['_24parameters',['$parameters',['../classlibs_1_1sprayfire_1_1request_1_1_base_uri.html#af25ca7b024b2151acbe349fc6e7e393d',1,'libs::sprayfire::request::BaseUri']]],
+  ['_24primaryconfigfile',['$PrimaryConfigFile',['../index_8php.html#a8318861ebabd5fce0634ef7e1a47f129',1,'index.php']]],
+  ['_24primaryconfigpath',['$primaryConfigPath',['../index_8php.html#a5a0c078cde41f26211a6afec9c09e00e',1,'index.php']]],
   ['_24reflectedparenttype',['$ReflectedParentType',['../classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#adef91171d84c247cd71b6c6502fe65b5',1,'libs::sprayfire::datastructs::SprayFireObjectStore']]],
-  ['_24skipnextiteration',['$skipNextIteration',['../classlibs_1_1sprayfire_1_1datastructs_1_1_mutable_iterator.html#aa35ee8891cc55467c768fdc7d16e557d',1,'libs::sprayfire::datastructs::MutableIterator']]]
+  ['_24routeduri',['$routedUri',['../classlibs_1_1sprayfire_1_1request_1_1_spray_fire_uri.html#a66aad78a848bfeeb26094eff2c2f3072',1,'libs::sprayfire::request::SprayFireUri']]],
+  ['_24routesconfig',['$RoutesConfig',['../classlibs_1_1sprayfire_1_1request_1_1_spray_fire_router.html#a46627e502e70746c4a97f32f6af3a5f2',1,'libs::sprayfire::request::SprayFireRouter']]],
+  ['_24routesconfigfile',['$RoutesConfigFile',['../index_8php.html#a411abdfd2a6cf7748b507efed53ae860',1,'index.php']]],
+  ['_24routesconfigpath',['$routesConfigPath',['../index_8php.html#a137e9188b5edc651e2ca88634d163695',1,'index.php']]],
+  ['_24uri',['$Uri',['../index_8php.html#a97d77fc8c9a9509f68577d5cc585680b',1,'index.php']]]
 ];

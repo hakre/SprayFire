@@ -7,9 +7,14 @@
 
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-
-<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
   $(document).ready(function() { searchBox.OnSelectItem(0); });
@@ -46,10 +51,10 @@
 <script type="text/javascript">
 var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </script>
+<script type="text/javascript" src="dynsections.js"></script>
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
@@ -78,6 +83,19 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     </ul>
   </div>
 </div>
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+  initNavTree('namespaces.html','');
+</script>
+<div id="doc-content">
 <div class="header">
   <div class="headertitle">
 <div class="title">Namespace List</div>  </div>
@@ -86,11 +104,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="textblock">Here is a list of all namespaces with brief descriptions:</div><table>
   <tr><td class="indexkey"><a class="el" href="namespacelibs.html">libs</a></td><td class="indexvalue"></td></tr>
   <tr><td class="indexkey"><a class="el" href="namespacelibs_1_1sprayfire.html">libs::sprayfire</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="namespacelibs_1_1sprayfire_1_1config.html">libs\sprayfire\config</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="namespacelibs_1_1sprayfire_1_1core.html">libs\sprayfire\core</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="namespacelibs_1_1sprayfire_1_1datastructs.html">libs\sprayfire\datastructs</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="namespacelibs_1_1sprayfire_1_1exceptions.html">libs\sprayfire\exceptions</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="namespacelibs_1_1sprayfire_1_1interfaces.html">libs\sprayfire\interfaces</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="namespacelibs_1_1sprayfire_1_1bootstrap.html">libs\sprayfire\bootstrap</a></td><td class="indexvalue">Holds interfaces and classes responsible for bootstrapping procedures </td></tr>
+  <tr><td class="indexkey"><a class="el" href="namespacelibs_1_1sprayfire_1_1config.html">libs\sprayfire\config</a></td><td class="indexvalue">Holds interfaces and classes that convert configuration information into something usable for the application and framework </td></tr>
+  <tr><td class="indexkey"><a class="el" href="namespacelibs_1_1sprayfire_1_1core.html">libs\sprayfire\core</a></td><td class="indexvalue">Holds parts of the framework that are considered essential for SprayFire to operate </td></tr>
+  <tr><td class="indexkey"><a class="el" href="namespacelibs_1_1sprayfire_1_1datastructs.html">libs\sprayfire\datastructs</a></td><td class="indexvalue">Holds the API used by the framework to store and transfer sets of data </td></tr>
+  <tr><td class="indexkey"><a class="el" href="namespacelibs_1_1sprayfire_1_1exceptions.html">libs\sprayfire\exceptions</a></td><td class="indexvalue">Holds the various exceptions that may be thrown by the framework, in addition to PHPs pre-defined exceptions </td></tr>
+  <tr><td class="indexkey"><a class="el" href="namespacelibs_1_1sprayfire_1_1request.html">libs\sprayfire\request</a></td><td class="indexvalue">Contains all classes and interfaces needed to parse the requested URI and manage the HTTP data, both headers and normal GET/POST data, that get passed in each request </td></tr>
 </table>
 </div><!-- contents -->
 <!-- window showing the filter options -->
@@ -107,13 +126,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
+</div>
+  <div id="nav-path" class="navpath">
+    <ul>
 
+    <li class="footer">Generated on Fri Dec 23 2011 18:16:43 for SprayFire by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
+   </ul>
+ </div>
 
-<hr class="footer"/><address class="footer"><small>
-Generated on Sat Dec 17 2011 00:29:34 for SprayFire by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.7.6.1
-</small></address>
 
 </body>
 </html>

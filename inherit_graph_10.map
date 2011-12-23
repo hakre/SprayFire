@@ -1,0 +1,4 @@
+<map id="G" name="G">
+<area shape="rect" id="node1" href="$interfacelibs_1_1sprayfire_1_1request_1_1_router.html" title="Implementations should convert a libs.sprayfire.request.Uri object into a libs.sprayfire.request.RoutedUri object, using values from the libs.sprayfire.config.Configuration object that is passed in the constructor as defaults if needed." alt="" coords="6,5,194,33"/>
+<area shape="rect" id="node3" href="$classlibs_1_1sprayfire_1_1request_1_1_spray_fire_router.html" title="Will take a libs.sprayfire.config.JsonConfig object to determine the mapped URI to use for the reques..." alt="" coords="242,5,488,33"/>
+</map>
