@@ -63,7 +63,7 @@ namespace libs\sprayfire\request {
      *      // make changes to the object
      * </pre>
      */
-    interface HttpData extends \ArrayAccess, \Countable, \Iterator, \libs\sprayfire\datastructs\Overloadable {
+    interface HttpData extends \ArrayAccess, \Countable, \Traversable, \libs\sprayfire\datastructs\Overloadable {
 
         /**
          * Assures that the array being passed to the HttpData object are closely linked
