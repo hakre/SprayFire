@@ -48,7 +48,7 @@ state of the framework and the future of SprayFire.
 
 Please check out the [framework wiki](https://github.com/cspray/SprayFire/wiki/) for more information!
 
-Please check out the [API documentation](https://cspray.github.com/SprayFire
+Please check out the [API documentation](https://cspray.github.com/SprayFire)
 
 Testing Instructions
 ================================================================================
