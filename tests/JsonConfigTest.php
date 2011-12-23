@@ -27,18 +27,13 @@ class JsonConfigTest extends PHPUnit_Framework_TestCase {
     private $originalAppPath;
 
     public function setUp() {
-
-        // we are also testing that the subdirectory path will return the correct path if
-        // there are no arguments passed
         $this->originalFrameworkPath = \libs\sprayfire\core\SprayFireDirectory::getFrameworkPathSubDirectory();
         $this->originalAppPath = \libs\sprayfire\core\SprayFireDirectory::getAppPathSubDirectory();
 
         $newRootPath = ROOT_PATH . DS . 'tests' . DS . 'mockframework';
         \libs\sprayfire\core\SprayFireDirectory::setRootInstallationPath($newRootPath);
 
-        $expectedFrameworkSub = ROOT_PATH . DS . 'tests' . DS .'mockframework' . DS . 'app' . DS . 'config';
-        $actualFrameworkSub = \libs\sprayfire\core\SprayFireDirectory::getAppPathSubDirectory('config');
-        $this->assertSame($expectedFrameworkSub, $actualFrameworkSub);
+        $this->assertSame($newRootPath . DS . 'libs' . DS . 'sprayfire', libs\sprayfire\core\SprayFireDirectory::getFrameworkPath());
     }
 
     public function testJsonConfigObject() {
