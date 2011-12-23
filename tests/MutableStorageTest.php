@@ -83,8 +83,20 @@ class MutableStorageTest extends PHPUnit_Framework_TestCase {
         $this->assertSame($Second, $Storage[1]);
     }
 
+    /**
+     * @expectedException \UnexpectedValueException
+     */
+    public function testCrappyMutableStorageImplementation() {
+        $testArray = array(1, 2, 3);
+        $CrappyStorage = new CrappyMutableStorage($testArray);
+    }
+
 }
 
-
-
 // End MutableStorageTest
+
+class CrappyMutableStorage extends libs\sprayfire\datastructs\MutableStorage {
+    protected function convertDataDeep(array $data) {
+        return null;
+    }
+}
