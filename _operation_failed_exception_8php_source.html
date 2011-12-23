@@ -7,9 +7,14 @@
 
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-
-<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
   $(document).ready(function() { searchBox.OnSelectItem(0); });
@@ -46,10 +51,10 @@
 <script type="text/javascript">
 var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </script>
+<script type="text/javascript" src="dynsections.js"></script>
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
@@ -79,6 +84,19 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     </ul>
   </div>
 </div>
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+  initNavTree('_operation_failed_exception_8php.html','');
+</script>
+<div id="doc-content">
 <div class="header">
   <div class="headertitle">
 <div class="title">/Library/WebServer/Documents/sprayfire/libs/sprayfire/exceptions/OperationFailedException.php</div>  </div>
@@ -86,14 +104,18 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="contents">
 <a href="_operation_failed_exception_8php.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 &lt;?php
 <a name="l00002"></a>00002 
-<a name="l00022"></a><a class="code" href="namespacelibs_1_1sprayfire_1_1exceptions.html">00022</a> <span class="keyword">namespace </span>libs\sprayfire\exceptions;
-<a name="l00023"></a>00023 
-<a name="l00027"></a><a class="code" href="classlibs_1_1sprayfire_1_1exceptions_1_1_operation_failed_exception.html">00027</a> <span class="keyword">class </span><a class="code" href="classlibs_1_1sprayfire_1_1exceptions_1_1_operation_failed_exception.html">OperationFailedException</a> <span class="keyword">extends</span> \Exception {
-<a name="l00028"></a>00028 
-<a name="l00029"></a>00029 }
+<a name="l00029"></a>00029 <span class="keyword">namespace </span>libs\sprayfire\exceptions {
 <a name="l00030"></a>00030 
-<a name="l00031"></a>00031 <span class="comment">// End OperationFailedException</span>
+<a name="l00035"></a><a class="code" href="classlibs_1_1sprayfire_1_1exceptions_1_1_operation_failed_exception.html">00035</a>     <span class="keyword">class </span><a class="code" href="classlibs_1_1sprayfire_1_1exceptions_1_1_operation_failed_exception.html" title="Thrown if an operation could not be completed successfully and the function&#39;s successfullness is crit...">OperationFailedException</a> <span class="keyword">extends</span> \Exception {
+<a name="l00036"></a>00036 
+<a name="l00037"></a>00037     }
+<a name="l00038"></a>00038 
+<a name="l00039"></a>00039     <span class="comment">// End OperationFailedException</span>
+<a name="l00040"></a>00040 }
+<a name="l00041"></a>00041 
+<a name="l00042"></a>00042 <span class="comment">// End libs.sprayfire.exceptions</span>
 </pre></div></div><!-- contents -->
+</div>
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -108,13 +130,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
+  <div id="nav-path" class="navpath">
+    <ul>
+      <li class="navelem"><a class="el" href="_operation_failed_exception_8php.html">OperationFailedException.php</a>      </li>
 
+    <li class="footer">Generated on Fri Dec 23 2011 16:32:19 for SprayFire by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
+   </ul>
+ </div>
 
-<hr class="footer"/><address class="footer"><small>
-Generated on Sat Dec 17 2011 00:29:34 for SprayFire by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.7.6.1
-</small></address>
 
 </body>
 </html>

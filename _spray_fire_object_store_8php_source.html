@@ -7,9 +7,14 @@
 
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-
-<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
   $(document).ready(function() { searchBox.OnSelectItem(0); });
@@ -46,10 +51,10 @@
 <script type="text/javascript">
 var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </script>
+<script type="text/javascript" src="dynsections.js"></script>
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
@@ -79,6 +84,19 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     </ul>
   </div>
 </div>
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+  initNavTree('_spray_fire_object_store_8php.html','');
+</script>
+<div id="doc-content">
 <div class="header">
   <div class="headertitle">
 <div class="title">/Library/WebServer/Documents/sprayfire/libs/sprayfire/datastructs/SprayFireObjectStore.php</div>  </div>
@@ -86,114 +104,114 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="contents">
 <a href="_spray_fire_object_store_8php.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 &lt;?php
 <a name="l00002"></a>00002 
-<a name="l00020"></a>00020 <span class="keyword">namespace </span>libs\sprayfire\datastructs;
-<a name="l00021"></a>00021 
-<a name="l00030"></a><a class="code" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html">00030</a> <span class="keyword">class </span><a class="code" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html">SprayFireObjectStore</a> <span class="keyword">extends</span> <a class="code" href="classlibs_1_1sprayfire_1_1datastructs_1_1_mutable_iterator.html">MutableIterator</a> implements \libs\sprayfire\interfaces\ObjectStorage {
-<a name="l00031"></a>00031 
-<a name="l00038"></a><a class="code" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#adef91171d84c247cd71b6c6502fe65b5">00038</a>     <span class="keyword">protected</span> <a class="code" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#adef91171d84c247cd71b6c6502fe65b5">$ReflectedParentType</a>;
-<a name="l00039"></a>00039 
-<a name="l00046"></a>00046     <span class="keyword">private</span> $ReflectedFrameworkObject;
-<a name="l00047"></a>00047 
-<a name="l00054"></a><a class="code" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#a0d4be50adadff7517b3653d113f4d43a">00054</a>     <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#a0d4be50adadff7517b3653d113f4d43a">__construct</a>(\ReflectionClass $ReflectedObjectType) {
-<a name="l00055"></a>00055         parent::__construct(array());
-<a name="l00056"></a>00056         $this-&gt;ReflectedParentType = $ReflectedObjectType;
-<a name="l00057"></a>00057         $this-&gt;ReflectedFrameworkObject = new \ReflectionClass(<span class="stringliteral">&quot;\\libs\\sprayfire\\interfaces\\Object&quot;</span>);
-<a name="l00058"></a>00058     }
-<a name="l00059"></a>00059 
-<a name="l00067"></a><a class="code" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#a6a7cff2b0a695cba2628ce9c87dcd325">00067</a>     <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#a6a7cff2b0a695cba2628ce9c87dcd325">contains</a>(\libs\sprayfire\interfaces\Object $Object) {
-<a name="l00068"></a>00068         <span class="keywordflow">if</span> ($this-&gt;indexOf($Object) === <span class="keyword">false</span>) {
-<a name="l00069"></a>00069             <span class="keywordflow">return</span> <span class="keyword">false</span>;
-<a name="l00070"></a>00070         }
-<a name="l00071"></a>00071         <span class="keywordflow">return</span> <span class="keyword">true</span>;
-<a name="l00072"></a>00072     }
-<a name="l00073"></a>00073 
-<a name="l00081"></a><a class="code" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#a3b3280aaf5158319051e1e63c3eb489a">00081</a>     <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#a3b3280aaf5158319051e1e63c3eb489a">indexOf</a>(\libs\sprayfire\interfaces\Object $Object) {
-<a name="l00082"></a>00082         $index = <span class="keyword">false</span>;
-<a name="l00083"></a>00083         <span class="keywordflow">foreach</span> ($this-&gt;data as $key =&gt; $StoredObject) {
-<a name="l00084"></a>00084             <span class="keywordflow">if</span> ($Object-&gt;equals($StoredObject)) {
-<a name="l00085"></a>00085                 $index = $key;
-<a name="l00086"></a>00086                 <span class="keywordflow">break</span>;
-<a name="l00087"></a>00087             }
-<a name="l00088"></a>00088         }
-<a name="l00089"></a>00089         <span class="keywordflow">return</span> $index;
-<a name="l00090"></a>00090     }
-<a name="l00091"></a>00091 
-<a name="l00097"></a><a class="code" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#a9f80df23020b4c1b1e73ecb07f16218f">00097</a>     <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#a9f80df23020b4c1b1e73ecb07f16218f">isEmpty</a>() {
-<a name="l00098"></a>00098         return \count($this) &lt;= 0;
-<a name="l00099"></a>00099     }
-<a name="l00100"></a>00100 
-<a name="l00108"></a><a class="code" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#af06faf1f8430cb7da101bb48005d10f0">00108</a>     <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#af06faf1f8430cb7da101bb48005d10f0">getObject</a>($key) {
-<a name="l00109"></a>00109         <span class="keywordflow">return</span> $this-&gt;<span class="keyword">get</span>($key);
-<a name="l00110"></a>00110     }
+<a name="l00028"></a>00028 <span class="keyword">namespace </span>libs\sprayfire\datastructs;
+<a name="l00029"></a>00029 use \InvalidArgumentException as InvalidArgumentException;
+<a name="l00030"></a>00030 use \ReflectionClass as ReflectionClass;
+<a name="l00031"></a>00031 use \ReflectionException as ReflectionException;
+<a name="l00032"></a>00032 use libs\sprayfire\core\Object as Object;
+<a name="l00033"></a>00033 use libs\sprayfire\core\CoreObject as CoreObject;
+<a name="l00034"></a>00034 use libs\sprayfire\datastructs\ObjectStorage as ObjectStorage;
+<a name="l00035"></a>00035 
+<a name="l00044"></a><a class="code" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html">00044</a>     <span class="keyword">class </span><a class="code" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html" title="The framework&#39;s primary implementation to store framework objects.">SprayFireObjectStore</a> <span class="keyword">extends</span> CoreObject implements <a class="code" href="interfacelibs_1_1sprayfire_1_1datastructs_1_1_object_storage.html" title="Provides an API to store SprayFire derived objects, iterate over them and store similar typed objects...">ObjectStorage</a> {
+<a name="l00045"></a>00045 
+<a name="l00052"></a><a class="code" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#adef91171d84c247cd71b6c6502fe65b5">00052</a>         <span class="keyword">protected</span> <a class="code" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#adef91171d84c247cd71b6c6502fe65b5">$ReflectedParentType</a>;
+<a name="l00053"></a>00053 
+<a name="l00059"></a><a class="code" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#a8caebc80de6c69f352846303e6961e54">00059</a>         <span class="keyword">protected</span> $data = array();
+<a name="l00060"></a>00060 
+<a name="l00067"></a><a class="code" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#a91ac2762aaaea1ba862e415d648bf511">00067</a>         <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#a91ac2762aaaea1ba862e415d648bf511" title="Will initiate the object storage as an empty array and assign the passed ReflectionClass to the appro...">__construct</a>(ReflectionClass $ReflectedObjectType) {
+<a name="l00068"></a>00068             $this-&gt;ReflectedParentType = $ReflectedObjectType;
+<a name="l00069"></a>00069         }
+<a name="l00070"></a>00070 
+<a name="l00078"></a><a class="code" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#a0fd8743472dda33006dbc96689728384">00078</a>         <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#a0fd8743472dda33006dbc96689728384" title="Checks if the $Object exists in this data structure; returns true if the object exists and false if i...">contains</a>(Object $Object) {
+<a name="l00079"></a>00079             <span class="keywordflow">if</span> ($this-&gt;indexOf($Object) === <span class="keyword">false</span>) {
+<a name="l00080"></a>00080                 <span class="keywordflow">return</span> <span class="keyword">false</span>;
+<a name="l00081"></a>00081             }
+<a name="l00082"></a>00082             <span class="keywordflow">return</span> <span class="keyword">true</span>;
+<a name="l00083"></a>00083         }
+<a name="l00084"></a>00084 
+<a name="l00092"></a><a class="code" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#a09ce421b67841f62ff81a0b0a0b2a831">00092</a>         <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#a09ce421b67841f62ff81a0b0a0b2a831" title="Return the string or numeric index associated with the given object or false if the object is not sto...">indexOf</a>(Object $Object) {
+<a name="l00093"></a>00093             $index = <span class="keyword">false</span>;
+<a name="l00094"></a>00094             <span class="keywordflow">foreach</span> ($this-&gt;data as $key =&gt; $StoredObject) {
+<a name="l00095"></a>00095                 <span class="keywordflow">if</span> ($Object-&gt;equals($StoredObject)) {
+<a name="l00096"></a>00096                     $index = $key;
+<a name="l00097"></a>00097                     <span class="keywordflow">break</span>;
+<a name="l00098"></a>00098                 }
+<a name="l00099"></a>00099             }
+<a name="l00100"></a>00100             <span class="keywordflow">return</span> $index;
+<a name="l00101"></a>00101         }
+<a name="l00102"></a>00102 
+<a name="l00108"></a><a class="code" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#a9f80df23020b4c1b1e73ecb07f16218f">00108</a>         <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#a9f80df23020b4c1b1e73ecb07f16218f" title="Returns whether or not this object has any objects stored in it.">isEmpty</a>() {
+<a name="l00109"></a>00109             return \count($this) &lt;= 0;
+<a name="l00110"></a>00110         }
 <a name="l00111"></a>00111 
-<a name="l00121"></a><a class="code" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#ad2d4de6cbe7bc38dbbf98100d0121582">00121</a>     <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#ad2d4de6cbe7bc38dbbf98100d0121582">setObject</a>($key, \libs\sprayfire\interfaces\Object $Object) {
-<a name="l00122"></a>00122         <span class="keywordflow">return</span> $this-&gt;<span class="keyword">set</span>($key, $Object);
-<a name="l00123"></a>00123     }
-<a name="l00124"></a>00124 
-<a name="l00135"></a><a class="code" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#a9780e116918c7fb0c2292990dcb0f44f">00135</a>     <span class="keyword">protected</span> <span class="keyword">function</span> <span class="keyword">set</span>($key, $value) {
-<a name="l00136"></a>00136         <span class="comment">// We are throwing an exception if the value is not a framework object to</span>
-<a name="l00137"></a>00137         <span class="comment">// adhere to the contract of the ObjectStorage interface.  A crafty developer</span>
-<a name="l00138"></a>00138         <span class="comment">// would soon discover that __set() and offsetSet do not have type hints on</span>
-<a name="l00139"></a>00139         <span class="comment">// them and any object type could be added.  Ultimately SprayFire implemented</span>
-<a name="l00140"></a>00140         <span class="comment">// data structures expect SprayFire objects to be stored in them.</span>
-<a name="l00141"></a>00141         $this-&gt;throwExceptionIfNotFrameworkObject($value);
-<a name="l00142"></a>00142         $this-&gt;throwExceptionIfObjectNotParentType($value);
-<a name="l00143"></a>00143         <span class="keywordflow">return</span> parent::set($key, $value);
-<a name="l00144"></a>00144     }
-<a name="l00145"></a>00145 
-<a name="l00150"></a><a class="code" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#ae2af114b47f8080b2d261c36bdbcf9e0">00150</a>     <span class="keyword">protected</span> <span class="keyword">function</span> <a class="code" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#ae2af114b47f8080b2d261c36bdbcf9e0">throwExceptionIfNotFrameworkObject</a>($value) {
-<a name="l00151"></a>00151         <span class="keywordflow">if</span> (!$this-&gt;isFrameworkObject($value)) {
-<a name="l00152"></a>00152             <span class="keywordflow">throw</span> new \InvalidArgumentException(<span class="stringliteral">&#39;Objects added to this storage MUST implement the Object interface.&#39;</span>);
-<a name="l00153"></a>00153         }
-<a name="l00154"></a>00154     }
-<a name="l00155"></a>00155 
-<a name="l00170"></a><a class="code" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#a517acdf130a44ff848c3c2da37f9b5bc">00170</a>     <span class="keyword">protected</span> <span class="keyword">function</span> <a class="code" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#a517acdf130a44ff848c3c2da37f9b5bc">isFrameworkObject</a>($Object) {
-<a name="l00171"></a>00171         $frameworkObjectInterface = $this-&gt;ReflectedFrameworkObject-&gt;getName();
-<a name="l00172"></a>00172         <span class="keywordflow">try</span> {
-<a name="l00173"></a>00173             $ReflectedObject = new \ReflectionClass($Object);
-<a name="l00174"></a>00174             <span class="keywordflow">if</span> ($ReflectedObject-&gt;implementsInterface($frameworkObjectInterface)) {
-<a name="l00175"></a>00175                 <span class="keywordflow">return</span> <span class="keyword">true</span>;
+<a name="l00117"></a><a class="code" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#ad370438769c50df325de905781eda60e">00117</a>         <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#ad370438769c50df325de905781eda60e" title="Remove the element associated with by the $key passed.">removeObject</a>($key) {
+<a name="l00118"></a>00118             <span class="keywordflow">if</span> (\array_key_exists($key, $this-&gt;data)) {
+<a name="l00119"></a>00119                 unset($this-&gt;data[$key]);
+<a name="l00120"></a>00120             }
+<a name="l00121"></a>00121         }
+<a name="l00122"></a>00122 
+<a name="l00130"></a><a class="code" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#af06faf1f8430cb7da101bb48005d10f0">00130</a>         <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#af06faf1f8430cb7da101bb48005d10f0" title="Return the object associated with $key if it exists or null if it does not.">getObject</a>($key) {
+<a name="l00131"></a>00131             <span class="keywordflow">if</span> (\array_key_exists($key, $this-&gt;data)) {
+<a name="l00132"></a>00132                 <span class="keywordflow">return</span> $this-&gt;data[$key];
+<a name="l00133"></a>00133             }
+<a name="l00134"></a>00134             <span class="keywordflow">return</span> null;
+<a name="l00135"></a>00135         }
+<a name="l00136"></a>00136 
+<a name="l00153"></a><a class="code" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#a657fa0fc7008deb86d66b26130795064">00153</a>         <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#a657fa0fc7008deb86d66b26130795064" title="Determines whether or not the passed $Object is a proepr object for this storage type, adds the $Object if it does and throws an exception if it does not.">setObject</a>($key, Object $Object) {
+<a name="l00154"></a>00154             $this-&gt;throwExceptionIfKeyInvalid($key);
+<a name="l00155"></a>00155             $this-&gt;throwExceptionIfObjectNotParentType($Object);
+<a name="l00156"></a>00156             $this-&gt;data[$key] = $Object;
+<a name="l00157"></a>00157         }
+<a name="l00158"></a>00158 
+<a name="l00163"></a><a class="code" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#a4e07f992ddf1ed43cc1c277a6e6de4e8">00163</a>         <span class="keyword">protected</span> <span class="keyword">function</span> <a class="code" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#a4e07f992ddf1ed43cc1c277a6e6de4e8">throwExceptionIfKeyInvalid</a>($key) {
+<a name="l00164"></a>00164             <span class="keywordflow">if</span> (empty($key) || !\is_string($key)) {
+<a name="l00165"></a>00165                 <span class="keywordflow">throw</span> <span class="keyword">new</span> InvalidArgumentException(<span class="stringliteral">&#39;The key for an object may not be an empty or non-string value.&#39;</span>);
+<a name="l00166"></a>00166             }
+<a name="l00167"></a>00167         }
+<a name="l00168"></a>00168 
+<a name="l00173"></a><a class="code" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#acc354dd74702878c76f8a785001ed48e">00173</a>         <span class="keyword">protected</span> <span class="keyword">function</span> <a class="code" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#acc354dd74702878c76f8a785001ed48e">throwExceptionIfObjectNotParentType</a>(\libs\sprayfire\core\Object $Object) {
+<a name="l00174"></a>00174             <span class="keywordflow">if</span> (!\is_object($Object) || !$this-&gt;isObjectParentType($Object)) {
+<a name="l00175"></a>00175                 <span class="keywordflow">throw</span> <span class="keyword">new</span> InvalidArgumentException(<span class="stringliteral">&#39;The value being set does not properly implement the parent type for this store.&#39;</span>);
 <a name="l00176"></a>00176             }
-<a name="l00177"></a>00177         } <span class="keywordflow">catch</span> (\ReflectionException $ReflectExc) {
-<a name="l00178"></a>00178             <span class="comment">// no need to do anything here, if an exception is thrown then the value</span>
-<a name="l00179"></a>00179             <span class="comment">// passed obviously cannot be a framework object.</span>
-<a name="l00180"></a>00180         }
-<a name="l00181"></a>00181 
-<a name="l00182"></a>00182         <span class="keywordflow">return</span> <span class="keyword">false</span>;
-<a name="l00183"></a>00183     }
-<a name="l00184"></a>00184 
-<a name="l00189"></a><a class="code" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#a2433d49683c555d1e276d488e8299c39">00189</a>     <span class="keyword">protected</span> <span class="keyword">function</span> <a class="code" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#a2433d49683c555d1e276d488e8299c39">throwExceptionIfObjectNotParentType</a>($value) {
-<a name="l00190"></a>00190         <span class="keywordflow">if</span> (!is_object($value) || !$this-&gt;isObjectParentType($value)) {
-<a name="l00191"></a>00191             <span class="keywordflow">throw</span> new \InvalidArgumentException(<span class="stringliteral">&#39;The value being set does not properly implement the parent type for this store.&#39;</span>);
-<a name="l00192"></a>00192         }
-<a name="l00193"></a>00193     }
-<a name="l00194"></a>00194 
-<a name="l00205"></a><a class="code" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#a6b7e6c461cd73dd3ec03a5fac3d6ee07">00205</a>     <span class="keyword">protected</span> <span class="keyword">function</span> <a class="code" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#a6b7e6c461cd73dd3ec03a5fac3d6ee07">isObjectParentType</a>($value) {
-<a name="l00206"></a>00206         $isValid = <span class="keyword">false</span>;
-<a name="l00207"></a>00207         $parentName = $this-&gt;ReflectedParentType-&gt;getName();
-<a name="l00208"></a>00208         <span class="keywordflow">try</span> {
-<a name="l00209"></a>00209             $ReflectedObject = new \ReflectionClass($value);
-<a name="l00210"></a>00210             <span class="keywordflow">if</span> ($this-&gt;ReflectedParentType-&gt;isInterface()) {
-<a name="l00211"></a>00211                 <span class="keywordflow">if</span> ($ReflectedObject-&gt;implementsInterface($parentName)) {
-<a name="l00212"></a>00212                     $isValid = <span class="keyword">true</span>;
-<a name="l00213"></a>00213                 }
-<a name="l00214"></a>00214             } <span class="keywordflow">else</span> {
-<a name="l00215"></a>00215                 <span class="keywordflow">if</span> ($ReflectedObject-&gt;getName() === $parentName || $ReflectedObject-&gt;isSubclassOf($parentName)) {
-<a name="l00216"></a>00216                     $isValid = <span class="keyword">true</span>;
-<a name="l00217"></a>00217                 }
-<a name="l00218"></a>00218             }
-<a name="l00219"></a>00219         } <span class="keywordflow">catch</span> (\ReflectionException $ReflectionExc) {
-<a name="l00220"></a>00220             <span class="comment">// @codeCoverageIgnoreStart</span>
-<a name="l00221"></a>00221             error_log($ReflectionExc-&gt;getMessage());
-<a name="l00222"></a>00222             <span class="comment">// @codeCoverageIgnoreEnd</span>
-<a name="l00223"></a>00223         }
-<a name="l00224"></a>00224         <span class="keywordflow">return</span> $isValid;
-<a name="l00225"></a>00225     }
-<a name="l00226"></a>00226 
-<a name="l00227"></a>00227 }
-<a name="l00228"></a>00228 
-<a name="l00229"></a>00229 <span class="comment">// End SprayFireObjectStore</span>
+<a name="l00177"></a>00177         }
+<a name="l00178"></a>00178 
+<a name="l00193"></a><a class="code" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#a8a51c2dd9f69a0541588566fc63103ed">00193</a>         <span class="keyword">protected</span> <span class="keyword">function</span> <a class="code" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#a8a51c2dd9f69a0541588566fc63103ed" title="Determines whether or not the passed $Object implements the parent type set by the constructor depend...">isObjectParentType</a>(Object $Object) {
+<a name="l00194"></a>00194             $isValid = <span class="keyword">false</span>;
+<a name="l00195"></a>00195             $parentName = $this-&gt;ReflectedParentType-&gt;getName();
+<a name="l00196"></a>00196             <span class="keywordflow">try</span> {
+<a name="l00197"></a>00197                 $ReflectedObject = <span class="keyword">new</span> ReflectionClass($Object);
+<a name="l00198"></a>00198                 <span class="keywordflow">if</span> ($this-&gt;ReflectedParentType-&gt;isInterface()) {
+<a name="l00199"></a>00199                     <span class="keywordflow">if</span> ($ReflectedObject-&gt;implementsInterface($parentName)) {
+<a name="l00200"></a>00200                         $isValid = <span class="keyword">true</span>;
+<a name="l00201"></a>00201                     }
+<a name="l00202"></a>00202                 } <span class="keywordflow">else</span> {
+<a name="l00203"></a>00203                     <span class="keywordflow">if</span> ($ReflectedObject-&gt;getName() === $parentName || $ReflectedObject-&gt;isSubclassOf($parentName)) {
+<a name="l00204"></a>00204                         $isValid = <span class="keyword">true</span>;
+<a name="l00205"></a>00205                     }
+<a name="l00206"></a>00206                 }
+<a name="l00207"></a>00207             } <span class="keywordflow">catch</span> (ReflectionException $ReflectionExc) {
+<a name="l00208"></a>00208                 <span class="comment">// @codeCoverageIgnoreStart</span>
+<a name="l00209"></a>00209                 error_log($ReflectionExc-&gt;getMessage());
+<a name="l00210"></a>00210                 <span class="comment">// @codeCoverageIgnoreEnd</span>
+<a name="l00211"></a>00211             }
+<a name="l00212"></a>00212             <span class="keywordflow">return</span> $isValid;
+<a name="l00213"></a>00213         }
+<a name="l00214"></a>00214 
+<a name="l00220"></a><a class="code" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#a96fb167f8d86cc07704c0ab80015815f">00220</a>         <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#a96fb167f8d86cc07704c0ab80015815f" title="Satisfies the requirements of the IteratorAggregate interface.">getIterator</a>() {
+<a name="l00221"></a>00221             <span class="keywordflow">return</span> new \ArrayIterator($this-&gt;data);
+<a name="l00222"></a>00222         }
+<a name="l00223"></a>00223 
+<a name="l00229"></a><a class="code" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#ae1ea7ead5dd47edee973a4a1b7af0fc3">00229</a>         <span class="keyword">public</span> <span class="keyword">function</span> <a class="code" href="classlibs_1_1sprayfire_1_1datastructs_1_1_spray_fire_object_store.html#ae1ea7ead5dd47edee973a4a1b7af0fc3" title="Satisfies the requirements of the Countable interface.">count</a>() {
+<a name="l00230"></a>00230             return \count($this-&gt;data);
+<a name="l00231"></a>00231         }
+<a name="l00232"></a>00232 
+<a name="l00233"></a>00233     }
+<a name="l00234"></a>00234 
+<a name="l00235"></a>00235     <span class="comment">// End SprayFireObjectStore</span>
+<a name="l00236"></a>00236 
+<a name="l00237"></a>00237 <span class="comment">// End libs.sprayfire.core</span>
 </pre></div></div><!-- contents -->
+</div>
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -208,13 +226,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
+  <div id="nav-path" class="navpath">
+    <ul>
+      <li class="navelem"><a class="el" href="_spray_fire_object_store_8php.html">SprayFireObjectStore.php</a>      </li>
 
+    <li class="footer">Generated on Fri Dec 23 2011 18:16:43 for SprayFire by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
+   </ul>
+ </div>
 
-<hr class="footer"/><address class="footer"><small>
-Generated on Sat Dec 17 2011 00:29:34 for SprayFire by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.7.6.1
-</small></address>
 
 </body>
 </html>
