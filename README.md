@@ -46,14 +46,9 @@ state of the framework and the future of SprayFire.
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
-Please check out the framework wiki:
-https://github.com/cspray/SprayFire/wiki/
+Please check out the [framework wiki](https://github.com/cspray/SprayFire/wiki/) for more information!
 
-Please check out the roadmap at the framework wiki:
-https://github.com/cspray/SprayFire/wiki/Roadmap
-
-Please check out the documentation files and some other technical material:
-http://cspray.github.com/SprayFire/
+Please check out the [API documentation](https://cspray.github.com/SprayFire
 
 Testing Instructions
 ================================================================================
@@ -69,7 +64,7 @@ phpunit --bootstrap test_bootstrap.php {ClassNameTest} /path/to/{ClassNameTest}.
 
 Please note that there is an AllTests suite that will, well, run all tests.
 
-SprayFire is under development!  The SprayFire development team consists of:
+The SprayFire development team consists of:
 ================================================================================
 
 Charles Sprayberry
