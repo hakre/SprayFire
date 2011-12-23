@@ -33,7 +33,7 @@ namespace libs\sprayfire\request {
      * @brief A base implementation to convert a URI into the appropriate fragments,
      * will also urldecode() the original URI passed.
      */
-    class BaseUri implements \libs\sprayfire\request\Uri {
+    class BaseUri extends \libs\sprayfire\core\CoreObject implements \libs\sprayfire\request\Uri {
 
         /**
          * Holds the original, unaltered URI passed in the constructor.
