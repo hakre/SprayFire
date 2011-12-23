@@ -1,0 +1,37 @@
+{
+    "sprayfire-docs": "Please see SprayFire Wiki on the Routing configuration file",
+    "defaults": {
+        "controller": "pages",
+        "action": "index"
+    },
+    "routes": {
+        "DC-DA-*": {
+            "controller": "%default_controller%",
+            "action": "%default_action%"
+        },
+        "DC-DA-1": {
+            "controller": "posts"
+        },
+        "DC-DA-2": {
+            "action": "display"
+        },
+        "songs-DA-*": {
+            "controller": "music"
+        },
+        "posts-DA-*": {
+            "controller": "articles",
+            "action": "view"
+        },
+        "dogs-train-2": {
+            "controller": "dogs_train_two",
+            "action": "train_two"
+        },
+        "dogs-train-*": {
+            "action": "train_all"
+        },
+        "dogs-DA-1": {
+            "controller": "%default_controller%",
+            "action": "%default_action%"
+        }
+    }
+}
