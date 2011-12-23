@@ -171,13 +171,11 @@ namespace libs\sprayfire\request {
             } else {
                 $sprayFireURIPattern .= $requestedAction .'-';
             }
-
             $requestedParamCount = \count($Uri->getParameters());
             $specificUri = $sprayFireURIPattern . $requestedParamCount;
-            $wildCardUri = $sprayFireURIPattern . '*';
+            $wildCardUri = $sprayFireURIPattern . $parameterWildCard;
 
             return array('specific' => $specificUri, 'wild-card' => $wildCardUri);
-
         }
 
         /**
@@ -188,9 +186,7 @@ namespace libs\sprayfire\request {
          * @return array
          */
         private function getControllerAndActionToUse(\libs\sprayfire\request\Uri $Uri) {
-
             $data = array();
-
             if ($Uri->getController() === \libs\sprayfire\request\Uri::DEFAULT_CONTROLLER) {
                 $data['controller'] = $this->defaultController;
             } else {
@@ -202,7 +198,6 @@ namespace libs\sprayfire\request {
             } else {
                 $data['action'] = $Uri->getAction();
             }
-
             return $data;
         }
 
@@ -216,59 +211,52 @@ namespace libs\sprayfire\request {
          * @return string Please note that this value does not have any parameters attached to it
          */
         private function getMappedUriString(array $sprayFireUriPatterns, array $controllerAndAction) {
-
             $specific = $sprayFireUriPatterns['specific'];
             $wildCard = $sprayFireUriPatterns['wild-card'];
-
+            $SpecificRoute = $this->RoutesConfig->routes->$specific;
+            $WildCardRoute = $this->RoutesConfig->routes->$wildCard;
             $mappedController = '';
             $mappedAction = '';
 
-            if (isset($this->RoutesConfig->routes->$specific)) {
-                if (isset($this->RoutesConfig->routes->$specific->controller)) {
-                    $mappedController = $this->RoutesConfig->routes->$specific->controller;
-                    if ($mappedController === \libs\sprayfire\request\Uri::DEFAULT_CONTROLLER) {
-                        $mappedController = $this->defaultController;
-                    }
-                } else {
-                    $mappedController = $controllerAndAction['controller'];
-                }
-
-                if (isset($this->RoutesConfig->routes->$specific->action)) {
-                    $mappedAction = $this->RoutesConfig->routes->$specific->action;
-                    if ($mappedAction === \libs\sprayfire\request\Uri::DEFAULT_ACTION) {
-                        $mappedAction = $this->defaultAction;
-                    }
-                } else {
-                    $mappedAction = $controllerAndAction['action'];
-                }
+            if (isset($SpecificRoute)) {
+                $mappedController = $this->getMappedController($SpecificRoute, $controllerAndAction);
+                $mappedAction = $this->getMappedAction($SpecificRoute, $controllerAndAction);
             } else {
-
-                if (isset($this->RoutesConfig->routes->$wildCard)) {
-                    if (isset($this->RoutesConfig->routes->$wildCard->controller)) {
-                        $mappedController = $this->RoutesConfig->routes->$wildCard->controller;
-                        if ($mappedController === \libs\sprayfire\request\Uri::DEFAULT_CONTROLLER) {
-                            $mappedController = $this->defaultController;
-                        }
-                    } else {
-                        $mappedController = $controllerAndAction['controller'];
-                    }
-
-                    if (isset($this->RoutesConfig->routes->$wildCard->action)) {
-                        $mappedAction = $this->RoutesConfig->routes->$wildCard->action;
-                        if ($mappedAction === \libs\sprayfire\request\Uri::DEFAULT_ACTION) {
-                            $mappedAction = $this->defaultAction;
-                        }
-                    } else {
-                        $mappedAction = $controllerAndAction['action'];
-                    }
+                if (isset($WildCardRoute)) {
+                    $mappedController = $this->getMappedController($WildCardRoute, $controllerAndAction);
+                    $mappedAction = $this->getMappedAction($WildCardRoute, $controllerAndAction);
                 } else {
                     $mappedController = $controllerAndAction['controller'];
                     $mappedAction = $controllerAndAction['action'];
                 }
-
             }
-
             return '/' . $mappedController . '/' . $mappedAction . '/';
+        }
+
+        /**
+         *
+         * @param $ConfigFragment libs.sprayfire.datastructs.
+         * @param array $controllerAndAction
+         * @return array
+         */
+        private function getMappedController($ConfigFragment, array $controllerAndAction) {
+            if (isset($ConfigFragment->controller)) {
+                if ($ConfigFragment->controller === \libs\sprayfire\request\Uri::DEFAULT_CONTROLLER) {
+                    return $this->defaultController;
+                }
+                return $ConfigFragment->controller;
+            }
+            return $controllerAndAction['controller'];
+        }
+
+        private function getMappedAction($ConfigFragment, array $controllerAndAction) {
+            if (isset($ConfigFragment->action)) {
+                if ($ConfigFragment->action === \libs\sprayfire\request\Uri::DEFAULT_ACTION) {
+                    return $this->defaultAction;
+                }
+                return $ConfigFragment->action;
+            }
+            return $controllerAndAction['action'];
         }
 
         /**
