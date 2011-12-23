@@ -7,9 +7,14 @@
 
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-
-<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
   $(document).ready(function() { searchBox.OnSelectItem(0); });
@@ -46,10 +51,10 @@
 <script type="text/javascript">
 var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </script>
+<script type="text/javascript" src="dynsections.js"></script>
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
@@ -80,6 +85,248 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="functions.html"><span>Data&#160;Fields</span></a></li>
     </ul>
   </div>
+</div>
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+  initNavTree('classlibs_1_1sprayfire_1_1core_1_1_spray_fire_directory.html','');
+</script>
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pri-static-methods">Static Private Member Functions</a> &#124;
+<a href="#pri-static-attribs">Static Private Attributes</a>  </div>
+  <div class="headertitle">
+<div class="title">libs\sprayfire\core\SprayFireDirectory Class Reference</div>  </div>
+</div><!--header-->
+<div class="contents">
+<!-- doxytag: class="libs::sprayfire::core::SprayFireDirectory" --><table class="memberdecls">
+<tr><td colspan="2"><h2><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_spray_fire_directory.html#ab2af7de6d9cd331db8f7987787bfe16f">setRootInstallationPath</a> ($rootInstallationPath)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_spray_fire_directory.html#a4b4dbb030b267e69d7ce5e87d9e1025c">getAppPath</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_spray_fire_directory.html#a6715c82ab120c337305110f306edf2d7">getAppPathSubDirectory</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts a variable list of arguments to an absolute path in the ROOT_PATH/app/ directory.  <a href="#a6715c82ab120c337305110f306edf2d7"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_spray_fire_directory.html#abbb0c41780c1c51a709c3cd05b1a4f60">getFrameworkPath</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_spray_fire_directory.html#a08caee182a5a134d8001036108b97b9c">getFrameworkPathSubDirectory</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts a variable list of arguments to an absolute path in the ROOT_PATH/libs/sprayfire/ directory.  <a href="#a08caee182a5a134d8001036108b97b9c"></a><br/></td></tr>
+<tr><td colspan="2"><h2><a name="pri-static-methods"></a>
+Static Private Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_spray_fire_directory.html#a6a97d434c62684e4a9a4462408b14386">getSubDirectoryPath</a> (array $subDirList)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts an array of strings into a sub-directory fragment with no trailing separator.  <a href="#a6a97d434c62684e4a9a4462408b14386"></a><br/></td></tr>
+<tr><td colspan="2"><h2><a name="pri-static-attribs"></a>
+Static Private Attributes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_spray_fire_directory.html#aebc4275dbd92496f88b854e938821ecb">$installRoot</a> = null</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Holds the ROOT_PATH that should be used by the class.  <a href="#aebc4275dbd92496f88b854e938821ecb"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_spray_fire_directory.html#ac628714f396fa03a6928f5817c69f56e">$frameworkRoot</a> = null</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The absolute path to the root framework directory.  <a href="#ac628714f396fa03a6928f5817c69f56e"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_spray_fire_directory.html#af81fe8065da4bfc64b3b52abe000fd95">$appRoot</a> = null</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The absolute path to the root app directory.  <a href="#af81fe8065da4bfc64b3b52abe000fd95"></a><br/></td></tr>
+</table>
+<hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
+<div class="textblock">
+<p>Definition at line <a class="el" href="_spray_fire_directory_8php_source.html#l00079">79</a> of file <a class="el" href="_spray_fire_directory_8php_source.html">SprayFireDirectory.php</a>.</p>
+</div><hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="a4b4dbb030b267e69d7ce5e87d9e1025c"></a><!-- doxytag: member="libs::sprayfire::core::SprayFireDirectory::getAppPath" ref="a4b4dbb030b267e69d7ce5e87d9e1025c" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">static libs\sprayfire\core\<a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_spray_fire_directory.html#a4b4dbb030b267e69d7ce5e87d9e1025c">SprayFireDirectory::getAppPath</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td><code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<dl class="return"><dt><b>Returns:</b></dt><dd>The absolute path to the root app folder, with no trailing separator </dd></dl>
+
+<p>Definition at line <a class="el" href="_spray_fire_directory_8php_source.html#l00119">119</a> of file <a class="el" href="_spray_fire_directory_8php_source.html">SprayFireDirectory.php</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6715c82ab120c337305110f306edf2d7"></a><!-- doxytag: member="libs::sprayfire::core::SprayFireDirectory::getAppPathSubDirectory" ref="a6715c82ab120c337305110f306edf2d7" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">static libs\sprayfire\core\<a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_spray_fire_directory.html#a6715c82ab120c337305110f306edf2d7">SprayFireDirectory::getAppPathSubDirectory</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td><code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Converts a variable list of arguments to an absolute path in the ROOT_PATH/app/ directory. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Absolute path to a sub directory or file in the root app folder, with no trailing separator </dd></dl>
+
+<p>Definition at line <a class="el" href="_spray_fire_directory_8php_source.html#l00129">129</a> of file <a class="el" href="_spray_fire_directory_8php_source.html">SprayFireDirectory.php</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="abbb0c41780c1c51a709c3cd05b1a4f60"></a><!-- doxytag: member="libs::sprayfire::core::SprayFireDirectory::getFrameworkPath" ref="abbb0c41780c1c51a709c3cd05b1a4f60" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">static libs\sprayfire\core\<a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_spray_fire_directory.html#abbb0c41780c1c51a709c3cd05b1a4f60">SprayFireDirectory::getFrameworkPath</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td><code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<dl class="return"><dt><b>Returns:</b></dt><dd>Absolute path to the root framework folder, with no trailing separator </dd></dl>
+
+<p>Definition at line <a class="el" href="_spray_fire_directory_8php_source.html#l00146">146</a> of file <a class="el" href="_spray_fire_directory_8php_source.html">SprayFireDirectory.php</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a08caee182a5a134d8001036108b97b9c"></a><!-- doxytag: member="libs::sprayfire::core::SprayFireDirectory::getFrameworkPathSubDirectory" ref="a08caee182a5a134d8001036108b97b9c" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">static libs\sprayfire\core\<a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_spray_fire_directory.html#a08caee182a5a134d8001036108b97b9c">SprayFireDirectory::getFrameworkPathSubDirectory</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td><code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Converts a variable list of arguments to an absolute path in the ROOT_PATH/libs/sprayfire/ directory. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Absolute path to a sub directory or file in the root framework folder, with no trailing separator </dd></dl>
+
+<p>Definition at line <a class="el" href="_spray_fire_directory_8php_source.html#l00156">156</a> of file <a class="el" href="_spray_fire_directory_8php_source.html">SprayFireDirectory.php</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6a97d434c62684e4a9a4462408b14386"></a><!-- doxytag: member="libs::sprayfire::core::SprayFireDirectory::getSubDirectoryPath" ref="a6a97d434c62684e4a9a4462408b14386" args="(array $subDirList)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">static libs\sprayfire\core\<a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_spray_fire_directory.html#a6a97d434c62684e4a9a4462408b14386">SprayFireDirectory::getSubDirectoryPath</a> </td>
+          <td>(</td>
+          <td class="paramtype">array $&#160;</td>
+          <td class="paramname"><em>subDirList</em></td><td>)</td>
+          <td><code> [static, private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Converts an array of strings into a sub-directory fragment with no trailing separator. </p>
+<p>This is implemented to make the creation of framework and app sub-directories as generic as possible.</p>
+<dl class="params"><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">$subDirList</td><td>array </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A sub directory fragment with no trailing separator </dd></dl>
+
+<p>Definition at line <a class="el" href="_spray_fire_directory_8php_source.html#l00182">182</a> of file <a class="el" href="_spray_fire_directory_8php_source.html">SprayFireDirectory.php</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab2af7de6d9cd331db8f7987787bfe16f"></a><!-- doxytag: member="libs::sprayfire::core::SprayFireDirectory::setRootInstallationPath" ref="ab2af7de6d9cd331db8f7987787bfe16f" args="($rootInstallationPath)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">static libs\sprayfire\core\<a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_spray_fire_directory.html#ab2af7de6d9cd331db8f7987787bfe16f">SprayFireDirectory::setRootInstallationPath</a> </td>
+          <td>(</td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>rootInstallationPath</em></td><td>)</td>
+          <td><code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<dl class="params"><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">$rootInstallationPath</td><td>string </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="_spray_fire_directory_8php_source.html#l00110">110</a> of file <a class="el" href="_spray_fire_directory_8php_source.html">SprayFireDirectory.php</a>.</p>
+
+</div>
+</div>
+<hr/><h2>Field Documentation</h2>
+<a class="anchor" id="af81fe8065da4bfc64b3b52abe000fd95"></a><!-- doxytag: member="libs::sprayfire::core::SprayFireDirectory::$appRoot" ref="af81fe8065da4bfc64b3b52abe000fd95" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">libs::sprayfire::core\SprayFireDirectory::$appRoot = null<code> [static, private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>The absolute path to the root app directory. </p>
+
+<p>Definition at line <a class="el" href="_spray_fire_directory_8php_source.html#l00105">105</a> of file <a class="el" href="_spray_fire_directory_8php_source.html">SprayFireDirectory.php</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac628714f396fa03a6928f5817c69f56e"></a><!-- doxytag: member="libs::sprayfire::core::SprayFireDirectory::$frameworkRoot" ref="ac628714f396fa03a6928f5817c69f56e" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">libs::sprayfire::core\SprayFireDirectory::$frameworkRoot = null<code> [static, private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>The absolute path to the root framework directory. </p>
+
+<p>Definition at line <a class="el" href="_spray_fire_directory_8php_source.html#l00098">98</a> of file <a class="el" href="_spray_fire_directory_8php_source.html">SprayFireDirectory.php</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aebc4275dbd92496f88b854e938821ecb"></a><!-- doxytag: member="libs::sprayfire::core::SprayFireDirectory::$installRoot" ref="aebc4275dbd92496f88b854e938821ecb" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">libs::sprayfire::core\SprayFireDirectory::$installRoot = null<code> [static, private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Holds the ROOT_PATH that should be used by the class. </p>
+<p>Ultimately this property is used to facilitate testing, allowing us to set the install path to a test directory structure. Setting this value will ultimately impact the directories that are returned. </p>
+
+<p>Definition at line <a class="el" href="_spray_fire_directory_8php_source.html#l00091">91</a> of file <a class="el" href="_spray_fire_directory_8php_source.html">SprayFireDirectory.php</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>/Library/WebServer/Documents/sprayfire/libs/sprayfire/core/<a class="el" href="_spray_fire_directory_8php_source.html">SprayFireDirectory.php</a></li>
+</ul>
+</div><!-- contents -->
+</div>
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -100,188 +347,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li class="navelem"><a class="el" href="namespacelibs_1_1sprayfire.html">sprayfire</a>      </li>
       <li class="navelem"><a class="el" href="namespacelibs_1_1sprayfire_1_1core.html">core</a>      </li>
       <li class="navelem"><a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_spray_fire_directory.html">SprayFireDirectory</a>      </li>
-    </ul>
-  </div>
-</div>
-<div class="header">
-  <div class="summary">
-<a href="#pub-static-methods">Static Public Member Functions</a>  </div>
-  <div class="headertitle">
-<div class="title">libs\sprayfire\core\SprayFireDirectory Class Reference</div>  </div>
-</div><!--header-->
-<div class="contents">
-<!-- doxytag: class="libs::sprayfire::core::SprayFireDirectory" --><!-- doxytag: inherits="libs::sprayfire::interfaces::FrameworkPaths" --><div class="dynheader">
-Inheritance diagram for libs\sprayfire\core\SprayFireDirectory:</div>
-<div class="dyncontent">
-<div class="center"><img src="classlibs_1_1sprayfire_1_1core_1_1_spray_fire_directory__inherit__graph.png" border="0" usemap="#libs\sprayfire\core\_spray_fire_directory_inherit__map" alt="Inheritance graph"/></div>
-<map name="libs\sprayfire\core\_spray_fire_directory_inherit__map" id="libs\sprayfire\core\_spray_fire_directory_inherit__map">
-<area shape="rect" id="node2" href="interfacelibs_1_1sprayfire_1_1interfaces_1_1_framework_paths.html" title="{libs\\sprayfire\\interfaces\\FrameworkPaths\n||+ setRootInstallationPath()\l+ getFrameworkPath()\l+ getAppPath()\l+ getFrameworkPathSubDirectory()\l+ getAppPathSubDirectory()\l}" alt="" coords="5,6,267,151"/></map>
-<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
-<table class="memberdecls">
-<tr><td colspan="2"><h2><a name="pub-static-methods"></a>
-Static Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_spray_fire_directory.html#ab2af7de6d9cd331db8f7987787bfe16f">setRootInstallationPath</a> ($rootInstallationPath)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_spray_fire_directory.html#a4b4dbb030b267e69d7ce5e87d9e1025c">getAppPath</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_spray_fire_directory.html#a6715c82ab120c337305110f306edf2d7">getAppPathSubDirectory</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_spray_fire_directory.html#abbb0c41780c1c51a709c3cd05b1a4f60">getFrameworkPath</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_spray_fire_directory.html#a08caee182a5a134d8001036108b97b9c">getFrameworkPathSubDirectory</a> ()</td></tr>
-</table>
-<hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
-<div class="textblock"><p>This class is used as a wrapper for what would otherwise be a constant in the framework.</p>
-<p>Ultimately though the methods in this class provide a very good functionality that makes it easy to easily get a framework or application directory anywhere in the framework. </p>
 
-<p>Definition at line <a class="el" href="_spray_fire_directory_8php_source.html#l00030">30</a> of file <a class="el" href="_spray_fire_directory_8php_source.html">SprayFireDirectory.php</a>.</p>
-</div><hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a4b4dbb030b267e69d7ce5e87d9e1025c"></a><!-- doxytag: member="libs::sprayfire::core::SprayFireDirectory::getAppPath" ref="a4b4dbb030b267e69d7ce5e87d9e1025c" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">static libs\sprayfire\core\<a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_spray_fire_directory.html#a4b4dbb030b267e69d7ce5e87d9e1025c">SprayFireDirectory::getAppPath</a> </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td><code> [static]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-<dl class="return"><dt><b>Returns:</b></dt><dd>string </dd></dl>
+    <li class="footer">Generated on Fri Dec 23 2011 18:16:43 for SprayFire by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
+   </ul>
+ </div>
 
-<p>Implements <a class="el" href="interfacelibs_1_1sprayfire_1_1interfaces_1_1_framework_paths.html#accc8bd0b28d0568910c9c9d885f70319">libs\sprayfire\interfaces\FrameworkPaths</a>.</p>
-
-<p>Definition at line <a class="el" href="_spray_fire_directory_8php_source.html#l00059">59</a> of file <a class="el" href="_spray_fire_directory_8php_source.html">SprayFireDirectory.php</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a6715c82ab120c337305110f306edf2d7"></a><!-- doxytag: member="libs::sprayfire::core::SprayFireDirectory::getAppPathSubDirectory" ref="a6715c82ab120c337305110f306edf2d7" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">static libs\sprayfire\core\<a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_spray_fire_directory.html#a6715c82ab120c337305110f306edf2d7">SprayFireDirectory::getAppPathSubDirectory</a> </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td><code> [static]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-<p>Converts a variable list of strings into a directory separated path that will be interpreted to be a sub directory in the ROOT_PATH/app/ dir</p>
-<dl class="params"><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramtype">string</td><td class="paramname">$subDirectory</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>string </dd></dl>
-
-<p>Implements <a class="el" href="interfacelibs_1_1sprayfire_1_1interfaces_1_1_framework_paths.html#a05fad05cd5efa4ee299c1bc49a7312be">libs\sprayfire\interfaces\FrameworkPaths</a>.</p>
-
-<p>Definition at line <a class="el" href="_spray_fire_directory_8php_source.html#l00070">70</a> of file <a class="el" href="_spray_fire_directory_8php_source.html">SprayFireDirectory.php</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="abbb0c41780c1c51a709c3cd05b1a4f60"></a><!-- doxytag: member="libs::sprayfire::core::SprayFireDirectory::getFrameworkPath" ref="abbb0c41780c1c51a709c3cd05b1a4f60" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">static libs\sprayfire\core\<a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_spray_fire_directory.html#abbb0c41780c1c51a709c3cd05b1a4f60">SprayFireDirectory::getFrameworkPath</a> </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td><code> [static]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-<dl class="return"><dt><b>Returns:</b></dt><dd>string </dd></dl>
-
-<p>Implements <a class="el" href="interfacelibs_1_1sprayfire_1_1interfaces_1_1_framework_paths.html#a3b7f563e49398429f345f40bd5c49e15">libs\sprayfire\interfaces\FrameworkPaths</a>.</p>
-
-<p>Definition at line <a class="el" href="_spray_fire_directory_8php_source.html#l00082">82</a> of file <a class="el" href="_spray_fire_directory_8php_source.html">SprayFireDirectory.php</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a08caee182a5a134d8001036108b97b9c"></a><!-- doxytag: member="libs::sprayfire::core::SprayFireDirectory::getFrameworkPathSubDirectory" ref="a08caee182a5a134d8001036108b97b9c" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">static libs\sprayfire\core\<a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_spray_fire_directory.html#a08caee182a5a134d8001036108b97b9c">SprayFireDirectory::getFrameworkPathSubDirectory</a> </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td><code> [static]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-<p>Converts a variable list of strings into a directory separated path that will be interpreted as a sub directory in the ROOT_PATH/libs/sprayfire dir</p>
-<dl class="params"><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramtype">string</td><td class="paramname">$subDirectory</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>string </dd></dl>
-
-<p>Implements <a class="el" href="interfacelibs_1_1sprayfire_1_1interfaces_1_1_framework_paths.html#ae75d44d2746f84690f49f7b7d4ab141a">libs\sprayfire\interfaces\FrameworkPaths</a>.</p>
-
-<p>Definition at line <a class="el" href="_spray_fire_directory_8php_source.html#l00093">93</a> of file <a class="el" href="_spray_fire_directory_8php_source.html">SprayFireDirectory.php</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ab2af7de6d9cd331db8f7987787bfe16f"></a><!-- doxytag: member="libs::sprayfire::core::SprayFireDirectory::setRootInstallationPath" ref="ab2af7de6d9cd331db8f7987787bfe16f" args="($rootInstallationPath)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">static libs\sprayfire\core\<a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_spray_fire_directory.html#ab2af7de6d9cd331db8f7987787bfe16f">SprayFireDirectory::setRootInstallationPath</a> </td>
-          <td>(</td>
-          <td class="paramtype">$&#160;</td>
-          <td class="paramname"><em>rootInstallationPath</em></td><td>)</td>
-          <td><code> [static]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-<dl class="params"><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramtype">string</td><td class="paramname">$rootInstallationPath</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Implements <a class="el" href="interfacelibs_1_1sprayfire_1_1interfaces_1_1_framework_paths.html#a486e387dedc86642e8aa3e43ecd425d2">libs\sprayfire\interfaces\FrameworkPaths</a>.</p>
-
-<p>Definition at line <a class="el" href="_spray_fire_directory_8php_source.html#l00050">50</a> of file <a class="el" href="_spray_fire_directory_8php_source.html">SprayFireDirectory.php</a>.</p>
-
-</div>
-</div>
-<hr/>The documentation for this class was generated from the following file:<ul>
-<li>/Library/WebServer/Documents/sprayfire/libs/sprayfire/core/<a class="el" href="_spray_fire_directory_8php_source.html">SprayFireDirectory.php</a></li>
-</ul>
-</div><!-- contents -->
-<!-- window showing the filter options -->
-<div id="MSearchSelectWindow"
-     onmouseover="return searchBox.OnSearchSelectShow()"
-     onmouseout="return searchBox.OnSearchSelectHide()"
-     onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a></div>
-
-<!-- iframe showing the search results (closed by default) -->
-<div id="MSearchResultsWindow">
-<iframe src="javascript:void(0)" frameborder="0" 
-        name="MSearchResults" id="MSearchResults">
-</iframe>
-</div>
-
-
-
-<hr class="footer"/><address class="footer"><small>
-Generated on Sat Dec 17 2011 00:29:34 for SprayFire by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.7.6.1
-</small></address>
 
 </body>
 </html>

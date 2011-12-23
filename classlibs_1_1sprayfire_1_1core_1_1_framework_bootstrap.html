@@ -105,7 +105,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="header">
   <div class="summary">
-<a href="#pub-methods">Public Member Functions</a>  </div>
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a>  </div>
   <div class="headertitle">
 <div class="title">libs\sprayfire\core\FrameworkBootstrap Class Reference</div>  </div>
 </div><!--header-->
@@ -122,6 +124,21 @@ Inheritance diagram for libs\sprayfire\core\FrameworkBootstrap:</div>
 Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_framework_bootstrap.html#a346a32cb8546906939738b0d59c8c596">__construct</a> (\libs\sprayfire\interfaces\Configuration $FrameworkConfiguration)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_framework_bootstrap.html#abded073c02d9e5c00afd578e23901ff4">runBootstrap</a> ()</td></tr>
+<tr><td colspan="2"><h2><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_framework_bootstrap.html#a72dd553b51d5ee94d55ed813a620279e">runAppBootstrap</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_framework_bootstrap.html#af06629d04522f2b3fb6d7f8e0d7ecbc4">getAppBootstrapObjects</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_framework_bootstrap.html#afd77b63de6c4994467559e46fa6d4f9d">getListOfBootstrapFiles</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_framework_bootstrap.html#a38a3a9c7c599b94627936914e91383f6">getAppBootstrapNamespace</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_framework_bootstrap.html#a7523f5b26c54727b5e5fe73ac3cb6b3b">removeFileExtension</a> (array &amp;$files)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_framework_bootstrap.html#a8df7df0aca7cbc5e2f6e9954d08f3b3b">removeInvalidBootstrappers</a> (array &amp;$classes)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_framework_bootstrap.html#a38524a576bb282e8f2812d1448b068b6">implementsBootstrapperInterface</a> ($className)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_framework_bootstrap.html#ab9b93d2e1d2676de09a5ab1f468754dc">createBootstrapperObjects</a> (array $classes)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_framework_bootstrap.html#a6576d5eda11cbe014a4bd0fe40ef3020">runAllBootstraps</a> (array $objects)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_framework_bootstrap.html#a2e8bd1795adaf8f239d3aa4f118abcec">runPostAppBootstrap</a> ()</td></tr>
+<tr><td colspan="2"><h2><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_framework_bootstrap.html#a1f022532fe23726a366f99a912b2a8a6">$FrameworkConfiguration</a></td></tr>
 </table>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>The framework's default bootstrap, is primarily responsible for writing the default values in the CoreConfiguration object and running each bootstrap object located in the app/bootstrap folder. </p>
@@ -154,6 +171,221 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="ab9b93d2e1d2676de09a5ab1f468754dc"></a><!-- doxytag: member="libs::sprayfire::core::FrameworkBootstrap::createBootstrapperObjects" ref="ab9b93d2e1d2676de09a5ab1f468754dc" args="(array $classes)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">libs\sprayfire\core\<a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_framework_bootstrap.html#ab9b93d2e1d2676de09a5ab1f468754dc">FrameworkBootstrap::createBootstrapperObjects</a> </td>
+          <td>(</td>
+          <td class="paramtype">array $&#160;</td>
+          <td class="paramname"><em>classes</em></td><td>)</td>
+          <td><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Will turn a list of bootstrap files into bootstrap objects, raady to have bootstrap methods invoked on them.</p>
+<p>Since we already know the bootstrapper objects implement the correct interface we simply need to creat an array of objects, being sure to pass in the configuration object.</p>
+<dl class="params"><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">array</td><td class="paramname">$classes</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>array </dd></dl>
+
+<p>Definition at line <a class="el" href="_framework_bootstrap_8php_source.html#l00201">201</a> of file <a class="el" href="_framework_bootstrap_8php_source.html">FrameworkBootstrap.php</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a38a3a9c7c599b94627936914e91383f6"></a><!-- doxytag: member="libs::sprayfire::core::FrameworkBootstrap::getAppBootstrapNamespace" ref="a38a3a9c7c599b94627936914e91383f6" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">libs\sprayfire\core\<a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_framework_bootstrap.html#a38a3a9c7c599b94627936914e91383f6">FrameworkBootstrap::getAppBootstrapNamespace</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>This method will return the proper namespace that should be implemented by bootstrap objects.</p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>string </dd></dl>
+<p>This somewhat hacky method is used to help facilitate unit testing on the bootstrap object. Damn you global scope, damn you! </p>
+
+<p>Definition at line <a class="el" href="_framework_bootstrap_8php_source.html#l00118">118</a> of file <a class="el" href="_framework_bootstrap_8php_source.html">FrameworkBootstrap.php</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af06629d04522f2b3fb6d7f8e0d7ecbc4"></a><!-- doxytag: member="libs::sprayfire::core::FrameworkBootstrap::getAppBootstrapObjects" ref="af06629d04522f2b3fb6d7f8e0d7ecbc4" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">libs\sprayfire\core\<a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_framework_bootstrap.html#af06629d04522f2b3fb6d7f8e0d7ecbc4">FrameworkBootstrap::getAppBootstrapObjects</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Will return an array of bootstrap objects that properly implement the framework bootstrapper interface.</p>
+<p>If no files are found in the app/bootstrap directory or the objects in that directory do not implement the proper interface the array of objects may be an empty array. Either way, an array will be returned.</p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>array </dd></dl>
+
+<p>Definition at line <a class="el" href="_framework_bootstrap_8php_source.html#l00072">72</a> of file <a class="el" href="_framework_bootstrap_8php_source.html">FrameworkBootstrap.php</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="afd77b63de6c4994467559e46fa6d4f9d"></a><!-- doxytag: member="libs::sprayfire::core::FrameworkBootstrap::getListOfBootstrapFiles" ref="afd77b63de6c4994467559e46fa6d4f9d" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">libs\sprayfire\core\<a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_framework_bootstrap.html#afd77b63de6c4994467559e46fa6d4f9d">FrameworkBootstrap::getListOfBootstrapFiles</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Returns the list of files stored in the app/bootstrap directory, or an empty array if there are no files stored in the directory.</p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>array </dd></dl>
+
+<p>Definition at line <a class="el" href="_framework_bootstrap_8php_source.html#l00089">89</a> of file <a class="el" href="_framework_bootstrap_8php_source.html">FrameworkBootstrap.php</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a38524a576bb282e8f2812d1448b068b6"></a><!-- doxytag: member="libs::sprayfire::core::FrameworkBootstrap::implementsBootstrapperInterface" ref="a38524a576bb282e8f2812d1448b068b6" args="($className)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">libs\sprayfire\core\<a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_framework_bootstrap.html#a38524a576bb282e8f2812d1448b068b6">FrameworkBootstrap::implementsBootstrapperInterface</a> </td>
+          <td>(</td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>className</em></td><td>)</td>
+          <td><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Will determine whether or not the given class name implements the correct interface.</p>
+<p>Note that since we are using Reflection this also checks if the class can be instantiated.</p>
+<dl class="params"><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">string</td><td class="paramname">$className</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>boolean </dd></dl>
+
+<p>Definition at line <a class="el" href="_framework_bootstrap_8php_source.html#l00175">175</a> of file <a class="el" href="_framework_bootstrap_8php_source.html">FrameworkBootstrap.php</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7523f5b26c54727b5e5fe73ac3cb6b3b"></a><!-- doxytag: member="libs::sprayfire::core::FrameworkBootstrap::removeFileExtension" ref="a7523f5b26c54727b5e5fe73ac3cb6b3b" args="(array &amp;$files)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">libs\sprayfire\core\<a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_framework_bootstrap.html#a7523f5b26c54727b5e5fe73ac3cb6b3b">FrameworkBootstrap::removeFileExtension</a> </td>
+          <td>(</td>
+          <td class="paramtype">array &amp;$&#160;</td>
+          <td class="paramname"><em>files</em></td><td>)</td>
+          <td><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Will take an array by reference and remove the '.php' file extensions on the end of those file names.</p>
+<dl class="params"><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">array</td><td class="paramname">$files</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="_framework_bootstrap_8php_source.html#l00140">140</a> of file <a class="el" href="_framework_bootstrap_8php_source.html">FrameworkBootstrap.php</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a8df7df0aca7cbc5e2f6e9954d08f3b3b"></a><!-- doxytag: member="libs::sprayfire::core::FrameworkBootstrap::removeInvalidBootstrappers" ref="a8df7df0aca7cbc5e2f6e9954d08f3b3b" args="(array &amp;$classes)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">libs\sprayfire\core\<a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_framework_bootstrap.html#a8df7df0aca7cbc5e2f6e9954d08f3b3b">FrameworkBootstrap::removeInvalidBootstrappers</a> </td>
+          <td>(</td>
+          <td class="paramtype">array &amp;$&#160;</td>
+          <td class="paramname"><em>classes</em></td><td>)</td>
+          <td><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Will remove the name of any class in the array that does not properly implement the framework's bootstrapping interface.</p>
+<dl class="params"><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">array</td><td class="paramname">$classes</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="_framework_bootstrap_8php_source.html#l00154">154</a> of file <a class="el" href="_framework_bootstrap_8php_source.html">FrameworkBootstrap.php</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6576d5eda11cbe014a4bd0fe40ef3020"></a><!-- doxytag: member="libs::sprayfire::core::FrameworkBootstrap::runAllBootstraps" ref="a6576d5eda11cbe014a4bd0fe40ef3020" args="(array $objects)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">libs\sprayfire\core\<a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_framework_bootstrap.html#a6576d5eda11cbe014a4bd0fe40ef3020">FrameworkBootstrap::runAllBootstraps</a> </td>
+          <td>(</td>
+          <td class="paramtype">array $&#160;</td>
+          <td class="paramname"><em>objects</em></td><td>)</td>
+          <td><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>An array of bootstrapper objects that should have the <a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_framework_bootstrap.html#abded073c02d9e5c00afd578e23901ff4">runBootstrap()</a> methods invoked on them.</p>
+<dl class="params"><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">array</td><td class="paramname">$objects</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="_framework_bootstrap_8php_source.html#l00215">215</a> of file <a class="el" href="_framework_bootstrap_8php_source.html">FrameworkBootstrap.php</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a72dd553b51d5ee94d55ed813a620279e"></a><!-- doxytag: member="libs::sprayfire::core::FrameworkBootstrap::runAppBootstrap" ref="a72dd553b51d5ee94d55ed813a620279e" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">libs\sprayfire\core\<a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_framework_bootstrap.html#a72dd553b51d5ee94d55ed813a620279e">FrameworkBootstrap::runAppBootstrap</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Will get a list of app boostrap objects and invoke the <a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_framework_bootstrap.html#abded073c02d9e5c00afd578e23901ff4">runBootstrap()</a> method on the list of valid objects. </p>
+
+<p>Definition at line <a class="el" href="_framework_bootstrap_8php_source.html#l00057">57</a> of file <a class="el" href="_framework_bootstrap_8php_source.html">FrameworkBootstrap.php</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="abded073c02d9e5c00afd578e23901ff4"></a><!-- doxytag: member="libs::sprayfire::core::FrameworkBootstrap::runBootstrap" ref="abded073c02d9e5c00afd578e23901ff4" args="()" -->
 <div class="memitem">
 <div class="memproto">
@@ -172,6 +404,41 @@ Public Member Functions</h2></td></tr>
 <p>Implements <a class="el" href="interfacelibs_1_1sprayfire_1_1interfaces_1_1_bootstrapper.html#a21e103a6966e44646e16f349d71ecf4e">libs\sprayfire\interfaces\Bootstrapper</a>.</p>
 
 <p>Definition at line <a class="el" href="_framework_bootstrap_8php_source.html#l00048">48</a> of file <a class="el" href="_framework_bootstrap_8php_source.html">FrameworkBootstrap.php</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2e8bd1795adaf8f239d3aa4f118abcec"></a><!-- doxytag: member="libs::sprayfire::core::FrameworkBootstrap::runPostAppBootstrap" ref="a2e8bd1795adaf8f239d3aa4f118abcec" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">libs\sprayfire\core\<a class="el" href="classlibs_1_1sprayfire_1_1core_1_1_framework_bootstrap.html#a2e8bd1795adaf8f239d3aa4f118abcec">FrameworkBootstrap::runPostAppBootstrap</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Will set constants and ini values based on the values written in CoreConfiguration after all app bootstraps have been given a chance to overwrite those values. </p>
+
+<p>Definition at line <a class="el" href="_framework_bootstrap_8php_source.html#l00225">225</a> of file <a class="el" href="_framework_bootstrap_8php_source.html">FrameworkBootstrap.php</a>.</p>
+
+</div>
+</div>
+<hr/><h2>Field Documentation</h2>
+<a class="anchor" id="a1f022532fe23726a366f99a912b2a8a6"></a><!-- doxytag: member="libs::sprayfire::core::FrameworkBootstrap::$FrameworkConfiguration" ref="a1f022532fe23726a366f99a912b2a8a6" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">libs::sprayfire::core\FrameworkBootstrap::$FrameworkConfiguration<code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="_framework_bootstrap_8php_source.html#l00035">35</a> of file <a class="el" href="_framework_bootstrap_8php_source.html">FrameworkBootstrap.php</a>.</p>
 
 </div>
 </div>
@@ -196,7 +463,7 @@ Public Member Functions</h2></td></tr>
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Dec 17 2011 00:29:34 for SprayFire by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Dec 17 2011 00:49:55 for SprayFire by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.6.1
 </small></address>
