@@ -130,6 +130,11 @@ namespace libs\sprayfire\core {
             if (\count($subDirList) === 0) {
                 return self::getAppPath();
             }
+
+            // this is here to support passing an array as the only argument
+            if (\is_array($subDirList[0])) {
+                $subDirList = $subDirList[0];
+            }
             $subDirPath = self::getSubDirectoryPath($subDirList);
             return self::getAppPath() . DS . $subDirPath;
         }
@@ -151,6 +156,11 @@ namespace libs\sprayfire\core {
             $subDirList = \func_get_args();
             if (\count($subDirList) === 0) {
                 return self::getFrameworkPath();
+            }
+
+            // this is here to support passing an array as the only argument
+            if (\is_array($subDirList[0])) {
+                $subDirList = $subDirList[0];
             }
             $subDirPath = self::getSubDirectoryPath($subDirList);
             $fullPath = self::getFrameworkPath() . DS . $subDirPath;
