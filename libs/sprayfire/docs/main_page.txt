@@ -1,0 +1,19 @@
+/** @mainpage
+ *
+ * SprayFire is a fully unit-tested, light-weight PHP framework for developers who
+ * want to make simple, secure, dynamic website content.  Some of the features built
+ * into SprayFire will include:
+ *
+ * - Full support of PHP 5.3+, most importantly including the use of namespaces
+ * - Prepared statements for all CRUD functionality
+ * - Automatic escaping of output on responses
+ * - A simple but flexible templating system using built in PHP functionality
+ * - An interface driven, fully extensible API allowing virtually any component of
+ * the framework to be implemented at the application's needs
+ * - A completely domain driven Model interpretation utilizing a custom-built data
+ * persistence solution.
+ * - Easy support for outside plugins and libraries that support PHP 5.3+.
+ * - A reimagining of the normal "MVC" design pattern into something we here at SprayFire
+ * like to call "MRC", or Model-Response-Controller.  Please check out the wiki for
+ * more information on exactly how SprayFire interprets this design pattern.
+ */
