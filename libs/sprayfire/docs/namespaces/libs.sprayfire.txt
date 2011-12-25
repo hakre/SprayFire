@@ -1,0 +1,4 @@
+/** @namespace libs.sprayfire
+ * @brief Holds all framework related interfaces, abstract classes and concrete
+ * implementations.
+ */
