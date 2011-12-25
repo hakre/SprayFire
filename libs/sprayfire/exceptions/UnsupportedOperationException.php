@@ -22,11 +22,6 @@
  * @copyright Copyright (c) 2011, Charles Sprayberry
  */
 
-/**
- * @namespace libs.sprayfire.exceptions
- * @brief Holds the various exceptions that may be thrown by the framework, in
- * addition to PHPs pre-defined exceptions.
- */
 namespace libs\sprayfire\exceptions;
 use \RuntimeException as RuntimeException;
 
