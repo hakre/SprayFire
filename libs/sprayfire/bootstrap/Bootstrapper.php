@@ -1,43 +1,51 @@
 <?php
 
 /**
- * SprayFire is a custom built framework intended to ease the development
- * of websites with PHP 5.3.
+ * @file
+ * @brief Holds an interface for implementing objects that are responsible for framework
+ * or app bootstrap functions.
  *
- * SprayFire makes use of namespaces, a custom-built ORM layer, a completely
- * object oriented approach and minimal invasiveness so you can make the framework
- * do what YOU want to do.  Some things we take seriously over here at SprayFire
- * includes clean, readable source, completely unit tested implementations and
- * not polluting the global scope.
+ * @detials
+ * SprayFire is a fully unit-tested, light-weight PHP framework for developers who
+ * want to make simple, secure, dynamic website content.
+ *
+ * SprayFire repository: http://www.github.com/cspray/SprayFire/
+ *
+ * SprayFire wiki: http://www.github.com/cspray/SprayFire/wiki/
+ *
+ * SprayFire API Documentation: http://www.cspray.github.com/SprayFire/
  *
  * SprayFire is released under the Open-Source Initiative MIT license.
+ * OSI MIT License <http://www.opensource.org/licenses/mit-license.php>
  *
  * @author Charles Sprayberry cspray at gmail dot com
- * @copyright Copyright (c) 2011, Charles Sprayberry OSI MIT License <http://www.opensource.org/licenses/mit-license.php>
+ * @copyright Copyright (c) 2011, Charles Sprayberry
  */
 
 namespace libs\sprayfire\bootstrap;
 
-/**
- * An interface implemented by all framework and app bootstrapping objects.
- */
-interface Bootstrapper {
-
     /**
-     * Every bootstrapper should be prepared to accept a configuration object, as
-     * many of the responsibilities for the bootstrapping object is to ensure
-     * configuration values are properly set.
-     *
-     * @param Configuration $ConfigurationObject
+     * @brief An interface implemented by all framework and app bootstrapping objects.
      */
-    public function __construct(\libs\sprayfire\config\Configuration $ConfigurationObject);
+    interface Bootstrapper {
 
-    /**
-     * A method that should do whatever bootstrapping features are needed for that
-     * particular bootstrap.
-     */
-    public function runBootstrap();
+        /**
+         * @brief Every bootstrapper should be prepared to accept a configuration object, as
+         * many of the responsibilities for the bootstrapping object is to ensure
+         * configuration values are properly set.
+         *
+         * @param $ConfigurationObject libs.sprayfire.config.Configuration
+         */
+        public function __construct(\libs\sprayfire\config\Configuration $ConfigurationObject);
 
-}
+        /**
+         * @brief A method that should do whatever bootstrapping features are needed
+         * for that particular bootstrap.
+         */
+        public function runBootstrap();
 
-// End Bootstrapper
+    }
+
+    // End Bootstrapper
+
+// End libs.sprayfire.
