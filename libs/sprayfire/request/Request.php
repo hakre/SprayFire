@@ -8,7 +8,7 @@
  * @details
  * SprayFire is a fully unit-tested, light-weight PHP framework for developers who
  * want to make simple, secure, dynamic website content.
- * 
+ *
  * SprayFire repository: http://www.github.com/cspray/SprayFire/
  *
  * SprayFire wiki: http://www.github.com/cspray/SprayFire/wiki/
@@ -20,13 +20,6 @@
  *
  * @author Charles Sprayberry cspray at gmail dot com
  * @copyright Copyright (c) 2011, Charles Sprayberry
- */
-
-/**
- * @namespace libs.sprayfire.request
- * @brief Contains all classes and interfaces needed to parse the requested URI
- * and manage the HTTP data, both headers and normal GET/POST data, that get passed
- * in each request.
  */
 
 namespace libs\sprayfire\request;

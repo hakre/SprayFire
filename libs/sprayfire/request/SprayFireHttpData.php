@@ -22,12 +22,6 @@
  * @copyright Copyright (c) 2011, Charles Sprayberry
  */
 
-/**
- * @namespace libs.sprayfire.request
- * @brief Contains all classes and interfaces needed to parse the requested URI
- * and manage the HTTP data, both headers and normal GET/POST data, that get passed
- * in each request.
- */
 namespace libs\sprayfire\request;
 use \ArrayIterator as ArrayIterator;
 use \IteratorAggregate as IteratorAggregate;
