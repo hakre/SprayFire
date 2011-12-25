@@ -22,10 +22,6 @@
  * @copyright Copyright (c) 2011, Charles Sprayberry
  */
 
-/**
- * @namespace libs.sprayfire.datastructs
- * @brief Holds the API used by the framework to store and transfer sets of data.
- */
 namespace libs\sprayfire\datastructs;
 use \IteratorAggregate as IteratorAggregate;
 use \Countable as Countable;
