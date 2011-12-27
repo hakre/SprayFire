@@ -11,4 +11,4 @@
 
     $ClassLoader = new \SprayFire\Core\ClassLoader();
     $ClassLoader->registerNamespaceDirectory('SprayFire', \SprayFire\Core\Directory::getLibsPath());
-    \spl_autoload(array($ClassLoader, 'loadClass'));
+    \spl_autoload_register(array($ClassLoader, 'loadClass'));
