@@ -74,7 +74,3 @@ use libs\sprayfire\core\Object as Object;
         }
 
     }
-
-    // End CoreObject
-
-// End libs.sprayfire.core

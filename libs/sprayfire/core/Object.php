@@ -57,7 +57,3 @@ namespace libs\sprayfire\core;
         public function __toString();
 
     }
-
-    // End Object
-
-// End libs.sprayfire.core.Object

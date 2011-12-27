@@ -200,7 +200,3 @@ namespace libs\sprayfire\core;
         }
 
     }
-
-    // End SprayFireDirectory
-
-// End libs.sprayfire.core

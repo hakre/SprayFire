@@ -67,7 +67,3 @@ use libs\sprayfire\core\CoreObject as CoreObject;
         }
 
     }
-
-    // End ClassLoader
-
-// libs.sprayfire.core
