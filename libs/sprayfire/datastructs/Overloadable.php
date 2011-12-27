@@ -67,7 +67,3 @@ namespace libs\sprayfire\datastructs;
         public function __unset($key);
 
     }
-
-    // End Overloadable
-
-// End libs.sprayfire.datastructs
