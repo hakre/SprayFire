@@ -22,7 +22,7 @@
  * @copyright Copyright (c) 2011, Charles Sprayberry
  */
 
-namespace libs\sprayfire\config;
+namespace SprayFire\Config;
 
 /**
  * @brief Parses a JSON configuration file into a chainable object, either by object
@@ -56,7 +56,7 @@ namespace libs\sprayfire\config;
  * echo $Config->app->{'development-settings'}->{'display-errors'};   // 1
  * </pre>
  */
-class JsonConfig extends \libs\sprayfire\datastructs\ImmutableStorage implements \libs\sprayfire\config\Configuration {
+class JsonConfig extends \SprayFire\Datastructs\ImmutableStorage implements \SprayFire\Config\Configuration {
 
     /**
      * @brief Holds the SplFileInfo object passed in the constructor.
@@ -89,7 +89,7 @@ class JsonConfig extends \libs\sprayfire\datastructs\ImmutableStorage implements
     private function getDecodedJson() {
         $decodedJson = \json_decode($this->getFileContents(), true);
         $lastJsonError = \json_last_error();
-        if ($lastJsonError !== JSON_ERROR_NONE || \is_null($decodedJson)) {
+        if ($lastJsonError !== \JSON_ERROR_NONE || \is_null($decodedJson)) {
             throw new \InvalidArgumentException('There was an error parsing the JSON configuration file passed.  JSON_error_code := ' . $lastJsonError);
         }
         return $decodedJson;

@@ -22,7 +22,7 @@
  * @copyright Copyright (c) 2011, Charles Sprayberry
  */
 
-namespace libs\sprayfire\config;
+namespace SprayFire\Config;
 
 /**
  * @brief An interface that requires implementing objects to have data accessible
@@ -33,6 +33,6 @@ namespace libs\sprayfire\config;
  * a constructor depedency should be worked with, no new data to be set or
  * existing data to be changed or removed.
  */
-interface Configuration extends \ArrayAccess, \libs\sprayfire\datastructs\Overloadable {
+interface Configuration extends \ArrayAccess, \SprayFire\Datastructs\Overloadable {
 
 }
