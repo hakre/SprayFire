@@ -22,12 +22,18 @@
  */
 class MutableStorageTest extends PHPUnit_Framework_TestCase {
 
+    public function setUp() {
+        if (!class_exists('TestObject')) {
+            include 'TestObject.php';
+        }
+    }
+
     public function testMutableStorage() {
         $data = array();
         $data['key-one'] = 'value';
         $data['key-two'] = 'another value';
         $data['key-three'] = array('one' => '1');
-        $Storage = new libs\sprayfire\datastructs\MutableStorage($data, false);
+        $Storage = new \SprayFire\Datastructs\MutableStorage($data, false);
 
         $this->assertSame(\count($Storage), \count($data));
 
@@ -63,16 +69,16 @@ class MutableStorageTest extends PHPUnit_Framework_TestCase {
             )
         );
 
-        $Storage = new libs\sprayfire\datastructs\MutableStorage($data);
+        $Storage = new \SprayFire\Datastructs\MutableStorage($data);
         $this->assertSame('value 1', $Storage->{'key-one'}->one);
     }
 
     public function testNullArrayKeyStorage() {
         $data = array();
-        $Storage = new libs\sprayfire\datastructs\MutableStorage($data);
+        $Storage = new \SprayFire\Datastructs\MutableStorage($data);
 
-        $First = new \tests\helpers\TestObject();
-        $Second = new \tests\helpers\TestObject();
+        $First = new TestObject();
+        $Second = new TestObject();
 
         $Storage[] = $First;
         $Storage[] = $Second;
@@ -95,7 +101,7 @@ class MutableStorageTest extends PHPUnit_Framework_TestCase {
 
 // End MutableStorageTest
 
-class CrappyMutableStorage extends libs\sprayfire\datastructs\MutableStorage {
+class CrappyMutableStorage extends \SprayFire\Datastructs\MutableStorage {
     protected function convertDataDeep(array $data) {
         return null;
     }
