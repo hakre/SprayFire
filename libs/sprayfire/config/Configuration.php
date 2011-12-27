@@ -2,8 +2,8 @@
 
 /**
  * @file
- * @brief Holds an interface that requires the injection of a SplFileInfo object
- * representing the configuration info.
+ * @brief Holds an interface that allows for the retrieval of data from an object
+ * through array or object notation.
  *
  * @details
  * SprayFire is a fully unit-tested, light-weight PHP framework for developers who
@@ -33,9 +33,13 @@ use \SplFileInfo as SplFileInfo;
 use libs\sprayfire\datastructs\Overloadable as Overloadable;
 
     /**
-     * @brief An interface that requires implementing objects to accept a SplFileInfo
-     * object representing a configuration file and that the values in that configuration
-     * file should be accessible through object or array notation.
+     * @brief An interface that requires implementing objects to have data accessible
+     * through array access and object notation.
+     *
+     * @details
+     * Implementations of this interface should be immutable.  Only data passed in
+     * a constructor depedency should be worked with, no new data to be set or
+     * existing data to be changed or removed.
      */
     interface Configuration extends ArrayAccess, Overloadable {
 
