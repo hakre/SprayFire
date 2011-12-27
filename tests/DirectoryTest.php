@@ -37,10 +37,6 @@ class SprayFireDirectoryTest extends PHPUnit_Framework_TestCase {
 
     public function setUp() {
 
-        // we are also testing that the subdirectory path will return the correct path if
-        // there are no arguments passed
-        $this->originalAppPath = \SprayFire\Core\Directory::getAppPath();
-
         $this->installPath = \dirname(__DIR__);
         $libsPath = $this->installPath . '/tests/mockframework/libs';
         $appPath = $this->installPath . '/tests/mockframework/app';
@@ -151,6 +147,18 @@ class SprayFireDirectoryTest extends PHPUnit_Framework_TestCase {
         $subDir = array('config', 'xml', 'configuration-test.xml');
         $actual = \SprayFire\Core\Directory::getAppPath($subDir);
         $this->assertSame($expected, $actual);
+    }
+
+    public function tearDown() {
+        \SprayFire\Core\Directory::setInstallPath(null);
+        \SprayFire\Core\Directory::setLibsPath(null);
+        \SprayFire\Core\Directory::setAppPath(null);
+        \SprayFire\Core\Directory::setLogsPath(null);
+
+        $this->assertNull(\SprayFire\Core\Directory::getInstallPath());
+        $this->assertNull(\SprayFire\Core\Directory::getLibsPath());
+        $this->assertNull(\SprayFire\Core\Directory::getAppPath());
+        $this->assertNull(\SprayFire\Core\Directory::getLogsPath());
     }
 
 }
