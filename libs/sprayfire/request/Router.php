@@ -45,15 +45,6 @@ use libs\sprayfire\logger\Logger as Logger;
     interface Router {
 
         /**
-         * @brief Requires a libs.sprayfire.config.Configuration object to be injected;
-         * this object should store the necessary routing details to be able to
-         * successfully create a RoutedUri.
-         *
-         * @param $RoutesConfig libs.sprayfire.config.Configuration
-         */
-        public function __construct(Configuration $RoutesConfig, Logger $Log);
-
-        /**
          * @brief Should return a RoutedUri that is mapped off of the Uri object
          * being passed.
          *
