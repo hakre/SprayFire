@@ -1,0 +1,5 @@
+/**
+ * @namespace libs.sprayfire.config
+ * @brief Holds interfaces and classes that convert configuration information into
+ * something usable for the application and framework.
+ */

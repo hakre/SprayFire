@@ -22,11 +22,6 @@
  * @copyright Copyright (c) 2011, Charles Sprayberry
  */
 
-/**
- * @namespace libs.sprayfire.config
- * @brief Holds interfaces and classes that convert configuration information into
- * something usable for the application and framework.
- */
 namespace libs\sprayfire\config;
 use \ArrayAccess as ArrayAccess;
 use \SplFileInfo as SplFileInfo;
