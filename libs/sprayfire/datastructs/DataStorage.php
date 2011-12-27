@@ -235,7 +235,3 @@ use libs\sprayfire\core\CoreObject as CoreObject;
         abstract protected function removeKey($key);
 
     }
-
-    // End DataStorage
-
-// End libs.sprayfire.datastructs

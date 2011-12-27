@@ -114,7 +114,3 @@ use libs\sprayfire\datastructs\DataStorage as DataStorage;
         }
 
     }
-
-    // End MutableStorage
-
-// End libs.sprayfire.datastructs
