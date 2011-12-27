@@ -97,7 +97,7 @@ class SprayFireRouter extends \SprayFire\Core\CoreObject implements \SprayFire\R
      *
      * @param $RoutesConfig libs.sprayfire.config.Configuration
      */
-    public function __construct(\SprayFire\Config\Configuration $RoutesConfig, \SsprayFire\Logger\Logger $Log) {
+    public function __construct(\SprayFire\Config\Configuration $RoutesConfig, \SprayFire\Logger\Log $Log) {
         $this->RoutesConfig = $RoutesConfig;
         $this->Log = $Log;
         if (!isset($RoutesConfig->defaults->controller)) {

@@ -22,13 +22,13 @@
  * @copyright Copyright (c) 2011, Charles Sprayberry
  */
 
-namespace libs\sprayfire\request;
+namespace SprayFire\Request;
 
 /**
  * @brief A base implementation to convert a URI into the appropriate fragments,
  * will also urldecode() the original URI passed.
  */
-class BaseUri extends \libs\sprayfire\core\CoreObject implements \libs\sprayfire\request\Uri {
+class BaseUri extends \SprayFire\Core\CoreObject implements \SprayFire\Request\Uri {
 
     /**
      * Holds the original, unaltered URI passed in the constructor.
@@ -88,7 +88,7 @@ class BaseUri extends \libs\sprayfire\core\CoreObject implements \libs\sprayfire
         $path = $parsedUri['path'];
         $path = \trim($path, '/');
         $explodedPath = \explode('/', $path);
-        if ($explodedPath[0] === \basename(\ROOT_PATH)) {
+        if ($explodedPath[0] === \basename(\SprayFire\Core\Directory::getInstallPath())) {
             unset($explodedPath[0]);
         }
         return \array_values($explodedPath);
@@ -113,15 +113,15 @@ class BaseUri extends \libs\sprayfire\core\CoreObject implements \libs\sprayfire
         $parameters = 'parameters';
 
         if (empty($uriFragments) || empty($uriFragments[0])) {
-            $parsedFragments[$controller] = \libs\sprayfire\request\Uri::DEFAULT_CONTROLLER;
-            $parsedFragments[$action] = \libs\sprayfire\request\Uri::DEFAULT_ACTION;
+            $parsedFragments[$controller] = \SprayFire\Request\Uri::DEFAULT_CONTROLLER;
+            $parsedFragments[$action] = \SprayFire\Request\Uri::DEFAULT_ACTION;
             $parsedFragments[$parameters] = array();
             return $parsedFragments;
         }
 
         if ($this->isParameterString($uriFragments[0])) {
-            $parsedFragments[$controller] = \libs\sprayfire\request\Uri::DEFAULT_CONTROLLER;
-            $parsedFragments[$action] = \libs\sprayfire\request\Uri::DEFAULT_ACTION;
+            $parsedFragments[$controller] = \SprayFire\Request\Uri::DEFAULT_CONTROLLER;
+            $parsedFragments[$action] = \libs\SprayFire\Request\Uri::DEFAULT_ACTION;
             $parsedFragments[$parameters] = $this->removeParameterMarker($uriFragments);
             return $parsedFragments;
         }
@@ -129,13 +129,13 @@ class BaseUri extends \libs\sprayfire\core\CoreObject implements \libs\sprayfire
         $parsedFragments[$controller] = \array_shift($uriFragments);
 
         if (empty($uriFragments) || empty($uriFragments[0])) {
-            $parsedFragments[$action] = \libs\sprayfire\request\Uri::DEFAULT_ACTION;
+            $parsedFragments[$action] = \SprayFire\Request\Uri::DEFAULT_ACTION;
             $parsedFragments[$parameters] = array();
             return $parsedFragments;
         }
 
         if ($this->isParameterString($uriFragments[0])) {
-            $parsedFragments[$action] = \libs\sprayfire\request\Uri::DEFAULT_ACTION;
+            $parsedFragments[$action] = \SprayFire\Request\Uri::DEFAULT_ACTION;
             $parsedFragments[$parameters] = $this->removeParameterMarker($uriFragments);
             return $parsedFragments;
         }

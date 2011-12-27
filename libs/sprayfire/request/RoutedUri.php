@@ -22,14 +22,14 @@
  * @copyright Copyright (c) 2011, Charles Sprayberry
  */
 
-namespace libs\sprayfire\request;
+namespace SprayFire\Request;
 
 /**
  * @brief An extension of the libs.sprayfire.request.Uri interface to allow
  * for the setting of the original URI string used to map the RoutedUri object
  * created and a means to retrieve the mapped URI string.
  */
-interface RoutedUri extends \libs\sprayfire\request\Uri {
+interface RoutedUri extends \SprayFire\Request\Uri {
 
     /**
      * @return The URI string that was passed in this objects contructor
