@@ -47,7 +47,3 @@ use libs\sprayfire\request\Uri as Uri;
         public function setOriginalUri($uri);
 
     }
-
-    // End RoutedUri
-
-// End libs.sprayfire.request

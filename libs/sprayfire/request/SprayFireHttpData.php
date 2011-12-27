@@ -49,7 +49,3 @@ use libs\sprayfire\datastructs\MutableStorage as MutableStorage;
         }
 
     }
-
-    // End SprayFireHttpData
-
-// End libs.sprayfire

@@ -70,7 +70,3 @@ use libs\sprayfire\request\RoutedUri as RoutedUri;
         }
 
     }
-
-    // End SprayFireUri
-
-// End libs.sprayfire

@@ -54,7 +54,3 @@ use libs\sprayfire\logger\Logger as Logger;
         public function getRoutedUri(Uri $Uri);
 
     }
-
-    // End Router
-
-// End libs.sprayfire.request

@@ -49,7 +49,3 @@ use libs\sprayfire\request\HttpDataContainer as HttpDataContainer;
         public function getHttpDataContainer();
 
     }
-
-    // End Request
-
-// End libs.sprayfire

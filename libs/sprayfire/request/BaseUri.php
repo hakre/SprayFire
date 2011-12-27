@@ -231,7 +231,3 @@ use libs\sprayfire\request\Uri as Uri;
         }
 
     }
-
-    // End BaseUri
-
-// End libs.sprayfire.request

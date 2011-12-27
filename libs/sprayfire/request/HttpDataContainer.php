@@ -62,7 +62,3 @@ use libs\sprayfire\request\HttpData as HttpData;
         public function getFilesData();
 
     }
-
-    // End HttpDataContainer
-
-// End libs.sprayfire

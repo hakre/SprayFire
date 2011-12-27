@@ -81,7 +81,3 @@ namespace libs\sprayfire\request;
         public function getParameters();
 
     }
-
-    // End Uri
-
-// End libs.sprayfire.request
