@@ -22,11 +22,16 @@
  */
 class BaseUriTest extends PHPUnit_Framework_TestCase {
 
-    public function testBaseUriWithNoPath() {
-        $originalUri = '/sprayfire/';
-        $Uri = new \SprayFire\Request\BaseUri($originalUri);
+    private $baseDir;
 
-        $this->assertSame($originalUri, $Uri->getOriginalUri());
+    public function setUp() {
+        $this->baseDir = '/' . \basename(\dirname(__DIR__)) . '/';
+    }
+
+    public function testBaseUriWithNoPath() {
+        $Uri = new \SprayFire\Request\BaseUri($this->baseDir);
+
+        $this->assertSame($this->baseDir, $Uri->getOriginalUri());
         $this->assertSame(\SprayFire\Request\Uri::DEFAULT_CONTROLLER, $Uri->getController());
         $this->assertSame(\SprayFire\Request\Uri::DEFAULT_ACTION, $Uri->getAction());
         $this->assertSame(array(), $Uri->getParameters());
@@ -44,7 +49,7 @@ class BaseUriTest extends PHPUnit_Framework_TestCase {
 
     public function testBaseUriOriginalControllerActionParam() {
 
-        $originalUri = '/sprayfire/controller/action/param1';
+        $originalUri = $this->baseDir . 'controller/action/param1';
         $Uri = new \SprayFire\Request\BaseUri($originalUri);
 
         $this->assertSame($originalUri, $Uri->getOriginalUri());
@@ -66,7 +71,7 @@ class BaseUriTest extends PHPUnit_Framework_TestCase {
 
     public function testBaseUriWithMarkedParametersNoAction() {
 
-        $originalUri = '/sprayfire/pages/:param1/:param2';
+        $originalUri = $this->baseDir . 'pages/:param1/:param2';
         $Uri = new \SprayFire\Request\BaseUri($originalUri);
 
         $this->assertSame($originalUri, $Uri->getOriginalUri());
@@ -78,7 +83,7 @@ class BaseUriTest extends PHPUnit_Framework_TestCase {
 
     public function testBaseUriWithMarkedParametersOnly() {
 
-        $originalUri = '/sprayfire/:tech/:sprayfire-is-the-best';
+        $originalUri = $this->baseDir . ':tech/:sprayfire-is-the-best';
         $Uri = new \SprayFire\Request\BaseUri($originalUri);
 
         $this->assertSame($originalUri, $Uri->getOriginalUri());
