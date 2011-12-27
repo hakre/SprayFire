@@ -22,7 +22,7 @@
  * @copyright Copyright (c) 2011, Charles Sprayberry
  */
 
-namespace libs\sprayfire\bootstrap;
+namespace SprayFire\Bootstrap;
 
 /**
  * @brief An interface implemented by all framework and app bootstrapping objects.
