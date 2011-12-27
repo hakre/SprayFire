@@ -22,7 +22,7 @@
  * @copyright Copyright (c) 2011, Charles Sprayberry
  */
 
-namespace \SprayFire\Datastructs;
+namespace SprayFire\Datastructs;
 
 /**
  * @brief A simple data storage object that holds key/value pairs and allows additional
