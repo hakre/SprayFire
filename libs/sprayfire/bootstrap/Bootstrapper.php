@@ -45,7 +45,3 @@ namespace libs\sprayfire\bootstrap;
         public function runBootstrap();
 
     }
-
-    // End Bootstrapper
-
-// End libs.sprayfire.
