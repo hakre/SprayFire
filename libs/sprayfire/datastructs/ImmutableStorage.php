@@ -23,7 +23,7 @@
  * @copyright Copyright (c) 2011, Charles Sprayberry
  */
 
-namespace libs\sprayfire\datastructs;
+namespace SprayFire\Datastructs;
 
 /**
  * @brief An object that allows for data to be stored and to be assured that
@@ -36,7 +36,7 @@ namespace libs\sprayfire\datastructs;
  * be thrown.  If a class extends this please ensure that it is a truly immutable
  * object and does not have any "backdoors".
  */
-class ImmutableStorage extends DataStorage {
+class ImmutableStorage extends \SprayFire\Datastructs\DataStorage {
 
     /**
      * @brief Accepts an array of data to store and gives the calling code the option to
@@ -108,7 +108,7 @@ class ImmutableStorage extends DataStorage {
                 $data[$key] = $this->convertArrayToImmutableObject($value);
             }
         }
-        return new \libs\sprayfire\datastructs\ImmutableStorage($data);
+        return new \SprayFire\Datastructs\ImmutableStorage($data);
     }
 
 }

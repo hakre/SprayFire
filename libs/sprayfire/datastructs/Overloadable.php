@@ -22,7 +22,7 @@
  * @copyright Copyright (c) 2011, Charles Sprayberry
  */
 
-namespace libs\sprayfire\datastructs;
+namespace SprayFire\Datastructs;
 
 /**
  * @brief An interface that forces the implementation of the magic methods that allow
