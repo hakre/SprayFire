@@ -29,7 +29,7 @@
 /**
  *
  */
-class SprayFireDirectoryTest extends PHPUnit_Framework_TestCase {
+class DirectoryTest extends PHPUnit_Framework_TestCase {
 
     protected $originalAppPath;
 
