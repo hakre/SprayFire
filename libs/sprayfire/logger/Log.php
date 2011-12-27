@@ -28,7 +28,7 @@ namespace SprayFire\Logger;
  * @brief An interface for implementing objects that should be responsible for
  * logging various messages to disk.
  */
-interface Logger {
+interface Log {
 
     /**
      * @param $timestamp the timestamp for the given message
