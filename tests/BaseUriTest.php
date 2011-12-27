@@ -24,28 +24,28 @@ class BaseUriTest extends PHPUnit_Framework_TestCase {
 
     public function testBaseUriWithNoPath() {
         $originalUri = '/sprayfire/';
-        $Uri = new \libs\sprayfire\request\BaseUri($originalUri);
+        $Uri = new \SprayFire\Request\BaseUri($originalUri);
 
         $this->assertSame($originalUri, $Uri->getOriginalUri());
-        $this->assertSame(\libs\sprayfire\request\Uri::DEFAULT_CONTROLLER, $Uri->getController());
-        $this->assertSame(\libs\sprayfire\request\Uri::DEFAULT_ACTION, $Uri->getAction());
+        $this->assertSame(\SprayFire\Request\Uri::DEFAULT_CONTROLLER, $Uri->getController());
+        $this->assertSame(\SprayFire\Request\Uri::DEFAULT_ACTION, $Uri->getAction());
         $this->assertSame(array(), $Uri->getParameters());
     }
 
     public function testBaseUriWithNoFrameworkOnlyController() {
         $originalUri = '/pages/';
-        $Uri = new libs\sprayfire\request\BaseUri($originalUri);
+        $Uri = new \SprayFire\Request\BaseUri($originalUri);
 
         $this->assertSame($originalUri, $Uri->getOriginalUri());
         $this->assertSame('pages', $Uri->getController());
-        $this->assertSame(\libs\sprayfire\request\Uri::DEFAULT_ACTION, $Uri->getAction());
+        $this->assertSame(\SprayFire\Request\Uri::DEFAULT_ACTION, $Uri->getAction());
         $this->assertSame(array(), $Uri->getParameters());
     }
 
     public function testBaseUriOriginalControllerActionParam() {
 
         $originalUri = '/sprayfire/controller/action/param1';
-        $Uri = new \libs\sprayfire\request\BaseUri($originalUri);
+        $Uri = new \SprayFire\Request\BaseUri($originalUri);
 
         $this->assertSame($originalUri, $Uri->getOriginalUri());
         $this->assertSame('controller', $Uri->getController());
@@ -56,7 +56,7 @@ class BaseUriTest extends PHPUnit_Framework_TestCase {
 
     public function testBaseUriWithControllerAndActionNoParams() {
         $originalUri = '/pages/view/';
-        $Uri = new libs\sprayfire\request\BaseUri($originalUri);
+        $Uri = new \SprayFire\Request\BaseUri($originalUri);
 
         $this->assertSame($originalUri, $Uri->getOriginalUri());
         $this->assertSame('pages', $Uri->getController());
@@ -67,11 +67,11 @@ class BaseUriTest extends PHPUnit_Framework_TestCase {
     public function testBaseUriWithMarkedParametersNoAction() {
 
         $originalUri = '/sprayfire/pages/:param1/:param2';
-        $Uri = new \libs\sprayfire\request\BaseUri($originalUri);
+        $Uri = new \SprayFire\Request\BaseUri($originalUri);
 
         $this->assertSame($originalUri, $Uri->getOriginalUri());
         $this->assertSame('pages', $Uri->getController());
-        $this->assertSame(\libs\sprayfire\request\Uri::DEFAULT_ACTION, $Uri->getAction());
+        $this->assertSame(\SprayFire\Request\Uri::DEFAULT_ACTION, $Uri->getAction());
         $this->assertSame(array('param1', 'param2'), $Uri->getParameters());
 
     }
@@ -79,11 +79,11 @@ class BaseUriTest extends PHPUnit_Framework_TestCase {
     public function testBaseUriWithMarkedParametersOnly() {
 
         $originalUri = '/sprayfire/:tech/:sprayfire-is-the-best';
-        $Uri = new \libs\sprayfire\request\BaseUri($originalUri);
+        $Uri = new \SprayFire\Request\BaseUri($originalUri);
 
         $this->assertSame($originalUri, $Uri->getOriginalUri());
-        $this->assertSame(\libs\sprayfire\request\Uri::DEFAULT_CONTROLLER, $Uri->getController());
-        $this->assertSame(\libs\sprayfire\request\Uri::DEFAULT_ACTION, $Uri->getAction());
+        $this->assertSame(\SprayFire\Request\Uri::DEFAULT_CONTROLLER, $Uri->getController());
+        $this->assertSame(\SprayFire\Request\Uri::DEFAULT_ACTION, $Uri->getAction());
         $params = $Uri->getParameters();
         $this->assertSame(2, \count($params));
         $actualParamOne = $params[0];

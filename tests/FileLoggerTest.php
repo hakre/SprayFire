@@ -26,10 +26,6 @@
  */
 class FileLoggerTest extends PHPUnit_Framework_TestCase {
 
-    private $originalFrameworkPath;
-
-    private $originalAppPath;
-
     private $readOnlyLog;
 
     private $writableLog;
@@ -37,17 +33,12 @@ class FileLoggerTest extends PHPUnit_Framework_TestCase {
     private $noTimestampLog;
 
     public function setUp() {
-        $this->originalFrameworkPath = \libs\sprayfire\core\SprayFireDirectory::getFrameworkPathSubDirectory();
-        $this->originalAppPath = \libs\sprayfire\core\SprayFireDirectory::getAppPathSubDirectory();
+        $logPath = \dirname(__DIR__) . '/tests/mockframework/logs';
+        \SprayFire\Core\Directory::setLogsPath($logPath);
 
-        $newRootPath = ROOT_PATH . DS . 'tests' . DS . 'mockframework';
-        \libs\sprayfire\core\SprayFireDirectory::setRootInstallationPath($newRootPath);
-
-        $this->assertSame($newRootPath . DS . 'libs' . DS . 'sprayfire', libs\sprayfire\core\SprayFireDirectory::getFrameworkPath());
-
-        $this->readOnlyLog = libs\sprayfire\core\SprayFireDirectory::getLogsPathSubDirectory('readonly-log.txt');
-        $this->writableLog = libs\sprayfire\core\SprayFireDirectory::getLogsPathSubDirectory('writable-log.txt');
-        $this->noTimestampLog = libs\sprayfire\core\SprayFireDirectory::getLogsPathSubDirectory('no-timestamp-log.txt');
+        $this->readOnlyLog = \SprayFire\Core\Directory::getLogsPath('readonly-log.txt');
+        $this->writableLog = \SprayFire\Core\Directory::getLogsPath('writable-log.txt');
+        $this->noTimestampLog = \SprayFire\Core\Directory::getLogsPath('no-timestamp-log.txt');
     }
 
     /**
@@ -58,7 +49,7 @@ class FileLoggerTest extends PHPUnit_Framework_TestCase {
         \touch($file);
         \chmod($file, 0444);
         $LogFile = new \SplFileInfo($file);
-        $Logger = new \libs\sprayfire\logger\FileLogger($LogFile);
+        $Logger = new \SprayFire\Logger\FileLogger($LogFile);
     }
 
     public function testBasicFileLogging() {
@@ -66,7 +57,7 @@ class FileLoggerTest extends PHPUnit_Framework_TestCase {
         \touch($file);
         \chmod($file, 0755);
         $LogFile = new \SplFileInfo($file);
-        $Logger = new libs\sprayfire\logger\FileLogger($LogFile);
+        $Logger = new \SprayFire\Logger\FileLogger($LogFile);
 
         $Logger->log('test','something');
         $Logger->log('something', 'else');
@@ -86,7 +77,7 @@ class FileLoggerTest extends PHPUnit_Framework_TestCase {
         \touch($file);
         \chmod($file, 0755);
         $LogFile = new \SplFileInfo($file);
-        $Logger = new libs\sprayfire\logger\FileLogger($LogFile);
+        $Logger = new \SprayFire\Logger\FileLogger($LogFile);
         $blankTimestamp = '';
         $Logger->log($blankTimestamp,'something');
         $Logger->log($blankTimestamp, 'else');
@@ -106,7 +97,7 @@ class FileLoggerTest extends PHPUnit_Framework_TestCase {
         \touch($file);
         \chmod($file, 0755);
         $LogFile = new \SplFileInfo($file);
-        $Logger = new libs\sprayfire\logger\FileLogger($LogFile);
+        $Logger = new \SprayFire\Logger\FileLogger($LogFile);
         $blankMessage = '';
         $Logger->log('12-24-2011 12:45:12', $blankMessage);
         $Logger->log('12-25-2011 13:56:10', $blankMessage);
@@ -133,6 +124,10 @@ class FileLoggerTest extends PHPUnit_Framework_TestCase {
         if (\file_exists($this->noTimestampLog)) {
             \unlink($this->noTimestampLog);
         }
+
+        \SprayFire\Core\Directory::setLogsPath(null);
+
+        $this->assertNull(\SprayFire\Core\Directory::getLogsPath());
     }
 
 }

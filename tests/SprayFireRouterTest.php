@@ -35,14 +35,17 @@ class SprayFireRouterTest extends PHPUnit_Framework_TestCase {
 
     private $validLogPath;
 
-    private $controllerParamsWildCard;
+    private $invalidLogPath;
 
     public function setUp() {
 
         $appPath = \dirname(__DIR__) . '/tests/mockframework/app';
+        $logPath = \dirname(__DIR__) . '/tests/mockframework/logs';
         \SprayFire\Core\Directory::setAppPath($appPath);
+        \SprayFire\Core\Directory::setLogsPath($logPath);
 
         $this->validLogPath = \SprayFire\Core\Directory::getLogsPath('no-errors.txt');
+        $this->invalidLogPath = \SprayFire\Core\Directory::getLogsPath('config', 'error.txt');
     }
 
     public function testRootUriRouting() {
@@ -177,7 +180,7 @@ class SprayFireRouterTest extends PHPUnit_Framework_TestCase {
     }
 
     public function testRoutedUriWithOnlyTwoParameters() {
-        $routesConfigPath = \SprayFire\Core\Directory::getAppPath('config', 'json', 'routes.json');
+        $routesConfigPath = \SprayFire\Core\Directory::getAppPath('TestApp', 'config', 'json', 'routes.json');
         $RoutesConfigFile = new \SplFileInfo($routesConfigPath);
         $RoutesConfig = new \SprayFire\Config\JsonConfig($RoutesConfigFile);
 
@@ -233,8 +236,8 @@ class SprayFireRouterTest extends PHPUnit_Framework_TestCase {
         $RoutesConfigFile = new \SplFileInfo($routesConfigPath);
         $RoutesConfig = new \SprayFire\Config\JsonConfig($RoutesConfigFile);
 
-        $this->controllerParamsWildCard = \SprayFire\Core\Directory::getLogsPath('config', 'error.txt');
-        $LogFile = new \SplFileInfo($this->controllerParamsWildCard);
+
+        $LogFile = new \SplFileInfo($this->invalidLogPath);
         $Logger = new \SprayFire\Logger\FileLogger($LogFile);
         $Router = new \SprayFire\Request\SprayFireRouter($RoutesConfig, $Logger);
 
@@ -284,6 +287,14 @@ class SprayFireRouterTest extends PHPUnit_Framework_TestCase {
 
     public function tearDown() {
         \SprayFire\Core\Directory::setAppPath(null);
+
+        if (\file_exists($this->validLogPath)) {
+            \unlink($this->validLogPath);
+        }
+
+        if (\file_exists($this->invalidLogPath)) {
+            \unlink($this->invalidLogPath);
+        }
 
         $this->assertNull(\SprayFire\Core\Directory::getAppPath());
     }
