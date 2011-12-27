@@ -11,12 +11,10 @@
  * @copyright Copyright (c) 2011, Charles Sprayberry
  */
 
-namespace tests\helpers;
-
 /**
  *
  */
-class TestObject extends \libs\sprayfire\core\CoreObject {
+class TestObject extends \SprayFire\Core\CoreObject {
 
 }
 
