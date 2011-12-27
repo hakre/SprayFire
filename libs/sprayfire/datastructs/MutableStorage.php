@@ -22,13 +22,13 @@
  * @copyright Copyright (c) 2011, Charles Sprayberry
  */
 
-namespace libs\sprayfire\datastructs;
+namespace \SprayFire\Datastructs;
 
 /**
  * @brief A simple data storage object that holds key/value pairs and allows additional
  * keys to be added and existing keys to be manipulated or removed.
  */
-class MutableStorage extends DataStorage {
+class MutableStorage extends \SprayFire\Datastructs\DataStorage {
 
     /**
      * @brief Requires an array of data is passed, optionally allowing the
@@ -108,7 +108,7 @@ class MutableStorage extends DataStorage {
                 $data[$key] = $this->convertArrayToMutableObject($value);
             }
         }
-        return new \libs\sprayfire\datastructs\MutableStorage($data);
+        return new \SprayFire\Datastructs\MutableStorage($data);
     }
 
 }
