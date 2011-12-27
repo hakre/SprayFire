@@ -42,6 +42,9 @@ use libs\sprayfire\request\SprayFireUri as SprayFireUri;
  * is invoked an appropriate object will be returned, even if an invalid
  * configuration file is used.
  *
+ * @todo This implementation does not properly account for spaces or characters
+ * that could be considered invalid for a PHP class or method.
+ *
  */
 class SprayFireRouter extends CoreObject implements Router {
 
@@ -171,10 +174,6 @@ class SprayFireRouter extends CoreObject implements Router {
         $defaultControllerPattern = 'DC';
         $defaultActionPattern = 'DA';
         $parameterWildCard = '*';
-
-        $routedController = '';
-        $routedAction = '';
-        $routedParameters = '';
 
         $sprayFireURIPattern = '';
 
