@@ -11,79 +11,69 @@
     * @copyright Copyright (c) 2011, Charles Sprayberry
     */
 
-    use libs\sprayfire\core\SprayFireDirectory,
-        libs\sprayfire\core\ClassLoader;
-
-   /**
-    * @var DS A short-alias to DIRECTORY_SEPARATOR
-    */
-    defined('DS') or define('DS', DIRECTORY_SEPARATOR);
-
-    /**
-     * @var ROOT_PATH The appliaction's installation path
-     */
-    defined('ROOT_PATH') or define('ROOT_PATH', dirname(__DIR__));
-
     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     // The below variables can be changed and manipulated to adjust the implementation
     // details of the framework's initialization process.
     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
     /**
-     * @var $ClassLoaderName The completely namespaced class that should be used
-     * as the primary framework autoloader.
-     */
-    $ClassLoaderName = '\\libs\\sprayfire\\core\\ClassLoader';
-
-    /**
      * @var $primaryConfigPath An array representing a sub directory list to the
      *      primary configuration file.
      */
-    $primaryConfigPath = array('config', 'json', 'configuration.json');
+    $primaryConfigPath = array('Config', 'json', 'configuration.json');
 
-    // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    // Ends the variables that allow for the changing of SprayFire implementation
-    //
-    // PLEASE DO NOT ALTER CODE BELOW THIS LINE!  DO SO AT YOUR OWN RISK!
-    // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    /**
+     * @var $rootDir The primary installation path for the app
+     */
+    $rootDir = \dirname(__DIR__);
 
-// XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+    include $rootDir . '/libs/SprayFire/Core/Directory.php';
 
-    include ROOT_PATH . DS . 'libs' . DS . 'sprayfire' . DS . 'core' . DS . 'SprayFireDirectory.php';
+    \SprayFire\Core\Directory::setInstallPath($rootDir);
+    \SprayFire\Core\Directory::setLibsPath($rootDir . '/libs');
+    \SprayFire\Core\Directory::setAppPath($rootDir . '/app');
+    \SprayFire\Core\Directory::setLogsPath($rootDir . '/logs');
 
-    SprayFireDirectory::setRootInstallationPath(ROOT_PATH);
+    include \SprayFire\Core\Directory::getLibsPath('SprayFire', 'Core', 'Object.php');
+    include \SprayFire\Core\Directory::getLibsPath('SprayFire', 'Core', 'CoreObject.php');
+    include \SprayFire\Core\Directory::getLibsPath('SprayFire', 'Core', 'ClassLoader.php');
 
-    include SprayFireDirectory::getFrameworkPathSubDirectory('core', 'Object.php');
-    include SprayFireDirectory::getFrameworkPathSubDirectory('core', 'CoreObject.php');
-    include SprayFireDirectory::getFrameworkPathSubDirectory('core', 'ClassLoader.php');
+    $ClassLoader = new \SprayFire\Core\ClassLoader();
+    $ClassLoader->registerNamespaceDirectory('SprayFire', \SprayFire\Core\Directory::getLibsPath());
+    \spl_autoload_register(array($ClassLoader, 'loadClass'));
 
-    $ClassLoader = new $ClassLoaderName();
-    $ClassLoader->setAutoloader();
-
-    $primaryConfigPath = SprayFireDirectory::getAppPathSubDirectory('config', 'json', 'configuration.json');
+    $primaryConfigPath = \SprayFire\Core\Directory::getAppPath('Config', 'json', 'configuration.json');
     $PrimaryConfigFile = new \SplFileInfo($primaryConfigPath);
-
     try {
-        $PrimaryConfig = new libs\sprayfire\config\JsonConfig($PrimaryConfigFile);
-    } catch (\InvalidArgumentException $InvalArgException) {
+        $PrimaryConfig = new \SprayFire\Config\JsonConfig($PrimaryConfigFile);
+    } catch (\InvalidArgumentException $InvalArgExc) {
         // this is a temporary measure until a completed system is in place.
         var_dump($InvalArgException);
         exit;
     }
 
-    echo 'The framework version ' . $PrimaryConfig->framework->version;
-
-    $routesConfigPath = SprayFireDirectory::getAppPathSubDirectory('config', 'json', 'routes.json');
+    $routesConfigPath = \SprayFire\Core\Directory::getAppPath('Config', 'json', 'routes.json');
     $RoutesConfigFile = new \SplFileInfo($routesConfigPath);
     try {
-        $RoutesConfig = new libs\sprayfire\config\JsonConfig($RoutesConfigFile);
+        $RoutesConfig = new \SprayFire\Config\JsonConfig($RoutesConfigFile);
+    } catch (\InvalidArgumentException $InvalArgExc) {
+        // this is a temporary measure until a completed system is in place.
+        var_dump($InvalArgExc);
+        exit;
+    }
+
+    $errorLogPath = \SprayFire\Core\Directory::getLogsPath('errors.txt');
+    var_dump($errorLogPath);
+    $ErrorLogFile = new \SplFileInfo($errorLogPath);
+    try {
+        $ErrorLog = new \SprayFire\Logger\FileLogger($ErrorLogFile);
     } catch (\InvalidArgumentException $InvalArgExc) {
         var_dump($InvalArgExc);
         exit;
     }
 
-    $Router = new \libs\sprayfire\request\SprayFireRouter($RoutesConfig);
+    $Router = new \SprayFire\Request\SprayFireRouter($RoutesConfig, $ErrorLog);
 
-    $Uri = new \libs\sprayfire\request\BaseUri($_SERVER['REQUEST_URI']);
+    $Uri = new \SprayFire\Request\BaseUri($_SERVER['REQUEST_URI']);
 
     var_dump($Router->getRoutedUri($Uri));
