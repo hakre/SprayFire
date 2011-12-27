@@ -61,14 +61,6 @@ namespace libs\sprayfire\request;
         const DEFAULT_ACTION = '%default_action%';
 
         /**
-         * Should parse the URI passed, providing access to the controller, action
-         * and parameters passed along with the original URI.
-         *
-         * @param $uri string
-         */
-        public function __construct($uri);
-
-        /**
          * @return string The original unaltered URI
          */
         public function getOriginalUri();
