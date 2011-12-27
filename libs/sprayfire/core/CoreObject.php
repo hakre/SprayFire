@@ -22,7 +22,6 @@
  */
 
 namespace libs\sprayfire\core;
-use libs\sprayfire\core\Object as Object;
 
 /**
  * @brief SprayFire's implementation of the libs.sprayfire.core.Object interface,
@@ -37,7 +36,7 @@ use libs\sprayfire\core\Object as Object;
  * or an implementation of libs.sprayfire.core.Object or unexpected consequences
  * may occur.
  */
-abstract class CoreObject implements Object {
+abstract class CoreObject implements \libs\sprayfire\core\Object {
 
     /**
      * @return A unique identifying string based on the internal memory pointer
@@ -59,7 +58,7 @@ abstract class CoreObject implements Object {
      * @param $CompareObject A libs.sprayfire.core.Object to compare to this one for equality
      * @return True if the calling object and \a $CompareObject are equal, false if not
      */
-    public function equals(Object $CompareObject) {
+    public function equals(\libs\sprayfire\core\Object $CompareObject) {
         $thisHash = $this->hashCode();
         $compareHash = $CompareObject->hashCode();
         $areHashesEqual = $thisHash === $compareHash;

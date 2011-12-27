@@ -22,13 +22,6 @@
  */
 
 namespace libs\sprayfire\datastructs;
-use \IteratorAggregate as IteratorAggregate;
-use \ReflectionClass as ReflectionClass;
-use \InvalidArgumentException as InvalidArgumentException;
-use \ReflectionException as ReflectionException;
-use libs\sprayfire\core\Object as Object;
-use libs\sprayfire\core\CoreObject as CoreObject;
-use libs\sprayfire\datastructs\ObjectStorage as ObjectStorage;
 
 /**
  * @brief The framework's primary implementation to store framework objects.
@@ -38,7 +31,7 @@ use libs\sprayfire\datastructs\ObjectStorage as ObjectStorage;
  * of that object using that key.  Also allows for the removal of an object
  * associated with a key and iterating over the stored objects.
  */
-class SprayFireObjectStore extends CoreObject implements IteratorAggregate, ObjectStorage {
+class SprayFireObjectStore extends \libs\sprayfire\core\CoreObject implements \IteratorAggregate, \libs\sprayfire\datastructs\ObjectStorage {
 
     /**
      * @brief Holds a ReflectionClass of the data type that should be implemented by objects
@@ -61,7 +54,7 @@ class SprayFireObjectStore extends CoreObject implements IteratorAggregate, Obje
      *
      * @param $ReflectedObjectType ReflectionClass
      */
-    public function __construct(ReflectionClass $ReflectedObjectType) {
+    public function __construct(\ReflectionClass $ReflectedObjectType) {
         $this->ReflectedParentType = $ReflectedObjectType;
     }
 
@@ -72,7 +65,7 @@ class SprayFireObjectStore extends CoreObject implements IteratorAggregate, Obje
      * @param $Object libs.sprayfire.core.Object
      * @return boolean
      */
-    public function contains(Object $Object) {
+    public function contains(\libs\sprayfire\core\Object $Object) {
         if ($this->indexOf($Object) === false) {
             return false;
         }
@@ -86,7 +79,7 @@ class SprayFireObjectStore extends CoreObject implements IteratorAggregate, Obje
      * @param $Object libs.sprayfire.core.Object
      * @return mixed \a $key \a type set or false on failure
      */
-    public function indexOf(Object $Object) {
+    public function indexOf(\libs\sprayfire\core\Object $Object) {
         $index = false;
         foreach ($this->data as $key => $StoredObject) {
             if ($Object->equals($StoredObject)) {
@@ -147,7 +140,7 @@ class SprayFireObjectStore extends CoreObject implements IteratorAggregate, Obje
      * @throws InvalidArgumentException
      * @return libs.sprayfire.core.Object
      */
-    public function setObject($key, Object $Object) {
+    public function setObject($key, \libs\sprayfire\core\Object $Object) {
         $this->throwExceptionIfKeyInvalid($key);
         $this->throwExceptionIfObjectNotParentType($Object);
         $this->data[$key] = $Object;
@@ -159,7 +152,7 @@ class SprayFireObjectStore extends CoreObject implements IteratorAggregate, Obje
      */
     protected function throwExceptionIfKeyInvalid($key) {
         if (empty($key) || !\is_string($key)) {
-            throw new InvalidArgumentException('The key for an object may not be an empty or non-string value.');
+            throw new \InvalidArgumentException('The key for an object may not be an empty or non-string value.');
         }
     }
 
@@ -169,7 +162,7 @@ class SprayFireObjectStore extends CoreObject implements IteratorAggregate, Obje
      */
     protected function throwExceptionIfObjectNotParentType(\libs\sprayfire\core\Object $Object) {
         if (!\is_object($Object) || !$this->isObjectParentType($Object)) {
-            throw new InvalidArgumentException('The value being set does not properly implement the parent type for this store.');
+            throw new \InvalidArgumentException('The value being set does not properly implement the parent type for this store.');
         }
     }
 
@@ -187,11 +180,11 @@ class SprayFireObjectStore extends CoreObject implements IteratorAggregate, Obje
      * @param $Object libs.sprayfire.core.Object
      * @return boolean
      */
-    protected function isObjectParentType(Object $Object) {
+    protected function isObjectParentType(\libs\sprayfire\core\Object $Object) {
         $isValid = false;
         $parentName = $this->ReflectedParentType->getName();
         try {
-            $ReflectedObject = new ReflectionClass($Object);
+            $ReflectedObject = new \ReflectionClass($Object);
             if ($this->ReflectedParentType->isInterface()) {
                 if ($ReflectedObject->implementsInterface($parentName)) {
                     $isValid = true;
@@ -201,8 +194,12 @@ class SprayFireObjectStore extends CoreObject implements IteratorAggregate, Obje
                     $isValid = true;
                 }
             }
-        } catch (ReflectionException $ReflectionExc) {
+        } catch (\ReflectionException $ReflectionExc) {
             // @codeCoverageIgnoreStart
+            // The possibility of this being thrown should be very, very slim as
+            // a properly instantiated object must be passed, and thus must be
+            // available for reflection...this is a fail safe to not leak an
+            // unnecessary exception
             error_log($ReflectionExc->getMessage());
             // @codeCoverageIgnoreEnd
         }

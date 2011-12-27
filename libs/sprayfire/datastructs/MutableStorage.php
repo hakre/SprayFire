@@ -23,8 +23,6 @@
  */
 
 namespace libs\sprayfire\datastructs;
-use \UnexpectedValueException as UnexpectedValueException;
-use libs\sprayfire\datastructs\DataStorage as DataStorage;
 
 /**
  * @brief A simple data storage object that holds key/value pairs and allows additional
@@ -48,7 +46,7 @@ class MutableStorage extends DataStorage {
             $data = $this->convertDataDeep($data);
         }
         if (!\is_array($data)) {
-            throw new UnexpectedValueException('The data returned from convertDataDeep must be an array.');
+            throw new \UnexpectedValueException('The data returned from convertDataDeep must be an array.');
         }
         parent::__construct($data);
     }
@@ -110,7 +108,7 @@ class MutableStorage extends DataStorage {
                 $data[$key] = $this->convertArrayToMutableObject($value);
             }
         }
-        return new MutableStorage($data);
+        return new \libs\sprayfire\datastructs\MutableStorage($data);
     }
 
 }

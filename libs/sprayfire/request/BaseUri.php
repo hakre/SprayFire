@@ -23,14 +23,12 @@
  */
 
 namespace libs\sprayfire\request;
-use libs\sprayfire\core\CoreObject as CoreObject;
-use libs\sprayfire\request\Uri as Uri;
 
 /**
  * @brief A base implementation to convert a URI into the appropriate fragments,
  * will also urldecode() the original URI passed.
  */
-class BaseUri extends CoreObject implements Uri {
+class BaseUri extends \libs\sprayfire\core\CoreObject implements \libs\sprayfire\request\Uri {
 
     /**
      * Holds the original, unaltered URI passed in the constructor.
@@ -115,15 +113,15 @@ class BaseUri extends CoreObject implements Uri {
         $parameters = 'parameters';
 
         if (empty($uriFragments) || empty($uriFragments[0])) {
-            $parsedFragments[$controller] = Uri::DEFAULT_CONTROLLER;
-            $parsedFragments[$action] = Uri::DEFAULT_ACTION;
+            $parsedFragments[$controller] = \libs\sprayfire\request\Uri::DEFAULT_CONTROLLER;
+            $parsedFragments[$action] = \libs\sprayfire\request\Uri::DEFAULT_ACTION;
             $parsedFragments[$parameters] = array();
             return $parsedFragments;
         }
 
         if ($this->isParameterString($uriFragments[0])) {
-            $parsedFragments[$controller] = Uri::DEFAULT_CONTROLLER;
-            $parsedFragments[$action] = Uri::DEFAULT_ACTION;
+            $parsedFragments[$controller] = \libs\sprayfire\request\Uri::DEFAULT_CONTROLLER;
+            $parsedFragments[$action] = \libs\sprayfire\request\Uri::DEFAULT_ACTION;
             $parsedFragments[$parameters] = $this->removeParameterMarker($uriFragments);
             return $parsedFragments;
         }
@@ -131,13 +129,13 @@ class BaseUri extends CoreObject implements Uri {
         $parsedFragments[$controller] = \array_shift($uriFragments);
 
         if (empty($uriFragments) || empty($uriFragments[0])) {
-            $parsedFragments[$action] = Uri::DEFAULT_ACTION;
+            $parsedFragments[$action] = \libs\sprayfire\request\Uri::DEFAULT_ACTION;
             $parsedFragments[$parameters] = array();
             return $parsedFragments;
         }
 
         if ($this->isParameterString($uriFragments[0])) {
-            $parsedFragments[$action] = Uri::DEFAULT_ACTION;
+            $parsedFragments[$action] = \libs\sprayfire\request\Uri::DEFAULT_ACTION;
             $parsedFragments[$parameters] = $this->removeParameterMarker($uriFragments);
             return $parsedFragments;
         }

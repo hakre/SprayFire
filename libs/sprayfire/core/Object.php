@@ -44,7 +44,7 @@ interface Object {
      * @param $Object libs.sprayfire.core.Object
      * @return boolean
      */
-    public function equals(Object $Object);
+    public function equals(\libs\sprayfire\core\Object $Object);
 
     /**
      * @return A unique identifier for the given object

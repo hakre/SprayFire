@@ -23,16 +23,13 @@
  */
 
 namespace libs\sprayfire\request;
-use \ArrayIterator as ArrayIterator;
-use \IteratorAggregate as IteratorAggregate;
-use libs\sprayfire\datastructs\MutableStorage as MutableStorage;
 
 /**
  * @brief Will allow for an array to be passed, the values of that array to be
  * treated as an object, and for changes to the array or the object to make
  * changes to the other.
  */
-class SprayFireHttpData extends MutableStorage implements IteratorAggregate {
+class SprayFireHttpData extends \libs\sprayfire\datastructs\MutableStorage implements \IteratorAggregate {
 
     /**
      * @param $data An array passed by reference
@@ -45,7 +42,7 @@ class SprayFireHttpData extends MutableStorage implements IteratorAggregate {
      * @return \ArrayIterator
      */
     public function getIterator() {
-        return new ArrayIterator($this->data);
+        return new \ArrayIterator($this->data);
     }
 
 }

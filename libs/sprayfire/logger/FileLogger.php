@@ -22,15 +22,12 @@
  */
 
 namespace libs\sprayfire\logger;
-use \SplFileInfo as SplFileInfo;
-use \InvalidArgumentException as InvalidArgumentException;
-use libs\sprayfire\logger\Logger as Logger;
 
 /**
  * @brief A framework implemented class that adds a timestamp log message to
  * the end of an injected file.
  */
-class FileLogger implements Logger  {
+class FileLogger implements \libs\sprayfire\logger\Logger  {
 
     /**
      * @brief A SplFileObject that should be used to write log messages to.
@@ -42,11 +39,11 @@ class FileLogger implements Logger  {
     /**
      * @param $LogFile SplFileObject that should have log messages written to
      */
-    public function __construct(SplFileInfo $LogFile) {
+    public function __construct(\SplFileInfo $LogFile) {
         try {
             $this->LogFile = $LogFile->openFile('a');
         } catch (\RuntimeException $InvalidArgumentException) {
-            throw new InvalidArgumentException('There was an error attempting to open a writable log file.', null, $InvalidArgumentException);
+            throw new \InvalidArgumentException('There was an error attempting to open a writable log file.', null, $InvalidArgumentException);
         }
     }
 

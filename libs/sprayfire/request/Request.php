@@ -23,8 +23,6 @@
  */
 
 namespace libs\sprayfire\request;
-use libs\sprayfire\request\RoutedUri as RoutedUri;
-use libs\sprayfire\request\HttpDataContainer as HttpDataContainer;
 
 /**
  * @brief Provides a way to pass several objects to the front controller and
@@ -40,7 +38,7 @@ interface Request {
      * @param $HttpDataContainer a libs.sprayfire.request.HttpDataContainer object
      *        holding the appropriate super globals for this request.
      */
-    public function setHttpDataContainer(HttpDataContainer $HttpDataContainer);
+    public function setHttpDataContainer(\libs\sprayfire\request\HttpDataContainer $HttpDataContainer);
 
     /**
      * @return A libs.sprayfire.request.HttpData object holding the request

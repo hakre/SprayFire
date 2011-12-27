@@ -24,9 +24,6 @@
  */
 
 namespace libs\sprayfire\datastructs;
-use \UnexpectedValueException as UnexpectedValueException;
-use libs\sprayfire\datastructs\DataStorage as DataStorage;
-use libs\sprayfire\exceptions\UnsupportedOperationException as UnsupportedOperationException;
 
 /**
  * @brief An object that allows for data to be stored and to be assured that
@@ -53,7 +50,7 @@ class ImmutableStorage extends DataStorage {
             $data = $this->convertDataDeep($data);
         }
         if (!\is_array($data)) {
-            throw new UnexpectedValueException('The data returned from convertDataDeep must be an array.');
+            throw new \UnexpectedValueException('The data returned from convertDataDeep must be an array.');
         }
         parent::__construct($data);
     }
@@ -64,7 +61,7 @@ class ImmutableStorage extends DataStorage {
      * @throws libs.sprayfire.exceptions.UnsupportedOperationException
      */
     protected function set($key, $value) {
-        throw new UnsupportedOperationException('Attempting to set the value of an immutable object.');
+        throw new \libs\sprayfire\exceptions\UnsupportedOperationException('Attempting to set the value of an immutable object.');
     }
 
     /**
@@ -72,7 +69,7 @@ class ImmutableStorage extends DataStorage {
      * @throws libs.sprayfire.exceptions.UnsupportedOperationException
      */
     protected function removeKey($key) {
-        throw new UnsupportedOperationException('Attempting to remove the value of an immutable object.');
+        throw new \libs\sprayfire\exceptions\UnsupportedOperationException('Attempting to remove the value of an immutable object.');
     }
 
     /**
@@ -111,7 +108,7 @@ class ImmutableStorage extends DataStorage {
                 $data[$key] = $this->convertArrayToImmutableObject($value);
             }
         }
-        return new ImmutableStorage($data);
+        return new \libs\sprayfire\datastructs\ImmutableStorage($data);
     }
 
 }

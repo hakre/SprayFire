@@ -23,10 +23,6 @@
  */
 
 namespace libs\sprayfire\datastructs;
-use \Traversable as Traversable;
-use \Countable as Countable;
-use \ReflectionClass as ReflectionClass;
-use libs\sprayfire\core\Object as Object;
 
 /**
  * @brief Provides an API to store SprayFire derived objects, iterate over them
@@ -44,7 +40,7 @@ use libs\sprayfire\core\Object as Object;
  * objects as they allow for the storing of any data type through the libs.sprayfire.datastructs.Overloadable
  * and ArrayAccess interfaces.
  */
-interface ObjectStorage extends Traversable, Countable {
+interface ObjectStorage extends \Traversable, \Countable {
 
     /**
      * @brief Return an Object if one exists for the given key or null.
@@ -72,7 +68,7 @@ interface ObjectStorage extends Traversable, Countable {
      * @throws libs.sprayfire.exceptions.UnsupportedOperationException
      * @throws InvalidArgumentException
      */
-    public function setObject($key, Object $Object);
+    public function setObject($key, \libs\sprayfire\core\Object $Object);
 
     /**
      * @brief Returns a boolean value indicating whether the \a $Object is
@@ -85,7 +81,7 @@ interface ObjectStorage extends Traversable, Countable {
      * @param $Object libs.sprayfire.core.Object
      * @return boolean true if \a $Object is stored; false if it isn't
      */
-    public function contains(Object $Object);
+    public function contains(\libs\sprayfire\core\Object $Object);
 
     /**
      * @brief Remove the object associated with \a $key, there is no need
@@ -108,7 +104,7 @@ interface ObjectStorage extends Traversable, Countable {
      * @param $Object libs.sprayfire.core.Object
      * @return mixed
      */
-    public function indexOf(Object $Object);
+    public function indexOf(\libs\sprayfire\core\Object $Object);
 
     /**
      * @return boolean

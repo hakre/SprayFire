@@ -23,12 +23,11 @@
  */
 
 namespace libs\sprayfire\exceptions;
-use \RuntimeException as RuntimeException;
 
 /**
  * @brief Thrown when a method implemented from an interface should not be
  * callable by that specific implementation.
  */
-class UnsupportedOperationException extends RuntimeException {
+class UnsupportedOperationException extends \RuntimeException {
 
 }

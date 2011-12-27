@@ -23,11 +23,6 @@
  */
 
 namespace libs\sprayfire\datastructs;
-use \ArrayAccess as ArrayAccess;
-use \Countable as Countable;
-use \IteratorAggregate as IteratorAggregate;
-use libs\sprayfire\datastructs\Overloadable as Overloadable;
-use libs\sprayfire\core\CoreObject as CoreObject;
 
 /**
  * @brief Stores data in a property and allows access to that data via object
@@ -61,7 +56,7 @@ use libs\sprayfire\core\CoreObject as CoreObject;
  * this is the best option as you will still have to take into account the
  * public methods that allow the object an array notation.
  */
-abstract class DataStorage extends CoreObject implements ArrayAccess, Countable, Overloadable, IteratorAggregate {
+abstract class DataStorage extends \libs\sprayfire\core\CoreObject implements \ArrayAccess, \Countable, \IteratorAggregate, \libs\sprayfire\datastructs\Overloadable {
 
     /**
      * An array holding the data being stored.

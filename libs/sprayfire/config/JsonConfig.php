@@ -23,10 +23,6 @@
  */
 
 namespace libs\sprayfire\config;
-use \SplFileInfo as SplFileInfo;
-use \InvalidArgumentException as InvalidArgumentException;
-use libs\sprayfire\config\Configuration as Configuration;
-use libs\sprayfire\datastructs\ImmutableStorage as ImmutableStorage;
 
 /**
  * @brief Parses a JSON configuration file into a chainable object, either by object
@@ -60,7 +56,7 @@ use libs\sprayfire\datastructs\ImmutableStorage as ImmutableStorage;
  * echo $Config->app->{'development-settings'}->{'display-errors'};   // 1
  * </pre>
  */
-class JsonConfig extends ImmutableStorage implements Configuration {
+class JsonConfig extends \libs\sprayfire\datastructs\ImmutableStorage implements \libs\sprayfire\config\Configuration {
 
     /**
      * @brief Holds the SplFileInfo object passed in the constructor.
@@ -77,7 +73,7 @@ class JsonConfig extends ImmutableStorage implements Configuration {
      * @param $FileInfo SplFileInfo object
      * @throws InvalidArgumentException
      */
-    public function __construct(SplFileInfo $FileInfo) {
+    public function __construct(\SplFileInfo $FileInfo) {
         $this->ConfigFileInfo = $FileInfo;
         $data = $this->getDecodedJson();
         parent::__construct($data);
@@ -94,7 +90,7 @@ class JsonConfig extends ImmutableStorage implements Configuration {
         $decodedJson = \json_decode($this->getFileContents(), true);
         $lastJsonError = \json_last_error();
         if ($lastJsonError !== JSON_ERROR_NONE || \is_null($decodedJson)) {
-            throw new InvalidArgumentException('There was an error parsing the JSON configuration file passed.  JSON_error_code := ' . $lastJsonError);
+            throw new \InvalidArgumentException('There was an error parsing the JSON configuration file passed.  JSON_error_code := ' . $lastJsonError);
         }
         return $decodedJson;
     }
@@ -105,7 +101,7 @@ class JsonConfig extends ImmutableStorage implements Configuration {
      */
     private function getFileContents() {
         if (!$this->ConfigFileInfo->isFile() && !$this->ConfigFileInfo->isLink()) {
-            throw new InvalidArgumentException('There is an error with the path to the configuration file.');
+            throw new \InvalidArgumentException('There is an error with the path to the configuration file.');
         }
         $fileInfo = \file_get_contents($this->ConfigFileInfo->getRealPath());
         return $fileInfo;

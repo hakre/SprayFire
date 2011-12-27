@@ -23,9 +23,6 @@
  */
 
 namespace libs\sprayfire\request;
-use libs\sprayfire\request\Uri as Uri;
-use libs\sprayfire\config\Configuration as Configuration;
-use libs\sprayfire\logger\Logger as Logger;
 
 /**
  * @brief Implementations should convert a libs.sprayfire.request.Uri object
@@ -51,6 +48,6 @@ interface Router {
      * @param $Uri libs.sprayfire.request.Uri
      * @return libs.sprayfire.request.RoutedUri
      */
-    public function getRoutedUri(Uri $Uri);
+    public function getRoutedUri(\libs\sprayfire\request\Uri $Uri);
 
 }

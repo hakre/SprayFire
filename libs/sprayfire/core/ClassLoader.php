@@ -23,13 +23,12 @@
  */
 
 namespace libs\sprayfire\core;
-use libs\sprayfire\core\CoreObject as CoreObject;
 
 /**
  * @brief Responsible for including namespaced framework and application classes,
  * assuming they abide to the rules set forth by the framework.
  */
-class ClassLoader extends CoreObject {
+class ClassLoader extends \libs\sprayfire\core\CoreObject {
 
     /**
      * @brief Adds the class's autoloader function to the autoload register.
