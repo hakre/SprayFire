@@ -1,6 +1,6 @@
 <?php
 
-    include \dirname(__DIR__) .'/libs/sprayfire/core/Directory.php';
+    include \dirname(__DIR__) .'/libs/SprayFire/Core/Directory.php';
 
     \SprayFire\Core\Directory::setInstallPath(\dirname(__DIR__));
     \SprayFire\Core\Directory::setLibsPath(\dirname(__DIR__) . '/libs');
