@@ -31,11 +31,6 @@ namespace libs\sprayfire\logger;
     interface Logger {
 
         /**
-         * @param $LogFile An \SplFileObject used to write the log messages to
-         */
-        public function __construct(\SplFileInfo $LogFile);
-
-        /**
          * @param $timestamp the timestamp for the given message
          * @param $message The string message that should be appended to the end
          *        of the log
@@ -43,7 +38,3 @@ namespace libs\sprayfire\logger;
         public function log($timestamp, $message);
 
     }
-
-    // End Logger
-
-// End libs.sprayfire.logger
