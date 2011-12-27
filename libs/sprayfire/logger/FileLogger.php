@@ -26,47 +26,47 @@ use \SplFileInfo as SplFileInfo;
 use \InvalidArgumentException as InvalidArgumentException;
 use libs\sprayfire\logger\Logger as Logger;
 
+/**
+ * @brief A framework implemented class that adds a timestamp log message to
+ * the end of an injected file.
+ */
+class FileLogger implements Logger  {
+
     /**
-     * @brief A framework implemented class that adds a timestamp log message to
-     * the end of an injected file.
+     * @brief A SplFileObject that should be used to write log messages to.
+     *
+     * @property $LogFile
      */
-    class FileLogger implements Logger  {
+    protected $LogFile;
 
-        /**
-         * @brief A SplFileObject that should be used to write log messages to.
-         *
-         * @property $LogFile
-         */
-        protected $LogFile;
-
-        /**
-         * @param $LogFile SplFileObject that should have log messages written to
-         */
-        public function __construct(SplFileInfo $LogFile) {
-            try {
-                $this->LogFile = $LogFile->openFile('a');
-            } catch (\RuntimeException $InvalidArgumentException) {
-                throw new InvalidArgumentException('There was an error attempting to open a writable log file.', null, $InvalidArgumentException);
-            }
+    /**
+     * @param $LogFile SplFileObject that should have log messages written to
+     */
+    public function __construct(SplFileInfo $LogFile) {
+        try {
+            $this->LogFile = $LogFile->openFile('a');
+        } catch (\RuntimeException $InvalidArgumentException) {
+            throw new InvalidArgumentException('There was an error attempting to open a writable log file.', null, $InvalidArgumentException);
         }
-
-        /**
-         * @param $timestamp A formatted timestamp string
-         * @param $message The message string to log
-         * @return int The number of bytes written or null on error
-         */
-        public function log($timestamp, $message) {
-            if (!isset($timestamp) || empty($timestamp)) {
-                $timestamp = '00-00-0000 00:00:00';
-            }
-
-            if (!isset($message) || empty($message)) {
-                $message = 'Blank message.';
-            }
-
-            $separator = ' := ';
-            $message = $timestamp . $separator . $message . PHP_EOL;
-            return $this->LogFile->fwrite($message);
-        }
-
     }
+
+    /**
+     * @param $timestamp A formatted timestamp string
+     * @param $message The message string to log
+     * @return int The number of bytes written or null on error
+     */
+    public function log($timestamp, $message) {
+        if (!isset($timestamp) || empty($timestamp)) {
+            $timestamp = '00-00-0000 00:00:00';
+        }
+
+        if (!isset($message) || empty($message)) {
+            $message = 'Blank message.';
+        }
+
+        $separator = ' := ';
+        $message = $timestamp . $separator . $message . PHP_EOL;
+        return $this->LogFile->fwrite($message);
+    }
+
+}

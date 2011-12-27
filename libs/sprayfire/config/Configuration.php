@@ -27,15 +27,15 @@ use \ArrayAccess as ArrayAccess;
 use \SplFileInfo as SplFileInfo;
 use libs\sprayfire\datastructs\Overloadable as Overloadable;
 
-    /**
-     * @brief An interface that requires implementing objects to have data accessible
-     * through array access and object notation.
-     *
-     * @details
-     * Implementations of this interface should be immutable.  Only data passed in
-     * a constructor depedency should be worked with, no new data to be set or
-     * existing data to be changed or removed.
-     */
-    interface Configuration extends ArrayAccess, Overloadable {
+/**
+ * @brief An interface that requires implementing objects to have data accessible
+ * through array access and object notation.
+ *
+ * @details
+ * Implementations of this interface should be immutable.  Only data passed in
+ * a constructor depedency should be worked with, no new data to be set or
+ * existing data to be changed or removed.
+ */
+interface Configuration extends ArrayAccess, Overloadable {
 
-    }
+}

@@ -25,40 +25,40 @@
 namespace libs\sprayfire\request;
 use libs\sprayfire\request\HttpData as HttpData;
 
+/**
+ * @brief An interface used to store various HTTP data sent in the current
+ * request.
+ */
+interface HttpDataContainer {
+
     /**
-     * @brief An interface used to store various HTTP data sent in the current
-     * request.
+     * @param $Get libs.sprayfire.request.HttpData should be associated with \a $_GET
      */
-    interface HttpDataContainer {
+    public function setGetData(HttpData $Get);
 
-        /**
-         * @param $Get libs.sprayfire.request.HttpData should be associated with \a $_GET
-         */
-        public function setGetData(HttpData $Get);
+    /**
+     * @return libs.sprayfire.request.HttpData should return the object associated with \a $_GET
+     */
+    public function getGetData();
 
-        /**
-         * @return libs.sprayfire.request.HttpData should return the object associated with \a $_GET
-         */
-        public function getGetData();
+    /**
+     * @param $Post libs.sprayfire.request.HttpData should be associated with \a $_POST
+     */
+    public function setPostData(HttpData $Post);
 
-        /**
-         * @param $Post libs.sprayfire.request.HttpData should be associated with \a $_POST
-         */
-        public function setPostData(HttpData $Post);
+    /**
+     * @return libs.sprayfire.request.HttpData should return the object associated with \a $_POST
+     */
+    public function getPostData();
 
-        /**
-         * @return libs.sprayfire.request.HttpData should return the object associated with \a $_POST
-         */
-        public function getPostData();
+    /**
+     * @param $Files libs.sprayfire.request.HttpData should be associated with \a $_FILES
+     */
+    public function setFilesData(HttpData $Files);
 
-        /**
-         * @param $Files libs.sprayfire.request.HttpData should be associated with \a $_FILES
-         */
-        public function setFilesData(HttpData $Files);
+    /**
+     * @return libs.sprayfire.request.HttpData should return the object associated with \a $_FILES
+     */
+    public function getFilesData();
 
-        /**
-         * @return libs.sprayfire.request.HttpData should return the object associated with \a $_FILES
-         */
-        public function getFilesData();
-
-    }
+}

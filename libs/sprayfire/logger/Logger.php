@@ -24,17 +24,17 @@
 
 namespace libs\sprayfire\logger;
 
+/**
+ * @brief An interface for implementing objects that should be responsible for
+ * logging various messages to disk.
+ */
+interface Logger {
+
     /**
-     * @brief An interface for implementing objects that should be responsible for
-     * logging various messages to disk.
+     * @param $timestamp the timestamp for the given message
+     * @param $message The string message that should be appended to the end
+     *        of the log
      */
-    interface Logger {
+    public function log($timestamp, $message);
 
-        /**
-         * @param $timestamp the timestamp for the given message
-         * @param $message The string message that should be appended to the end
-         *        of the log
-         */
-        public function log($timestamp, $message);
-
-    }
+}

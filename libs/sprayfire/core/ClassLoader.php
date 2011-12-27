@@ -25,45 +25,45 @@
 namespace libs\sprayfire\core;
 use libs\sprayfire\core\CoreObject as CoreObject;
 
+/**
+ * @brief Responsible for including namespaced framework and application classes,
+ * assuming they abide to the rules set forth by the framework.
+ */
+class ClassLoader extends CoreObject {
+
     /**
-     * @brief Responsible for including namespaced framework and application classes,
-     * assuming they abide to the rules set forth by the framework.
+     * @brief Adds the class's autoloader function to the autoload register.
+     *
+     * @codeCoverageIgnore
      */
-    class ClassLoader extends CoreObject {
-
-        /**
-         * @brief Adds the class's autoloader function to the autoload register.
-         *
-         * @codeCoverageIgnore
-         */
-        public function setAutoLoader() {
-            \spl_autoload_register(array($this, 'loadClass'));
-        }
-
-        /**
-         * @brief Include the class based on the fully namespaced \a $className passed.
-         *
-         * @param $className The namespaced class to load
-         */
-        private function loadClass($className) {
-            $convertedPath = $this->convertNamespacedClassToDirectoryPath($className);
-            if (\file_exists($convertedPath)) {
-                include $convertedPath;
-            }
-        }
-
-        /**
-         * @brief Converts the PHP namespace separator to the appropriate directory
-         * separator.
-         *
-         * @param $className Namespaced name of the class to load
-         * @return The complete path to the class
-         */
-        private function convertNamespacedClassToDirectoryPath($className) {
-            $convertedPath = ROOT_PATH . DS;
-            $convertedPath .= \str_replace('\\', DS, $className);
-            $convertedPath .= '.php';
-            return $convertedPath;
-        }
-
+    public function setAutoLoader() {
+        \spl_autoload_register(array($this, 'loadClass'));
     }
+
+    /**
+     * @brief Include the class based on the fully namespaced \a $className passed.
+     *
+     * @param $className The namespaced class to load
+     */
+    private function loadClass($className) {
+        $convertedPath = $this->convertNamespacedClassToDirectoryPath($className);
+        if (\file_exists($convertedPath)) {
+            include $convertedPath;
+        }
+    }
+
+    /**
+     * @brief Converts the PHP namespace separator to the appropriate directory
+     * separator.
+     *
+     * @param $className Namespaced name of the class to load
+     * @return The complete path to the class
+     */
+    private function convertNamespacedClassToDirectoryPath($className) {
+        $convertedPath = ROOT_PATH . DS;
+        $convertedPath .= \str_replace('\\', DS, $className);
+        $convertedPath .= '.php';
+        return $convertedPath;
+    }
+
+}

@@ -24,15 +24,15 @@
 
 namespace libs\sprayfire\bootstrap;
 
+/**
+ * @brief An interface implemented by all framework and app bootstrapping objects.
+ */
+interface Bootstrapper {
+
     /**
-     * @brief An interface implemented by all framework and app bootstrapping objects.
+     * @brief A method that should do whatever bootstrapping features are needed
+     * for that particular bootstrap.
      */
-    interface Bootstrapper {
+    public function runBootstrap();
 
-        /**
-         * @brief A method that should do whatever bootstrapping features are needed
-         * for that particular bootstrap.
-         */
-        public function runBootstrap();
-
-    }
+}

@@ -25,25 +25,25 @@
 namespace libs\sprayfire\request;
 use libs\sprayfire\request\Uri as Uri;
 
+/**
+ * @brief An extension of the libs.sprayfire.request.Uri interface to allow
+ * for the setting of the original URI string used to map the RoutedUri object
+ * created and a means to retrieve the mapped URI string.
+ */
+interface RoutedUri extends Uri {
+
     /**
-     * @brief An extension of the libs.sprayfire.request.Uri interface to allow
-     * for the setting of the original URI string used to map the RoutedUri object
-     * created and a means to retrieve the mapped URI string.
+     * @return The URI string that was passed in this objects contructor
      */
-    interface RoutedUri extends Uri {
+    public function getRoutedUri();
 
-        /**
-         * @return The URI string that was passed in this objects contructor
-         */
-        public function getRoutedUri();
+    /**
+     * @brief Provides a means to set the original URI string that this RoutedUri
+     * was mapped from; this string should be returned by
+     * libs.sprayfire.request.Uri::getOriginalUri().
+     *
+     * @param $uri string
+     */
+    public function setOriginalUri($uri);
 
-        /**
-         * @brief Provides a means to set the original URI string that this RoutedUri
-         * was mapped from; this string should be returned by
-         * libs.sprayfire.request.Uri::getOriginalUri().
-         *
-         * @param $uri string
-         */
-        public function setOriginalUri($uri);
-
-    }
+}

@@ -24,36 +24,36 @@
 
 namespace libs\sprayfire\core;
 
+/**
+ * @brief An interface for basic framework objects.
+ *
+ * @details
+ * Primarily this interface is used to ensure that there is a way to
+ *
+ * - represent a class as a string, for debugging purposes if necessary or
+ * for pure data objects and easy output
+ * - compare 2 objects to see if they are equal to each other based on a means
+ * that makes sense for the given object
+ * - return a unique identifier for the given object
+ */
+interface Object {
+
     /**
-     * @brief An interface for basic framework objects.
+     * @brief Compare two objects to see if they are equal to each other.
      *
-     * @details
-     * Primarily this interface is used to ensure that there is a way to
-     *
-     * - represent a class as a string, for debugging purposes if necessary or
-     * for pure data objects and easy output
-     * - compare 2 objects to see if they are equal to each other based on a means
-     * that makes sense for the given object
-     * - return a unique identifier for the given object
+     * @param $Object libs.sprayfire.core.Object
+     * @return boolean
      */
-    interface Object {
+    public function equals(Object $Object);
 
-        /**
-         * @brief Compare two objects to see if they are equal to each other.
-         *
-         * @param $Object libs.sprayfire.core.Object
-         * @return boolean
-         */
-        public function equals(Object $Object);
+    /**
+     * @return A unique identifier for the given object
+     */
+    public function hashCode();
 
-        /**
-         * @return A unique identifier for the given object
-         */
-        public function hashCode();
+    /**
+     * @return A string representation for the object
+     */
+    public function __toString();
 
-        /**
-         * @return A string representation for the object
-         */
-        public function __toString();
-
-    }
+}

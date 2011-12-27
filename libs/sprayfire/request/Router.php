@@ -27,30 +27,30 @@ use libs\sprayfire\request\Uri as Uri;
 use libs\sprayfire\config\Configuration as Configuration;
 use libs\sprayfire\logger\Logger as Logger;
 
+/**
+ * @brief Implementations should convert a libs.sprayfire.request.Uri object
+ * into a libs.sprayfire.request.RoutedUri object, using values from the
+ * libs.sprayfire.config.Configuration object that is passed in the constructor
+ * as defaults if needed.
+ *
+ * @details
+ * Implementations of this interface should not necessarily be responsible for
+ * the actual instantiation and invocation of the necessary controller objects.
+ * That responsibility is left to a different object that is better suited for
+ * the task.  Implementing classes should simply provide a RoutedUri object
+ * that can be used by the actual dispatching class.
+ *
+ * @see https://github.com/cspray/SprayFire/wiki/Routing
+ */
+interface Router {
+
     /**
-     * @brief Implementations should convert a libs.sprayfire.request.Uri object
-     * into a libs.sprayfire.request.RoutedUri object, using values from the
-     * libs.sprayfire.config.Configuration object that is passed in the constructor
-     * as defaults if needed.
+     * @brief Should return a RoutedUri that is mapped off of the Uri object
+     * being passed.
      *
-     * @details
-     * Implementations of this interface should not necessarily be responsible for
-     * the actual instantiation and invocation of the necessary controller objects.
-     * That responsibility is left to a different object that is better suited for
-     * the task.  Implementing classes should simply provide a RoutedUri object
-     * that can be used by the actual dispatching class.
-     *
-     * @see https://github.com/cspray/SprayFire/wiki/Routing
+     * @param $Uri libs.sprayfire.request.Uri
+     * @return libs.sprayfire.request.RoutedUri
      */
-    interface Router {
+    public function getRoutedUri(Uri $Uri);
 
-        /**
-         * @brief Should return a RoutedUri that is mapped off of the Uri object
-         * being passed.
-         *
-         * @param $Uri libs.sprayfire.request.Uri
-         * @return libs.sprayfire.request.RoutedUri
-         */
-        public function getRoutedUri(Uri $Uri);
-
-    }
+}

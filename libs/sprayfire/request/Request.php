@@ -26,26 +26,26 @@ namespace libs\sprayfire\request;
 use libs\sprayfire\request\RoutedUri as RoutedUri;
 use libs\sprayfire\request\HttpDataContainer as HttpDataContainer;
 
+/**
+ * @brief Provides a way to pass several objects to the front controller and
+ * the application components in regard to the request sent; including the
+ * mapped URI controller and action as well as the PHP superglobals as objects.
+ */
+interface Request {
+
     /**
-     * @brief Provides a way to pass several objects to the front controller and
-     * the application components in regard to the request sent; including the
-     * mapped URI controller and action as well as the PHP superglobals as objects.
+     * @brief Provides a way to pass a variety of HTTP super global data to
+     * the controller being invoked.
+     *
+     * @param $HttpDataContainer a libs.sprayfire.request.HttpDataContainer object
+     *        holding the appropriate super globals for this request.
      */
-    interface Request {
+    public function setHttpDataContainer(HttpDataContainer $HttpDataContainer);
 
-        /**
-         * @brief Provides a way to pass a variety of HTTP super global data to
-         * the controller being invoked.
-         *
-         * @param $HttpDataContainer a libs.sprayfire.request.HttpDataContainer object
-         *        holding the appropriate super globals for this request.
-         */
-        public function setHttpDataContainer(HttpDataContainer $HttpDataContainer);
+    /**
+     * @return A libs.sprayfire.request.HttpData object holding the request
+     *         data
+     */
+    public function getHttpDataContainer();
 
-        /**
-         * @return A libs.sprayfire.request.HttpData object holding the request
-         *         data
-         */
-        public function getHttpDataContainer();
-
-    }
+}
