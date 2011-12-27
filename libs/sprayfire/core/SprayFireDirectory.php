@@ -94,12 +94,20 @@ namespace libs\sprayfire\core;
         private static $appRoot = null;
 
         /**
+         * @brief The absolute path to the root logs directory
+         *
+         * @property $logsRoot
+         */
+        private static $logsRoot = null;
+
+        /**
          * @param $rootInstallationPath string
          */
         public static function setRootInstallationPath($rootInstallationPath) {
             self::$installRoot = $rootInstallationPath;
             self::$frameworkRoot = self::$installRoot . DS . 'libs' . DS . 'sprayfire';
             self::$appRoot = self::$installRoot . DS . 'app';
+            self::$logsRoot = self::$installRoot . DS . 'logs';
         }
 
         /**
@@ -119,11 +127,6 @@ namespace libs\sprayfire\core;
             $subDirList = \func_get_args();
             if (\count($subDirList) === 0) {
                 return self::getAppPath();
-            }
-
-            // this is here to support passing an array as the only argument
-            if (\is_array($subDirList[0])) {
-                $subDirList = $subDirList[0];
             }
             $subDirPath = self::getSubDirectoryPath($subDirList);
             return self::getAppPath() . DS . $subDirPath;
@@ -147,14 +150,30 @@ namespace libs\sprayfire\core;
             if (\count($subDirList) === 0) {
                 return self::getFrameworkPath();
             }
+            $subDirPath = self::getSubDirectoryPath($subDirList);
+            return self::getFrameworkPath() . DS . $subDirPath;
+        }
 
-            // this is here to support passing an array as the only argument
-            if (\is_array($subDirList[0])) {
-                $subDirList = $subDirList[0];
+        /**
+         * @return Absolute path to the root logs folder, with no trailing separator
+         */
+        public static function getLogsPath() {
+            return self::$logsRoot;
+        }
+
+        /**
+         * @brief Converts a variable list of arguments to an absolute path in the
+         * ROOT_PATH/logs/ directory
+         *
+         * @return Absolute path to a sub directory or file in the root framework folder, with no trailing separator
+         */
+        public static function getLogsPathSubDirectory() {
+            $subDirList = \func_get_args();
+            if (\count($subDirList) === 0) {
+                return self::$logsRoot;
             }
             $subDirPath = self::getSubDirectoryPath($subDirList);
-            $fullPath = self::getFrameworkPath() . DS . $subDirPath;
-            return $fullPath;
+            return self::getLogsPath() . DS . $subDirPath;
         }
 
         /**
@@ -170,6 +189,9 @@ namespace libs\sprayfire\core;
          */
         private static function getSubDirectoryPath(array $subDirList) {
             $subDirPath = '';
+            if (\is_array($subDirList[0])) {
+                $subDirList = $subDirList[0];
+            }
             foreach ($subDirList as $subDir) {
                 $subDirPath .= \trim($subDir) . DS;
             }

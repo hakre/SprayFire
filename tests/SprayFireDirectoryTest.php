@@ -84,6 +84,44 @@ class SprayFireDirectoryTest extends PHPUnit_Framework_TestCase {
         $this->assertSame($expected, $actual);
     }
 
+    public function testLogsRootDirectory() {
+        $expected = ROOT_PATH . DS . 'tests' . DS . 'mockframework' . DS . 'logs';
+        $actual = libs\sprayfire\core\SprayFireDirectory::getLogsPath();
+        $this->assertSame($expected, $actual);
+    }
+
+    public function testLogsSubDirectoryPassingListOfArguments() {
+        $expected = ROOT_PATH . DS . 'tests' . DS . 'mockframework' . DS . 'logs' . DS . 'error' . DS . 'database';
+        $actual = libs\sprayfire\core\SprayFireDirectory::getLogsPathSubDirectory('error', 'database');
+        $this->assertSame($expected, $actual);
+    }
+
+    public function testLogsSubDirectoryListOfArgumentsWithFileAtEnd() {
+        $expected = ROOT_PATH . DS . 'tests' . DS . 'mockframework' . DS . 'logs' . DS . 'error' . DS . 'database' . DS . 'sql-queries.txt';
+        $actual = libs\sprayfire\core\SprayFireDirectory::getLogsPathSubDirectory('error', 'database', 'sql-queries.txt');
+        $this->assertSame($expected, $actual);
+    }
+
+    public function testLogsSubDirectoryPassingArrayOfArguments() {
+        $expected = ROOT_PATH . DS . 'tests' . DS . 'mockframework' . DS . 'logs' . DS . 'error' . DS . 'database';
+        $subDir = array('error', 'database');
+        $actual = libs\sprayfire\core\SprayFireDirectory::getLogsPathSubDirectory($subDir);
+        $this->assertSame($expected, $actual);
+    }
+
+    public function testLogsSubDirectoryArrayOfArgumentsWithFileAtEnd() {
+        $expected = ROOT_PATH . DS . 'tests' . DS . 'mockframework' . DS . 'logs' . DS . 'error' . DS . 'database' . DS . 'sql-queries.txt';
+        $subDir = array('error', 'database', 'sql-queries.txt');
+        $actual = libs\sprayfire\core\SprayFireDirectory::getLogsPathSubDirectory($subDir);
+        $this->assertSame($expected, $actual);
+    }
+
+    public function testLogsSubDirectoryWithNoArguments() {
+        $expected = libs\sprayfire\core\SprayFireDirectory::getLogsPath();
+        $actual = libs\sprayfire\core\SprayFireDirectory::getLogsPathSubDirectory();
+        $this->assertSame($expected, $actual);
+    }
+
     public function testAppPathRootDirectory() {
         $expected = ROOT_PATH . DS . 'tests' . DS . 'mockframework' . DS . 'app';
         $actual = libs\sprayfire\core\SprayFireDirectory::getAppPath();
