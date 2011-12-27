@@ -39,13 +39,6 @@ use libs\sprayfire\datastructs\Overloadable as Overloadable;
      */
     interface Configuration extends ArrayAccess, Overloadable {
 
-        /**
-         * @brief Requires the injection of a SplFileInfo object
-         *
-         * @param $FileInfo SplFileInfo holding the path to the configuration file
-         */
-        public function __construct(SplFileInfo $FileInfo);
-
     }
 
     // End Configuration
