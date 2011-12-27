@@ -121,7 +121,7 @@ class BaseUri extends \SprayFire\Core\CoreObject implements \SprayFire\Request\U
 
         if ($this->isParameterString($uriFragments[0])) {
             $parsedFragments[$controller] = \SprayFire\Request\Uri::DEFAULT_CONTROLLER;
-            $parsedFragments[$action] = \libs\SprayFire\Request\Uri::DEFAULT_ACTION;
+            $parsedFragments[$action] = \SprayFire\Request\Uri::DEFAULT_ACTION;
             $parsedFragments[$parameters] = $this->removeParameterMarker($uriFragments);
             return $parsedFragments;
         }
