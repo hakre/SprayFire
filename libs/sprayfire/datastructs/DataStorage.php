@@ -25,6 +25,7 @@
 namespace libs\sprayfire\datastructs;
 use \ArrayAccess as ArrayAccess;
 use \Countable as Countable;
+use \IteratorAggregate as IteratorAggregate;
 use libs\sprayfire\datastructs\Overloadable as Overloadable;
 use libs\sprayfire\core\CoreObject as CoreObject;
 
@@ -60,7 +61,7 @@ use libs\sprayfire\core\CoreObject as CoreObject;
      * this is the best option as you will still have to take into account the
      * public methods that allow the object an array notation.
      */
-    abstract class DataStorage extends CoreObject implements ArrayAccess, Countable, Overloadable {
+    abstract class DataStorage extends CoreObject implements ArrayAccess, Countable, Overloadable, IteratorAggregate {
 
         /**
          * An array holding the data being stored.
@@ -207,6 +208,10 @@ use libs\sprayfire\core\CoreObject as CoreObject;
          */
         public function count() {
             return \count($this->data);
+        }
+
+        public function getIterator() {
+            return new \ArrayIterator($this->data);
         }
 
         /**
