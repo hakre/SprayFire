@@ -15,10 +15,9 @@ include 'JsonConfigTest.php';
 include 'MutableStorageTest.php';
 include 'SprayFireObjectStoreTest.php';
 include 'BaseUriTest.php';
-include 'SprayFireDirectoryTest.php';
+include 'DirectoryTest.php';
 include 'SprayFireRouterTest.php';
 include 'SprayFireUriTest.php';
-include 'SprayFireHttpDataTest.php';
 include 'FileLoggerTest.php';
 
 /**
@@ -33,15 +32,13 @@ class AllTests {
      */
     public static function suite() {
         $Suite = new PHPUnit_Framework_TestSuite();
-        //$Suite->addTestSuite('FrameworkBootstrapTest');
         $Suite->addTestSuite('JsonConfigTest');
         $Suite->addTestSuite('MutableStorageTest');
         $Suite->addTestSuite('SprayFireObjectStoreTest');
         $Suite->addTestSuite('SprayFireRouterTest');
         $Suite->addTestSuite('BaseUriTest');
-        $Suite->addTestSuite('SprayFireDirectoryTest');
+        $Suite->addTestSuite('DirectoryTest');
         $Suite->addTestSuite('SprayFireUriTest');
-        $Suite->addTestSuite('SprayFireHttpDataTest');
         $Suite->addTestSuite('FileLoggerTest');
 
         return $Suite;
