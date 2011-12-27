@@ -21,11 +21,7 @@
  * @copyright Copyright (c) 2011, Charles Sprayberry OSI MIT License <http://www.opensource.org/licenses/mit-license.php>
  */
 
-/**
- * @namespace libs.sprayfire.bootstrap
- * @brief Holds interfaces and classes responsible for bootstrapping procedures.
- */
-namespace libs\sprayfire\bootstrap {
+namespace libs\sprayfire\bootstrap;
 
     /**
      * @brief The framework's bootstrap, implementing necessary startup details
@@ -89,7 +85,7 @@ namespace libs\sprayfire\bootstrap {
         }
 
         /**
-         * @brief Returns an array of 
+         * @brief Returns an array of
          *
          * @return array
          */
@@ -234,8 +230,3 @@ namespace libs\sprayfire\bootstrap {
         }
 
     }
-
-    // End FrameworkBootstrap
-
-}
-
