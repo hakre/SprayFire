@@ -30,15 +30,6 @@ namespace libs\sprayfire\bootstrap;
     interface Bootstrapper {
 
         /**
-         * @brief Every bootstrapper should be prepared to accept a configuration object, as
-         * many of the responsibilities for the bootstrapping object is to ensure
-         * configuration values are properly set.
-         *
-         * @param $ConfigurationObject libs.sprayfire.config.Configuration
-         */
-        public function __construct(\libs\sprayfire\config\Configuration $ConfigurationObject);
-
-        /**
          * @brief A method that should do whatever bootstrapping features are needed
          * for that particular bootstrap.
          */
