@@ -22,8 +22,9 @@
  */
 
 namespace libs\sprayfire\datastructs;
-use \InvalidArgumentException as InvalidArgumentException;
+use \IteratorAggregate as IteratorAggregate;
 use \ReflectionClass as ReflectionClass;
+use \InvalidArgumentException as InvalidArgumentException;
 use \ReflectionException as ReflectionException;
 use libs\sprayfire\core\Object as Object;
 use libs\sprayfire\core\CoreObject as CoreObject;
@@ -37,7 +38,7 @@ use libs\sprayfire\datastructs\ObjectStorage as ObjectStorage;
      * of that object using that key.  Also allows for the removal of an object
      * associated with a key and iterating over the stored objects.
      */
-    class SprayFireObjectStore extends CoreObject implements ObjectStorage {
+    class SprayFireObjectStore extends CoreObject implements IteratorAggregate, ObjectStorage {
 
         /**
          * @brief Holds a ReflectionClass of the data type that should be implemented by objects
