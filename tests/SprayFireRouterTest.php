@@ -33,6 +33,14 @@
  */
 class SprayFireRouterTest extends PHPUnit_Framework_TestCase {
 
+    private $validLogPath;
+
+    private $controllerParamsWildCard;
+
+    private $originalFrameworkPath;
+
+    private $originalAppPath;
+
     public function setUp() {
 
         // we are also testing that the subdirectory path will return the correct path if
@@ -46,13 +54,19 @@ class SprayFireRouterTest extends PHPUnit_Framework_TestCase {
         $expectedFrameworkSub = ROOT_PATH . DS . 'tests' . DS .'mockframework' . DS . 'app' . DS . 'config';
         $actualFrameworkSub = \libs\sprayfire\core\SprayFireDirectory::getAppPathSubDirectory('config');
         $this->assertSame($expectedFrameworkSub, $actualFrameworkSub);
+
+        $this->validLogPath = libs\sprayfire\core\SprayFireDirectory::getLogsPathSubDirectory('no-errors.txt');
     }
 
     public function testRootUriRouting() {
         $routesConfigPath = \libs\sprayfire\core\SprayFireDirectory::getAppPathSubDirectory('config', 'json', 'routes.json');
         $RoutesConfigFile = new \SplFileInfo($routesConfigPath);
         $RoutesConfig = new libs\sprayfire\config\JsonConfig($RoutesConfigFile);
-        $Router = new \libs\sprayfire\request\SprayFireRouter($RoutesConfig);
+
+        $LogFile = new \SplFileInfo($this->validLogPath);
+        $Logger = new libs\sprayfire\logger\FileLogger($LogFile);
+
+        $Router = new \libs\sprayfire\request\SprayFireRouter($RoutesConfig, $Logger);
 
         $requestedUri = '/';
         $Uri = new libs\sprayfire\request\BaseUri($requestedUri);
@@ -75,7 +89,11 @@ class SprayFireRouterTest extends PHPUnit_Framework_TestCase {
         $routesConfigPath = \libs\sprayfire\core\SprayFireDirectory::getAppPathSubDirectory('config', 'json', 'routes.json');
         $RoutesConfigFile = new \SplFileInfo($routesConfigPath);
         $RoutesConfig = new libs\sprayfire\config\JsonConfig($RoutesConfigFile);
-        $Router = new \libs\sprayfire\request\SprayFireRouter($RoutesConfig);
+
+        $LogFile = new \SplFileInfo($this->validLogPath);
+        $Logger = new libs\sprayfire\logger\FileLogger($LogFile);
+
+        $Router = new \libs\sprayfire\request\SprayFireRouter($RoutesConfig, $Logger);
 
         $requestedUri = '/posts/:tag/:post-title-or-slug';
         $Uri = new libs\sprayfire\request\BaseUri($requestedUri);
@@ -97,7 +115,11 @@ class SprayFireRouterTest extends PHPUnit_Framework_TestCase {
         $routesConfigPath = \libs\sprayfire\core\SprayFireDirectory::getAppPathSubDirectory('config', 'json', 'routes.json');
         $RoutesConfigFile = new \SplFileInfo($routesConfigPath);
         $RoutesConfig = new libs\sprayfire\config\JsonConfig($RoutesConfigFile);
-        $Router = new \libs\sprayfire\request\SprayFireRouter($RoutesConfig);
+
+        $LogFile = new \SplFileInfo($this->validLogPath);
+        $Logger = new libs\sprayfire\logger\FileLogger($LogFile);
+
+        $Router = new \libs\sprayfire\request\SprayFireRouter($RoutesConfig, $Logger);
 
         $requestedUri = '/dogs/train/obedience/teach-your-dog-to-stay';
         $Uri = new libs\sprayfire\request\BaseUri($requestedUri);
@@ -119,7 +141,11 @@ class SprayFireRouterTest extends PHPUnit_Framework_TestCase {
         $routesConfigPath = \libs\sprayfire\core\SprayFireDirectory::getAppPathSubDirectory('config', 'json', 'routes.json');
         $RoutesConfigFile = new \SplFileInfo($routesConfigPath);
         $RoutesConfig = new libs\sprayfire\config\JsonConfig($RoutesConfigFile);
-        $Router = new \libs\sprayfire\request\SprayFireRouter($RoutesConfig);
+
+        $LogFile = new \SplFileInfo($this->validLogPath);
+        $Logger = new libs\sprayfire\logger\FileLogger($LogFile);
+
+        $Router = new \libs\sprayfire\request\SprayFireRouter($RoutesConfig, $Logger);
 
         $requestedUri = '/dogs/train/obedience/sit/stay/come';
         $Uri = new libs\sprayfire\request\BaseUri($requestedUri);
@@ -141,7 +167,11 @@ class SprayFireRouterTest extends PHPUnit_Framework_TestCase {
         $routesConfigPath = \libs\sprayfire\core\SprayFireDirectory::getAppPathSubDirectory('config', 'json', 'routes.json');
         $RoutesConfigFile = new \SplFileInfo($routesConfigPath);
         $RoutesConfig = new libs\sprayfire\config\JsonConfig($RoutesConfigFile);
-        $Router = new \libs\sprayfire\request\SprayFireRouter($RoutesConfig);
+
+        $LogFile = new \SplFileInfo($this->validLogPath);
+        $Logger = new libs\sprayfire\logger\FileLogger($LogFile);
+
+        $Router = new \libs\sprayfire\request\SprayFireRouter($RoutesConfig, $Logger);
 
         $requestedUri = '/:param';
         $Uri = new libs\sprayfire\request\BaseUri($requestedUri);
@@ -163,7 +193,11 @@ class SprayFireRouterTest extends PHPUnit_Framework_TestCase {
         $routesConfigPath = \libs\sprayfire\core\SprayFireDirectory::getAppPathSubDirectory('config', 'json', 'routes.json');
         $RoutesConfigFile = new \SplFileInfo($routesConfigPath);
         $RoutesConfig = new libs\sprayfire\config\JsonConfig($RoutesConfigFile);
-        $Router = new \libs\sprayfire\request\SprayFireRouter($RoutesConfig);
+
+        $LogFile = new \SplFileInfo($this->validLogPath);
+        $Logger = new libs\sprayfire\logger\FileLogger($LogFile);
+
+        $Router = new \libs\sprayfire\request\SprayFireRouter($RoutesConfig, $Logger);
 
         $requestedUri = '/:param1/:param2';
         $Uri = new libs\sprayfire\request\BaseUri($requestedUri);
@@ -185,7 +219,11 @@ class SprayFireRouterTest extends PHPUnit_Framework_TestCase {
         $routesConfigPath = \libs\sprayfire\core\SprayFireDirectory::getAppPathSubDirectory('config', 'json', 'routes.json');
         $RoutesConfigFile = new \SplFileInfo($routesConfigPath);
         $RoutesConfig = new libs\sprayfire\config\JsonConfig($RoutesConfigFile);
-        $Router = new \libs\sprayfire\request\SprayFireRouter($RoutesConfig);
+
+        $LogFile = new \SplFileInfo($this->validLogPath);
+        $Logger = new libs\sprayfire\logger\FileLogger($LogFile);
+
+        $Router = new \libs\sprayfire\request\SprayFireRouter($RoutesConfig, $Logger);
 
         $requestedUri = '/songs/:genre/:hip-hop';
         $Uri = new libs\sprayfire\request\BaseUri($requestedUri);
@@ -207,7 +245,11 @@ class SprayFireRouterTest extends PHPUnit_Framework_TestCase {
         $routesConfigPath = \libs\sprayfire\core\SprayFireDirectory::getAppPathSubDirectory('config', 'json', 'invalid-routes.json');
         $RoutesConfigFile = new \SplFileInfo($routesConfigPath);
         $RoutesConfig = new libs\sprayfire\config\JsonConfig($RoutesConfigFile);
-        $Router = new \libs\sprayfire\request\SprayFireRouter($RoutesConfig);
+
+        $this->controllerParamsWildCard = libs\sprayfire\core\SprayFireDirectory::getLogsPathSubDirectory('config', 'error.txt');
+        $LogFile = new \SplFileInfo($this->controllerParamsWildCard);
+        $Logger = new libs\sprayfire\logger\FileLogger($LogFile);
+        $Router = new \libs\sprayfire\request\SprayFireRouter($RoutesConfig, $Logger);
 
         $requestedUri = '/:genre/:hip-hop';
         $Uri = new libs\sprayfire\request\BaseUri($requestedUri);
@@ -223,13 +265,19 @@ class SprayFireRouterTest extends PHPUnit_Framework_TestCase {
         $this->assertSame($expectedController, $RoutedUri->getController());
         $this->assertSame($expectedAction, $RoutedUri->getAction());
         $this->assertSame(array('genre', 'hip-hop'), $RoutedUri->getParameters());
+
+        $expectedLogLines = array();
     }
 
     public function testDefaultControllerAndActionSetInConfigWithSpecificPattern() {
         $routesConfigPath = \libs\sprayfire\core\SprayFireDirectory::getAppPathSubDirectory('config', 'json', 'routes.json');
         $RoutesConfigFile = new \SplFileInfo($routesConfigPath);
         $RoutesConfig = new libs\sprayfire\config\JsonConfig($RoutesConfigFile);
-        $Router = new \libs\sprayfire\request\SprayFireRouter($RoutesConfig);
+
+        $LogFile = new \SplFileInfo($this->validLogPath);
+        $Logger = new libs\sprayfire\logger\FileLogger($LogFile);
+
+        $Router = new \libs\sprayfire\request\SprayFireRouter($RoutesConfig, $Logger);
 
         $requestedUri = '/dogs/:stay';
         $Uri = new libs\sprayfire\request\BaseUri($requestedUri);
@@ -252,6 +300,14 @@ class SprayFireRouterTest extends PHPUnit_Framework_TestCase {
 
         $this->assertSame($this->originalFrameworkPath, \libs\sprayfire\core\SprayFireDirectory::getFrameworkPathSubDirectory());
         $this->assertSame($this->originalAppPath, \libs\sprayfire\core\SprayFireDirectory::getAppPathSubDirectory());
+
+        if (\file_exists($this->validLogPath)) {
+            \unlink($this->validLogPath);
+        }
+
+        if (\file_exists($this->controllerParamsWildCard)) {
+            \unlink($this->controllerParamsWildCard);
+        }
     }
 
 
