@@ -34,12 +34,6 @@ use libs\sprayfire\request\HttpDataContainer as HttpDataContainer;
     interface Request {
 
         /**
-         * @param $RoutedUri A libs.sprayfire.request.RoutedUri object that holds
-         *        the controller, action and parameters to invoke for this request.
-         */
-        public function __construct(RoutedUri $RoutedUri);
-
-        /**
          * @brief Provides a way to pass a variety of HTTP super global data to
          * the controller being invoked.
          *
