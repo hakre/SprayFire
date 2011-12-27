@@ -25,10 +25,11 @@
  */
 
 namespace libs\sprayfire\request;
-use libs\sprayfire\core\CoreObject as CoreObject;
 use libs\sprayfire\config\Configuration as Configuration;
 use libs\sprayfire\request\Router as Router;
 use libs\sprayfire\request\Uri as Uri;
+use libs\sprayfire\logger\Logger as Logger;
+use libs\sprayfire\core\CoreObject as CoreObject;
 use libs\sprayfire\request\SprayFireUri as SprayFireUri;
 
     /**
@@ -51,6 +52,14 @@ use libs\sprayfire\request\SprayFireUri as SprayFireUri;
          * @property $RoutesConfig
          */
         protected $RoutesConfig;
+
+        /**
+         * @brief The libs.sprayfire.logger.Logger object used to store the error
+         * messages that may occur during parsing of the URI.
+         *
+         * @property $Log
+         */
+        protected $Log;
 
         /**
          * @brief The default controller to use if the %default_controller% flag
@@ -91,18 +100,18 @@ use libs\sprayfire\request\SprayFireUri as SprayFireUri;
          *
          * @param $RoutesConfig libs.sprayfire.config.Configuration
          */
-        public function __construct(Configuration $RoutesConfig) {
+        public function __construct(Configuration $RoutesConfig, Logger $Log) {
             $this->RoutesConfig = $RoutesConfig;
-
+            $this->Log = $Log;
             if (!isset($RoutesConfig->defaults->controller)) {
-                \error_log('The default controller was not properly set, using \'pages\' as default controller.');
+                $this->log('The default controller was not properly set, using \'pages\' as default controller.');
                 $defaultController = 'pages';
             } else {
                 $defaultController = $RoutesConfig->defaults->controller;
             }
 
             if (!isset($RoutesConfig->defaults->action)) {
-                \error_log('The default action was not properly set, using \'index\' as the default action.');
+                $this->log('The default action was not properly set, using \'index\' as the default action.');
                 $defaultAction = 'index';
             } else {
                 $defaultAction = $RoutesConfig->defaults->action;
@@ -110,6 +119,17 @@ use libs\sprayfire\request\SprayFireUri as SprayFireUri;
 
             $this->defaultController = $defaultController;
             $this->defaultAction = $defaultAction;
+        }
+
+        /**
+         * @brief Logs an error message, appending the current timestamp to the
+         * \a $message
+         *
+         * @param $message A message to be logged
+         */
+        private function log($message) {
+            $timestamp = \date('M-d-Y H:i:s');
+            $this->Log->log($timestamp, $message);
         }
 
         /**
@@ -275,7 +295,3 @@ use libs\sprayfire\request\SprayFireUri as SprayFireUri;
         }
 
     }
-
-    // End SprayFireRouter
-
-// End libs.sprayfire
