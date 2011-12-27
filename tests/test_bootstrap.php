@@ -1,22 +1,14 @@
 <?php
 
-    /**
-     * @var string
-     */
-    defined('DS') or define('DS', DIRECTORY_SEPARATOR);
+    include \dirname(__DIR__) .'/libs/sprayfire/core/Directory.php';
 
-    /**
-     * @var string
-     */
-    defined('ROOT_PATH') or define('ROOT_PATH', dirname(dirname(__FILE__)));
-    
-    include ROOT_PATH . DS . 'libs' . DS . 'sprayfire' . DS . 'core' . DS . 'SprayFireDirectory.php';
+    \SprayFire\Core\Directory::setInstallPath(\dirname(__DIR__));
+    \SprayFire\Core\Directory::setLibsPath(\dirname(__DIR__) . '/libs');
 
-    \libs\sprayfire\core\SprayFireDirectory::setRootInstallationPath(ROOT_PATH);
+    include \SprayFire\Core\Directory::getLibsPath('SprayFire', 'Core', 'Object.php');
+    include \SprayFire\Core\Directory::getLibsPath('SprayFire', 'Core', 'CoreObject.php');
+    include \SprayFire\Core\Directory::getLibsPath('SprayFire', 'Core', 'ClassLoader.php');
 
-    include \libs\sprayfire\core\SprayFireDirectory::getFrameworkPathSubDirectory('core', 'Object.php');
-    include \libs\sprayfire\core\SprayFireDirectory::getFrameworkPathSubDirectory('core', 'CoreObject.php');
-    include \libs\sprayfire\core\SprayFireDirectory::getFrameworkPathSubDirectory('core', 'ClassLoader.php');
-
-    $ClassLoader = new \libs\sprayfire\core\ClassLoader();
-    $ClassLoader->setAutoLoader();
+    $ClassLoader = new \SprayFire\Core\ClassLoader();
+    $ClassLoader->registerNamespaceDirectory('SprayFire', \SprayFire\Core\Directory::getLibsPath());
+    \spl_autoload(array($ClassLoader, 'loadClass'));
