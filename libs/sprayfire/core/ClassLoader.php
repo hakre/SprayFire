@@ -22,21 +22,61 @@
  * @copyright Copyright (c) 2011, Charles Sprayberry
  */
 
-namespace libs\sprayfire\core;
+namespace SprayFire\Core;
 
 /**
  * @brief Responsible for including namespaced framework and application classes,
  * assuming they abide to the rules set forth by the framework.
+ *
+ * @details
+ *
  */
-class ClassLoader extends \libs\sprayfire\core\CoreObject {
+class ClassLoader extends \SprayFire\Core\CoreObject {
 
     /**
-     * @brief Adds the class's autoloader function to the autoload register.
+     * @brief An array holding a top-level namespace as the key and the complete
+     * root path for that namespace as the value.
      *
-     * @codeCoverageIgnore
+     *
+     *
+     * @property $namespaceMap
      */
-    public function setAutoLoader() {
-        \spl_autoload_register(array($this, 'loadClass'));
+    protected $namespaceMap = array();
+
+    /**
+     * @brief Allows access to set a given namespace to a given directory.
+     *
+     * @details
+     * The directory should be assigned in such a way that the following occurs:
+     *
+     * <pre>
+     * The class:
+     *
+     * \Top\Level\ClassName
+     *
+     * The directory for that class:
+     *
+     * /install_path/app/Top/Level/ClassName.php
+     *
+     * The proper key and value for this namspace and directory would look like:
+     *
+     * $namespaceMap['Top'] = '/install_path/app';
+     *
+     * Thus when you attempt to instantiate the class like so:
+     *
+     * $Class = new \Top\Level\ClassName();
+     *
+     * The class autoloader will convert the namespace to a directory and then
+     * append that directory to the value stored by the 'Top' key.
+     * </pre>
+     *
+     * @param $topLevelNamespace A string representing a top level namespace
+     * @param $dir The complete path to the directory holding the top level namespace
+     */
+    public function registerNamespaceDirectory($topLevelNamespace, $dir) {
+        if (!empty($topLevelNamespace) && !empty($dir)) {
+            $this->namespaceMap[$topLevelNamespace] = $dir;
+        }
     }
 
     /**
@@ -44,11 +84,43 @@ class ClassLoader extends \libs\sprayfire\core\CoreObject {
      *
      * @param $className The namespaced class to load
      */
-    private function loadClass($className) {
-        $convertedPath = $this->convertNamespacedClassToDirectoryPath($className);
-        if (\file_exists($convertedPath)) {
-            include $convertedPath;
+    public function loadClass($className) {
+        $namespace = $this->getTopLevelNamespace($className);
+        $path = $this->getDirectoryForTopLevelNamespace($namespace) . '/';
+        $path .= $this->convertNamespacedClassToFilePath($className);
+        if (\file_exists($path)) {
+            include $path;
         }
+    }
+
+    /**
+     * @brief Will return the top-level namespace for a class, given it has a namespace
+     *
+     * @param $className Fully namespaced name of the class
+     * @return mixed
+     */
+    protected function getTopLevelNamespace($className) {
+        $className = \ltrim($className, '\\ ');
+        $namespaces = \explode('\\', $className);
+        if (\count($namespaces) > 0) {
+            return $namespaces[0];
+        }
+        return NULL;
+    }
+
+    /**
+     * @brief Will check to see if the \a $namespace has a directory mapped to it,
+     * if not we assume that it is in the app path.
+     *
+     * @param $namespace A top-level namespace that may exist in \a $namespaceMap
+     * @return string
+     * @see SprayFire.Core.Directory
+     */
+    protected function getDirectoryForTopLevelNamespace($namespace) {
+        if (isset($namespace) && \array_key_exists($namespace, $this->namespaceMap)) {
+            return $this->namespaceMap[$namespace];
+        }
+        return \SprayFire\Core\Directory::getAppPath();
     }
 
     /**
@@ -58,11 +130,10 @@ class ClassLoader extends \libs\sprayfire\core\CoreObject {
      * @param $className Namespaced name of the class to load
      * @return The complete path to the class
      */
-    private function convertNamespacedClassToDirectoryPath($className) {
-        $convertedPath = ROOT_PATH . DS;
-        $convertedPath .= \str_replace('\\', DS, $className);
-        $convertedPath .= '.php';
-        return $convertedPath;
+    protected function convertNamespacedClassToFilePath($className) {
+        $path = \str_replace('\\', '/', $className);
+        $path .= '.php';
+        return $path;
     }
 
 }
