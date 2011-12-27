@@ -23,7 +23,7 @@
  */
 
 namespace libs\sprayfire\datastructs;
-use \IteratorAggregate as IteratorAggregate;
+use \Traversable as Traversable;
 use \Countable as Countable;
 use \ReflectionClass as ReflectionClass;
 use libs\sprayfire\core\Object as Object;
@@ -34,9 +34,9 @@ use libs\sprayfire\core\Object as Object;
      *
      * @details
      * Please note that this data structure will only store classes implementing
-     * the libs.sprayfire.core.Object interface.  If this interface is not implemented by the objects
-     * being added an InvalidArgumentException should be thrown to let the calling
-     * code know that the object is of the incorrect type.
+     * the libs.sprayfire.core.Object interface.  If this interface is not implemented
+     * by the objects being added an InvalidArgumentException should be thrown to
+     * let the calling code know that the object is of the incorrect type.
      *
      * The only way this data structure should be manipulated and interacted with
      * is through the supplied interface; do not implement this interface through
@@ -44,17 +44,7 @@ use libs\sprayfire\core\Object as Object;
      * objects as they allow for the storing of any data type through the libs.sprayfire.datastructs.Overloadable
      * and ArrayAccess interfaces.
      */
-    interface ObjectStorage extends IteratorAggregate, Countable {
-
-        /**
-         * @brief This data structure should restrict the objects stored in it to a
-         * specific class or interface; the type of class or interface should be
-         * passed via a ReflectionClass object.
-         *
-         * @param $ReflectedObjectType ReflectionClass
-         * @throws InvalidArgumentException
-         */
-        public function __construct(ReflectionClass $ReflectedObjectType);
+    interface ObjectStorage extends Traversable, Countable {
 
         /**
          * @brief Return an Object if one exists for the given key or null.
