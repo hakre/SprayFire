@@ -44,5 +44,3 @@ use libs\sprayfire\datastructs\Overloadable as Overloadable;
     interface Configuration extends ArrayAccess, Overloadable {
 
     }
-
-    // End Configuration
