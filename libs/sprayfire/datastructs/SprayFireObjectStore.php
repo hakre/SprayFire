@@ -227,7 +227,3 @@ use libs\sprayfire\datastructs\ObjectStorage as ObjectStorage;
         }
 
     }
-
-    // End SprayFireObjectStore
-
-// End libs.sprayfire.core
