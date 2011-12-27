@@ -22,7 +22,7 @@
  * @copyright Copyright (c) 2011, Charles Sprayberry
  */
 
-namespace libs\sprayfire\request;
+namespace SprayFire\Request;
 
 /**
  * @brief Implementations should convert a libs.sprayfire.request.Uri object
@@ -48,6 +48,6 @@ interface Router {
      * @param $Uri libs.sprayfire.request.Uri
      * @return libs.sprayfire.request.RoutedUri
      */
-    public function getRoutedUri(\libs\sprayfire\request\Uri $Uri);
+    public function getRoutedUri(\SprayFire\Request\Uri $Uri);
 
 }

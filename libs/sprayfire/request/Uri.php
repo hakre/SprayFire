@@ -22,7 +22,7 @@
  * @copyright Copyright (c) 2011, Charles Sprayberry
  */
 
-namespace libs\sprayfire\request;
+namespace SprayFire\Request;
 
 /**
  * @brief Implementations should convert a string into appropriate fragments

@@ -21,13 +21,13 @@
  * @copyright Copyright (c) 2011, Charles Sprayberry
  */
 
-namespace libs\sprayfire\logger;
+namespace SprayFire\Logger;
 
 /**
  * @brief A framework implemented class that adds a timestamp log message to
  * the end of an injected file.
  */
-class FileLogger implements \libs\sprayfire\logger\Logger  {
+class FileLogger implements \SprayFire\Logger\Logger  {
 
     /**
      * @brief A SplFileObject that should be used to write log messages to.

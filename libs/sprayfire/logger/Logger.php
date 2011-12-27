@@ -22,7 +22,7 @@
  * @copyright Copyright (c) 2011, Charles Sprayberry
  */
 
-namespace libs\sprayfire\logger;
+namespace SprayFire\Logger;
 
 /**
  * @brief An interface for implementing objects that should be responsible for
