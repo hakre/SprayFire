@@ -126,7 +126,3 @@ use libs\sprayfire\datastructs\ImmutableStorage as ImmutableStorage;
         }
 
     }
-
-    // End JsonConfig
-
-// End libs.sprayfire.config
