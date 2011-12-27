@@ -61,7 +61,7 @@ class ImmutableStorage extends \SprayFire\Datastructs\DataStorage {
      * @throws libs.sprayfire.exceptions.UnsupportedOperationException
      */
     protected function set($key, $value) {
-        throw new \libs\sprayfire\exceptions\UnsupportedOperationException('Attempting to set the value of an immutable object.');
+        throw new \SprayFire\Exceptions\UnsupportedOperationException('Attempting to set the value of an immutable object.');
     }
 
     /**
@@ -69,7 +69,7 @@ class ImmutableStorage extends \SprayFire\Datastructs\DataStorage {
      * @throws libs.sprayfire.exceptions.UnsupportedOperationException
      */
     protected function removeKey($key) {
-        throw new \libs\sprayfire\exceptions\UnsupportedOperationException('Attempting to remove the value of an immutable object.');
+        throw new \SprayFire\Exceptions\UnsupportedOperationException('Attempting to remove the value of an immutable object.');
     }
 
     /**
