@@ -63,7 +63,6 @@
     }
 
     $errorLogPath = \SprayFire\Core\Directory::getLogsPath('errors.txt');
-    var_dump($errorLogPath);
     $ErrorLogFile = new \SplFileInfo($errorLogPath);
     try {
         $ErrorLog = new \SprayFire\Logger\FileLogger($ErrorLogFile);
