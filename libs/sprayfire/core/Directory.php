@@ -37,6 +37,14 @@ namespace SprayFire\Core;
 class Directory {
 
     /**
+     * @brief The root path holding the primary directories used by the app and
+     * fraework.
+     *
+     * @property $installPath
+     */
+    protected static $installPath;
+
+    /**
      * @brief The root path holding framework and third-party classes used by the
      * app and framework.
      *
@@ -67,6 +75,13 @@ class Directory {
     protected static $webPath;
 
     /**
+     * @param $path The path that the app and framework are installed in
+     */
+    public static function setInstallPath($path) {
+        self::$installPath = $path;
+    }
+
+    /**
      * @param $path The path holding framework and third-party libs
      */
     public static function setLibsPath($path) {
@@ -92,6 +107,17 @@ class Directory {
      */
     public static function setWebPath($path) {
         self::$webPath = $path;
+    }
+
+    /**
+     * @return The path holding the path the app and framework are installed in
+     */
+    public static function getInstallPath() {
+        $subDir = \func_get_args();
+        if (\count($subDir) === 0) {
+            return self::$installPath;
+        }
+        return self::$installPath . '/' . self::generateSubDirectoryPath($subDir);
     }
 
     /**
@@ -127,7 +153,7 @@ class Directory {
         if (\count($subDir) === 0) {
             return self::$logsPath;
         }
-        return self::$appPath . '/' . self::generateSubDirectoryPath($subDir);
+        return self::$logsPath . '/' . self::generateSubDirectoryPath($subDir);
     }
 
     /**
@@ -137,7 +163,7 @@ class Directory {
     protected static function generateSubDirectoryPath(array $subDir) {
         $subDirPath = '';
         if (\is_array($subDir[0])) {
-            $subDirList = $subDirL[0];
+            $subDir = $subDir[0];
         }
         foreach ($subDir as $dir) {
             $subDirPath .= \trim($dir) . '/';
