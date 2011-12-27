@@ -157,6 +157,18 @@ class Directory {
     }
 
     /**
+     * @return Absolute path to web dir, with sub-directories appended if applicable,
+     *         and no trailing whitespace
+     */
+    public static function getWebPath() {
+        $subDir = \func_get_args();
+        if (\count($subDir) === 0) {
+            return self::$webPath;
+        }
+        return self::$webPath . '/' . self::generateSubDirectoryPath($subDir);
+    }
+
+    /**
      * @param $subDir
      * @return A sub directory path, with n otrailing separator
      */

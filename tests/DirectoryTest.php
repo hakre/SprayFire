@@ -31,8 +31,6 @@
  */
 class DirectoryTest extends PHPUnit_Framework_TestCase {
 
-    protected $originalAppPath;
-
     protected $installPath;
 
     public function setUp() {
@@ -41,16 +39,22 @@ class DirectoryTest extends PHPUnit_Framework_TestCase {
         $libsPath = $this->installPath . '/tests/mockframework/libs';
         $appPath = $this->installPath . '/tests/mockframework/app';
         $logsPath = $this->installPath . '/tests/mockframework/logs';
+        $webPath = $this->installPath . '/tests/mockframework/web';
 
         \SprayFire\Core\Directory::setInstallPath($this->installPath);
         \SprayFire\Core\Directory::setLibsPath($libsPath);
         \SprayFire\Core\Directory::setAppPath($appPath);
         \SprayFire\Core\Directory::setLogsPath($logsPath);
+        \SprayFire\Core\Directory::setWebPath($webPath);
 
         $expectedAppSub = $this->installPath . '/tests/mockframework/app/TestApp/config';
         $actualAppSub = \SprayFire\Core\Directory::getAppPath('TestApp', 'config');
         $this->assertSame($expectedAppSub, $actualAppSub);
+    }
+
+    public function testInstallPath() {
         $this->assertSame($this->installPath, \SprayFire\Core\Directory::getInstallPath());
+        $this->assertSame($this->installPath . '/Test/App', \SprayFire\Core\Directory::getInstallPath('Test', 'App'));
     }
 
     public function testLibsPath() {
@@ -123,29 +127,63 @@ class DirectoryTest extends PHPUnit_Framework_TestCase {
         $this->assertSame($expected, $actual);
     }
 
-    public function testAppPathSubDirectoryListOfArguments() {
+    public function testAppPathPassingListOfArguments() {
         $expected = $this->installPath . '/tests/mockframework/app/Model/Behavior';
         $actual = \SprayFire\Core\Directory::getAppPath('Model', 'Behavior');
         $this->assertSame($expected, $actual);
     }
 
-    public function testAppSubDirectoryListOfArgumentsWithFileAtEnd() {
+    public function testAppPathPassingListOfArgumentsWithFileAtEnd() {
         $expected = $this->installPath . '/tests/mockframework/app/Config/xml/configuration-test.xml';
         $actual = \SprayFire\Core\Directory::getAppPath('Config', 'xml', 'configuration-test.xml');
         $this->assertSame($expected, $actual);
     }
 
-    public function testAppPathSubDirectoryArrayOfArguments() {
+    public function testAppPathPassingArrayOfArguments() {
         $expected = $this->installPath . '/tests/mockframework/app/Model/Behavior';
         $subDir = array('Model', 'Behavior');
         $actual = \SprayFire\Core\Directory::getAppPath($subDir);
         $this->assertSame($expected, $actual);
     }
 
-    public function testAppSubDirectoryArrayOfArgumentsWithFileAtEnd() {
+    public function testAppPathPassingArrayOfArgumentsWithFileAtEnd() {
         $expected = $this->installPath . '/tests/mockframework/app/config/xml/configuration-test.xml';
         $subDir = array('config', 'xml', 'configuration-test.xml');
         $actual = \SprayFire\Core\Directory::getAppPath($subDir);
+        $this->assertSame($expected, $actual);
+    }
+
+
+
+    public function testWebPathRootDirectory() {
+        $expected = $this->installPath . '/tests/mockframework/web';
+        $actual = \SprayFire\Core\Directory::getWebPath();
+        $this->assertSame($expected, $actual);
+    }
+
+    public function testWebPathPassingListOfArguments() {
+        $expected = $this->installPath . '/tests/mockframework/web/css/head';
+        $actual = \SprayFire\Core\Directory::getWebPath('css', 'head');
+        $this->assertSame($expected, $actual);
+    }
+
+    public function testWebPathPassingListOfArgumentsWithFileAtEnd() {
+        $expected = $this->installPath . '/tests/mockframework/web/css/head/style.css';
+        $actual = \SprayFire\Core\Directory::getWebPath('css', 'head', 'style.css');
+        $this->assertSame($expected, $actual);
+    }
+
+    public function testWebPathPassingArrayOfArguments() {
+        $expected = $this->installPath . '/tests/mockframework/web/script/sprayfire_js';
+        $subDir = array('script', 'sprayfire_js');
+        $actual = \SprayFire\Core\Directory::getWebPath($subDir);
+        $this->assertSame($expected, $actual);
+    }
+
+    public function testWebPathPassingArrayOfArgumentsWithFileAtEnd() {
+        $expected = $this->installPath . '/tests/mockframework/web/script/sprayfire_js/core.js';
+        $subDir = array('script', 'sprayfire_js', 'core.js');
+        $actual = \SprayFire\Core\Directory::getWebPath($subDir);
         $this->assertSame($expected, $actual);
     }
 
@@ -154,11 +192,13 @@ class DirectoryTest extends PHPUnit_Framework_TestCase {
         \SprayFire\Core\Directory::setLibsPath(null);
         \SprayFire\Core\Directory::setAppPath(null);
         \SprayFire\Core\Directory::setLogsPath(null);
+        \SprayFire\Core\Directory::setWebPath(null);
 
         $this->assertNull(\SprayFire\Core\Directory::getInstallPath());
         $this->assertNull(\SprayFire\Core\Directory::getLibsPath());
         $this->assertNull(\SprayFire\Core\Directory::getAppPath());
         $this->assertNull(\SprayFire\Core\Directory::getLogsPath());
+        $this->assertNull(\SprayFire\Core\Directory::getWebPath());
     }
 
 }
