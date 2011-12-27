@@ -25,6 +25,7 @@
 namespace libs\sprayfire\request;
 use libs\sprayfire\request\Uri as Uri;
 use libs\sprayfire\config\Configuration as Configuration;
+use libs\sprayfire\logger\Logger as Logger;
 
     /**
      * @brief Implementations should convert a libs.sprayfire.request.Uri object
@@ -50,7 +51,7 @@ use libs\sprayfire\config\Configuration as Configuration;
          *
          * @param $RoutesConfig libs.sprayfire.config.Configuration
          */
-        public function __construct(Configuration $RoutesConfig);
+        public function __construct(Configuration $RoutesConfig, Logger $Log);
 
         /**
          * @brief Should return a RoutedUri that is mapped off of the Uri object
