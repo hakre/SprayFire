@@ -99,8 +99,7 @@ use libs\sprayfire\datastructs\ImmutableStorage as ImmutableStorage;
             $decodedJson = \json_decode($this->getFileContents(), true);
             $lastJsonError = \json_last_error();
             if ($lastJsonError !== JSON_ERROR_NONE || \is_null($decodedJson)) {
-                \error_log('The last JSON error was ' . $lastJsonError);
-                throw new InvalidArgumentException('There was an error parsing the JSON configuration file passed.  Please see error log for more info.');
+                throw new InvalidArgumentException('There was an error parsing the JSON configuration file passed.  JSON_error_code := ' . $lastJsonError);
             }
             return $decodedJson;
         }
