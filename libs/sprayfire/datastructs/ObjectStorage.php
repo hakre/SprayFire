@@ -22,7 +22,7 @@
  * @copyright Copyright (c) 2011, Charles Sprayberry
  */
 
-namespace libs\sprayfire\datastructs;
+namespace SprayFire\Datastructs;
 
 /**
  * @brief Provides an API to store SprayFire derived objects, iterate over them
@@ -68,7 +68,7 @@ interface ObjectStorage extends \Traversable, \Countable {
      * @throws libs.sprayfire.exceptions.UnsupportedOperationException
      * @throws InvalidArgumentException
      */
-    public function setObject($key, \libs\sprayfire\core\Object $Object);
+    public function setObject($key, \SprayFire\Core\Object $Object);
 
     /**
      * @brief Returns a boolean value indicating whether the \a $Object is
@@ -81,7 +81,7 @@ interface ObjectStorage extends \Traversable, \Countable {
      * @param $Object libs.sprayfire.core.Object
      * @return boolean true if \a $Object is stored; false if it isn't
      */
-    public function contains(\libs\sprayfire\core\Object $Object);
+    public function contains(\SprayFire\Core\Object $Object);
 
     /**
      * @brief Remove the object associated with \a $key, there is no need
@@ -104,7 +104,7 @@ interface ObjectStorage extends \Traversable, \Countable {
      * @param $Object libs.sprayfire.core.Object
      * @return mixed
      */
-    public function indexOf(\libs\sprayfire\core\Object $Object);
+    public function indexOf(\SprayFire\Core\Object $Object);
 
     /**
      * @return boolean

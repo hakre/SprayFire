@@ -22,16 +22,22 @@
  */
 class SprayFireObjectStoreTest extends PHPUnit_Framework_TestCase {
 
+    public function setUp() {
+        if (!class_exists('TestObject')) {
+            include 'TestObject.php';
+        }
+    }
+
     public function testBasicObjectStorage() {
-        $ParentType = new ReflectionClass('\\tests\\helpers\\TestObject');
-        $Storage = new libs\sprayfire\datastructs\SprayFireObjectStore($ParentType);
+        $ParentType = new ReflectionClass('TestObject');
+        $Storage = new \SprayFire\Datastructs\SprayFireObjectStore($ParentType);
 
         $expectedInitiationSize = 0;
         $initiationSize = \count($Storage);
         $this->assertSame($expectedInitiationSize, $initiationSize);
         $this->assertTrue($Storage->isEmpty());
 
-        $FirstAdd = new \tests\helpers\TestObject();
+        $FirstAdd = new TestObject();
         $Storage->setObject('object-one', $FirstAdd);
 
         $expectedSizeAfterFirstAdd = 1;
@@ -43,7 +49,7 @@ class SprayFireObjectStoreTest extends PHPUnit_Framework_TestCase {
         $firstAddIndex = $Storage->indexOf($FirstAdd);
         $this->assertSame($expectedFirstAddIndex, $firstAddIndex);
 
-        $SecondAdd = new \tests\helpers\TestObject();
+        $SecondAdd = new TestObject();
 
         $this->assertFalse($Storage->contains($SecondAdd));
 
@@ -57,7 +63,7 @@ class SprayFireObjectStoreTest extends PHPUnit_Framework_TestCase {
         $SecondFromGetObject = $Storage->getObject('object-two');
         $this->assertSame($SecondAdd, $SecondFromGetObject);
 
-        $InvalidObject = new \libs\sprayfire\datastructs\ImmutableStorage(array());
+        $InvalidObject = new \SprayFire\Datastructs\ImmutableStorage(array());
         $exceptionThrown = false;
         try {
             $Storage->setObject('invalid-object', $InvalidObject);
@@ -70,22 +76,22 @@ class SprayFireObjectStoreTest extends PHPUnit_Framework_TestCase {
     }
 
     public function testInterfaceObjectStorage() {
-        $Type = new \ReflectionClass('\\libs\\sprayfire\\datastructs\\Overloadable');
-        $Storage = new libs\sprayfire\datastructs\SprayFireObjectStore($Type);
+        $Type = new \ReflectionClass('\\SprayFire\\Datastructs\\Overloadable');
+        $Storage = new SprayFire\Datastructs\SprayFireObjectStore($Type);
 
-        $Storage->setObject('key', new \libs\sprayfire\datastructs\ImmutableStorage(array()));
+        $Storage->setObject('key', new \SprayFire\Datastructs\ImmutableStorage(array()));
         $this->assertTrue($Storage->count() === 1);
     }
 
     public function testLoopingThroughObjectStore() {
-        $Type = new \ReflectionClass('\\libs\\sprayfire\\core\\Object');
-        $Storage = new libs\sprayfire\datastructs\SprayFireObjectStore($Type);
+        $Type = new \ReflectionClass('\\SprayFire\\Core\\Object');
+        $Storage = new \SprayFire\Datastructs\SprayFireObjectStore($Type);
 
-        $One = new \tests\helpers\TestObject();
-        $Two = new \tests\helpers\TestObject();
-        $Three = new \tests\helpers\TestObject();
-        $Four = new \tests\helpers\TestObject();
-        $Five = new \tests\helpers\TestObject();
+        $One = new TestObject();
+        $Two = new TestObject();
+        $Three = new TestObject();
+        $Four = new TestObject();
+        $Five = new TestObject();
 
         $Storage->setObject('one', $One);
         $Storage->setObject('two', $Two);
@@ -123,25 +129,23 @@ class SprayFireObjectStoreTest extends PHPUnit_Framework_TestCase {
      */
     public function testNullKeyGiven() {
         $key = null;
-        $Object = new \tests\helpers\TestObject;
+        $Object = new TestObject;
 
         $Type = new ReflectionClass($Object);
-        $Storage = new libs\sprayfire\datastructs\SprayFireObjectStore($Type);
+        $Storage = new \SprayFire\Datastructs\SprayFireObjectStore($Type);
 
         $Storage->setObject($key, $Object);
     }
 
     public function testGettingNonexistentKey() {
         $key = 'noexist';
-        $Type = new ReflectionClass('\\libs\\sprayfire\\core\\Object');
-        $Storage = new libs\sprayfire\datastructs\SprayFireObjectStore($Type);
+        $Type = new ReflectionClass('\\SprayFire\\Core\\Object');
+        $Storage = new \SprayFire\Datastructs\SprayFireObjectStore($Type);
 
-        $Storage->setObject('i-do-exist', new \tests\helpers\TestObject);
+        $Storage->setObject('i-do-exist', new TestObject());
         $Noexist = $Storage->getObject($key);
         $this->assertNull($Noexist);
         $this->assertSame($Storage->count(), 1);
 
     }
 }
-
-// End SprayFireObjectStoreTest

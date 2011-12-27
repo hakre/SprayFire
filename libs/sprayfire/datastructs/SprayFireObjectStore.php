@@ -21,7 +21,7 @@
  * @copyright Copyright (c) 2011, Charles Sprayberry
  */
 
-namespace libs\sprayfire\datastructs;
+namespace SprayFire\Datastructs;
 
 /**
  * @brief The framework's primary implementation to store framework objects.
@@ -31,7 +31,7 @@ namespace libs\sprayfire\datastructs;
  * of that object using that key.  Also allows for the removal of an object
  * associated with a key and iterating over the stored objects.
  */
-class SprayFireObjectStore extends \libs\sprayfire\core\CoreObject implements \IteratorAggregate, \libs\sprayfire\datastructs\ObjectStorage {
+class SprayFireObjectStore extends \SprayFire\Core\CoreObject implements \IteratorAggregate, \SprayFire\Datastructs\ObjectStorage {
 
     /**
      * @brief Holds a ReflectionClass of the data type that should be implemented by objects
@@ -65,7 +65,7 @@ class SprayFireObjectStore extends \libs\sprayfire\core\CoreObject implements \I
      * @param $Object libs.sprayfire.core.Object
      * @return boolean
      */
-    public function contains(\libs\sprayfire\core\Object $Object) {
+    public function contains(\SprayFire\Core\Object $Object) {
         if ($this->indexOf($Object) === false) {
             return false;
         }
@@ -79,7 +79,7 @@ class SprayFireObjectStore extends \libs\sprayfire\core\CoreObject implements \I
      * @param $Object libs.sprayfire.core.Object
      * @return mixed \a $key \a type set or false on failure
      */
-    public function indexOf(\libs\sprayfire\core\Object $Object) {
+    public function indexOf(\SprayFire\Core\Object $Object) {
         $index = false;
         foreach ($this->data as $key => $StoredObject) {
             if ($Object->equals($StoredObject)) {
@@ -140,7 +140,7 @@ class SprayFireObjectStore extends \libs\sprayfire\core\CoreObject implements \I
      * @throws InvalidArgumentException
      * @return libs.sprayfire.core.Object
      */
-    public function setObject($key, \libs\sprayfire\core\Object $Object) {
+    public function setObject($key, \SprayFire\Core\Object $Object) {
         $this->throwExceptionIfKeyInvalid($key);
         $this->throwExceptionIfObjectNotParentType($Object);
         $this->data[$key] = $Object;
@@ -160,7 +160,7 @@ class SprayFireObjectStore extends \libs\sprayfire\core\CoreObject implements \I
      * @param $Object libs.sprayfire.core.Object
      * @throws InvalidArgumentException
      */
-    protected function throwExceptionIfObjectNotParentType(\libs\sprayfire\core\Object $Object) {
+    protected function throwExceptionIfObjectNotParentType(\SprayFire\Core\Object $Object) {
         if (!\is_object($Object) || !$this->isObjectParentType($Object)) {
             throw new \InvalidArgumentException('The value being set does not properly implement the parent type for this store.');
         }
@@ -180,7 +180,7 @@ class SprayFireObjectStore extends \libs\sprayfire\core\CoreObject implements \I
      * @param $Object libs.sprayfire.core.Object
      * @return boolean
      */
-    protected function isObjectParentType(\libs\sprayfire\core\Object $Object) {
+    protected function isObjectParentType(\SprayFire\Core\Object $Object) {
         $isValid = false;
         $parentName = $this->ReflectedParentType->getName();
         try {
