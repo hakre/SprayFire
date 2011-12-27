@@ -22,7 +22,7 @@
  * @copyright Copyright (c) 2011, Charles Sprayberry
  */
 
-namespace libs\sprayfire\core;
+namespace SprayFire\Core;
 
 /**
  * @brief An interface for basic framework objects.
@@ -44,7 +44,7 @@ interface Object {
      * @param $Object libs.sprayfire.core.Object
      * @return boolean
      */
-    public function equals(\libs\sprayfire\core\Object $Object);
+    public function equals(\SprayFire\Core\Object $Object);
 
     /**
      * @return A unique identifier for the given object

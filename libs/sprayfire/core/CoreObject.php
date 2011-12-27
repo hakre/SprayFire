@@ -21,7 +21,7 @@
  * @copyright Copyright (c) 2011, Charles Sprayberry
  */
 
-namespace libs\sprayfire\core;
+namespace SprayFire\Core;
 
 /**
  * @brief SprayFire's implementation of the libs.sprayfire.core.Object interface,
@@ -36,14 +36,14 @@ namespace libs\sprayfire\core;
  * or an implementation of libs.sprayfire.core.Object or unexpected consequences
  * may occur.
  */
-abstract class CoreObject implements \libs\sprayfire\core\Object {
+abstract class CoreObject implements \SprayFire\Core\Object {
 
     /**
      * @return A unique identifying string based on the internal memory pointer
      * @see http://us3.php.net/manual/en/function.spl-object-hash.php
      */
     public final function hashCode() {
-        $hashCode = spl_object_hash($this);
+        $hashCode = \spl_object_hash($this);
         return $hashCode;
     }
 
@@ -58,11 +58,10 @@ abstract class CoreObject implements \libs\sprayfire\core\Object {
      * @param $CompareObject A libs.sprayfire.core.Object to compare to this one for equality
      * @return True if the calling object and \a $CompareObject are equal, false if not
      */
-    public function equals(\libs\sprayfire\core\Object $CompareObject) {
+    public function equals(\SprayFire\Core\Object $CompareObject) {
         $thisHash = $this->hashCode();
         $compareHash = $CompareObject->hashCode();
-        $areHashesEqual = $thisHash === $compareHash;
-        return $areHashesEqual;
+        return $thisHash === $compareHash;
     }
 
     /**
