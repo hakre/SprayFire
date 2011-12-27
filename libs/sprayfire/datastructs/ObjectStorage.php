@@ -126,7 +126,3 @@ use libs\sprayfire\core\Object as Object;
         public function isEmpty();
 
     }
-
-    // End ObjectStorage
-
-// End libs.sprayfire.datastructs
