@@ -2,7 +2,7 @@
 
 /**
  * @file
- * @brief A simple key/value storage object that extends libs.sprayfire.datastructs.DataStorage
+ * @brief A simple key/value storage object that extends SprayFire.Datastructs.DataStorage
  * and does not allow the data associated to be changed after the object has been
  * constructed.
  *
@@ -32,7 +32,7 @@ namespace SprayFire\Datastructs;
  * @details
  * This object is immutable by the fact that after the object is constructed
  * attempting to __set the object or offsetSet the object's properties will
- * results in a libs.sprayfire.exceptions.UnsupportedOperationException will
+ * results in a SprayFire.Exceptions.UnsupportedOperationException will
  * be thrown.  If a class extends this please ensure that it is a truly immutable
  * object and does not have any "backdoors".
  */
@@ -58,7 +58,7 @@ class ImmutableStorage extends \SprayFire\Datastructs\DataStorage {
     /**
      * @param $key string
      * @param $value mixed
-     * @throws libs.sprayfire.exceptions.UnsupportedOperationException
+     * @throws SprayFire.Exceptions.UnsupportedOperationException
      */
     protected function set($key, $value) {
         throw new \SprayFire\Exceptions\UnsupportedOperationException('Attempting to set the value of an immutable object.');
@@ -66,7 +66,7 @@ class ImmutableStorage extends \SprayFire\Datastructs\DataStorage {
 
     /**
      * @param $key string
-     * @throws libs.sprayfire.exceptions.UnsupportedOperationException
+     * @throws SprayFire.Exceptions.UnsupportedOperationException
      */
     protected function removeKey($key) {
         throw new \SprayFire\Exceptions\UnsupportedOperationException('Attempting to remove the value of an immutable object.');
@@ -78,7 +78,7 @@ class ImmutableStorage extends \SprayFire\Datastructs\DataStorage {
      *
      * @details
      * Note that if you extend ImmutableStorage and override this method an array
-     * value MUST be returned or a libs.sprayfire.exceptions.UnexpectedValueException
+     * value MUST be returned or a SprayFire.Exceptions.UnexpectedValueException
      * will be thrown by the class constructor.  If self::__construct() is overridden
      * as well and the data from convertDataDeep is not an array you will receive a
      * type hint compile error when parent::__construct() is called.
@@ -97,10 +97,10 @@ class ImmutableStorage extends \SprayFire\Datastructs\DataStorage {
 
     /**
      * @brief Will convert the passed array, and all arrays within that array,
-     * to a libs.sprayfire.datastructs.ImmutableStorage object.
+     * to a SprayFire.Datastructs.ImmutableStorage object.
      *
      * @param $data array
-     * @return libs.sprayfire.datastructs.ImmutableStorage
+     * @return SprayFire.Datastructs.ImmutableStorage
      */
     private function convertArrayToImmutableObject(array $data) {
         foreach ($data as $key => $value) {

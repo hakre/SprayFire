@@ -2,7 +2,8 @@
 
 /**
  * @file
- * @brief Holds an abstract class that allows
+ * @brief Holds an abstract class that allows messages to be logged to a file on
+ * disk.
  *
  * @details
  * SprayFire is a fully unit-tested, light-weight PHP framework for developers who
@@ -38,6 +39,7 @@ class FileLogger implements \SprayFire\Logger\Log  {
 
     /**
      * @param $LogFile SplFileObject that should have log messages written to
+     * @throws InvalidArgumentException thrown if a writable \a $LogFile wasn't passed
      */
     public function __construct(\SplFileInfo $LogFile) {
         try {

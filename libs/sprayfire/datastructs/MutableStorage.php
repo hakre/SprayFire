@@ -2,7 +2,7 @@
 
 /**
  * @file
- * @brief A class that extends libs.sprayfire.datastructs.DataStorage and allows
+ * @brief A class that extends SprayFire.Datastructs.DataStorage and allows
  * for any data to be manipulated, removed or added to the structure.
  *
  * @details
@@ -97,10 +97,10 @@ class MutableStorage extends \SprayFire\Datastructs\DataStorage {
 
     /**
      * @brief Will convert the passed array, and all arrays within that array,
-     * to a libs.sprayfire.datastructs.MutableStorage object.
+     * to a SprayFire.Datastructs.MutableStorage object.
      *
      * @param $data array
-     * @return libs.sprayfire.datastructs.MutableStorage
+     * @return SprayFire.Datastructs.MutableStorage
      */
     private function convertArrayToMutableObject(array $data) {
         foreach ($data as $key => $value) {

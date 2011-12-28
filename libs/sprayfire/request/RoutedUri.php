@@ -25,7 +25,7 @@
 namespace SprayFire\Request;
 
 /**
- * @brief An extension of the libs.sprayfire.request.Uri interface to allow
+ * @brief An extension of the SprayFire.Request.Uri interface to allow
  * for the setting of the original URI string used to map the RoutedUri object
  * created and a means to retrieve the mapped URI string.
  */
@@ -39,7 +39,7 @@ interface RoutedUri extends \SprayFire\Request\Uri {
     /**
      * @brief Provides a means to set the original URI string that this RoutedUri
      * was mapped from; this string should be returned by
-     * libs.sprayfire.request.Uri::getOriginalUri().
+     * SprayFire.Request.Uri::getOriginalUri().
      *
      * @param $uri string
      */

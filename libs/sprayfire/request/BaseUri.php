@@ -200,7 +200,7 @@ class BaseUri extends \SprayFire\Core\CoreObject implements \SprayFire\Request\U
 
     /**
      * @return The action fragment of the \a $originalUri or
-     *         libs.sprayfire.request.Uri::DEFAULT_ACTION if none was passed
+     *         SprayFire.Request.Uri::DEFAULT_ACTION if none was passed
      */
     public function getAction() {
         return $this->action;
@@ -208,7 +208,7 @@ class BaseUri extends \SprayFire\Core\CoreObject implements \SprayFire\Request\U
 
     /**
      * @return The controller fragment of the \a $originalUri or
-     *         libs.sprayfire.request.Uri::DEFAULT_CONTROLLER if none was passed
+     *         SprayFire.Request.Uri::DEFAULT_CONTROLLER if none was passed
      */
     public function getController() {
         return $this->controller;

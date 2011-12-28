@@ -31,19 +31,4 @@ namespace libs\sprayfire\request;
  */
 interface Request {
 
-    /**
-     * @brief Provides a way to pass a variety of HTTP super global data to
-     * the controller being invoked.
-     *
-     * @param $HttpDataContainer a libs.sprayfire.request.HttpDataContainer object
-     *        holding the appropriate super globals for this request.
-     */
-    public function setHttpDataContainer(\libs\sprayfire\request\HttpDataContainer $HttpDataContainer);
-
-    /**
-     * @return A libs.sprayfire.request.HttpData object holding the request
-     *         data
-     */
-    public function getHttpDataContainer();
-
 }

@@ -41,7 +41,7 @@ interface Object {
     /**
      * @brief Compare two objects to see if they are equal to each other.
      *
-     * @param $Object libs.sprayfire.core.Object
+     * @param $Object SprayFire.Core.Object
      * @return boolean
      */
     public function equals(\SprayFire\Core\Object $Object);

@@ -48,14 +48,14 @@ abstract class CoreObject implements \SprayFire\Core\Object {
     }
 
     /**
-     * @brief Default implementation, compares the libs.sprayfire.core.CoreObject::hashCode()
+     * @brief Default implementation, compares the SprayFire.Core.CoreObject::hashCode()
      * return value to the passed \a $CompareObject.
      *
      * @details
      * If your objects need to implement a Comparator be sure to override the
      * implementation of this class.
      *
-     * @param $CompareObject A libs.sprayfire.core.Object to compare to this one for equality
+     * @param $CompareObject A SprayFire.Core.Object to compare to this one for equality
      * @return True if the calling object and \a $CompareObject are equal, false if not
      */
     public function equals(\SprayFire\Core\Object $CompareObject) {

@@ -30,14 +30,14 @@ namespace SprayFire\Datastructs;
  *
  * @details
  * Please note that this data structure will only store classes implementing
- * the libs.sprayfire.core.Object interface.  If this interface is not implemented
+ * the SprayFire.Core.Object interface.  If this interface is not implemented
  * by the objects being added an InvalidArgumentException should be thrown to
  * let the calling code know that the object is of the incorrect type.
  *
  * The only way this data structure should be manipulated and interacted with
  * is through the supplied interface; do not implement this interface through
- * the libs.sprayfire.datastructs.MutableStorage or libs.sprayfire.datastructs.ImmutableStorage
- * objects as they allow for the storing of any data type through the libs.sprayfire.datastructs.Overloadable
+ * the SprayFire.Datastructs.MutableStorage or SprayFire.Datastructs.ImmutableStorage
+ * objects as they allow for the storing of any data type through the SprayFire.Datastructs.Overloadable
  * and ArrayAccess interfaces.
  */
 interface ObjectStorage extends \Traversable, \Countable {
@@ -60,12 +60,12 @@ interface ObjectStorage extends \Traversable, \Countable {
      * constructor this method should throw an InvalidArgumentException and if
      * the object storage being implemented does not allow for the setting of
      * new or existing objects this method should throw a
-     * libs.sprayfire.exceptions.UnsupportedOperationException.
+     * SprayFire.Exceptions.UnsupportedOperationException.
      *
      * @param $key string
-     * @param $Object libs.sprayfire.core.Object
+     * @param $Object SprayFire.Core.Object
      * @return void
-     * @throws libs.sprayfire.exceptions.UnsupportedOperationException
+     * @throws SprayFire.Exceptions.UnsupportedOperationException
      * @throws InvalidArgumentException
      */
     public function setObject($key, \SprayFire\Core\Object $Object);
@@ -75,10 +75,10 @@ interface ObjectStorage extends \Traversable, \Countable {
      * stored.
      *
      * @details
-     * libs.sprayfire.core.Object::equals() method will be used to determine
+     * SprayFire.Core.Object::equals() method will be used to determine
      * if the passed \a $Object is contained within this storage.
      *
-     * @param $Object libs.sprayfire.core.Object
+     * @param $Object SprayFire.Core.Object
      * @return boolean true if \a $Object is stored; false if it isn't
      */
     public function contains(\SprayFire\Core\Object $Object);
@@ -101,7 +101,7 @@ interface ObjectStorage extends \Traversable, \Countable {
      * to a numeric index; ultimately however it will return whatever index
      * value was set for the \a $Object.
      *
-     * @param $Object libs.sprayfire.core.Object
+     * @param $Object SprayFire.Core.Object
      * @return mixed
      */
     public function indexOf(\SprayFire\Core\Object $Object);

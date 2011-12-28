@@ -62,7 +62,7 @@ class SprayFireObjectStore extends \SprayFire\Core\CoreObject implements \Iterat
      * @brief Checks if the \a $Object \a exists in this data structure; returns
      * true if the object exists and false if it doesn't.
      *
-     * @param $Object libs.sprayfire.core.Object
+     * @param $Object SprayFire.Core.Object
      * @return boolean
      */
     public function contains(\SprayFire\Core\Object $Object) {
@@ -76,7 +76,7 @@ class SprayFireObjectStore extends \SprayFire\Core\CoreObject implements \Iterat
      * @brief Return the string or numeric index associated with the given object
      * or false if the object is not stored.
      *
-     * @param $Object libs.sprayfire.core.Object
+     * @param $Object SprayFire.Core.Object
      * @return mixed \a $key \a type set or false on failure
      */
     public function indexOf(\SprayFire\Core\Object $Object) {
@@ -115,7 +115,7 @@ class SprayFireObjectStore extends \SprayFire\Core\CoreObject implements \Iterat
      * null if it does not.
      *
      * @param $key string
-     * @return libs.sprayfire.core.Object
+     * @return SprayFire.Core.Object
      */
     public function getObject($key) {
         if (\array_key_exists($key, $this->data)) {
@@ -136,9 +136,9 @@ class SprayFireObjectStore extends \SprayFire\Core\CoreObject implements \Iterat
      * injected into the constructor
      *
      * @param $key A string or numeric index
-     * @param $Object Should implement libs.sprayfire.core.Object
+     * @param $Object Should implement SprayFire.Core.Object
      * @throws InvalidArgumentException
-     * @return libs.sprayfire.core.Object
+     * @return SprayFire.Core.Object
      */
     public function setObject($key, \SprayFire\Core\Object $Object) {
         $this->throwExceptionIfKeyInvalid($key);
@@ -157,7 +157,7 @@ class SprayFireObjectStore extends \SprayFire\Core\CoreObject implements \Iterat
     }
 
     /**
-     * @param $Object libs.sprayfire.core.Object
+     * @param $Object SprayFire.Core.Object
      * @throws InvalidArgumentException
      */
     protected function throwExceptionIfObjectNotParentType(\SprayFire\Core\Object $Object) {
@@ -177,7 +177,7 @@ class SprayFireObjectStore extends \SprayFire\Core\CoreObject implements \Iterat
      * 2) Is an instance of the class passed in the constructor
      * 3) Is a subclass of the class passed in the constructor
      *
-     * @param $Object libs.sprayfire.core.Object
+     * @param $Object SprayFire.Core.Object
      * @return boolean
      */
     protected function isObjectParentType(\SprayFire\Core\Object $Object) {

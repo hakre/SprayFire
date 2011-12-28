@@ -33,7 +33,7 @@ namespace SprayFire\Datastructs;
  * is mutable or immutable, simply that the implementing object must do something
  * when these methods are called.
  *
- * Optional methods should throw a libs.sprayfire.exceptions.UnsupportedOperationException.
+ * Optional methods should throw a SprayFire.Exceptions.UnsupportedOperationException.
  *
  * @see http://php.net/manual/en/language.oop5.overloading.php
  */
@@ -49,7 +49,7 @@ interface Overloadable {
      * @param $key string
      * @param $value mixed
      * @return mixed
-     * @throws libs.sprayfire.exceptions.UnsupportedOperationException
+     * @throws SprayFire.Exceptions.UnsupportedOperationException
      */
     public function __set($key, $value);
 
@@ -62,7 +62,7 @@ interface Overloadable {
     /**
      * @param $key string
      * @return boolean
-     * @throws libs.sprayfire.exceptions.UnsupportedOperationException
+     * @throws SprayFire.Exceptions.UnsupportedOperationException
      */
     public function __unset($key);
 

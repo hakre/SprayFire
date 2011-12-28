@@ -27,7 +27,7 @@ namespace SprayFire\Request;
 /**
  * @brief Implementations should convert a libs.sprayfire.request.Uri object
  * into a libs.sprayfire.request.RoutedUri object, using values from the
- * libs.sprayfire.config.Configuration object that is passed in the constructor
+ * SprayFire.Config.Configuration object that is passed in the constructor
  * as defaults if needed.
  *
  * @details
@@ -45,8 +45,8 @@ interface Router {
      * @brief Should return a RoutedUri that is mapped off of the Uri object
      * being passed.
      *
-     * @param $Uri libs.sprayfire.request.Uri
-     * @return libs.sprayfire.request.RoutedUri
+     * @param $Uri SprayFire.Request.Uri
+     * @return SprayFire.Request.RoutedUri
      */
     public function getRoutedUri(\SprayFire\Request\Uri $Uri);
 
