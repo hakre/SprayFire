@@ -44,8 +44,8 @@ class FileLogger implements \SprayFire\Logger\Log  {
     public function __construct(\SplFileInfo $LogFile) {
         try {
             $this->LogFile = $LogFile->openFile('a');
-        } catch (\RuntimeException $InvalidArgumentException) {
-            throw new \InvalidArgumentException('There was an error attempting to open a writable log file.', null, $InvalidArgumentException);
+        } catch (\RuntimeException $RuntimeException) {
+            throw new \InvalidArgumentException('There was an error attempting to open a writable log file.', null, $RuntimeException);
         }
     }
 
