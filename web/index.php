@@ -36,8 +36,14 @@
      */
     $appPath = $rootDir . '/app';
 
+    /**
+     * @var $logsPath The path holding log files used by the app or framework
+     */
     $logsPath = $rootDir . '/logs';
 
+    /**
+     * @var $webPath The path holding web accessible files
+     */
     $webPath = $rootDir . '/web';
 
     // PLEASE DO NOT CHANGE CODE BELOW THIS LINE!
@@ -85,9 +91,18 @@
          * @todo This needs to be changed so that the basic values we are looking
          * for are created in an ArrayConfig object
          */
-        var_dump($InvalArgExc);
-        exit;
+        $configData = array();
+        $configData['framework'] = array();
+        $configData['framework']['version'] = '0.0.0-e';
+
+        $configData['app'] = array();
+        $configData['app']['version'] = '0.0.0-e';
+        $configData['app']['development-mode'] = 'off';
+
+        $PrimaryConfig = new \SprayFire\Config\ArrayConfig($configData);
     }
+
+    var_dump($PrimaryConfig);
 
     $routesConfigPath = \SprayFire\Core\Directory::getLibsPath('SprayFire', 'Config', 'json', 'routes.json');
     $RoutesConfigFile = new \SplFileInfo($routesConfigPath);
