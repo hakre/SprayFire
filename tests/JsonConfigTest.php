@@ -23,9 +23,11 @@
 class JsonConfigTest extends PHPUnit_Framework_TestCase {
 
     public function setUp() {
-        $newRootPath = \dirname(__DIR__) . '/tests/mockframework/app';
+        $appPath = \dirname(__DIR__) . '/tests/mockframework/app';
+        $libsPath = \dirname(__DIR__) . '/tests/mockframework/libs';
 
-        \SprayFire\Core\Directory::setAppPath($newRootPath);
+        \SprayFire\Core\Directory::setAppPath($appPath);
+        \SprayFire\Core\Directory::setLibsPath($libsPath);
     }
 
     public function testJsonConfigObject() {
@@ -85,7 +87,7 @@ class JsonConfigTest extends PHPUnit_Framework_TestCase {
      * @expectedException \InvalidArgumentException
      */
     public function testInvalidJsonFile() {
-        $File = new \SplFileInfo(\SprayFire\Core\Directory::getLibsPath('SprayFire', 'config', 'json', 'test-invalid-config.json'));
+        $File = new \SplFileInfo(\SprayFire\Core\Directory::getLibsPath('SprayFire', 'Config', 'json', 'test-invalid-config.json'));
         $Config = new \SprayFire\Config\JsonConfig($File);
     }
 
@@ -99,6 +101,9 @@ class JsonConfigTest extends PHPUnit_Framework_TestCase {
 
     public function tearDown() {
         \SprayFire\Core\Directory::setAppPath(null);
+        \SprayFire\Core\Directory::setLibsPath(null);
+        $this->assertNull(\SprayFire\Core\Directory::getAppPath());
+        $this->assertNull(\SprayFire\Core\Directory::getLibsPath());
     }
 
 }
