@@ -1,0 +1,113 @@
+html {
+    font-family: sans-serif;
+    font-size: 100%;
+}
+
+#content {
+    margin: 0 auto;
+    width: 95%;
+}
+
+#header {
+    margin-bottom: .5em;
+    height: 75px;
+}
+
+#body {
+    padding: 5px;
+    border: 2px solid rgb(187, 49, 39);
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    overflow: auto;
+}
+
+#main-content {
+    width: 70%;
+    float: left;
+}
+
+#sidebar {
+    width: 28%;
+    float: right;
+}
+
+#sprayfire-logo {
+    margin-right: .75em;
+    float: left;
+}
+
+#the-team {
+    padding: 5px;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    border: 2px solid rgb(240, 141, 51);
+}
+
+#the-team h2 {
+    border-bottom: 2px solid rgb(187, 49, 39);
+    margin-top: 0;
+    margin-bottom: .5em;
+}
+
+#the-team p {
+    width: 95%;
+    margin: 0 auto;
+    margin-bottom: .25em;
+    text-indent: .75em;
+}
+
+#the-team .team-member {
+    margin-bottom: .75em;
+}
+
+#the-team .name {
+    font-size: 1.25em;
+    text-indent: 0;
+}
+
+#the-team .title {
+    font-style: italic;
+}
+
+h1 {
+    line-height: 75px;
+    font-size: 2.5em;
+}
+
+.sprayfire-orange {
+    color: rgb(240, 141, 51);
+}
+
+.sprayfire-red {
+    color: rgb(187, 49, 39);
+}
+
+.sanity-success {
+    width: 95%;
+    margin: 0 auto;
+    border: 2px solid rgb(0, 255, 0);
+    background-color: rgba(0, 255, 0, .5);
+    padding: 5px;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    overflow: auto;
+    font-size: 1.25em;
+}
+
+.sanity-failure {
+    width: 95%;
+    margin: 0 auto;
+    margin-bottom: .75em;
+    border: 2px solid rgb(255, 0, 0);
+    background-color: rgba(255, 0, 0, .3);
+    padding: 5px;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    overflow: auto;
+    font-size: 1.25em;
+}
+
+code {
+    padding: 1px;
+    background-color: white;
+}
