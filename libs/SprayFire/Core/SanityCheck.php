@@ -38,6 +38,12 @@ class SanityCheck {
      */
     protected $logsPath;
 
+    /**
+     * @brief The absolute path and filename to the primary configuration file
+     * used by the framework.
+     *
+     * @property $primaryConfigurationPath
+     */
     protected $primaryConfigurationPath;
 
     /**
@@ -48,7 +54,7 @@ class SanityCheck {
     protected $errors;
 
     /**
-     *
+     * @brief Sets various data that is used for various sanity checks
      */
     public function __construct() {
         $this->logsPath = \SprayFire\Core\Directory::getLogsPath();
@@ -68,9 +74,6 @@ class SanityCheck {
     /**
      * @brief Will check various settings of the \a $logsPath directory to ensure
      * it is set and the directory is writable.
-     *
-     * @details
-     * If any
      */
     protected function checkLogsPathWritable() {
         if (!isset($this->logsPath)) {
@@ -82,6 +85,10 @@ class SanityCheck {
         }
     }
 
+    /**
+     * @brief Will check to see if the \a $primaryConfigurationPath file is set
+     * and exists.
+     */
     protected function checkPrimaryConfigurationExists() {
         if (!isset($this->primaryConfigurationPath)) {
             $this->errors[] = 'The libs path may not have been set via \\SprayFire\\Core\\Directory::setLibsPath()';
