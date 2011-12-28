@@ -77,11 +77,11 @@ class SanityCheck {
      */
     protected function checkLogsPathWritable() {
         if (!isset($this->logsPath)) {
-            $this->errors[] = 'The logs path was not set properly, please ensure you invoke \\SprayFire\\Core\\Directory::setLogsPath()';
+            $this->errors[] = 'The logs path was not set properly, please ensure you set a proper value with <code>\\SprayFire\\Core\\Directory::setLogsPath($path)</code>.';
             return;
         }
         if (!\is_writable($this->logsPath)) {
-            $this->errors[] = 'The logs path set, ' . $this->logsPath . ', is not writable.  Please change the permissions on this directory to allow writing.';
+            $this->errors[] = 'The logs path set, <code>' . $this->logsPath . '</code>, is not writable.  Please change the permissions on this directory to allow writing.';
         }
     }
 
@@ -91,7 +91,7 @@ class SanityCheck {
      */
     protected function checkPrimaryConfigurationExists() {
         if (!\file_exists($this->primaryConfigurationPath)) {
-            $this->errors[] = 'The primary configuration path, ' . $this->primaryConfigurationPath . ', does not exist.  Please create the appropriate configuration file.';
+            $this->errors[] = 'The primary configuration file does not exist.  Please check the path below:<br /><code>' . $this->primaryConfigurationPath . '</code>';
         }
     }
 
