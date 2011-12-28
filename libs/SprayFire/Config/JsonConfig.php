@@ -2,7 +2,7 @@
 
 /**
  * @file
- * @brief Holds a libs.sprayfire.config.Configuration object that will convert
+ * @brief Holds a SprayFire.Config.Configuration object that will convert
  * a JSON configuration file into a chainable ImmutableStorage object.
  *
  * @details
@@ -45,7 +45,7 @@ namespace SprayFire\Config;
  *
  * // Somewhere in your PHP code
  * $configFile = new \\SplFileInfo($filePath);
- * $Config = new \\libs\\sprayfire\\config\\JsonConfig($configFile);
+ * $Config = new \\SprayFire\\Config\\JsonConfig($configFile);
  *
  * // Values from the configuration file can now be read
  *
@@ -101,7 +101,7 @@ class JsonConfig extends \SprayFire\Datastructs\ImmutableStorage implements \Spr
      */
     private function getFileContents() {
         if (!$this->ConfigFileInfo->isFile() && !$this->ConfigFileInfo->isLink()) {
-            throw new \InvalidArgumentException('There is an error with the path to the configuration file.');
+            throw new \InvalidArgumentException('There is an error with the path to the configuration file, it does not appear to be a valid file or symlink.');
         }
         $fileInfo = \file_get_contents($this->ConfigFileInfo->getRealPath());
         return $fileInfo;
