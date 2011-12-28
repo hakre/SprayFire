@@ -17,12 +17,6 @@
     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
     /**
-     * @var $primaryConfigPath An array representing a sub directory list to the
-     *      primary configuration file.
-     */
-    $primaryConfigPath = array('Config', 'json', 'configuration.json');
-
-    /**
      * @var $rootDir The primary installation path for the app
      */
     $rootDir = \dirname(__DIR__);
@@ -64,17 +58,17 @@
     $ClassLoader->registerNamespaceDirectory('SprayFire', \SprayFire\Core\Directory::getLibsPath());
     \spl_autoload_register(array($ClassLoader, 'loadClass'));
 
-    $primaryConfigPath = \SprayFire\Core\Directory::getAppPath('Config', 'json', 'configuration.json');
+    $primaryConfigPath = \SprayFire\Core\Directory::getLibsPath('SprayFire', 'Config', 'json', 'configuration.json');
     $PrimaryConfigFile = new \SplFileInfo($primaryConfigPath);
     try {
         $PrimaryConfig = new \SprayFire\Config\JsonConfig($PrimaryConfigFile);
     } catch (\InvalidArgumentException $InvalArgExc) {
         // this is a temporary measure until a completed system is in place.
-        var_dump($InvalArgException);
+        var_dump($InvalArgExc);
         exit;
     }
 
-    $routesConfigPath = \SprayFire\Core\Directory::getAppPath('Config', 'json', 'routes.json');
+    $routesConfigPath = \SprayFire\Core\Directory::getLibsPath('SprayFire', 'Config', 'json', 'routes.json');
     $RoutesConfigFile = new \SplFileInfo($routesConfigPath);
     try {
         $RoutesConfig = new \SprayFire\Config\JsonConfig($RoutesConfigFile);
