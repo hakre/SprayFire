@@ -44,6 +44,12 @@
 
     include $libsPath . '/SprayFire/Core/Directory.php';
 
+    // Be sure to set the following paths in \SprayFire\Core\Directory
+    // - installPath
+    // - libsPath
+    // - appPath
+    // - logsPath
+    // - webPath
     \SprayFire\Core\Directory::setInstallPath($rootDir);
     \SprayFire\Core\Directory::setLibsPath($libsPath);
     \SprayFire\Core\Directory::setAppPath($appPath);
@@ -56,23 +62,29 @@
     $ClassLoader->registerNamespaceDirectory('SprayFire', \SprayFire\Core\Directory::getLibsPath());
     \spl_autoload_register(array($ClassLoader, 'loadClass'));
 
+    $SanityCheck = new \SprayFire\Core\SanityCheck();
+    $sanityFailures = $SanityCheck->verifySanity();
+    $_GET['sprayfire-sanity-failures'] = $sanityFailures;
+
     $errorLogPath = \SprayFire\Core\Directory::getLogsPath('errors.txt');
     $ErrorLogFile = new \SplFileInfo($errorLogPath);
     try {
         $ErrorLog = new \SprayFire\Logger\FileLogger($ErrorLogFile);
     } catch (\InvalidArgumentException $InvalArgExc) {
-        var_dump($InvalArgExc);
-        exit;
+        // This is a fail-safe to ensure that there is an ErrorLog for various
+        // objects needing to log error messages
+        $ErrorLog = new \SprayFire\Logger\FailSafeLogger();
     }
-
-    
 
     $primaryConfigPath = \SprayFire\Core\Directory::getLibsPath('SprayFire', 'Config', 'json', 'configuration.json');
     $PrimaryConfigFile = new \SplFileInfo($primaryConfigPath);
     try {
         $PrimaryConfig = new \SprayFire\Config\JsonConfig($PrimaryConfigFile);
     } catch (\InvalidArgumentException $InvalArgExc) {
-        // this is a temporary measure until a completed system is in place.
+        /**
+         * @todo This needs to be changed so that the basic values we are looking
+         * for are created in an ArrayConfig object
+         */
         var_dump($InvalArgExc);
         exit;
     }
@@ -82,7 +94,10 @@
     try {
         $RoutesConfig = new \SprayFire\Config\JsonConfig($RoutesConfigFile);
     } catch (\InvalidArgumentException $InvalArgExc) {
-        // this is a temporary measure until a completed system is in place.
+        /**
+         * @todo This needs to be changed so that the default values we are looking
+         * for are created in an ArrayConfig object
+         */
         var_dump($InvalArgExc);
         exit;
     }
@@ -92,3 +107,4 @@
     $Uri = new \SprayFire\Request\BaseUri($_SERVER['REQUEST_URI']);
 
     var_dump($Router->getRoutedUri($Uri));
+    var_dump($_GET);
