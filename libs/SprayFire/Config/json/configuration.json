@@ -21,36 +21,6 @@
             "production": {
 
             }
-        },
-        "error-handling": {
-            "sprayfire-docs": {
-                "0": "These configuration values handle how the framework will deal",
-                "1": "with errors triggered by PHP through the normal processing of",
-                "2": "a request.  Here is an explanation of each key listed below",
-                "3": "'namespaced-class' = Name of class handling the error handling callback",
-                "4": "'callback' = Method in 'namespaced-class' used as callback: publically visible",
-                "5": "'controller' = Controller uri fragment for fatal errors routing",
-                "6": "'action' = Action uri fragment for fatal errors routing"
-            },
-            "namespaced-class": "\\libs\\sprayfire\\core\\ErrorTrapper",
-            "callback": "error_trap",
-            "controller": "error",
-            "action": "index"
-        },
-        "exception-handling": {
-            "sprayfire-docs": {
-                "0": "These configuration values handle how the framework will deal",
-                "1": "with uncaught exceptions that may occur during the processing",
-                "2": "of a request.  Here is an explanation of each key listed below",
-                "3": "'namespaced-class' = Name of class handling the uncaught exception callback",
-                "4": "'callback' = Method in 'namespaced-class' used as callback; publically visible",
-                "5": "'controller' = Controller uri fragement for uncaught exceptions routing",
-                "6": "'action' = Action uri fragment for uncaught exceptions routing"
-            },
-            "namespaced-class": "\\libs\\sprayfire\\core\\ExceptionTrapper",
-            "callback": "exception_trap",
-            "controller": "exception",
-            "action": "index"
         }
     }
 }
