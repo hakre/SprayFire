@@ -19,6 +19,7 @@ include 'DirectoryTest.php';
 include 'SprayFireRouterTest.php';
 include 'SprayFireUriTest.php';
 include 'FileLoggerTest.php';
+include 'SanityCheckTest.php';
 
 /**
  *
@@ -40,6 +41,7 @@ class AllTests {
         $Suite->addTestSuite('DirectoryTest');
         $Suite->addTestSuite('SprayFireUriTest');
         $Suite->addTestSuite('FileLoggerTest');
+        $Suite->addTestSuite('SanityCheckTest');
 
         return $Suite;
     }
