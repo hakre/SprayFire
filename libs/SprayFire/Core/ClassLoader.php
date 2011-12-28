@@ -31,7 +31,7 @@ namespace SprayFire\Core;
  * @details
  *
  */
-class ClassLoader extends \SprayFire\Core\CoreObject {
+class ClassLoader {
 
     /**
      * @brief An array holding a top-level namespace as the key and the complete
