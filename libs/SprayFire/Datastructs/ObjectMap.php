@@ -46,7 +46,7 @@ interface ObjectMap extends \Traversable, \Countable {
      * @brief Return an Object if one exists for the given key or null.
      *
      * @param $key string
-     * @return libs.sprayfire.core.Object
+     * @return SprayFire.Core.Object
      */
     public function getObject($key);
 
