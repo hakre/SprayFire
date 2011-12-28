@@ -43,7 +43,7 @@ class SprayFireRouterTest extends PHPUnit_Framework_TestCase {
         $logPath = \dirname(__DIR__) . '/tests/mockframework/logs';
         \SprayFire\Core\Directory::setAppPath($appPath);
         \SprayFire\Core\Directory::setLogsPath($logPath);
-
+        \chmod(\SprayFire\Core\Directory::getLogsPath(), 0777);
         $this->validLogPath = \SprayFire\Core\Directory::getLogsPath('no-errors.txt');
         $this->invalidLogPath = \SprayFire\Core\Directory::getLogsPath('config', 'error.txt');
     }
