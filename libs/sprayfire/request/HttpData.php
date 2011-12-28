@@ -2,8 +2,9 @@
 
 /**
  * @file
- * @brief The framework's implementation of the libs.sprayfire.request.HttpData
- * interface.
+ * @brief Framework object to allow working with PHP superglobals, or any array,
+ * as an object; changes to the array change the object and changes to the object
+ * change the array.
  *
  * @details
  * SprayFire is a fully unit-tested, light-weight PHP framework for developers who
@@ -22,27 +23,20 @@
  * @copyright Copyright (c) 2011, Charles Sprayberry
  */
 
-namespace libs\sprayfire\request;
+namespace SprayFire\Request;
 
 /**
  * @brief Will allow for an array to be passed, the values of that array to be
  * treated as an object, and for changes to the array or the object to make
  * changes to the other.
  */
-class SprayFireHttpData extends \libs\sprayfire\datastructs\MutableStorage implements \IteratorAggregate {
+abstract class HttpData extends \SprayFire\Datastructs\MutableStorage {
 
     /**
      * @param $data An array passed by reference
      */
     public function __construct(array &$data) {
         $this->data =& $data;
-    }
-
-    /**
-     * @return \ArrayIterator
-     */
-    public function getIterator() {
-        return new \ArrayIterator($this->data);
     }
 
 }
