@@ -27,12 +27,34 @@
      */
     $rootDir = \dirname(__DIR__);
 
-    include $rootDir . '/libs/SprayFire/Core/Directory.php';
+    // Please do not include any trailing slashes on directories!
+
+    /**
+     * @brief WARNING!  Only change this directory if you are sure to move the
+     * <code>SprayFire</code> library to that directory.
+     *
+     * @var $libsPath The path holding SprayFire and third-party libraries
+     */
+    $libsPath = $rootDir . '/libs';
+
+    /**
+     * @var $appPath The path holding app libraries and classes
+     */
+    $appPath = $rootDir . '/app';
+
+    $logsPath = $rootDir . '/logs';
+
+    $webPath = $rootDir . '/web';
+
+    // PLEASE DO NOT CHANGE CODE BELOW THIS LINE!
+
+    include $libsPath . '/SprayFire/Core/Directory.php';
 
     \SprayFire\Core\Directory::setInstallPath($rootDir);
-    \SprayFire\Core\Directory::setLibsPath($rootDir . '/libs');
-    \SprayFire\Core\Directory::setAppPath($rootDir . '/app');
-    \SprayFire\Core\Directory::setLogsPath($rootDir . '/logs');
+    \SprayFire\Core\Directory::setLibsPath($libsPath);
+    \SprayFire\Core\Directory::setAppPath($appPath);
+    \SprayFire\Core\Directory::setLogsPath($logsPath);
+    \SprayFire\Core\Directory::setWebPath($webPath);
 
     include \SprayFire\Core\Directory::getLibsPath('SprayFire', 'Core', 'Object.php');
     include \SprayFire\Core\Directory::getLibsPath('SprayFire', 'Core', 'CoreObject.php');
