@@ -40,7 +40,7 @@ namespace SprayFire\Datastructs;
  * objects as they allow for the storing of any data type through the SprayFire.Datastructs.Overloadable
  * and ArrayAccess interfaces.
  */
-interface ObjectStorage extends \Traversable, \Countable {
+interface ObjectMap extends \Traversable, \Countable {
 
     /**
      * @brief Return an Object if one exists for the given key or null.
