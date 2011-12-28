@@ -5,7 +5,6 @@
     "app": {
         "version": "0.1.0-alpha",
         "development-mode": "on",
-        "routing-file": "routes.json",
         "ini-settings": {
             "global": {
                 "allow_url_fopen": "0",
