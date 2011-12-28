@@ -1,4 +1,0 @@
-/** @namespace SprayFire.Logger
- * @brief Holds interfaces and classes that should be responsible for logging messages
- * including error messages and other statistic and other important messages.
- */
