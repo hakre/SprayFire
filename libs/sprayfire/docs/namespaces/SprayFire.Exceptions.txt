@@ -1,5 +1,5 @@
 /**
- * @namespace libs.sprayfire.exceptions
+ * @namespace SprayFire.Exceptions
  * @brief Holds the various exceptions that may be thrown by the framework, in
  * addition to PHPs pre-defined exceptions.
  */

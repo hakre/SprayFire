@@ -1,4 +1,0 @@
-/** @namespace libs
- * @brief Holds any framework or third-party code that is not directly implemented
- * app code.
- */

@@ -1,4 +1,4 @@
 /**
- * @namespace libs.sprayfire.datastructs
+ * @namespace SprayFire.Datastructs
  * @brief Holds the API used by the framework to store and transfer sets of data.
  */

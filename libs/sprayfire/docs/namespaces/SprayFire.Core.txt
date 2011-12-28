@@ -1,5 +1,5 @@
 /**
- * @namespace libs.sprayfire.core
+ * @namespace SprayFire.Core
  * @brief Holds parts of the framework that are considered essential for SprayFire
  * to operate.
  *
