@@ -118,8 +118,8 @@
     }
 
     $Router = new \SprayFire\Request\SprayFireRouter($RoutesConfig, $ErrorLog);
-
     $Uri = new \SprayFire\Request\BaseUri($_SERVER['REQUEST_URI']);
+    $RoutedUri = $Router->getRoutedUri($Uri);
 
-    var_dump($Router->getRoutedUri($Uri));
+    
     var_dump($_GET);
