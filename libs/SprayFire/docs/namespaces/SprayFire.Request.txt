@@ -1,0 +1,6 @@
+/**
+ * @namespace SprayFire.Request
+ * @brief Contains all classes and interfaces needed to parse the requested URI
+ * and manage the HTTP data, both headers and normal GET/POST data, that get passed
+ * in each request.
+ */
