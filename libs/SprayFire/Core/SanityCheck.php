@@ -77,7 +77,7 @@ class SanityCheck {
      */
     protected function checkLogsPathWritable() {
         if (!isset($this->logsPath)) {
-            $this->errors[] = 'The logs path was not set properly, please ensure you invoke \\SprayFire\\Core\\Directory::setLibsPath()';
+            $this->errors[] = 'The logs path was not set properly, please ensure you invoke \\SprayFire\\Core\\Directory::setLogsPath()';
             return;
         }
         if (!\is_writable($this->logsPath)) {
@@ -90,10 +90,6 @@ class SanityCheck {
      * and exists.
      */
     protected function checkPrimaryConfigurationExists() {
-        if (!isset($this->primaryConfigurationPath)) {
-            $this->errors[] = 'The libs path may not have been set via \\SprayFire\\Core\\Directory::setLibsPath()';
-            return;
-        }
         if (!\file_exists($this->primaryConfigurationPath)) {
             $this->errors[] = 'The primary configuration path, ' . $this->primaryConfigurationPath . ', does not exist.  Please create the appropriate configuration file.';
         }
