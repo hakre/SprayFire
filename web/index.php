@@ -70,7 +70,7 @@
 
     $SanityCheck = new \SprayFire\Core\SanityCheck();
     $sanityFailures = $SanityCheck->verifySanity();
-    $_GET['sprayfire-sanity-failures'] = $sanityFailures;
+    
 
     $errorLogPath = \SprayFire\Core\Directory::getLogsPath('errors.txt');
     $ErrorLogFile = new \SplFileInfo($errorLogPath);
@@ -109,17 +109,15 @@
     try {
         $RoutesConfig = new \SprayFire\Config\JsonConfig($RoutesConfigFile);
     } catch (\InvalidArgumentException $InvalArgExc) {
-        /**
-         * @todo This needs to be changed so that the default values we are looking
-         * for are created in an ArrayConfig object
-         */
-        var_dump($InvalArgExc);
-        exit;
+        $data = array();
+        $data['defaults'] = array();
+        $data['defaults']['controller'] = 'pages';
+        $data['defaults']['action'] = 'index';
     }
 
     $Router = new \SprayFire\Request\SprayFireRouter($RoutesConfig, $ErrorLog);
     $Uri = new \SprayFire\Request\BaseUri($_SERVER['REQUEST_URI']);
     $RoutedUri = $Router->getRoutedUri($Uri);
 
-    
+
     var_dump($_GET);
