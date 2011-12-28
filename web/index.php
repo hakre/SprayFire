@@ -50,13 +50,22 @@
     \SprayFire\Core\Directory::setLogsPath($logsPath);
     \SprayFire\Core\Directory::setWebPath($webPath);
 
-    include \SprayFire\Core\Directory::getLibsPath('SprayFire', 'Core', 'Object.php');
-    include \SprayFire\Core\Directory::getLibsPath('SprayFire', 'Core', 'CoreObject.php');
     include \SprayFire\Core\Directory::getLibsPath('SprayFire', 'Core', 'ClassLoader.php');
 
     $ClassLoader = new \SprayFire\Core\ClassLoader();
     $ClassLoader->registerNamespaceDirectory('SprayFire', \SprayFire\Core\Directory::getLibsPath());
     \spl_autoload_register(array($ClassLoader, 'loadClass'));
+
+    $errorLogPath = \SprayFire\Core\Directory::getLogsPath('errors.txt');
+    $ErrorLogFile = new \SplFileInfo($errorLogPath);
+    try {
+        $ErrorLog = new \SprayFire\Logger\FileLogger($ErrorLogFile);
+    } catch (\InvalidArgumentException $InvalArgExc) {
+        var_dump($InvalArgExc);
+        exit;
+    }
+
+    
 
     $primaryConfigPath = \SprayFire\Core\Directory::getLibsPath('SprayFire', 'Config', 'json', 'configuration.json');
     $PrimaryConfigFile = new \SplFileInfo($primaryConfigPath);
@@ -74,15 +83,6 @@
         $RoutesConfig = new \SprayFire\Config\JsonConfig($RoutesConfigFile);
     } catch (\InvalidArgumentException $InvalArgExc) {
         // this is a temporary measure until a completed system is in place.
-        var_dump($InvalArgExc);
-        exit;
-    }
-
-    $errorLogPath = \SprayFire\Core\Directory::getLogsPath('errors.txt');
-    $ErrorLogFile = new \SplFileInfo($errorLogPath);
-    try {
-        $ErrorLog = new \SprayFire\Logger\FileLogger($ErrorLogFile);
-    } catch (\InvalidArgumentException $InvalArgExc) {
         var_dump($InvalArgExc);
         exit;
     }
