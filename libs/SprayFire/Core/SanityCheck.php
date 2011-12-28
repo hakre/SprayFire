@@ -38,6 +38,8 @@ class SanityCheck {
      */
     protected $logsPath;
 
+    protected $primaryConfigurationPath;
+
     /**
      * @brief An array holding messages regarding failed sanity checks
      *
@@ -50,6 +52,7 @@ class SanityCheck {
      */
     public function __construct() {
         $this->logsPath = \SprayFire\Core\Directory::getLogsPath();
+        $this->primaryConfigurationPath = \SprayFire\Core\Directory::getLibsPath('SprayFire', 'Config', 'json', 'configuration.json');
         $this->errors = array();
     }
 
@@ -58,6 +61,7 @@ class SanityCheck {
      */
     public function verifySanity() {
         $this->checkLogsPathWritable();
+        $this->checkPrimaryConfigurationExists();
         return $this->errors;
     }
 
@@ -66,16 +70,25 @@ class SanityCheck {
      * it is set and the directory is writable.
      *
      * @details
-     * If any 
+     * If any
      */
     protected function checkLogsPathWritable() {
         if (!isset($this->logsPath)) {
             $this->errors[] = 'The logs path was not set properly, please ensure you invoke \\SprayFire\\Core\\Directory::setLibsPath()';
             return;
         }
-
         if (!\is_writable($this->logsPath)) {
             $this->errors[] = 'The logs path set, ' . $this->logsPath . ', is not writable.  Please change the permissions on this directory to allow writing.';
+        }
+    }
+
+    protected function checkPrimaryConfigurationExists() {
+        if (!isset($this->primaryConfigurationPath)) {
+            $this->errors[] = 'The libs path may not have been set via \\SprayFire\\Core\\Directory::setLibsPath()';
+            return;
+        }
+        if (!\file_exists($this->primaryConfigurationPath)) {
+            $this->errors[] = 'The primary configuration path, ' . $this->primaryConfigurationPath . ', does not exist.  Please create the appropriate configuration file.';
         }
     }
 
