@@ -33,9 +33,6 @@ state of the framework and the future of SprayFire.
 Please check out the wiki for more information!
 https://github.com/cspray/SprayFire/wiki/
 
-Please check out the API documentation!
-https://cspray.github.com/SprayFire
-
 Testing Instructions
 ================================================================================
 Framework objects that can be reasonably unit tested will have those tests stored
