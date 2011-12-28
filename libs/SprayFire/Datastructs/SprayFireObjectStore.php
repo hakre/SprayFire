@@ -31,7 +31,7 @@ namespace SprayFire\Datastructs;
  * of that object using that key.  Also allows for the removal of an object
  * associated with a key and iterating over the stored objects.
  */
-class SprayFireObjectStore extends \SprayFire\Core\CoreObject implements \IteratorAggregate, \SprayFire\Datastructs\ObjectStorage {
+class SprayFireObjectStore extends \SprayFire\Core\CoreObject implements \IteratorAggregate, \SprayFire\Datastructs\ObjectMap {
 
     /**
      * @brief Holds a ReflectionClass of the data type that should be implemented by objects
