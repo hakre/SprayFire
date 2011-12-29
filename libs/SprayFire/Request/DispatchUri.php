@@ -29,7 +29,7 @@ namespace SprayFire\Request;
  * a controller, action and parameters, the routed URI string and the original
  * URI string that was mapped to the routed.
  */
-class SprayFireUri extends \SprayFire\Request\BaseUri implements \SprayFire\Request\RoutedUri {
+class DispatchUri extends \SprayFire\Request\BaseUri implements \SprayFire\Request\RoutedUri {
 
     /**
      * The URI string passed to the constructor representing the fully routed
