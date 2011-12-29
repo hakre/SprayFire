@@ -150,7 +150,7 @@ class SprayFireRouter extends \SprayFire\Core\CoreObject implements \SprayFire\R
         $controllerAndAction = $this->getControllerAndActionToUse($Uri);
         $mappedUriString = $this->getMappedUriString($sprayFireUriPatterns, $controllerAndAction);
         $finalUriString = $this->getUriWithParameters($mappedUriString, $Uri->getParameters());
-        $RoutedUri = new SprayFireUri($finalUriString);
+        $RoutedUri = new \SprayFire\Request\DispatchUri($finalUriString);
         $RoutedUri->setOriginalUri($Uri->getOriginalUri());
         return $RoutedUri;
     }
