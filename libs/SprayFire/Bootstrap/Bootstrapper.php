@@ -5,7 +5,7 @@
  * @brief Holds an interface for implementing objects that are responsible for framework
  * or app bootstrap functions.
  *
- * @detials
+ * @details
  * SprayFire is a fully unit-tested, light-weight PHP framework for developers who
  * want to make simple, secure, dynamic website content.
  *

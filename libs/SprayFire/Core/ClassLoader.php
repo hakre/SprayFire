@@ -52,7 +52,7 @@ class ClassLoader {
      * <pre>
      * The class:
      *
-     * \Top\Level\ClassName
+     * Top.Level.ClassName
      *
      * The directory for that class:
      *
@@ -64,7 +64,7 @@ class ClassLoader {
      *
      * Thus when you attempt to instantiate the class like so:
      *
-     * $Class = new \Top\Level\ClassName();
+     * $Class = new Top.Level.ClassName();
      *
      * The class autoloader will convert the namespace to a directory and then
      * append that directory to the value stored by the 'Top' key.

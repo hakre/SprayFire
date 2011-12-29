@@ -32,7 +32,7 @@ namespace SprayFire\Core;
 class SanityCheck {
 
     /**
-     * @brief The absolute path to the logsPath set by \SprayFire\Core\Directory
+     * @brief The absolute path to the logsPath set by SprayFire.Core.Directory::setLogsPath()
      *
      * @property $logsPath
      */
