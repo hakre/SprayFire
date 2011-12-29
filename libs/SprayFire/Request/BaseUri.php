@@ -63,9 +63,6 @@ class BaseUri extends \SprayFire\Core\CoreObject implements \SprayFire\Request\U
      * @brief Forces the injection of a URI string into the object, this object
      * should forever be associated with the passed URI.
      *
-     * @details
-     * This function will also assign the appropriate properties and
-     *
      * @param $uri string
      */
     public function __construct($uri) {
@@ -80,8 +77,8 @@ class BaseUri extends \SprayFire\Core\CoreObject implements \SprayFire\Request\U
      * @brief Will remove leading and forward '/' and the root install directory
      * and return a 0-index array containing the remaining fragments.
      *
-     * @return array in controller, action, param1, param2, paramN order, the
-     *         keys should be properly numerically index.
+     * @return array in controller, action, param1, param2, paramN order, the keys
+     *         should be properly numerically index.
      */
     protected function trimAndExplodeUri($uri) {
         $parsedUri = \parse_url($uri);
@@ -95,8 +92,8 @@ class BaseUri extends \SprayFire\Core\CoreObject implements \SprayFire\Request\U
     }
 
     /**
-     * @brief Will turn an array of \a $explodedUriFragments into a parsed
-     * array indicating the appropriate controller, action and list of parameters.
+     * @brief Will turn an array of \a $explodedUriFragments into a parsed array
+     * indicating the appropriate controller, action and list of parameters.
      *
      * @details
      * If the \a $explodedUriFragments do not have any values for the controller
@@ -104,36 +101,35 @@ class BaseUri extends \SprayFire\Core\CoreObject implements \SprayFire\Request\U
      * value will be returned.  The parameter key will always return with some
      * kind of array as its value.
      *
-     * @return associative array with the following keys: 'controller', 'action', 'paramters
+     * @return associative array with the following keys: 'controller', 'action', 'parameters'
      */
     protected function parseUriFragments($uriFragments) {
-        $useController = \SprayFire\Request\Uri::DEFAULT_CONTROLLER;
-        $useAction = \SprayFire\Request\Uri::DEFAULT_ACTION;
-        $useParameters = array();
+        $controller = \SprayFire\Request\Uri::DEFAULT_CONTROLLER;
+        $action = \SprayFire\Request\Uri::DEFAULT_ACTION;
+        $parameters = array();
 
         if (!empty($uriFragments) && !empty($uriFragments[0])) {
             if (!$this->isParameterString($uriFragments[0])) {
-                $useController = \array_shift($uriFragments);
+                $controller = \array_shift($uriFragments);
                 if (!empty($uriFragments)) {
                     if (!$this->isParameterString($uriFragments[0])) {
-                        $useAction = \array_shift($uriFragments);
-                        $useParameters = $this->removeParameterMarker($uriFragments);
+                        $action = \array_shift($uriFragments);
+                        $parameters = $this->removeParameterMarker($uriFragments);
                     } else {
-                        $useParameters = $this->removeParameterMarker($uriFragments);
+                        $parameters = $this->removeParameterMarker($uriFragments);
                     }
                 }
             } else {
-                $useParameters = $this->removeParameterMarker($uriFragments);
+                $parameters = $this->removeParameterMarker($uriFragments);
             }
         }
 
-        return array('controller' => $useController, 'action' => $useAction, 'parameters' => $useParameters);
+        return array('controller' => $controller, 'action' => $action, 'parameters' => $parameters);
     }
 
     /**
-     * @brief Determines if the passed \a $value is a parameter string, which
-     * we signify as having a colon <code>:</code> in the first character of
-     * the string.
+     * @brief Determines if the passed \a $value is a parameter string, which we
+     * signify as having a colon <code>:</code> in the first character of the string.
      *
      * @param $value string
      * @return boolean
