@@ -12,16 +12,16 @@
     */
 
     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    // The below variables can be changed and manipulated to adjust the implementation
-    // details of the framework's initialization process.
+    // The below variables can be changed to adjust the implementation details
+    // of the framework's initialization process.
     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+    // Please do not include any trailing slashes on directories!
 
     /**
      * @var $rootDir The primary installation path for the app
      */
     $rootDir = \dirname(__DIR__);
-
-    // Please do not include any trailing slashes on directories!
 
     /**
      * @brief WARNING!  Only change this directory if you are sure to move the
@@ -91,9 +91,6 @@
     $ClassLoader->registerNamespaceDirectory('SprayFire', \SprayFire\Core\Directory::getLibsPath());
     \spl_autoload_register(array($ClassLoader, 'loadClass'));
 
-    $SanityCheck = new \SprayFire\Core\SanityCheck();
-    $sanityFailures = $SanityCheck->verifySanity();
-
     $ErrorLogFile = new \SplFileInfo(\SprayFire\Core\Directory::getLogsPath($primaryErrorLogPath));
     try {
         $ErrorLog = new \SprayFire\Logger\FileLogger($ErrorLogFile);
@@ -103,30 +100,16 @@
         $ErrorLog->log(\date('M-d-Y H:i:s'), $InvalArgExc->getMessage());
     }
 
-    $PrimaryConfigFile = new \SplFileInfo(\SprayFire\Core\Directory::getLibsPath($primaryConfigPath));
-    try {
-        $PrimaryConfig = new \SprayFire\Config\JsonConfig($PrimaryConfigFile);
-    } catch (\InvalidArgumentException $InvalArgExc) {
-        $configData = array();
-        $configData['framework'] = array();
-        $configData['framework']['version'] = '0.1.0-alpha';
-        $configData['app'] = array();
-        $configData['app']['version'] = '0.0.0-e';
-        $configData['app']['development-mode'] = 'off';
+    // @todo INCLUDE ERROR AND EXCEPTION HANDLERS HERE
 
-        $PrimaryConfig = new \SprayFire\Config\ArrayConfig($configData);
-    }
+    $SanityCheck = new \SprayFire\Core\SanityCheck();
+    $sanityFailures = $SanityCheck->verifySanity();
 
-    $RoutesConfigFile = new \SplFileInfo(\SprayFire\Core\Directory::getLibsPath($routesConfigPath));
-    try {
-        $RoutesConfig = new \SprayFire\Config\JsonConfig($RoutesConfigFile);
-    } catch (\InvalidArgumentException $InvalArgExc) {
-        $data = array();
-        $data['defaults'] = array();
-        $data['defaults']['controller'] = 'pages';
-        $data['defaults']['action'] = 'index';
-        $RoutesConfig = new \SprayFire\Config\ArrayConfig($data);
-    }
+    $ConfigGatherer = new \SprayFire\Core\ConfigGatherer();
+    $PrimaryConfig = $ConfigGatherer->fetchPrimaryConfiguration($primaryConfigPath);
+    $RoutesConfig = $ConfigGatherer->fetchRoutesConfiguration($routesConfigPath);
+
+    $ClassLoader->registerNamespaceDirectory($PrimaryConfig->app->name, \SprayFire\Core\Directory::getAppPath());
 
     $Router = new \SprayFire\Request\SprayFireRouter($RoutesConfig, $ErrorLog);
     $Uri = new \SprayFire\Request\BaseUri($_SERVER['REQUEST_URI']);
@@ -173,7 +156,7 @@
             <div id="content">
                 <div id="header">
                     <img src="/$installDir/web/images/sprayfire-logo-medium.png" id="sprayfire-logo" alt="SprayFire logo" width="75" height="75" />
-                    <h1><span class="sprayfire-orange">Spray</span><span class="sprayfire-red">Fire</span> {$PrimaryConfig->framework->version}</h1>
+                    <h1><span class="sprayfire-orange">Spray</span><span class="sprayfire-red">Fire</span> {$PrimaryConfig->SprayFire->version}</h1>
                 </div>
 
                 <div id="body">
