@@ -31,7 +31,7 @@ namespace SprayFire\Datastructs;
  * of that object using that key.  Also allows for the removal of an object
  * associated with a key and iterating over the stored objects.
  */
-class RestrictedMap extends \SprayFire\Core\CoreObject implements \IteratorAggregate, \SprayFire\Datastructs\ObjectMap {
+class RestrictedMap extends \SprayFire\Datastructs\GenericMap implements \SprayFire\Datastructs\ObjectMap {
 
     /**
      * @brief Holds a ReflectionClass of the data type that should be implemented by objects
@@ -42,13 +42,6 @@ class RestrictedMap extends \SprayFire\Core\CoreObject implements \IteratorAggre
     protected $ReflectedParentType;
 
     /**
-     * @brief Holds the objects being stored in this data structure
-     *
-     * @property array
-     */
-    protected $data = array();
-
-    /**
      * @brief Will initiate the object storage as an empty array and assign the passed
      * ReflectionClass to the appropriate class property.
      *
@@ -56,72 +49,6 @@ class RestrictedMap extends \SprayFire\Core\CoreObject implements \IteratorAggre
      */
     public function __construct(\ReflectionClass $ReflectedObjectType) {
         $this->ReflectedParentType = $ReflectedObjectType;
-    }
-
-    /**
-     * @brief Checks if the \a $Object \a exists in this data structure; returns
-     * true if the object exists and false if it doesn't.
-     *
-     * @param $Object SprayFire.Core.Object
-     * @return boolean
-     */
-    public function contains(\SprayFire\Core\Object $Object) {
-        if ($this->indexOf($Object) === false) {
-            return false;
-        }
-        return true;
-    }
-
-    /**
-     * @brief Return the string or numeric index associated with the given object
-     * or false if the object is not stored.
-     *
-     * @param $Object SprayFire.Core.Object
-     * @return mixed \a $key \a type set or false on failure
-     */
-    public function indexOf(\SprayFire\Core\Object $Object) {
-        $index = false;
-        foreach ($this->data as $key => $StoredObject) {
-            if ($Object->equals($StoredObject)) {
-                $index = $key;
-                break;
-            }
-        }
-        return $index;
-    }
-
-    /**
-     * @brief Returns whether or not this object has any objects stored in it.
-     *
-     * @return boolean
-     */
-    public function isEmpty() {
-        return \count($this) <= 0;
-    }
-
-    /**
-     * @brief Remove the element associated with by the \a $key \a passed.
-     *
-     * @param $key string
-     */
-    public function removeObject($key) {
-        if (\array_key_exists($key, $this->data)) {
-            unset($this->data[$key]);
-        }
-    }
-
-    /**
-     * @brief Return the object associated with \a $key \a if it exists or
-     * null if it does not.
-     *
-     * @param $key string
-     * @return SprayFire.Core.Object
-     */
-    public function getObject($key) {
-        if (\array_key_exists($key, $this->data)) {
-            return $this->data[$key];
-        }
-        return null;
     }
 
     /**
@@ -141,19 +68,8 @@ class RestrictedMap extends \SprayFire\Core\CoreObject implements \IteratorAggre
      * @return SprayFire.Core.Object
      */
     public function setObject($key, \SprayFire\Core\Object $Object) {
-        $this->throwExceptionIfKeyInvalid($key);
         $this->throwExceptionIfObjectNotParentType($Object);
-        $this->data[$key] = $Object;
-    }
-
-    /**
-     * @param $key string
-     * @throws InvalidArgumentException
-     */
-    protected function throwExceptionIfKeyInvalid($key) {
-        if (empty($key) || !\is_string($key)) {
-            throw new \InvalidArgumentException('The key for an object may not be an empty or non-string value.');
-        }
+        parent::setObject($key, $Object);
     }
 
     /**
@@ -204,24 +120,6 @@ class RestrictedMap extends \SprayFire\Core\CoreObject implements \IteratorAggre
             // @codeCoverageIgnoreEnd
         }
         return $isValid;
-    }
-
-    /**
-     * @brief Satisfies the requirements of the IteratorAggregate interface
-     *
-     * @return ArrayIterator
-     */
-    public function getIterator() {
-        return new \ArrayIterator($this->data);
-    }
-
-    /**
-     * @brief Satisfies the requirements of the Countable interface.
-     *
-     * @return int
-     */
-    public function count() {
-        return \count($this->data);
     }
 
 }
