@@ -29,7 +29,7 @@ namespace SprayFire\Core;
  *
  * @see https://github.com/cspray/SprayFire/issues?milestone=7
  */
-class SanityCheck {
+class SanityCheck extends \SprayFire\Core\CoreObject {
 
     /**
      * @brief The absolute path to the logsPath set by SprayFire.Core.Directory::setLogsPath()
@@ -63,11 +63,18 @@ class SanityCheck {
     }
 
     /**
-     * @return An array of error messages that were populated by various checks
+     * @brief Will run the various checks and fill \a $errors with information about
+     * the passed checks
      */
     public function verifySanity() {
         $this->checkLogsPathWritable();
         $this->checkPrimaryConfigurationExists();
+    }
+
+    /**
+     * @return An array of error info for triggered errors
+     */
+    public function returnInsanities() {
         return $this->errors;
     }
 
