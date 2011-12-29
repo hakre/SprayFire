@@ -28,7 +28,7 @@ namespace SprayFire\Core;
  * messages and provides a means to get the error info for errors triggered in a
  * specific request.
  */
-class ErrorHandler extends \SprayFire\Core\CoreObject {
+class ErrorHandler extends \SprayFire\Core\LoggableCoreObject {
 
     /**
      * @brief An array holding the \a $severity , \a $message , \a $file and \a $line
@@ -37,21 +37,6 @@ class ErrorHandler extends \SprayFire\Core\CoreObject {
      * @property $trappedErrors
      */
     protected $trappedErrors = array();
-
-    /**
-     * @brief The SprayFire.Logger.Log object used to log messages about triggered
-     * errors.
-     *
-     * @property $Log
-     */
-    protected $Log;
-
-    /**
-     * @param $Log \SprayFire\Logger\Log object used to store error messages
-     */
-    public function __construct(\SprayFire\Logger\Log $Log) {
-        $this->Log = $Log;
-    }
 
     /**
      *
@@ -68,7 +53,7 @@ class ErrorHandler extends \SprayFire\Core\CoreObject {
         }
 
         $errorMessage = 'message:=' . $message;
-        $this->logError($errorMessage);
+        $this->log($errorMessage);
         $index = \count($this->trappedErrors);
         $this->trappedErrors[$index] = array();
         $this->trappedErrors[$index]['severity'] = $severity;
@@ -80,14 +65,6 @@ class ErrorHandler extends \SprayFire\Core\CoreObject {
         if (in_array($severity, $nonHandledSeverity)) {
             return false;
         }
-    }
-
-    /**
-     * @param $message The error message detailing what went wrong
-     */
-    protected function logError($message) {
-        $timestamp = \date('M-d-Y H:i:s');
-        $this->Log->log($timestamp, $message);
     }
 
     /**
