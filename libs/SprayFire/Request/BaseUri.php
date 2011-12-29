@@ -2,8 +2,8 @@
 
 /**
  * @file
- * @brief Holds a class that implements the basic functionality to split a URI
- * into its appropriate controller, action and parameter fragments.
+ * @brief Holds a class that implements the basic functionality to split a URI into
+ * its appropriate controller, action and parameter fragments.
  *
  * @details
  * SprayFire is a fully unit-tested, light-weight PHP framework for developers who
@@ -199,6 +199,22 @@ class BaseUri extends \SprayFire\Core\CoreObject implements \SprayFire\Request\U
      */
     public function getOriginalUri() {
         return $this->originalUri;
+    }
+
+    /**
+     * @param $Object SprayFire.Core.Object to compare the calling object to
+     * @return true if the passed \a $Object is equal to the calling object false
+     *         if not
+     */
+    public function equals(\SprayFire\Core\Object $Object) {
+        if (!($Object instanceof $this)) {
+            return false;
+        }
+
+        if ($this->getOriginalUri() === $Object->getOriginalUri()) {
+            return true;
+        }
+        return false;
     }
 
 }

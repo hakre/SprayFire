@@ -98,6 +98,27 @@ class BaseUriTest extends PHPUnit_Framework_TestCase {
 
     }
 
+    public function testUriEqualsWithTwoEqualObjects() {
+        $FirstUri = new \SprayFire\Request\BaseUri($this->baseDir . 'dogs/train/:stay');
+        $SecondUri = new \SprayFire\Request\BaseUri($this->baseDir . 'dogs/train/:stay');
+        $this->assertTrue($FirstUri->equals($SecondUri));
+    }
+
+    public function testUriEqualsWithTwoNotEqualObjects() {
+        $FirstUri = new \SprayFire\Request\BaseUri($this->baseDir . 'dogs/train/:stay');
+        $SecondUri = new \SprayFire\Request\BaseUri($this->baseDir . 'dogs/train/:sit');
+        $this->assertFalse($FirstUri->equals($SecondUri));
+    }
+
+    public function testUriEqualsWithNonUriObject() {
+        $FirstUri = new \SprayFire\Request\BaseUri($this->baseDir . 'dogs/train/:stay');
+        if (!class_exists('TestObject')) {
+            include 'TestObject.php';
+        }
+        $SecondUri = new TestObject();
+        $this->assertFalse($FirstUri->equals($SecondUri));
+    }
+
 }
 
 // End BaseUriTest
