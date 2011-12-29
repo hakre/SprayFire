@@ -3,6 +3,29 @@ html {
     font-size: 100%;
 }
 
+h1 {
+    line-height: 75px;
+    font-size: 2.5em;
+}
+
+code {
+    padding: 1px;
+    background-color: white;
+}
+
+a {
+    color: rgb(0, 112, 236);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+p {
+    line-height: 1.25em;
+}
+
 #content {
     margin: 0 auto;
     width: 95%;
@@ -69,11 +92,6 @@ html {
     font-style: italic;
 }
 
-h1 {
-    line-height: 75px;
-    font-size: 2.5em;
-}
-
 .sprayfire-orange {
     color: rgb(240, 141, 51);
 }
@@ -105,9 +123,4 @@ h1 {
     -moz-border-radius: 10px;
     overflow: auto;
     font-size: 1.25em;
-}
-
-code {
-    padding: 1px;
-    background-color: white;
 }
