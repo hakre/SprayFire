@@ -20,7 +20,7 @@
 /**
  *
  */
-class SprayFireObjectStoreTest extends PHPUnit_Framework_TestCase {
+class RestrictedMapTest extends PHPUnit_Framework_TestCase {
 
     public function setUp() {
         if (!class_exists('TestObject')) {
@@ -30,7 +30,7 @@ class SprayFireObjectStoreTest extends PHPUnit_Framework_TestCase {
 
     public function testBasicObjectStorage() {
         $ParentType = new ReflectionClass('TestObject');
-        $Storage = new \SprayFire\Datastructs\SprayFireObjectStore($ParentType);
+        $Storage = new \SprayFire\Datastructs\RestrictedMap($ParentType);
 
         $expectedInitiationSize = 0;
         $initiationSize = \count($Storage);
@@ -77,7 +77,7 @@ class SprayFireObjectStoreTest extends PHPUnit_Framework_TestCase {
 
     public function testInterfaceObjectStorage() {
         $Type = new \ReflectionClass('\\SprayFire\\Datastructs\\Overloadable');
-        $Storage = new SprayFire\Datastructs\SprayFireObjectStore($Type);
+        $Storage = new SprayFire\Datastructs\RestrictedMap($Type);
 
         $Storage->setObject('key', new \SprayFire\Datastructs\ImmutableStorage(array()));
         $this->assertTrue($Storage->count() === 1);
@@ -85,7 +85,7 @@ class SprayFireObjectStoreTest extends PHPUnit_Framework_TestCase {
 
     public function testLoopingThroughObjectStore() {
         $Type = new \ReflectionClass('\\SprayFire\\Core\\Object');
-        $Storage = new \SprayFire\Datastructs\SprayFireObjectStore($Type);
+        $Storage = new \SprayFire\Datastructs\RestrictedMap($Type);
 
         $One = new TestObject();
         $Two = new TestObject();
@@ -132,7 +132,7 @@ class SprayFireObjectStoreTest extends PHPUnit_Framework_TestCase {
         $Object = new TestObject;
 
         $Type = new ReflectionClass($Object);
-        $Storage = new \SprayFire\Datastructs\SprayFireObjectStore($Type);
+        $Storage = new \SprayFire\Datastructs\RestrictedMap($Type);
 
         $Storage->setObject($key, $Object);
     }
@@ -140,7 +140,7 @@ class SprayFireObjectStoreTest extends PHPUnit_Framework_TestCase {
     public function testGettingNonexistentKey() {
         $key = 'noexist';
         $Type = new ReflectionClass('\\SprayFire\\Core\\Object');
-        $Storage = new \SprayFire\Datastructs\SprayFireObjectStore($Type);
+        $Storage = new \SprayFire\Datastructs\RestrictedMap($Type);
 
         $Storage->setObject('i-do-exist', new TestObject());
         $Noexist = $Storage->getObject($key);

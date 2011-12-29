@@ -13,7 +13,7 @@
 
 include 'JsonConfigTest.php';
 include 'MutableStorageTest.php';
-include 'SprayFireObjectStoreTest.php';
+include 'RestrictedMapTest.php';
 include 'BaseUriTest.php';
 include 'DirectoryTest.php';
 include 'SprayFireRouterTest.php';
@@ -35,7 +35,7 @@ class AllTests {
         $Suite = new PHPUnit_Framework_TestSuite();
         $Suite->addTestSuite('JsonConfigTest');
         $Suite->addTestSuite('MutableStorageTest');
-        $Suite->addTestSuite('SprayFireObjectStoreTest');
+        $Suite->addTestSuite('RestrictedMapTest');
         $Suite->addTestSuite('SprayFireRouterTest');
         $Suite->addTestSuite('BaseUriTest');
         $Suite->addTestSuite('DirectoryTest');
