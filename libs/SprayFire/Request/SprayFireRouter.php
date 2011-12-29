@@ -2,10 +2,9 @@
 
 /**
  * @file
- * @brief The framework's implementation of the libs.sprayfire.request.Router
- * interface that allows for a Uri to be parsed and converted into a RoutedUri
- * based on a libs.sprayfire.config.Configuration object passed in the constructor
- * of the router.
+ * @brief The framework's implementation of the SprayFire.Request.Router interface
+ * that allows for a Uri to be parsed and converted into a RoutedUri based on a
+ * SprayFire.Config.Configuration object injected at construction.
  *
  * @details
  * SprayFire is a fully unit-tested, light-weight PHP framework for developers who
@@ -27,46 +26,38 @@
 namespace SprayFire\Request;
 
 /**
- * @brief Will take a libs.sprayfire.config.JsonConfig object to determine the
- * mapped URI to use for the request and convert any libs.sprayfire.request.Uri
- * object passed into an appropriate libs.sprayfire.request.RoutedUri object.
+ * @brief Will take a SprayFire.Config.JsonConfig object to determine the
+ * mapped URI to use for the request and convert any SprayFire.Request.Uri
+ * object passed into an appropriate SprayFire.Request.RoutedUri object.
  *
  * @details
  * This class **GUARANTEES** that when <code>SprayFireRouter::getRoutedUri($Uri)</code>
- * is invoked an appropriate object will be returned, even if an invalid
- * configuration file is used.
+ * is invoked an appropriate SprayFire.Request.RoutedUri object will be returned,
+ * even if an invalid configuration file is used.
  */
-class SprayFireRouter extends \SprayFire\Core\CoreObject implements \SprayFire\Request\Router {
+class SprayFireRouter extends \SprayFire\Core\LoggableCoreObject implements \SprayFire\Request\Router {
 
     /**
-     * @brief The libs.sprayfire.config.Configuration object holding the routing
-     * keys and the appropriate mapped controller and action.
+     * @brief The SprayFire.Config.Configuration object holding the routing keys
+     * and the appropriate mapped controller and action.
      *
      * @property $RoutesConfig
      */
     protected $RoutesConfig;
 
     /**
-     * @brief The libs.sprayfire.logger.Logger object used to store the error
-     * messages that may occur during parsing of the URI.
-     *
-     * @property $Log
-     */
-    protected $Log;
-
-    /**
-     * @brief The default controller to use if the %default_controller% flag
-     * is used in the routes.json configuration file or no controller is specified
-     * in a particular mapping.
+     * @brief The default controller to use if the %default_controller% flag is
+     * set in the routes.json configuration file or no controller is specified in
+     * a particular mapping.
      *
      * @property $defaultController
      */
     protected $defaultController;
 
     /**
-     * @brief The default action to use if the %default_action% flag is used
-     * in the routes.json configuration file or no action is specified in a
-     * particular mapping.
+     * @brief The default action to use if the %default_action% flag is set in the
+     * routes.json configuration file or no action is specified in a particular
+     * mapping.
      *
      * @property $defaultAction
      */
@@ -77,8 +68,8 @@ class SprayFireRouter extends \SprayFire\Core\CoreObject implements \SprayFire\R
      * object passed.
      *
      * @details
-     * It is expected that the \a $RoutesConfig object will have 2 properties
-     * set:
+     * It is expected that the \a $RoutesConfig object will have, at minimum, 2
+     * properties set:
      *
      * <code>$RoutesConfig->defaults->controller</code>
      *
@@ -95,8 +86,8 @@ class SprayFireRouter extends \SprayFire\Core\CoreObject implements \SprayFire\R
      * @param $Log SprayFire.Logger.Log
      */
     public function __construct(\SprayFire\Config\Configuration $RoutesConfig, \SprayFire\Logger\Log $Log) {
+        parent::__construct($Log);
         $this->RoutesConfig = $RoutesConfig;
-        $this->Log = $Log;
         if (!isset($RoutesConfig->defaults->controller)) {
             $this->log('The default controller was not properly set, using \'pages\' as default controller.');
             $defaultController = 'pages';
@@ -116,31 +107,25 @@ class SprayFireRouter extends \SprayFire\Core\CoreObject implements \SprayFire\R
     }
 
     /**
-     * @brief Logs an error message, appending the current timestamp to the
-     * \a $message
-     *
-     * @param $message A message to be logged
-     */
-    protected function log($message) {
-        $timestamp = \date('M-d-Y H:i:s');
-        $this->Log->log($timestamp, $message);
-    }
-
-    /**
-     * @brief Will take a libs.sprayfire.request.Uri object and create an
-     * appropriate libs.sprayfire.request.RoutedUri object.
+     * @brief Will take a SprayFire.Request.Uri object and create an appropriate
+     * SprayFire.Request.RoutedUri object.
      *
      * @details
-     * Will produce a <code>SprayFireURIPattern</code> based on the
-     * \a $Uri object passed, determine whether the default controller and action
-     * or the controller and action passed in \a $Uri should be used, it will
-     * then produce the appropriate mapped URI string, create a libs.sprayfire.request.RoutedUri,
-     * set the original URI string passed and finally return the RoutedUri
-     * object created.
+     * This function will:
+     * - Gather 2 SprayFireURI Patterns, a specific parameter count pattern and
+     * a wild-card count pattern.
+     * - Gather the controller and action to use for routing purposes, will be either
+     * the default controller set in the configuration or the controller passed in
+     * the URI
+     * - Check the specific SprayFireURI Pattern for a routing, if the specific
+     * pattern does not exist checks the wild-card SprayFireURI pattern.
+     * - Creates the mapped URI based on the controller and action set in the routing
+     * or based on the default/requested controller and action
+     * - Returns a properly instantiated SprayFire.Request.DispatchUri object
      *
-     * @param $Uri libs.sprayfire.request.Uri
-     * @return libs.sprayfire.request.RoutedUri This implementation returns
-     *         a libs.sprayfire.request.SprayFireUri specifically
+     * @param $Uri SprayFire.Request.Uri
+     * @return SprayFire.Request.RoutedUri This implementation returns
+     *         a SprayFire.Request.DispatchUri specifically
      */
     public function getRoutedUri(\SprayFire\Request\Uri $Uri) {
         $sprayFireUriPatterns = $this->getSprayFireURIPatterns($Uri);
@@ -155,10 +140,10 @@ class SprayFireRouter extends \SprayFire\Core\CoreObject implements \SprayFire\R
     /**
      * @brief Will return an associative array with 2 keys, 'specific' and
      * 'wild-card', the 'specific' key holds a <code>SprayFireURIPattern</code>
-     * holding a specific parameter count whild the 'wild-card' key holds a
+     * holding a specific parameter count while the 'wild-card' key holds a
      * <code>SprayFireURIPattern</code> holding a wild card parameter count.
      *
-     * @param $Uri SprayFire.Request.Uri to get a SprayFireURI Pattern for
+     * @param $Uri SprayFire.Request.Uri to get a SprayFireURI Pattern
      * @return Associative array holding 'specific' and 'wild-card' SprayFireURI Patterns
      */
     protected function getSprayFireURIPatterns(\SprayFire\Request\Uri $Uri) {
@@ -243,7 +228,7 @@ class SprayFireRouter extends \SprayFire\Core\CoreObject implements \SprayFire\R
     }
 
     /**
-     * @param $ConfigFragment libs.sprayfire.datastructs.ImmutableStorage from \a $RoutesConfig
+     * @param $ConfigFragment SprayFire.Datastructs.ImmutableStorage from \a $RoutesConfig
      * @param $controllerAndAction associative array returned from getControllerAndActionToUse()
      * @return string value representing controller fragment
      */
@@ -258,7 +243,7 @@ class SprayFireRouter extends \SprayFire\Core\CoreObject implements \SprayFire\R
     }
 
     /**
-     * @param $ConfigFragment libs.sprayfire.datastructs.ImmutableStorage from \a $RoutesConfig
+     * @param $ConfigFragment SprayFire.Datastructs.ImmutableStorage from \a $RoutesConfig
      * @param $controllerAndAction associative array returned from getControllerAndActionToUse()
      * @return string value representing action fragment
      */
