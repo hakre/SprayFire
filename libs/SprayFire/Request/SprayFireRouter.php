@@ -35,10 +35,6 @@ namespace SprayFire\Request;
  * This class **GUARANTEES** that when <code>SprayFireRouter::getRoutedUri($Uri)</code>
  * is invoked an appropriate object will be returned, even if an invalid
  * configuration file is used.
- *
- * @todo This implementation does not properly account for spaces or characters
- * that could be considered invalid for a PHP class or method.
- *
  */
 class SprayFireRouter extends \SprayFire\Core\CoreObject implements \SprayFire\Request\Router {
 
@@ -95,7 +91,8 @@ class SprayFireRouter extends \SprayFire\Core\CoreObject implements \SprayFire\R
      * in the \a $RoutesConfig object an error will be logged and a framework
      * chosen controller and action will be invoked.
      *
-     * @param $RoutesConfig libs.sprayfire.config.Configuration
+     * @param $RoutesConfig SprayFire.Config.Configuration
+     * @param $Log SprayFire.Logger.Log
      */
     public function __construct(\SprayFire\Config\Configuration $RoutesConfig, \SprayFire\Logger\Log $Log) {
         $this->RoutesConfig = $RoutesConfig;
@@ -124,7 +121,7 @@ class SprayFireRouter extends \SprayFire\Core\CoreObject implements \SprayFire\R
      *
      * @param $message A message to be logged
      */
-    private function log($message) {
+    protected function log($message) {
         $timestamp = \date('M-d-Y H:i:s');
         $this->Log->log($timestamp, $message);
     }
@@ -161,10 +158,10 @@ class SprayFireRouter extends \SprayFire\Core\CoreObject implements \SprayFire\R
      * holding a specific parameter count whild the 'wild-card' key holds a
      * <code>SprayFireURIPattern</code> holding a wild card parameter count.
      *
-     * @param $Uri libs.sprayfire.request.Uri
-     * @return array
+     * @param $Uri SprayFire.Request.Uri to get a SprayFireURI Pattern for
+     * @return Associative array holding 'specific' and 'wild-card' SprayFireURI Patterns
      */
-    private function getSprayFireURIPatterns(\SprayFire\Request\Uri $Uri) {
+    protected function getSprayFireURIPatterns(\SprayFire\Request\Uri $Uri) {
         $defaultControllerPattern = 'DC';
         $defaultActionPattern = 'DA';
         $parameterWildCard = '*';
@@ -185,19 +182,19 @@ class SprayFireRouter extends \SprayFire\Core\CoreObject implements \SprayFire\R
             $sprayFireURIPattern .= $requestedAction .'-';
         }
         $requestedParamCount = \count($Uri->getParameters());
-        $specificUri = $sprayFireURIPattern . $requestedParamCount;
-        $wildCardUri = $sprayFireURIPattern . $parameterWildCard;
+        $specificPattern = $sprayFireURIPattern . $requestedParamCount;
+        $wildCardPattern = $sprayFireURIPattern . $parameterWildCard;
 
-        return array('specific' => $specificUri, 'wild-card' => $wildCardUri);
+        return array('specific' => $specificPattern, 'wild-card' => $wildCardPattern);
     }
 
     /**
-     * @param $Uri libs.sprayfire.request.Uri
+     * @param $Uri SprayFire.Request.Uri
      * @return return an associative array with 2 keys, \a controller and
      *         \a action, that will be used to determine the routed URI string
      *         to generate.
      */
-    private function getControllerAndActionToUse(Uri $Uri) {
+    protected function getControllerAndActionToUse(Uri $Uri) {
         $data = array();
         if ($Uri->getController() === \SprayFire\Request\Uri::DEFAULT_CONTROLLER) {
             $data['controller'] = $this->defaultController;
@@ -222,7 +219,7 @@ class SprayFireRouter extends \SprayFire\Core\CoreObject implements \SprayFire\R
      * @param $controllerAndAction associative array from getControllerAndActionToUse()
      * @return string Please note that this value does not have any parameters attached to it
      */
-    private function getMappedUriString(array $sprayFireUriPatterns, array $controllerAndAction) {
+    protected function getMappedUriString(array $sprayFireUriPatterns, array $controllerAndAction) {
         $specific = $sprayFireUriPatterns['specific'];
         $wildCard = $sprayFireUriPatterns['wild-card'];
         $SpecificRoute = $this->RoutesConfig->routes->$specific;
@@ -250,7 +247,7 @@ class SprayFireRouter extends \SprayFire\Core\CoreObject implements \SprayFire\R
      * @param $controllerAndAction associative array returned from getControllerAndActionToUse()
      * @return string value representing controller fragment
      */
-    private function getMappedController($ConfigFragment, array $controllerAndAction) {
+    protected function getMappedController($ConfigFragment, array $controllerAndAction) {
         if (isset($ConfigFragment->controller)) {
             if ($ConfigFragment->controller === \SprayFire\Request\Uri::DEFAULT_CONTROLLER) {
                 return $this->defaultController;
@@ -265,7 +262,7 @@ class SprayFireRouter extends \SprayFire\Core\CoreObject implements \SprayFire\R
      * @param $controllerAndAction associative array returned from getControllerAndActionToUse()
      * @return string value representing action fragment
      */
-    private function getMappedAction($ConfigFragment, array $controllerAndAction) {
+    protected function getMappedAction($ConfigFragment, array $controllerAndAction) {
         if (isset($ConfigFragment->action)) {
             if ($ConfigFragment->action === \SprayFire\Request\Uri::DEFAULT_ACTION) {
                 return $this->defaultAction;
@@ -280,7 +277,7 @@ class SprayFireRouter extends \SprayFire\Core\CoreObject implements \SprayFire\R
      * @param $parameters array
      * @return A string with \a $parameters appended to \a $mappedUri, separated by '/'
      */
-    private function getUriWithParameters($mappedUri, array $parameters) {
+    protected function getUriWithParameters($mappedUri, array $parameters) {
         foreach ($parameters as $param) {
             $mappedUri .= $param . '/';
         }
