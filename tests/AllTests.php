@@ -17,7 +17,7 @@ include 'RestrictedMapTest.php';
 include 'BaseUriTest.php';
 include 'DirectoryTest.php';
 include 'SprayFireRouterTest.php';
-include 'SprayFireUriTest.php';
+include 'DispatchUriTest.php';
 include 'FileLoggerTest.php';
 include 'SanityCheckTest.php';
 
@@ -39,7 +39,7 @@ class AllTests {
         $Suite->addTestSuite('SprayFireRouterTest');
         $Suite->addTestSuite('BaseUriTest');
         $Suite->addTestSuite('DirectoryTest');
-        $Suite->addTestSuite('SprayFireUriTest');
+        $Suite->addTestSuite('DispatchUriTest');
         $Suite->addTestSuite('FileLoggerTest');
         $Suite->addTestSuite('SanityCheckTest');
 

@@ -29,12 +29,12 @@
 /**
  *
  */
-class SprayFireUriTest extends PHPUnit_Framework_TestCase {
+class DispatchUriTest extends PHPUnit_Framework_TestCase {
 
     public function testOriginalUriWithNoSettings() {
         $originalUri = '/';
         $routedUri = '/pages/index/';
-        $RoutedUri = new \SprayFire\Request\SprayFireUri($routedUri);
+        $RoutedUri = new \SprayFire\Request\DispatchUri($routedUri);
         $RoutedUri->setOriginalUri($originalUri);
 
         $this->assertSame($originalUri, $RoutedUri->getOriginalUri());
@@ -47,7 +47,7 @@ class SprayFireUriTest extends PHPUnit_Framework_TestCase {
     public function testOriginalUriWithOnlyController() {
         $originalUri = '/sprayfire/dogs/';
         $routedUri = '/dogs/train/stay';
-        $RoutedUri = new \SprayFire\Request\SprayFireUri($routedUri);
+        $RoutedUri = new \SprayFire\Request\DispatchUri($routedUri);
         $RoutedUri->setOriginalUri($originalUri);
 
         $this->assertSame($originalUri, $RoutedUri->getOriginalUri());
