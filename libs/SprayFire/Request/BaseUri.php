@@ -107,49 +107,27 @@ class BaseUri extends \SprayFire\Core\CoreObject implements \SprayFire\Request\U
      * @return associative array with the following keys: 'controller', 'action', 'paramters
      */
     protected function parseUriFragments($uriFragments) {
-        $parsedFragments = array();
-        $controller = 'controller';
-        $action = 'action';
-        $parameters = 'parameters';
+        $useController = \SprayFire\Request\Uri::DEFAULT_CONTROLLER;
+        $useAction = \SprayFire\Request\Uri::DEFAULT_ACTION;
+        $useParameters = array();
 
-        if (empty($uriFragments) || empty($uriFragments[0])) {
-            $parsedFragments[$controller] = \SprayFire\Request\Uri::DEFAULT_CONTROLLER;
-            $parsedFragments[$action] = \SprayFire\Request\Uri::DEFAULT_ACTION;
-            $parsedFragments[$parameters] = array();
-            return $parsedFragments;
+        if (!empty($uriFragments) && !empty($uriFragments[0])) {
+            if (!$this->isParameterString($uriFragments[0])) {
+                $useController = \array_shift($uriFragments);
+                if (!empty($uriFragments)) {
+                    if (!$this->isParameterString($uriFragments[0])) {
+                        $useAction = \array_shift($uriFragments);
+                        $useParameters = $this->removeParameterMarker($uriFragments);
+                    } else {
+                        $useParameters = $this->removeParameterMarker($uriFragments);
+                    }
+                }
+            } else {
+                $useParameters = $this->removeParameterMarker($uriFragments);
+            }
         }
 
-        if ($this->isParameterString($uriFragments[0])) {
-            $parsedFragments[$controller] = \SprayFire\Request\Uri::DEFAULT_CONTROLLER;
-            $parsedFragments[$action] = \SprayFire\Request\Uri::DEFAULT_ACTION;
-            $parsedFragments[$parameters] = $this->removeParameterMarker($uriFragments);
-            return $parsedFragments;
-        }
-
-        $parsedFragments[$controller] = \array_shift($uriFragments);
-
-        if (empty($uriFragments) || empty($uriFragments[0])) {
-            $parsedFragments[$action] = \SprayFire\Request\Uri::DEFAULT_ACTION;
-            $parsedFragments[$parameters] = array();
-            return $parsedFragments;
-        }
-
-        if ($this->isParameterString($uriFragments[0])) {
-            $parsedFragments[$action] = \SprayFire\Request\Uri::DEFAULT_ACTION;
-            $parsedFragments[$parameters] = $this->removeParameterMarker($uriFragments);
-            return $parsedFragments;
-        }
-
-        $parsedFragments[$action] = \array_shift($uriFragments);
-
-        if (empty($uriFragments) || empty($uriFragments[0])) {
-            $parsedFragments[$parameters] = array();
-            return $parsedFragments;
-        }
-
-        $parsedFragments[$parameters] = $this->removeParameterMarker($uriFragments);
-
-        return $parsedFragments;
+        return array('controller' => $useController, 'action' => $useAction, 'parameters' => $useParameters);
     }
 
     /**
@@ -196,7 +174,6 @@ class BaseUri extends \SprayFire\Core\CoreObject implements \SprayFire\Request\U
         $this->action = $properties['action'];
         $this->parameters = $properties['parameters'];
     }
-
 
     /**
      * @return The action fragment of the \a $originalUri or
