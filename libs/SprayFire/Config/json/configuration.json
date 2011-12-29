@@ -1,9 +1,10 @@
 {
-    "framework": {
+    "SprayFire": {
         "version": "0.1.0-alpha"
     },
     "app": {
         "version": "0.1.0-alpha",
+        "name": "YourApp",
         "development-mode": "on",
         "ini-settings": {
             "global": {
