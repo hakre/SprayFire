@@ -100,10 +100,17 @@
         $ErrorLog->log(\date('M-d-Y H:i:s'), $InvalArgExc->getMessage());
     }
 
-    // @todo INCLUDE ERROR AND EXCEPTION HANDLERS HERE
+    $ErrorHandler = new \SprayFire\Core\ErrorHandler($ErrorLog);
+    \set_error_handler(array($ErrorHandler, 'trap'));
 
     $SanityCheck = new \SprayFire\Core\SanityCheck();
-    $sanityFailures = $SanityCheck->verifySanity();
+    $SanityCheck->verifySanity();
+
+    $SprayFireDataContainer = new \SprayFire\Datastructs\GenericMap();
+    $SprayFireDataContainer->setObject('ErrorHandler', $ErrorHandler);
+    $SprayFireDataContainer->setObject('SanityCheck', $SanityCheck);
+
+    var_dump($ErrorHandler->getTrappedErrors());
 
     $ConfigGatherer = new \SprayFire\Core\ConfigGatherer();
     $PrimaryConfig = $ConfigGatherer->fetchPrimaryConfiguration($primaryConfigPath);
