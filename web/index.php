@@ -46,7 +46,31 @@
      */
     $webPath = $rootDir . '/web';
 
-    // PLEASE DO NOT CHANGE CODE BELOW THIS LINE!
+    /**
+     * @var $primaryErrorLogFile The sub-dir and file name that error messages should
+     *      be logged in.
+     *
+     * @see SprayFire.Core.Directory::getLogsPath() for details on how to set the path
+     */
+    $primaryErrorLogPath = array('errors.txt');
+
+    /**
+     * @var $primaryConfigPath The sub-dir and file name that is holding the primary
+     *      configuration used by SprayFire
+     *
+     * @see SprayFire.Core.Directory for details on how to set the path
+     */
+    $primaryConfigPath = array('SprayFire', 'Config', 'json', 'configuration.json');
+
+    /**
+     * @var $routesConfigPath The sub-dir and file name that is holding the routes
+     *      configuration used by SprayFire.Request.Router.
+     */
+    $routesConfigPath = array('SprayFire', 'Config', 'json', 'routes.json');
+
+    // PLEASE DO NOT CHANGE CODE BELOW THIS LINE UNLESS YOU KNOW WHAT YOU ARE DOING!
+
+    // SPRAYFIRE SPRAYFIRE SPRAYFIRE SPRAYFIRE SPRAYFIRE SPRAYFIRE SPRAYFIRE SPRAYFIRE
 
     include $libsPath . '/SprayFire/Core/Directory.php';
 
@@ -63,7 +87,6 @@
     \SprayFire\Core\Directory::setWebPath($webPath);
 
     include \SprayFire\Core\Directory::getLibsPath('SprayFire', 'Core', 'ClassLoader.php');
-
     $ClassLoader = new \SprayFire\Core\ClassLoader();
     $ClassLoader->registerNamespaceDirectory('SprayFire', \SprayFire\Core\Directory::getLibsPath());
     \spl_autoload_register(array($ClassLoader, 'loadClass'));
@@ -71,29 +94,22 @@
     $SanityCheck = new \SprayFire\Core\SanityCheck();
     $sanityFailures = $SanityCheck->verifySanity();
 
-    $errorLogPath = \SprayFire\Core\Directory::getLogsPath('errors.txt');
-    $ErrorLogFile = new \SplFileInfo($errorLogPath);
+    $ErrorLogFile = new \SplFileInfo(\SprayFire\Core\Directory::getLogsPath($primaryErrorLogPath));
     try {
         $ErrorLog = new \SprayFire\Logger\FileLogger($ErrorLogFile);
     } catch (\InvalidArgumentException $InvalArgExc) {
-        // This is a fail-safe to ensure that there is an ErrorLog for various
-        // objects needing to log error messages
+        // This is a fail-safe to ensure that there is an ErrorLog for various objects needing to log error messages
         $ErrorLog = new \SprayFire\Logger\FailSafeLogger();
+        $ErrorLog->log(\date('M-d-Y H:i:s'), $InvalArgExc->getMessage());
     }
 
-    $primaryConfigPath = \SprayFire\Core\Directory::getLibsPath('SprayFire', 'Config', 'json', 'configuration.json');
-    $PrimaryConfigFile = new \SplFileInfo($primaryConfigPath);
+    $PrimaryConfigFile = new \SplFileInfo(\SprayFire\Core\Directory::getLibsPath($primaryConfigPath));
     try {
         $PrimaryConfig = new \SprayFire\Config\JsonConfig($PrimaryConfigFile);
     } catch (\InvalidArgumentException $InvalArgExc) {
-        /**
-         * @todo This needs to be changed so that the basic values we are looking
-         * for are created in an ArrayConfig object
-         */
         $configData = array();
         $configData['framework'] = array();
         $configData['framework']['version'] = '0.1.0-alpha';
-
         $configData['app'] = array();
         $configData['app']['version'] = '0.0.0-e';
         $configData['app']['development-mode'] = 'off';
@@ -101,8 +117,7 @@
         $PrimaryConfig = new \SprayFire\Config\ArrayConfig($configData);
     }
 
-    $routesConfigPath = \SprayFire\Core\Directory::getLibsPath('SprayFire', 'Config', 'json', 'routes.json');
-    $RoutesConfigFile = new \SplFileInfo($routesConfigPath);
+    $RoutesConfigFile = new \SplFileInfo(\SprayFire\Core\Directory::getLibsPath($routesConfigPath));
     try {
         $RoutesConfig = new \SprayFire\Config\JsonConfig($RoutesConfigFile);
     } catch (\InvalidArgumentException $InvalArgExc) {
@@ -110,6 +125,7 @@
         $data['defaults'] = array();
         $data['defaults']['controller'] = 'pages';
         $data['defaults']['action'] = 'index';
+        $RoutesConfig = new \SprayFire\Config\ArrayConfig($data);
     }
 
     $Router = new \SprayFire\Request\SprayFireRouter($RoutesConfig, $ErrorLog);
@@ -133,7 +149,6 @@
         $sanityDisplay .= '<p>All sanity checks passed!  Please feel free to adjust this template as needed.</p>';
         $sanityDisplay .= '</div>';
         $sanityDisplay .= '</div>';
-
     } else {
         $sanityDisplay = '<div id="sanity-check">';
         foreach ($sanityFailures as $sanityMessage) {
@@ -187,13 +202,13 @@
                                 <p class="name">Charles Sprayberry</p>
                                 <p class="title">Benevolent Dictator for Life</p>
                                 <p class="title">Lead Developer &amp; Creator</p>
-                                <p><a href="http://www.github.com/cspray/">http://www.github.com/cspray/</a></p>
-                                <p><a href="http://www.twitter.com/charlesspray/">http://www.twitter.com/charlesspray/</a></p>
+                                <p><a href="http://www.github.com/cspray/">github</a></p>
+                                <p><a href="http://www.twitter.com/charlesspray/">@charlesspray</a></p>
                             </div>
                             <div class="team-member">
                                 <p class="name">Dyana Stewart</p>
                                 <p class="title">Graphic Designer</p>
-                                <p><a href="http://www.twitter.com/Dy249/">http://www.twitter.com/Dy249/</a></p>
+                                <p><a href="http://www.twitter.com/Dy249/">@Dy249</a></p>
                             </div>
                         </div>
                         <div id="credits">
@@ -203,7 +218,7 @@
                                 <li><a href="https://github.com/zendframework/zf2">Zend Framework 2</a></li>
                                 <li><a href="http://symfony.com/">Symfony</a></li>
                             </ul>
-                            <p>A special thanks should go out to the regulars in the <a href="http://chat.stackoverflow.com/rooms/11/php">chat.stackoverflow PHP room</a>.  Of particular note, are <a href="http://www.stackoverflow.com/">StackOverFlow</a> members <a href="http://stackoverflow.com/users/285578/edorian">edorian</a> and <a href="http://stackoverflow.com/users/338665/ircmaxell">ircmaxell</a>.  Without their guidance <span class="sprayfire-orange">Spray</span><span class="sprayfire-red">Fire</span> would be a much crappier project.</p>
+                            <p>A special thanks should go out to the regulars in the <a href="http://chat.stackoverflow.com/rooms/11/php">chat.stackoverflow PHP room</a>.  Of particular note, are <a href="http://www.stackoverflow.com/">Stack Overflow</a> members <a href="http://stackoverflow.com/users/285578/edorian">edorian</a> and <a href="http://stackoverflow.com/users/338665/ircmaxell">ircmaxell</a>.  Without their guidance <span class="sprayfire-orange">Spray</span><span class="sprayfire-red">Fire</span> would be a much crappier project.</p>
                         </div>
                     </div>
                 </div>
