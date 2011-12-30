@@ -175,12 +175,12 @@ class Directory {
     public static function getUrlPath() {
         $webRoot = \basename(self::getWebPath());
         $installRoot = \basename(self::getInstallPath());
-        $urlPath = $installRoot . '/' . $webRoot;
+        $urlPath = '/' . $installRoot . '/' . $webRoot;
         $subDir = \func_get_args();
         if (\count($subDir) === 0) {
             return $urlPath;
         }
-        return '/' . $urlPath . '/' . self::generateSubDirectoryPath($subDir);
+        return $urlPath . '/' . self::generateSubDirectoryPath($subDir);
     }
 
     /**
