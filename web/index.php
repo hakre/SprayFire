@@ -203,12 +203,6 @@
                             </div>
                         </div>
                         <div id="credits">
-                            <p>While <span class="sprayfire-orange">Spray</span><span class="sprayfire-red">Fire</span> was written from the ground up with new code and implementations designed by the author, inspiration and ideas were "taken" from other PHP frameworks including:</p>
-                            <ul>
-                                <li><a href="http://www.cakephp.org/">CakePHP</a></li>
-                                <li><a href="https://github.com/zendframework/zf2">Zend Framework 2</a></li>
-                                <li><a href="http://symfony.com/">Symfony</a></li>
-                            </ul>
                             <p>A special thanks should go out to the regulars in the <a href="http://chat.stackoverflow.com/rooms/11/php">chat.stackoverflow PHP room</a>.  Of particular note, are <a href="http://www.stackoverflow.com/">Stack Overflow</a> members <a href="http://stackoverflow.com/users/285578/edorian">edorian</a> and <a href="http://stackoverflow.com/users/338665/ircmaxell">ircmaxell</a>.  Without their guidance <span class="sprayfire-orange">Spray</span><span class="sprayfire-red">Fire</span> would be a much crappier project.</p>
                         </div>
                     </div>
