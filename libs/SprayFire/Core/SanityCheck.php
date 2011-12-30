@@ -28,6 +28,9 @@ namespace SprayFire\Core;
  * @brief Will check various settings to ensure SprayFire sanity.
  *
  * @see https://github.com/cspray/SprayFire/issues?milestone=7
+ * @todo We need to have this setup so that sanity checks are ran individually by
+ * the calling code.  This will allow us to properly inject various settings and
+ * allow us to be freed from the shackles of hard coded checks.
  */
 class SanityCheck extends \SprayFire\Core\CoreObject {
 
