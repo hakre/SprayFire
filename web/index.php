@@ -103,6 +103,9 @@
     $ErrorHandler = new \SprayFire\Core\ErrorHandler($ErrorLog);
     \set_error_handler(array($ErrorHandler, 'trap'));
 
+    $ExceptionHandler = new \SprayFire\Core\ExceptionHandler($ErrorLog);
+    \set_exception_handler(array($ExceptionHandler, 'trap'));
+
     $SanityCheck = new \SprayFire\Core\SanityCheck();
     $SanityCheck->verifySanity();
 
@@ -110,11 +113,9 @@
     $SprayFireDataContainer->setObject('ErrorHandler', $ErrorHandler);
     $SprayFireDataContainer->setObject('SanityCheck', $SanityCheck);
 
-    var_dump($ErrorHandler->getTrappedErrors());
-
-    $ConfigGatherer = new \SprayFire\Core\ConfigGatherer();
-    $PrimaryConfig = $ConfigGatherer->fetchPrimaryConfiguration($primaryConfigPath);
-    $RoutesConfig = $ConfigGatherer->fetchRoutesConfiguration($routesConfigPath);
+    $ConfigGatherer = new \SprayFire\Core\ConfigGatherer($primaryConfigPath, $routesConfigPath);
+    $PrimaryConfig = $ConfigGatherer->fetchPrimaryConfiguration();
+    $RoutesConfig = $ConfigGatherer->fetchRoutesConfiguration();
 
     $ClassLoader->registerNamespaceDirectory($PrimaryConfig->app->name, \SprayFire\Core\Directory::getAppPath());
 
@@ -220,3 +221,5 @@
         </body>
     </html>
 HTML;
+
+var_dump($ErrorHandler->getTrappedErrors());
