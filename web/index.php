@@ -113,7 +113,7 @@
     $SprayFireDataContainer->setObject('ErrorHandler', $ErrorHandler);
     $SprayFireDataContainer->setObject('SanityCheck', $SanityCheck);
 
-    $ConfigGatherer = new \SprayFire\Core\ConfigGatherer($primaryConfigPath, $routesConfigPath);
+    $ConfigGatherer = new \SprayFire\Config\Gatherer($primaryConfigPath, $routesConfigPath);
     $PrimaryConfig = $ConfigGatherer->fetchPrimaryConfiguration();
     $RoutesConfig = $ConfigGatherer->fetchRoutesConfiguration();
 
