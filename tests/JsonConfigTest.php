@@ -24,6 +24,9 @@ class JsonConfigTest extends SprayFireTestCase {
 
     public function setUp() {
         parent::setUp();
+        if (!class_exists('CrappyJsonConfig')) {
+            include './helpers/CrappyJsonConfig.php';
+        }
         $libsPath = \SPRAYFIRE_ROOT . '/tests/mockframework/libs';
         $appPath = \SPRAYFIRE_ROOT . '/tests/mockframework/app';
         \SprayFire\Core\Directory::setLibsPath($libsPath);
@@ -89,6 +92,14 @@ class JsonConfigTest extends SprayFireTestCase {
     public function testInvalidJsonFile() {
         $File = new \SplFileInfo(\SprayFire\Core\Directory::getLibsPath('SprayFire', 'Config', 'json', 'test-invalid-config.json'));
         $Config = new \SprayFire\Config\JsonConfig($File);
+    }
+
+    /**
+     * @expectedException \UnexpectedValueException
+     */
+    public function testCrappyExtension() {
+        $File = new SplFileInfo(\SprayFire\Core\Directory::getAppPath('TestApp', 'config', 'json', 'test-config.json'));
+        $Config = new CrappyJsonConfig($File);
     }
 
 }

@@ -25,7 +25,10 @@ class MutableStorageTest extends SprayFireTestCase {
     public function setUp() {
         parent::setUp();
         if (!class_exists('TestObject')) {
-            include 'TestObject.php';
+            include './helpers/TestObject.php';
+        }
+        if (!class_exists('CrappyMutableStorage')) {
+            include './helpers/CrappyMutableStorage.php';
         }
     }
 
@@ -88,6 +91,14 @@ class MutableStorageTest extends SprayFireTestCase {
 
         $this->assertSame($First, $Storage[0]);
         $this->assertSame($Second, $Storage[1]);
+    }
+
+    /**
+     * @expectedException \UnexpectedValueException
+     */
+    public function testCrappyExtension() {
+        $data = array();
+        $CrappyStorage = new CrappyMutableStorage($data);
     }
 
 }
