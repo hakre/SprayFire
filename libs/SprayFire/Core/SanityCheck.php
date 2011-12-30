@@ -74,7 +74,7 @@ class SanityCheck extends \SprayFire\Core\CoreObject {
     /**
      * @return An array of error info for triggered errors
      */
-    public function returnInsanities() {
+    public function getErrors() {
         return $this->errors;
     }
 
