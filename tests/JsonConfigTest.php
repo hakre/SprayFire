@@ -20,15 +20,16 @@
 /**
  *
  */
-class JsonConfigTest extends SprayFireTestCase {
+class JsonConfigTest extends PHPUnit_Framework_TestCase {
 
     public function setUp() {
-        parent::setUp();
         if (!class_exists('CrappyJsonConfig')) {
             include './helpers/CrappyJsonConfig.php';
         }
+        $installPath = \SPRAYFIRE_ROOT . '/tests/mockframework';
         $libsPath = \SPRAYFIRE_ROOT . '/tests/mockframework/libs';
         $appPath = \SPRAYFIRE_ROOT . '/tests/mockframework/app';
+        \SprayFire\Core\Directory::setInstallPath($installPath);
         \SprayFire\Core\Directory::setLibsPath($libsPath);
         \SprayFire\Core\Directory::setAppPath($appPath);
     }
@@ -73,7 +74,7 @@ class JsonConfigTest extends SprayFireTestCase {
         $actualAppVersion = $Config->app->version;
         $this->assertSame($expectedAppVersion, $actualAppVersion);
 
-        $expectedToString = 'SprayFire\Config\JsonConfig::ROOT_PATH/tests/mockframework/app/TestApp/config/json/test-config.json';
+        $expectedToString = 'SprayFire\Config\JsonConfig::ROOT_PATH/app/TestApp/config/json/test-config.json';
         $actualToString = $Config->__toString();
         $this->assertSame($expectedToString, $actualToString);
     }

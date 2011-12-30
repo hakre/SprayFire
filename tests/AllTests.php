@@ -22,17 +22,18 @@ include 'FileLoggerTest.php';
 include 'SanityCheckTest.php';
 
 /**
- *
+ * @codeCoverageIgnore
  */
-class AllTests {
+class AllTests extends PHPUnit_Framework_TestSuite {
+
+    protected $ClassLoader;
 
     /**
      *
      * @return PHPUnit_Framework_TestSuite
-     * @codeCoverageIgnore
      */
     public static function suite() {
-        $Suite = new PHPUnit_Framework_TestSuite();
+        $Suite = new AllTests();
         $Suite->addTestSuite('JsonConfigTest');
         $Suite->addTestSuite('MutableStorageTest');
         $Suite->addTestSuite('RestrictedMapTest');
@@ -44,6 +45,18 @@ class AllTests {
         $Suite->addTestSuite('SanityCheckTest');
 
         return $Suite;
+    }
+
+    protected function setUp() {
+
+    }
+
+    protected function tearDown() {
+        \SprayFire\Core\Directory::setAppPath(null);
+        \SprayFire\Core\Directory::setInstallPath(null);
+        \SprayFire\Core\Directory::setLibsPath(null);
+        \SprayFire\Core\Directory::setLogsPath(null);
+        \SprayFire\Core\Directory::setWebPath(null);
     }
 
 }

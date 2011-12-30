@@ -23,7 +23,7 @@
 /**
  *
  */
-class DispatchUriTest extends SprayFireTestCase {
+class DispatchUriTest extends PHPUnit_Framework_TestCase {
 
     public function testOriginalUriWithNoSettings() {
         $originalUri = '/';

@@ -24,7 +24,7 @@
 /**
  * @brief
  */
-class SanityCheckTest extends SprayFireTestCase {
+class SanityCheckTest extends PHPUnit_Framework_TestCase {
 
     public function testSanityCheckNoLogsPathSetOnlyThingWrong() {
         \SprayFire\Core\Directory::setLogsPath(null);

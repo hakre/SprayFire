@@ -20,14 +20,16 @@
 /**
  *
  */
-class BaseUriTest extends SprayFireTestCase {
+class BaseUriTest extends PHPUnit_Framework_TestCase {
 
     private $baseDir;
 
     public function setUp() {
-        parent::setUp();
         $this->baseDir = '/' . \basename(\dirname(__DIR__)) . '/';
-
+        if (!class_exists('TestObject')) {
+            include './helpers/TestObject.php';
+        }
+        \SprayFire\Core\Directory::setInstallPath(\SPRAYFIRE_ROOT);
     }
 
     public function testBaseUriWithNoPath() {
@@ -114,9 +116,6 @@ class BaseUriTest extends SprayFireTestCase {
 
     public function testUriEqualsWithNonUriObject() {
         $FirstUri = new \SprayFire\Request\BaseUri($this->baseDir . 'dogs/train/:stay');
-        if (!class_exists('TestObject')) {
-            include 'TestObject.php';
-        }
         $SecondUri = new TestObject();
         $this->assertFalse($FirstUri->equals($SecondUri));
     }

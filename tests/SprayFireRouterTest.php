@@ -31,14 +31,13 @@
 /**
  *
  */
-class SprayFireRouterTest extends SprayFireTestCase {
+class SprayFireRouterTest extends PHPUnit_Framework_TestCase {
 
     private $validLogPath;
 
     private $invalidLogPath;
 
     public function setUp() {
-        parent::setUp();
         $appPath = \dirname(__DIR__) . '/tests/mockframework/app';
         $logPath = \dirname(__DIR__) . '/tests/mockframework/logs';
         \SprayFire\Core\Directory::setAppPath($appPath);
@@ -286,7 +285,6 @@ class SprayFireRouterTest extends SprayFireTestCase {
     }
 
     public function tearDown() {
-        parent::tearDown();
         if (\file_exists($this->validLogPath)) {
             \unlink($this->validLogPath);
         }
@@ -296,7 +294,6 @@ class SprayFireRouterTest extends SprayFireTestCase {
             \unlink($this->invalidLogPath);
         }
         $this->assertFalse(\file_exists($this->invalidLogPath));
-
     }
 
 

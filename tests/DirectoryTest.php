@@ -23,15 +23,12 @@
 /**
  *
  */
-class DirectoryTest extends SprayFireTestCase {
+class DirectoryTest extends PHPUnit_Framework_TestCase {
 
     protected $installPath;
 
     public function setUp() {
-
-        parent::setUp();
-        $this->installPath = \dirname(__DIR__) . '/tests/mockframework';
-
+        $this->installPath = \SPRAYFIRE_ROOT . '/tests/mockframework';
         $libsPath = $this->installPath . '/libs';
         $appPath = $this->installPath . '/app';
         $logsPath = $this->installPath . '/logs';
@@ -46,6 +43,8 @@ class DirectoryTest extends SprayFireTestCase {
         $expectedAppSub = $this->installPath . '/app/TestApp/config';
         $actualAppSub = \SprayFire\Core\Directory::getAppPath('TestApp', 'config');
         $this->assertSame($expectedAppSub, $actualAppSub);
+        $setUpRan = true;
+
     }
 
     public function testInstallPath() {
@@ -182,11 +181,6 @@ class DirectoryTest extends SprayFireTestCase {
         $actual = \SprayFire\Core\Directory::getWebPath($subDir);
         $this->assertSame($expected, $actual);
     }
-
-
-
-
-
 
     public function testUrlPathRootDirectory() {
         $expected = '/mockframework/web';

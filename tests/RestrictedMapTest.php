@@ -20,12 +20,12 @@
 /**
  *
  */
-class RestrictedMapTest extends SprayFireTestCase {
+class RestrictedMapTest extends PHPUnit_Framework_TestCase {
 
     public function setUp() {
         parent::setUp();
         if (!class_exists('TestObject')) {
-            include 'TestObject.php';
+            include './helpers/TestObject.php';
         }
     }
 
