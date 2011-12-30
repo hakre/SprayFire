@@ -32,7 +32,7 @@ class SanityCheckTest extends PHPUnit_Framework_TestCase {
         \touch(\SprayFire\Core\Directory::getLibsPath('SprayFire', 'Config', 'json', 'configuration.json'));
         $SanityCheck = new \SprayFire\Core\SanityCheck();
         $SanityCheck->verifySanity();
-        $errors = $SanityCheck->returnInsanities();
+        $errors = $SanityCheck->getErrors();
         $expected = array('The logs path was not set properly, please ensure you set a proper value with <code>\\SprayFire\\Core\\Directory::setLogsPath($path)</code>.');
         $this->assertSame($expected, $errors);
         if (\file_exists(\SprayFire\Core\Directory::getLibsPath('SprayFire', 'Config', 'json', 'configuration.json'))) {
@@ -48,7 +48,7 @@ class SanityCheckTest extends PHPUnit_Framework_TestCase {
 
         $SanityCheck = new \SprayFire\Core\SanityCheck();
         $SanityCheck->verifySanity();
-        $errors = $SanityCheck->returnInsanities();
+        $errors = $SanityCheck->getErrors();
         $expected = array('The logs path set, <code>/Library/WebServer/Documents/framework/tests/mockframework/logs</code>, is not writable.  Please change the permissions on this directory to allow writing.');
         $this->assertSame($expected, $errors);
         \chmod(\SprayFire\Core\Directory::getLogsPath(), 0777);
@@ -63,7 +63,7 @@ class SanityCheckTest extends PHPUnit_Framework_TestCase {
         \chmod(\SprayFire\Core\Directory::getLogsPath(), 0777);
         $SanityCheck = new \SprayFire\Core\SanityCheck();
         $SanityCheck->verifySanity();
-        $errors = $SanityCheck->returnInsanities();
+        $errors = $SanityCheck->getErrors();
         $expected = array('The primary configuration file does not exist.  Please check the path below:<br /><code>' . \SprayFire\Core\Directory::getLibsPath('SprayFire', 'Config', 'json', 'configuration.json') . '</code>');
         $this->assertSame($expected, $errors);
     }
