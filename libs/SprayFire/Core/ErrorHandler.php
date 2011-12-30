@@ -28,7 +28,7 @@ namespace SprayFire\Core;
  * messages and provides a means to get the error info for errors triggered in a
  * specific request.
  */
-class ErrorHandler extends \SprayFire\Core\LoggableCoreObject {
+class ErrorHandler extends \SprayFire\Logger\CoreObject {
 
     /**
      * @brief An array holding the \a $severity , \a $message , \a $file and \a $line

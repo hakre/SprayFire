@@ -35,7 +35,7 @@ namespace SprayFire\Request;
  * is invoked an appropriate SprayFire.Request.RoutedUri object will be returned,
  * even if an invalid configuration file is used.
  */
-class SprayFireRouter extends \SprayFire\Core\LoggableCoreObject implements \SprayFire\Request\Router {
+class SprayFireRouter extends \SprayFire\Logger\CoreObject implements \SprayFire\Request\Router {
 
     /**
      * @brief The SprayFire.Config.Configuration object holding the routing keys

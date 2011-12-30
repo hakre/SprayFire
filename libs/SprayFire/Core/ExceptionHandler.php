@@ -26,7 +26,7 @@ namespace SprayFire\Core;
  * @brief A class that will log uncaught exception messages and properly redirect
  * the request to the `500.html` page in the web root.
  */
-class ExceptionHandler extends \SprayFire\Core\LoggableCoreObject {
+class ExceptionHandler extends \SprayFire\Logger\CoreObject {
 
     /**
      * @brief It should be known that after the Exception information is logged
