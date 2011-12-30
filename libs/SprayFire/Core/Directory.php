@@ -169,6 +169,21 @@ class Directory {
     }
 
     /**
+     * @return A relative path to the framework web-root or a subdirectory suitable
+     *         for use as image, stylesheet and script links
+     */
+    public static function getUrlPath() {
+        $webRoot = \basename(self::getWebPath());
+        $installRoot = \basename(self::getInstallPath());
+        $urlPath = $installRoot . '/' . $webRoot;
+        $subDir = \func_get_args();
+        if (\count($subDir) === 0) {
+            return $urlPath;
+        }
+        return '/' . $urlPath . '/' . self::generateSubDirectoryPath($subDir);
+    }
+
+    /**
      * @param $subDir
      * @return A sub directory path, with n otrailing separator
      */
