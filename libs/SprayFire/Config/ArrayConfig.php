@@ -30,6 +30,6 @@ namespace SprayFire\Config;
  * @details
  * Note that there are no implementing code, everything is handled by SprayFire.Datastructs.ImmutableStoreage
  */
-class ArrayConfig extends \SprayFire\Datastructs\ImmutableStorage implements \SprayFire\Config\Configuration {
+class ArrayConfig extends \SprayFire\Core\Structures\ImmutableStorage implements \SprayFire\Config\Configuration {
 
 }

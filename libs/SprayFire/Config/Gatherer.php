@@ -27,7 +27,7 @@ namespace SprayFire\Config;
  * @brief Will gather an appropriate configuration object for the primary configuration
  * and the routes configuration.
  */
-class Gatherer {
+class Gatherer extends \SprayFire\Core\CoreObject {
 
     /**
      * @brief A SprayFire.Config.Configuration object that stores the primary

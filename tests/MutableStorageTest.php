@@ -37,7 +37,7 @@ class MutableStorageTest extends PHPUnit_Framework_TestCase {
         $data['key-one'] = 'value';
         $data['key-two'] = 'another value';
         $data['key-three'] = array('one' => '1');
-        $Storage = new \SprayFire\Datastructs\MutableStorage($data, false);
+        $Storage = new \SprayFire\Core\Structures\MutableStorage($data, false);
 
         $this->assertSame(\count($Storage), \count($data));
 
@@ -73,13 +73,15 @@ class MutableStorageTest extends PHPUnit_Framework_TestCase {
             )
         );
 
-        $Storage = new \SprayFire\Datastructs\MutableStorage($data);
+        $Storage = new \SprayFire\Core\Structures\MutableStorage($data);
         $this->assertSame('value 1', $Storage->{'key-one'}->one);
+        $this->assertSame('value 2', $Storage->{'key-two'}->one);
+        $this->assertSame('value 3', $Storage->{'key-two'}->two->key);
     }
 
     public function testNullArrayKeyStorage() {
         $data = array();
-        $Storage = new \SprayFire\Datastructs\MutableStorage($data);
+        $Storage = new \SprayFire\Core\Structures\MutableStorage($data);
 
         $First = new TestObject();
         $Second = new TestObject();
