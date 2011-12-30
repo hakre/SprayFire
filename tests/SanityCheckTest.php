@@ -24,7 +24,7 @@
 /**
  * @brief
  */
-class SanityCheckTest extends PHPUnit_Framework_TestCase {
+class SanityCheckTest extends SprayFireTestCase {
 
     public function testSanityCheckNoLogsPathSetOnlyThingWrong() {
         \SprayFire\Core\Directory::setLogsPath(null);
@@ -66,11 +66,6 @@ class SanityCheckTest extends PHPUnit_Framework_TestCase {
         $errors = $SanityCheck->getErrors();
         $expected = array('The primary configuration file does not exist.  Please check the path below:<br /><code>' . \SprayFire\Core\Directory::getLibsPath('SprayFire', 'Config', 'json', 'configuration.json') . '</code>');
         $this->assertSame($expected, $errors);
-    }
-
-    public function tearDown() {
-        \SprayFire\Core\Directory::setLogsPath(null);
-        \SprayFire\Core\Directory::setLibsPath(null);
     }
 
 }

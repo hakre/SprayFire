@@ -20,12 +20,14 @@
 /**
  *
  */
-class BaseUriTest extends PHPUnit_Framework_TestCase {
+class BaseUriTest extends SprayFireTestCase {
 
     private $baseDir;
 
     public function setUp() {
+        parent::setUp();
         $this->baseDir = '/' . \basename(\dirname(__DIR__)) . '/';
+
     }
 
     public function testBaseUriWithNoPath() {

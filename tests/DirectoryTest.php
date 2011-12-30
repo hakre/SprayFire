@@ -19,22 +19,17 @@
  * @author Charles Sprayberry cspray at gmail dot com
  * @copyright Copyright (c) 2011, Charles Sprayberry OSI MIT License <http://www.opensource.org/licenses/mit-license.php>
  */
-/**
- * @namespace libs.sprayfire.request
- * @brief Contains all classes and interfaces needed to parse the requested URI
- * and manage the HTTP data, both headers and normal GET/POST data, that get passed
- * in each request.
- */
 
 /**
  *
  */
-class DirectoryTest extends PHPUnit_Framework_TestCase {
+class DirectoryTest extends SprayFireTestCase {
 
     protected $installPath;
 
     public function setUp() {
 
+        parent::setUp();
         $this->installPath = \dirname(__DIR__) . '/tests/mockframework';
 
         $libsPath = $this->installPath . '/libs';
@@ -223,20 +218,6 @@ class DirectoryTest extends PHPUnit_Framework_TestCase {
         $subDir = array('script', 'sprayfire_js', 'core.js');
         $actual = \SprayFire\Core\Directory::getUrlPath($subDir);
         $this->assertSame($expected, $actual);
-    }
-
-    public function tearDown() {
-        \SprayFire\Core\Directory::setInstallPath(null);
-        \SprayFire\Core\Directory::setLibsPath(null);
-        \SprayFire\Core\Directory::setAppPath(null);
-        \SprayFire\Core\Directory::setLogsPath(null);
-        \SprayFire\Core\Directory::setWebPath(null);
-
-        $this->assertNull(\SprayFire\Core\Directory::getInstallPath());
-        $this->assertNull(\SprayFire\Core\Directory::getLibsPath());
-        $this->assertNull(\SprayFire\Core\Directory::getAppPath());
-        $this->assertNull(\SprayFire\Core\Directory::getLogsPath());
-        $this->assertNull(\SprayFire\Core\Directory::getWebPath());
     }
 
 }

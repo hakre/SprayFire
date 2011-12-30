@@ -24,7 +24,7 @@
 /**
  * @brief
  */
-class FileLoggerTest extends PHPUnit_Framework_TestCase {
+class FileLoggerTest extends SprayFireTestCase {
 
     private $readOnlyLog;
 
@@ -33,6 +33,7 @@ class FileLoggerTest extends PHPUnit_Framework_TestCase {
     private $noTimestampLog;
 
     public function setUp() {
+        parent::setUp();
         $logPath = \dirname(__DIR__) . '/tests/mockframework/logs';
         \SprayFire\Core\Directory::setLogsPath($logPath);
 
@@ -113,21 +114,22 @@ class FileLoggerTest extends PHPUnit_Framework_TestCase {
     }
 
     public function tearDown() {
+        parent::tearDown();
         if (\file_exists($this->readOnlyLog)) {
             \unlink($this->readOnlyLog);
         }
+        $this->assertFalse(\file_exists($this->readOnlyLog));
 
         if (\file_exists($this->writableLog)) {
             \unlink($this->writableLog);
         }
+        $this->assertFalse(\file_exists($this->writableLog));
 
         if (\file_exists($this->noTimestampLog)) {
             \unlink($this->noTimestampLog);
         }
+        $this->assertFalse(\file_exists($this->noTimestampLog));
 
-        \SprayFire\Core\Directory::setLogsPath(null);
-
-        $this->assertNull(\SprayFire\Core\Directory::getLogsPath());
     }
 
 }

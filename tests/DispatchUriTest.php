@@ -19,17 +19,11 @@
  * @author Charles Sprayberry cspray at gmail dot com
  * @copyright Copyright (c) 2011, Charles Sprayberry OSI MIT License <http://www.opensource.org/licenses/mit-license.php>
  */
-/**
- * @namespace libs.sprayfire.request
- * @brief Contains all classes and interfaces needed to parse the requested URI
- * and manage the HTTP data, both headers and normal GET/POST data, that get passed
- * in each request.
- */
 
 /**
  *
  */
-class DispatchUriTest extends PHPUnit_Framework_TestCase {
+class DispatchUriTest extends SprayFireTestCase {
 
     public function testOriginalUriWithNoSettings() {
         $originalUri = '/';

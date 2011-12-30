@@ -20,14 +20,14 @@
 /**
  *
  */
-class JsonConfigTest extends PHPUnit_Framework_TestCase {
+class JsonConfigTest extends SprayFireTestCase {
 
     public function setUp() {
-        $appPath = \dirname(__DIR__) . '/tests/mockframework/app';
-        $libsPath = \dirname(__DIR__) . '/tests/mockframework/libs';
-
-        \SprayFire\Core\Directory::setAppPath($appPath);
+        parent::setUp();
+        $libsPath = \SPRAYFIRE_ROOT . '/tests/mockframework/libs';
+        $appPath = \SPRAYFIRE_ROOT . '/tests/mockframework/app';
         \SprayFire\Core\Directory::setLibsPath($libsPath);
+        \SprayFire\Core\Directory::setAppPath($appPath);
     }
 
     public function testJsonConfigObject() {
@@ -91,28 +91,6 @@ class JsonConfigTest extends PHPUnit_Framework_TestCase {
         $Config = new \SprayFire\Config\JsonConfig($File);
     }
 
-    /**
-     * @expectedException \UnexpectedValueException
-     */
-    public function testInvalidChildReturn() {
-        $File = new SplFileInfo(\SprayFire\Core\Directory::getAppPath('TestApp', 'config', 'json', 'test-config.json'));
-        $Config = new CrappyJsonConfig($File);
-    }
-
-    public function tearDown() {
-        \SprayFire\Core\Directory::setAppPath(null);
-        \SprayFire\Core\Directory::setLibsPath(null);
-        $this->assertNull(\SprayFire\Core\Directory::getAppPath());
-        $this->assertNull(\SprayFire\Core\Directory::getLibsPath());
-    }
-
-}
-
-class CrappyJsonConfig extends \SprayFire\Config\JsonConfig {
-
-    protected function convertDataDeep(array $data) {
-        return null;
-    }
 }
 
 // End JsonConfigTest
