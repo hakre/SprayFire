@@ -36,9 +36,7 @@ class ClassLoader {
     /**
      * @brief An array holding a top-level namespace as the key and the complete
      * root path for that namespace as the value.
-     *
-     *
-     *
+     * 
      * @property $namespaceMap
      */
     protected $namespaceMap = array();

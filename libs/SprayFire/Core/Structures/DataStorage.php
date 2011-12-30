@@ -218,7 +218,7 @@ abstract class DataStorage extends \SprayFire\Core\CoreObject implements \ArrayA
      * @param $key string
      * @param $value mixed
      * @return mixed
-     * @throws libs.sprayfire.exceptions.UnsupportedOperationException
+     * @throws SprayFire.Exceptions.UnsupportedOperationException
      */
     abstract protected function set($key, $value);
 

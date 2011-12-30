@@ -100,7 +100,7 @@ class ImmutableStorage extends \SprayFire\Core\Structures\DataStorage {
      * to a SprayFire.Datastructs.ImmutableStorage object.
      *
      * @param $data array
-     * @return SprayFire.Datastructs.ImmutableStorage
+     * @return SprayFire.Core.Structures.ImmutableStorage
      */
     private function convertArrayToImmutableObject(array $data) {
         foreach ($data as $key => $value) {

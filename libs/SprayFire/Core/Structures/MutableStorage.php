@@ -100,7 +100,7 @@ class MutableStorage extends \SprayFire\Core\Structures\DataStorage {
      * to a SprayFire.Datastructs.MutableStorage object.
      *
      * @param $data array
-     * @return SprayFire.Datastructs.MutableStorage
+     * @return SprayFire.Core.Structures.MutableStorage
      */
     private function convertArrayToMutableObject(array $data) {
         foreach ($data as $key => $value) {
