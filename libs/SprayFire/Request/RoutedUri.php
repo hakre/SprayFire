@@ -36,13 +36,4 @@ interface RoutedUri extends \SprayFire\Request\Uri {
      */
     public function getRoutedUri();
 
-    /**
-     * @brief Provides a means to set the original URI string that this RoutedUri
-     * was mapped from; this string should be returned by
-     * SprayFire.Request.Uri::getOriginalUri().
-     *
-     * @param $uri string
-     */
-    public function setOriginalUri($uri);
-
 }
