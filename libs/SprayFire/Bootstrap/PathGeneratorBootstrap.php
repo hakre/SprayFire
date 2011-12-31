@@ -56,8 +56,30 @@ namespace SprayFire\Bootstrap;
  * |                    |  accessible files.                                   |
  * -----------------------------------------------------------------------------
  * </code>
+ *
+ * @note
+ * To change the implementation produced by this code simply adjust this bootstrap
+ * to work with the new implementation.  As long as your implementation properly
+ * returns a SprayFire.Core.PathGenerator object when getPathGenerator() is invoked
+ * on this Bootstrap object you should feel free to implement whatever directory
+ * system you want, as long as it returns the appropriate directories and the files
+ * looking for exist in those directories.  Please also adjust code in the following
+ * files if the constructor dependencies for this implementation change:
+ *
+ * - <code>/web/index.php</code>
  */
 class PathGeneratorBootstrap implements \SprayFire\Bootstrap\Bootstrapper {
+
+    /**
+     * @brief The SprayFire.Core.PathGenerator object created.
+     *
+     * @details
+     * By default the object returned will be a SprayFire.Core.Directory implementation
+     * of the required interface.
+     *
+     * @property $Directory
+     */
+    protected $Directory;
 
     /**
      * @brief Holds the associative array, as described in class details.
@@ -67,7 +89,7 @@ class PathGeneratorBootstrap implements \SprayFire\Bootstrap\Bootstrapper {
     protected $paths = array();
 
     /**
-     * @param $paths An associative array of paths to use for creating Directory
+     * @param $paths An associative array of paths to use for creating SrayFire.Core.PathGenerator
      * object
      */
     public function __construct(array $paths) {
