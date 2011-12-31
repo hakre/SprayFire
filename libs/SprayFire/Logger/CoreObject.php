@@ -47,17 +47,15 @@ abstract class CoreObject extends \SprayFire\Core\CoreObject {
      * @property $timestampFormat
      * @see http://php.net/manual/en/function.date.php
      */
-    protected $timestampFormat = 'M-d-Y H:i:s';
+    protected $timestampFormat;
 
     /**
      * @param $Log \SprayFire\Logger\Log
      * @param $timeStampFormat A string representing the format to use for log timestamps
      */
-    public function __construct(\SprayFire\Logger\Log $Log, $timeStampFormat = null) {
+    public function __construct(\SprayFire\Logger\Log $Log, $timeStampFormat = 'M-d-Y H:i:s') {
         $this->Log = $Log;
-        if (isset($timeStampFormat)) {
-            $this->timeStampFormat = $timeStampFormat;
-        }
+        $this->timeStampFormat = $timeStampFormat;
     }
 
     /**
