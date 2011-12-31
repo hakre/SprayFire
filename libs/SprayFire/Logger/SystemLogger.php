@@ -26,7 +26,7 @@ namespace SprayFire\Logger;
  * @brief A SprayFire.Logger.Log class that should be used if there is a problem
  * creating a normal SprayFire.Logger.FileLogger
  */
-class FailSafeLogger implements \SprayFire\Logger\Log {
+class SystemLogger implements \SprayFire\Logger\Log {
 
     /**
      * @brief An implementation that uses PHP built in <code>error_log</code>
