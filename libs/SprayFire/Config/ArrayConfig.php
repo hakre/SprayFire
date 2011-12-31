@@ -28,8 +28,8 @@ namespace SprayFire\Config;
  * to be passed in the form of an array.
  *
  * @details
- * Note that there are no implementing code, everything is handled by SprayFire.Datastructs.ImmutableStoreage
+ * Note that there is no implementing code, everything is handled by SprayFire.Core.Structure.ImmutableStoreage
  */
-class ArrayConfig extends \SprayFire\Core\Structures\ImmutableStorage implements \SprayFire\Config\Configuration {
+class ArrayConfig extends \SprayFire\Core\Structure\ImmutableStorage implements \SprayFire\Config\Configuration {
 
 }
