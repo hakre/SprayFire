@@ -33,6 +33,6 @@ namespace SprayFire\Config;
  * a constructor depedency should be worked with, no new data to be set or
  * existing data to be changed or removed.
  */
-interface Configuration extends \ArrayAccess, \SprayFire\Core\Structures\Overloadable {
+interface Configuration extends \ArrayAccess, \SprayFire\Core\Structure\Overloadable {
 
 }

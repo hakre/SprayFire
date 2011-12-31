@@ -56,7 +56,7 @@ namespace SprayFire\Config;
  * echo $Config->app->{'development-settings'}->{'display-errors'};   // 1
  * </pre>
  */
-class JsonConfig extends \SprayFire\Core\Structures\ImmutableStorage implements \SprayFire\Config\Configuration {
+class JsonConfig extends \SprayFire\Core\Structure\ImmutableStorage implements \SprayFire\Config\Configuration {
 
     /**
      * @brief Holds the SplFileInfo object passed in the constructor.
