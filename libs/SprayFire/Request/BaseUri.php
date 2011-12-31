@@ -59,14 +59,17 @@ class BaseUri extends \SprayFire\Core\CoreObject implements \SprayFire\Request\U
      */
     protected $parameters;
 
+    protected $installDir;
+
     /**
      * @brief Forces the injection of a URI string into the object, this object
      * should forever be associated with the passed URI.
      *
      * @param $uri string
      */
-    public function __construct($uri) {
+    public function __construct($uri, $installDir) {
         $this->originalUri = $uri;
+        $this->installDir = \trim($installDir, '/ ');
         $decodedUri = \urldecode($uri);
         $uriFragments = $this->trimAndExplodeUri($decodedUri);
         $parsedUri = $this->parseUriFragments($uriFragments);
@@ -85,7 +88,7 @@ class BaseUri extends \SprayFire\Core\CoreObject implements \SprayFire\Request\U
         $path = $parsedUri['path'];
         $path = \trim($path, '/');
         $explodedPath = \explode('/', $path);
-        if ($explodedPath[0] === \basename(\SprayFire\Core\Directory::getInstallPath())) {
+        if ($explodedPath[0] === $this->installDir) {
             unset($explodedPath[0]);
         }
         return \array_values($explodedPath);
