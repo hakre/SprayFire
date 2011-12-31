@@ -132,8 +132,7 @@ class SprayFireRouter extends \SprayFire\Logger\CoreObject implements \SprayFire
         $controllerAndAction = $this->getControllerAndActionToUse($Uri);
         $mappedUriString = $this->getMappedUriString($sprayFireUriPatterns, $controllerAndAction);
         $finalUriString = $this->getUriWithParameters($mappedUriString, $Uri->getParameters());
-        $RoutedUri = new \SprayFire\Request\DispatchUri($finalUriString);
-        $RoutedUri->setOriginalUri($Uri->getOriginalUri());
+        $RoutedUri = new \SprayFire\Request\DispatchUri($finalUriString, $Uri->getOriginalUri(), $Uri->getRootDirectory());
         return $RoutedUri;
     }
 
