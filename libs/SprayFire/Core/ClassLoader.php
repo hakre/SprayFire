@@ -48,14 +48,15 @@ class ClassLoader {
      */
     public function load($className) {
         $namespace = $this->getTopLevelNamespace($className);
-        $path = $this->getDirectoryForTopLevelNamespace($namespace) . '/';
+        $path = $this->getDirectoryForTopLevelNamespace($namespace);
         if (!$path) {
             return false;
         }
-        $path .= $this->convertNamespacedClassToFilePath($className);
+        $path .= '/' . $this->convertNamespacedClassToFilePath($className);
         if (\file_exists($path)) {
-            include $path;
+            return (boolean) include $path;
         }
+        return false;
     }
 
     /**
@@ -66,11 +67,11 @@ class ClassLoader {
      */
     protected function getTopLevelNamespace($className) {
         $className = \ltrim($className, '\\ ');
-        $namespaces = \explode('\\', $className);
-        if (\count($namespaces) > 0) {
+        if (\strpos($className, '\\') !== false) {
+            $namespaces = \explode('\\', $className);
             return $namespaces[0];
         }
-        return NULL;
+        return null;
     }
 
     /**
@@ -141,7 +142,7 @@ class ClassLoader {
      * @return An array of registered top level namespaces
      */
     public function getRegisteredNamespaces() {
-        return \array_keys($this->namespaceMap);
+        return $this->namespaceMap;
     }
 
 }
