@@ -3,9 +3,14 @@
         "version": "0.1.0-alpha"
     },
     "app": {
-        "version": "0.1.0-alpha",
+        "version": "0.0.0-alpha",
         "name": "YourApp",
         "development-mode": "on",
+        "sessions": {
+            "auto-start": "off",
+            "engine": "default"
+        },
+        "routes-config": "json,routes.json",
         "ini-settings": {
             "global": {
                 "allow_url_fopen": "0",
