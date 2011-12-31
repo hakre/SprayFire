@@ -23,7 +23,30 @@
 class RestrictedMapTest extends PHPUnit_Framework_TestCase {
 
     public function setUp() {
-        parent::setUp();
+        if (!interface_exists('\\SprayFire\\Core\\Object')) {
+            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/Object.php';
+        }
+        if (!class_exists('\\SprayFire\\Core\\CoreObject')) {
+            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/CoreObject.php';
+        }
+        if (!interface_exists('\\SprayFire\\Core\\Structures\\ObjectMap')) {
+            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/Structures/ObjectMap.php';
+        }
+        if (!interface_exists('\\SprayFire\\Core\\Structures\\Overloadable')) {
+            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/Structures/Overloadable.php';
+        }
+        if (!class_exists('\\SprayFire\\Core\\Structures\\DataStorage')) {
+            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/Structures/DataStorage.php';
+        }
+        if (!class_exists('\\SprayFire\\Core\\Structures\\ImmutableStorage')) {
+            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/Structures/ImmutableStorage.php';
+        }
+        if (!class_exists('\\SprayFire\\Core\\Structures\\GenericMap')) {
+            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/Structures/GenericMap.php';
+        }
+        if (!class_exists('\\SprayFire\\Core\\Structures\\RestrictedMap')) {
+            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/Structures/RestrictedMap.php';
+        }
         if (!class_exists('TestObject')) {
             include './helpers/TestObject.php';
         }
