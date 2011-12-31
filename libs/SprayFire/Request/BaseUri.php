@@ -70,6 +70,15 @@ class BaseUri extends \SprayFire\Core\CoreObject implements \SprayFire\Request\U
     public function __construct($uri, $installDir) {
         $this->originalUri = $uri;
         $this->installDir = \trim($installDir, '/ ');
+        $this->parseUri($this->originalUri);
+    }
+
+    /**
+     * @brief Will parse the passed URI and set the appropriate properties
+     *
+     * @param $uri String to parse
+     */
+    protected function parseUri($uri) {
         $decodedUri = \urldecode($uri);
         $uriFragments = $this->trimAndExplodeUri($decodedUri);
         $parsedUri = $this->parseUriFragments($uriFragments);
