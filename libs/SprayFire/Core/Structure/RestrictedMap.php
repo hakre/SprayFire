@@ -21,7 +21,7 @@
  * @copyright Copyright (c) 2011, Charles Sprayberry
  */
 
-namespace SprayFire\Core\Structures;
+namespace SprayFire\Core\Structure;
 
 /**
  * @brief The framework's primary implementation to store framework objects.
@@ -31,7 +31,7 @@ namespace SprayFire\Core\Structures;
  * of that object using that key.  Also allows for the removal of an object
  * associated with a key and iterating over the stored objects.
  */
-class RestrictedMap extends \SprayFire\Core\Structures\GenericMap {
+class RestrictedMap extends \SprayFire\Core\Structure\GenericMap {
 
     /**
      * @brief Holds a ReflectionClass of the data type that should be implemented by objects

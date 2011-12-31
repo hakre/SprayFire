@@ -21,12 +21,12 @@
  * @author Charles Sprayberry cspray at gmail dot com
  * @copyright Copyright (c) 2011, Charles Sprayberry
  */
-namespace SprayFire\Core\Structures;
+namespace SprayFire\Core\Structure;
 
 /**
  * @brief
  */
-class GenericMap extends \SprayFire\Core\CoreObject implements \IteratorAggregate, \SprayFire\Core\Structures\ObjectMap {
+class GenericMap extends \SprayFire\Core\CoreObject implements \IteratorAggregate, \SprayFire\Core\Structure\ObjectMap {
 
     /**
      * @brief Holds the objects being stored in this data structure

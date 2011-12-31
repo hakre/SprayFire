@@ -22,7 +22,7 @@
  * @copyright Copyright (c) 2011, Charles Sprayberry
  */
 
-namespace SprayFire\Core\Structures;
+namespace SprayFire\Core\Structure;
 
 /**
  * @brief Stores data in a property and allows access to that data via object
@@ -56,7 +56,7 @@ namespace SprayFire\Core\Structures;
  * this is the best option as you will still have to take into account the
  * public methods that allow the object an array notation.
  */
-abstract class DataStorage extends \SprayFire\Core\CoreObject implements \ArrayAccess, \Countable, \IteratorAggregate, \SprayFire\Core\Structures\Overloadable {
+abstract class DataStorage extends \SprayFire\Core\CoreObject implements \ArrayAccess, \Countable, \IteratorAggregate, \SprayFire\Core\Structure\Overloadable {
 
     /**
      * An array holding the data being stored.

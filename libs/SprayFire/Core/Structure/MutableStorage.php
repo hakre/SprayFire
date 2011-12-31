@@ -2,7 +2,7 @@
 
 /**
  * @file
- * @brief A class that extends SprayFire.Datastructs.DataStorage and allows
+ * @brief A class that extends SprayFire.Core.Structure.DataStorage and allows
  * for any data to be manipulated, removed or added to the structure.
  *
  * @details
@@ -22,13 +22,13 @@
  * @copyright Copyright (c) 2011, Charles Sprayberry
  */
 
-namespace SprayFire\Core\Structures;
+namespace SprayFire\Core\Structure;
 
 /**
  * @brief A simple data storage object that holds key/value pairs and allows additional
  * keys to be added and existing keys to be manipulated or removed.
  */
-class MutableStorage extends \SprayFire\Core\Structures\DataStorage {
+class MutableStorage extends \SprayFire\Core\Structure\DataStorage {
 
     /**
      * @brief Requires an array of data is passed, optionally allowing the

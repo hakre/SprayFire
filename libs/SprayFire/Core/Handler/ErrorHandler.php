@@ -21,7 +21,7 @@
  * @author Charles Sprayberry cspray at gmail dot com
  * @copyright Copyright (c) 2011, Charles Sprayberry
  */
-namespace SprayFire\Core;
+namespace SprayFire\Core\Handler;
 
 /**
  * @brief A class that is responsible for trapping errors, logging appropriate

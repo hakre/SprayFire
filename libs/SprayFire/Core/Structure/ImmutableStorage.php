@@ -2,7 +2,7 @@
 
 /**
  * @file
- * @brief A simple key/value storage object that extends SprayFire.Datastructs.DataStorage
+ * @brief A simple key/value storage object that extends SprayFire.Core.Structure.DataStorage
  * and does not allow the data associated to be changed after the object has been
  * constructed.
  *
@@ -23,7 +23,7 @@
  * @copyright Copyright (c) 2011, Charles Sprayberry
  */
 
-namespace SprayFire\Core\Structures;
+namespace SprayFire\Core\Structure;
 
 /**
  * @brief An object that allows for data to be stored and to be assured that
@@ -36,7 +36,7 @@ namespace SprayFire\Core\Structures;
  * be thrown.  If a class extends this please ensure that it is a truly immutable
  * object and does not have any "backdoors".
  */
-class ImmutableStorage extends \SprayFire\Core\Structures\DataStorage {
+class ImmutableStorage extends \SprayFire\Core\Structure\DataStorage {
 
     /**
      * @brief Accepts an array of data to store and gives the calling code the option to
@@ -58,18 +58,18 @@ class ImmutableStorage extends \SprayFire\Core\Structures\DataStorage {
     /**
      * @param $key string
      * @param $value mixed
-     * @throws SprayFire.Exceptions.UnsupportedOperationException
+     * @throws SprayFire.Exception.UnsupportedOperationException
      */
     protected function set($key, $value) {
-        throw new \SprayFire\Exceptions\UnsupportedOperationException('Attempting to set the value of an immutable object.');
+        throw new \SprayFire\Exception\UnsupportedOperationException('Attempting to set the value of an immutable object.');
     }
 
     /**
      * @param $key string
-     * @throws SprayFire.Exceptions.UnsupportedOperationException
+     * @throws SprayFire.Exception.UnsupportedOperationException
      */
     protected function removeKey($key) {
-        throw new \SprayFire\Exceptions\UnsupportedOperationException('Attempting to remove the value of an immutable object.');
+        throw new \SprayFire\Exception\UnsupportedOperationException('Attempting to remove the value of an immutable object.');
     }
 
     /**

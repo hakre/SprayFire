@@ -22,7 +22,7 @@
  * @copyright Copyright (c) 2011, Charles Sprayberry
  */
 
-namespace SprayFire\Request;
+namespace SprayFire\Request\Router;
 
 /**
  * @brief An extension of the SprayFire.Request.Uri interface to allow

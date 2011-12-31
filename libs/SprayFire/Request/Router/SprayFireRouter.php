@@ -23,7 +23,7 @@
  * @copyright Copyright (c) 2011, Charles Sprayberry
  */
 
-namespace SprayFire\Request;
+namespace SprayFire\Request\Router;
 
 /**
  * @brief Will take a SprayFire.Config.JsonConfig object to determine the
@@ -35,7 +35,7 @@ namespace SprayFire\Request;
  * is invoked an appropriate SprayFire.Request.RoutedUri object will be returned,
  * even if an invalid configuration file is used.
  */
-class SprayFireRouter extends \SprayFire\Logger\CoreObject implements \SprayFire\Request\Router {
+class SprayFireRouter extends \SprayFire\Logger\CoreObject implements \SprayFire\Request\Router\Router {
 
     /**
      * @brief The SprayFire.Config.Configuration object holding the routing keys
@@ -124,15 +124,15 @@ class SprayFireRouter extends \SprayFire\Logger\CoreObject implements \SprayFire
      * - Returns a properly instantiated SprayFire.Request.DispatchUri object
      *
      * @param $Uri SprayFire.Request.Uri
-     * @return SprayFire.Request.RoutedUri This implementation returns
-     *         a SprayFire.Request.DispatchUri specifically
+     * @return SprayFire.Request.Router.RoutedUri This implementation returns
+     *         a SprayFire.Request.Router.DispatchUri specifically
      */
     public function getRoutedUri(\SprayFire\Request\Uri $Uri) {
         $sprayFireUriPatterns = $this->getSprayFireURIPatterns($Uri);
         $controllerAndAction = $this->getControllerAndActionToUse($Uri);
         $mappedUriString = $this->getMappedUriString($sprayFireUriPatterns, $controllerAndAction);
         $finalUriString = $this->getUriWithParameters($mappedUriString, $Uri->getParameters());
-        $RoutedUri = new \SprayFire\Request\DispatchUri($finalUriString, $Uri->getOriginalUri(), $Uri->getRootDirectory());
+        $RoutedUri = new \SprayFire\Request\Router\DispatchUri($finalUriString, $Uri->getOriginalUri(), $Uri->getRootDirectory());
         return $RoutedUri;
     }
 

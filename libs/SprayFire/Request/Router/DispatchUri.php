@@ -22,14 +22,14 @@
  * @copyright Copyright (c) 2011, Charles Sprayberry
  */
 
-namespace SprayFire\Request;
+namespace SprayFire\Request\Router;
 
 /**
  * @brief Framework's implementation of a RoutedUri, provides a means to retrieve
  * a controller, action and parameters, the routed URI string and the original
  * URI string that was mapped to the routed.
  */
-class DispatchUri extends \SprayFire\Request\BaseUri implements \SprayFire\Request\RoutedUri {
+class DispatchUri extends \SprayFire\Request\BaseUri implements \SprayFire\Request\Router\RoutedUri {
 
     /**
      * The URI string passed to the constructor representing the fully routed

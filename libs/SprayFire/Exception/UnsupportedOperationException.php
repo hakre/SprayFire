@@ -22,7 +22,7 @@
  * @copyright Copyright (c) 2011, Charles Sprayberry
  */
 
-namespace SprayFire\Exceptions;
+namespace SprayFire\Exception;
 
 /**
  * @brief Thrown when a method implemented from an interface should not be
