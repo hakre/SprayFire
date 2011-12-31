@@ -19,7 +19,6 @@ include 'DirectoryTest.php';
 include 'SprayFireRouterTest.php';
 include 'DispatchUriTest.php';
 include 'FileLoggerTest.php';
-include 'SanityCheckTest.php';
 
 /**
  * @codeCoverageIgnore
@@ -42,7 +41,6 @@ class AllTests extends PHPUnit_Framework_TestSuite {
         $Suite->addTestSuite('DirectoryTest');
         $Suite->addTestSuite('DispatchUriTest');
         $Suite->addTestSuite('FileLoggerTest');
-        $Suite->addTestSuite('SanityCheckTest');
 
         return $Suite;
     }
@@ -52,11 +50,7 @@ class AllTests extends PHPUnit_Framework_TestSuite {
     }
 
     protected function tearDown() {
-        \SprayFire\Core\Directory::setAppPath(null);
-        \SprayFire\Core\Directory::setInstallPath(null);
-        \SprayFire\Core\Directory::setLibsPath(null);
-        \SprayFire\Core\Directory::setLogsPath(null);
-        \SprayFire\Core\Directory::setWebPath(null);
+        
     }
 
 }
