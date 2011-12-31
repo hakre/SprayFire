@@ -41,7 +41,7 @@ class DevelopmentLogger implements \SprayFire\Logger\Log {
      * @param $message The message to log
      */
     public function log($timestamp, $message) {
-        $index = \count($messages);
+        $index = \count($this->messages);
         $this->messages[$index]['timestamp'] = $timestamp;
         $this->messages[$index]['info'] = $message;
     }
