@@ -25,15 +25,27 @@ class BaseUriTest extends PHPUnit_Framework_TestCase {
     private $baseDir;
 
     public function setUp() {
-        $this->baseDir = '/' . \basename(\dirname(__DIR__)) . '/';
+        $this->baseDir = '/' . \basename(\SPRAYFIRE_ROOT) . '/';
+
+        if (!interface_exists('\\SprayFire\\Core\\Object')) {
+            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/Object.php';
+        }
+        if (!class_exists('\\SprayFire\\Core\\CoreObject')) {
+            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/CoreObject.php';
+        }
         if (!class_exists('TestObject')) {
             include './helpers/TestObject.php';
         }
-        \SprayFire\Core\Directory::setInstallPath(\SPRAYFIRE_ROOT);
+        if (!interface_exists('\\SprayFire\\Request\\Uri')) {
+            include \SPRAYFIRE_ROOT .'/libs/SprayFire/Request/Uri.php';
+        }
+        if (!class_exists('\\SprayFire\\Request\\BaseUri')) {
+            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Request/BaseUri.php';
+        }
     }
 
     public function testBaseUriWithNoPath() {
-        $Uri = new \SprayFire\Request\BaseUri($this->baseDir);
+        $Uri = new \SprayFire\Request\BaseUri($this->baseDir, $this->baseDir);
 
         $this->assertSame($this->baseDir, $Uri->getOriginalUri());
         $this->assertSame(\SprayFire\Request\Uri::DEFAULT_CONTROLLER, $Uri->getController());
@@ -43,7 +55,7 @@ class BaseUriTest extends PHPUnit_Framework_TestCase {
 
     public function testBaseUriWithNoFrameworkOnlyController() {
         $originalUri = '/pages/';
-        $Uri = new \SprayFire\Request\BaseUri($originalUri);
+        $Uri = new \SprayFire\Request\BaseUri($originalUri, $this->baseDir);
 
         $this->assertSame($originalUri, $Uri->getOriginalUri());
         $this->assertSame('pages', $Uri->getController());
@@ -54,7 +66,7 @@ class BaseUriTest extends PHPUnit_Framework_TestCase {
     public function testBaseUriOriginalControllerActionParam() {
 
         $originalUri = $this->baseDir . 'controller/action/param1';
-        $Uri = new \SprayFire\Request\BaseUri($originalUri);
+        $Uri = new \SprayFire\Request\BaseUri($originalUri, $this->baseDir);
 
         $this->assertSame($originalUri, $Uri->getOriginalUri());
         $this->assertSame('controller', $Uri->getController());
@@ -65,7 +77,7 @@ class BaseUriTest extends PHPUnit_Framework_TestCase {
 
     public function testBaseUriWithControllerAndActionNoParams() {
         $originalUri = '/pages/view/';
-        $Uri = new \SprayFire\Request\BaseUri($originalUri);
+        $Uri = new \SprayFire\Request\BaseUri($originalUri, $this->baseDir);
 
         $this->assertSame($originalUri, $Uri->getOriginalUri());
         $this->assertSame('pages', $Uri->getController());
@@ -76,7 +88,7 @@ class BaseUriTest extends PHPUnit_Framework_TestCase {
     public function testBaseUriWithMarkedParametersNoAction() {
 
         $originalUri = $this->baseDir . 'pages/:param1/:param2';
-        $Uri = new \SprayFire\Request\BaseUri($originalUri);
+        $Uri = new \SprayFire\Request\BaseUri($originalUri, $this->baseDir);
 
         $this->assertSame($originalUri, $Uri->getOriginalUri());
         $this->assertSame('pages', $Uri->getController());
@@ -88,7 +100,7 @@ class BaseUriTest extends PHPUnit_Framework_TestCase {
     public function testBaseUriWithMarkedParametersOnly() {
 
         $originalUri = $this->baseDir . ':tech/:sprayfire-is-the-best';
-        $Uri = new \SprayFire\Request\BaseUri($originalUri);
+        $Uri = new \SprayFire\Request\BaseUri($originalUri, $this->baseDir);
 
         $this->assertSame($originalUri, $Uri->getOriginalUri());
         $this->assertSame(\SprayFire\Request\Uri::DEFAULT_CONTROLLER, $Uri->getController());
@@ -103,19 +115,19 @@ class BaseUriTest extends PHPUnit_Framework_TestCase {
     }
 
     public function testUriEqualsWithTwoEqualObjects() {
-        $FirstUri = new \SprayFire\Request\BaseUri($this->baseDir . 'dogs/train/:stay');
-        $SecondUri = new \SprayFire\Request\BaseUri($this->baseDir . 'dogs/train/:stay');
+        $FirstUri = new \SprayFire\Request\BaseUri($this->baseDir . 'dogs/train/:stay', $this->baseDir);
+        $SecondUri = new \SprayFire\Request\BaseUri($this->baseDir . 'dogs/train/:stay', $this->baseDir);
         $this->assertTrue($FirstUri->equals($SecondUri));
     }
 
     public function testUriEqualsWithTwoNotEqualObjects() {
-        $FirstUri = new \SprayFire\Request\BaseUri($this->baseDir . 'dogs/train/:stay');
-        $SecondUri = new \SprayFire\Request\BaseUri($this->baseDir . 'dogs/train/:sit');
+        $FirstUri = new \SprayFire\Request\BaseUri($this->baseDir . 'dogs/train/:stay', $this->baseDir);
+        $SecondUri = new \SprayFire\Request\BaseUri($this->baseDir . 'dogs/train/:sit', $this->baseDir);
         $this->assertFalse($FirstUri->equals($SecondUri));
     }
 
     public function testUriEqualsWithNonUriObject() {
-        $FirstUri = new \SprayFire\Request\BaseUri($this->baseDir . 'dogs/train/:stay');
+        $FirstUri = new \SprayFire\Request\BaseUri($this->baseDir . 'dogs/train/:stay', $this->baseDir);
         $SecondUri = new TestObject();
         $this->assertFalse($FirstUri->equals($SecondUri));
     }
