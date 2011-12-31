@@ -45,19 +45,10 @@ class DispatchUri extends \SprayFire\Request\BaseUri implements \SprayFire\Reque
      *
      * @param $uri The routed URI string
      */
-    public function __construct($uri) {
-        $this->routedUri = $uri;
-        $decodedUri = \urldecode($uri);
-        $uriFragments = $this->trimAndExplodeUri($decodedUri);
-        $parsedUri = $this->parseUriFragments($uriFragments);
-        $this->setProperties($parsedUri);
-    }
-
-    /**
-     * @param $uri The original string used to map the routed URI
-     */
-    public function setOriginalUri($uri) {
-        $this->originalUri = $uri;
+    public function __construct($routedUri, $originalUri, $installDir) {
+        parent::__construct($originalUri, $installDir);
+        $this->routedUri = $routedUri;
+        $this->parseUri($this->routedUri);
     }
 
     /**
