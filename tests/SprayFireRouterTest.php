@@ -25,7 +25,57 @@
  * and manage the HTTP data, both headers and normal GET/POST data, that get passed
  * in each request.
  */
-
+if (!interface_exists('\\SprayFire\\Core\\Object')) {
+    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/Object.php';
+}
+if (!class_exists('\\SprayFire\\Core\\CoreObject')) {
+    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/CoreObject.php';
+}
+if (!class_exists('\\SprayFire\\Logger\\CoreObject')) {
+    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Logger/CoreObject.php';
+}
+if (!interface_exists('\\SprayFire\\Request\\Uri')) {
+    include \SPRAYFIRE_ROOT .'/libs/SprayFire/Request/Uri.php';
+}
+if (!class_exists('\\SprayFire\\Request\\BaseUri')) {
+    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Request/BaseUri.php';
+}
+if (!interface_exists('\\SprayFire\\Request\\Router\\RoutedUri')) {
+    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Request/Router/RoutedUri.php';
+}
+if (!class_exists('\\SprayFire\\Request\\Router\\DispatchUri')) {
+    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Request/Router/DispatchUri.php';
+}
+if (!interface_exists('\\SprayFire\\Request\\Router\\Router')) {
+    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Request/Router/Router.php';
+}
+if (!class_exists('\\SprayFire\\Request\\Router\\SprayFireRouter')) {
+    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Request/Router/SprayFireRouter.php';
+}
+if (!interface_exists('\\SprayFire\\Core\\Structure\\Overloadable')) {
+    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/Structure/Overloadable.php';
+}
+if (!class_exists('\\SprayFire\\Core\\Structure\\DataStorage')) {
+    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/Structure/DataStorage.php';
+}
+if (!class_exists('\\SprayFire\\Core\\Structure\\ImmutableStorage')) {
+    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/Structure/ImmutableStorage.php';
+}
+if (!interface_exists('\\SprayFire\\Config\\Configuration')) {
+    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Config/Configuration.php';
+}
+if (!class_exists('\\SprayFire\\Config\\JsonConfig')) {
+    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Config/JsonConfig.php';
+}
+if (!class_exists('\\SprayFire\\Exception\\UnsupportedOperationException')) {
+    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Exception/UnsupportedOperationException.php';
+}
+if (!interface_exists('\\SprayFire\\Logger\\Log')) {
+    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Logger/Log.php';
+}
+if (!class_exists('\\SprayFire\\Logger\\FileLogger')) {
+    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Logger/FileLogger.php';
+}
 
 
 /**
@@ -38,57 +88,7 @@ class SprayFireRouterTest extends PHPUnit_Framework_TestCase {
     private $invalidLogPath;
 
     public function setUp() {
-        if (!interface_exists('\\SprayFire\\Core\\Object')) {
-            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/Object.php';
-        }
-        if (!class_exists('\\SprayFire\\Core\\CoreObject')) {
-            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/CoreObject.php';
-        }
-        if (!class_exists('\\SprayFire\\Logger\\CoreObject')) {
-            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Logger/CoreObject.php';
-        }
-        if (!interface_exists('\\SprayFire\\Request\\Uri')) {
-            include \SPRAYFIRE_ROOT .'/libs/SprayFire/Request/Uri.php';
-        }
-        if (!class_exists('\\SprayFire\\Request\\BaseUri')) {
-            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Request/BaseUri.php';
-        }
-        if (!interface_exists('\\SprayFire\\Request\\RoutedUri')) {
-            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Request/RoutedUri.php';
-        }
-        if (!class_exists('\\SprayFire\\Request\\DispatchUri')) {
-            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Request/DispatchUri.php';
-        }
-        if (!interface_exists('\\SprayFire\\Request\\Router')) {
-            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Request/Router.php';
-        }
-        if (!class_exists('\\SprayFire\\Request\\SprayFireRouter')) {
-            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Request/SprayFireRouter.php';
-        }
-        if (!interface_exists('\\SprayFire\\Core\\Structures\\Overloadable')) {
-            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/Structures/Overloadable.php';
-        }
-        if (!class_exists('\\SprayFire\\Core\\Structures\\DataStorage')) {
-            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/Structures/DataStorage.php';
-        }
-        if (!class_exists('\\SprayFire\\Core\\Structures\\ImmutableStorage')) {
-            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/Structures/ImmutableStorage.php';
-        }
-        if (!interface_exists('\\SprayFire\\Config\\Configuration')) {
-            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Config/Configuration.php';
-        }
-        if (!class_exists('\\SprayFire\\Config\\JsonConfig')) {
-            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Config/JsonConfig.php';
-        }
-        if (!class_exists('\\SprayFire\\Exceptions\\UnsupportedOperationException')) {
-            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Exceptions/UnsupportedOperationException.php';
-        }
-        if (!interface_exists('\\SprayFire\\Logger\\Log')) {
-            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Logger/Log.php';
-        }
-        if (!class_exists('\\SprayFire\\Logger\\FileLogger')) {
-            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Logger/FileLogger.php';
-        }
+
 
         $appPath = \SPRAYFIRE_ROOT . '/tests/mockframework/app';
         $logPath = \SPRAYFIRE_ROOT . '/tests/mockframework/logs';
@@ -105,7 +105,7 @@ class SprayFireRouterTest extends PHPUnit_Framework_TestCase {
         $LogFile = new \SplFileInfo($this->validLogPath);
         $Logger = new \SprayFire\Logger\FileLogger($LogFile);
 
-        $Router = new \SprayFire\Request\SprayFireRouter($RoutesConfig, $Logger);
+        $Router = new \SprayFire\Request\Router\SprayFireRouter($RoutesConfig, $Logger);
 
         $requestedUri = '/';
         $Uri = new \SprayFire\Request\BaseUri($requestedUri, \basename(\SPRAYFIRE_ROOT));
@@ -132,7 +132,7 @@ class SprayFireRouterTest extends PHPUnit_Framework_TestCase {
         $LogFile = new \SplFileInfo($this->validLogPath);
         $Logger = new \SprayFire\Logger\FileLogger($LogFile);
 
-        $Router = new \SprayFire\Request\SprayFireRouter($RoutesConfig, $Logger);
+        $Router = new \SprayFire\Request\Router\SprayFireRouter($RoutesConfig, $Logger);
 
         $requestedUri = '/posts/:tag/:post-title-or-slug';
         $Uri = new \SprayFire\Request\BaseUri($requestedUri, \basename(\SPRAYFIRE_ROOT));
@@ -158,7 +158,7 @@ class SprayFireRouterTest extends PHPUnit_Framework_TestCase {
         $LogFile = new \SplFileInfo($this->validLogPath);
         $Logger = new \SprayFire\Logger\FileLogger($LogFile);
 
-        $Router = new \SprayFire\Request\SprayFireRouter($RoutesConfig, $Logger);
+        $Router = new \SprayFire\Request\Router\SprayFireRouter($RoutesConfig, $Logger);
 
         $requestedUri = '/dogs/train/obedience/teach-your-dog-to-stay';
         $Uri = new \SprayFire\Request\BaseUri($requestedUri, \basename(\SPRAYFIRE_ROOT));
@@ -184,7 +184,7 @@ class SprayFireRouterTest extends PHPUnit_Framework_TestCase {
         $LogFile = new \SplFileInfo($this->validLogPath);
         $Logger = new \SprayFire\logger\FileLogger($LogFile);
 
-        $Router = new \SprayFire\Request\SprayFireRouter($RoutesConfig, $Logger);
+        $Router = new \SprayFire\Request\Router\SprayFireRouter($RoutesConfig, $Logger);
 
         $requestedUri = '/dogs/train/obedience/sit/stay/come';
         $Uri = new \SprayFire\Request\BaseUri($requestedUri, \basename(\SPRAYFIRE_ROOT));
@@ -210,7 +210,7 @@ class SprayFireRouterTest extends PHPUnit_Framework_TestCase {
         $LogFile = new \SplFileInfo($this->validLogPath);
         $Logger = new \SprayFire\Logger\FileLogger($LogFile);
 
-        $Router = new \SprayFire\Request\SprayFireRouter($RoutesConfig, $Logger);
+        $Router = new \SprayFire\Request\Router\SprayFireRouter($RoutesConfig, $Logger);
 
         $requestedUri = '/:param';
         $Uri = new \SprayFire\Request\BaseUri($requestedUri, \basename(\SPRAYFIRE_ROOT));
@@ -236,7 +236,7 @@ class SprayFireRouterTest extends PHPUnit_Framework_TestCase {
         $LogFile = new \SplFileInfo($this->validLogPath);
         $Logger = new \SprayFire\Logger\FileLogger($LogFile);
 
-        $Router = new \SprayFire\Request\SprayFireRouter($RoutesConfig, $Logger);
+        $Router = new \SprayFire\Request\Router\SprayFireRouter($RoutesConfig, $Logger);
 
         $requestedUri = '/:param1/:param2';
         $Uri = new \SprayFire\Request\BaseUri($requestedUri, \basename(\SPRAYFIRE_ROOT));
@@ -262,7 +262,7 @@ class SprayFireRouterTest extends PHPUnit_Framework_TestCase {
         $LogFile = new \SplFileInfo($this->validLogPath);
         $Logger = new \SprayFire\Logger\FileLogger($LogFile);
 
-        $Router = new \SprayFire\Request\SprayFireRouter($RoutesConfig, $Logger);
+        $Router = new \SprayFire\Request\Router\SprayFireRouter($RoutesConfig, $Logger);
 
         $requestedUri = '/songs/:genre/:hip-hop';
         $Uri = new \SprayFire\Request\BaseUri($requestedUri, \basename(\SPRAYFIRE_ROOT));
@@ -288,7 +288,7 @@ class SprayFireRouterTest extends PHPUnit_Framework_TestCase {
 
         $LogFile = new \SplFileInfo($this->invalidLogPath);
         $Logger = new \SprayFire\Logger\FileLogger($LogFile);
-        $Router = new \SprayFire\Request\SprayFireRouter($RoutesConfig, $Logger);
+        $Router = new \SprayFire\Request\Router\SprayFireRouter($RoutesConfig, $Logger);
 
         $requestedUri = '/:genre/:hip-hop';
         $Uri = new \SprayFire\Request\BaseUri($requestedUri, \basename(\SPRAYFIRE_ROOT));
@@ -316,7 +316,7 @@ class SprayFireRouterTest extends PHPUnit_Framework_TestCase {
         $LogFile = new \SplFileInfo($this->validLogPath);
         $Logger = new \SprayFire\Logger\FileLogger($LogFile);
 
-        $Router = new \SprayFire\Request\SprayFireRouter($RoutesConfig, $Logger);
+        $Router = new \SprayFire\Request\Router\SprayFireRouter($RoutesConfig, $Logger);
 
         $requestedUri = '/dogs/:stay';
         $Uri = new \SprayFire\Request\BaseUri($requestedUri, \basename(\SPRAYFIRE_ROOT));

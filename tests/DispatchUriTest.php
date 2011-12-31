@@ -20,6 +20,28 @@
  * @copyright Copyright (c) 2011, Charles Sprayberry OSI MIT License <http://www.opensource.org/licenses/mit-license.php>
  */
 
+if (!interface_exists('\\SprayFire\\Core\\Object')) {
+    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/Object.php';
+}
+if (!class_exists('\\SprayFire\\Core\\CoreObject')) {
+    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/CoreObject.php';
+}
+if (!class_exists('TestObject')) {
+    include './helpers/TestObject.php';
+}
+if (!interface_exists('\\SprayFire\\Request\\Uri')) {
+    include \SPRAYFIRE_ROOT .'/libs/SprayFire/Request/Uri.php';
+}
+if (!class_exists('\\SprayFire\\Request\\BaseUri')) {
+    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Request/BaseUri.php';
+}
+if (!interface_exists('\\SprayFire\\Request\\Router\\RoutedUri')) {
+    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Request/Router/RoutedUri.php';
+}
+if (!class_exists('\\SprayFire\\Request\\Router\\DispatchUri')) {
+    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Request/Router/DispatchUri.php';
+}
+
 /**
  *
  */
@@ -30,33 +52,13 @@ class DispatchUriTest extends PHPUnit_Framework_TestCase {
     public function setUp() {
 
         $this->installDir = \basename(\SPRAYFIRE_ROOT);
-        if (!interface_exists('\\SprayFire\\Core\\Object')) {
-            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/Object.php';
-        }
-        if (!class_exists('\\SprayFire\\Core\\CoreObject')) {
-            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/CoreObject.php';
-        }
-        if (!class_exists('TestObject')) {
-            include './helpers/TestObject.php';
-        }
-        if (!interface_exists('\\SprayFire\\Request\\Uri')) {
-            include \SPRAYFIRE_ROOT .'/libs/SprayFire/Request/Uri.php';
-        }
-        if (!class_exists('\\SprayFire\\Request\\BaseUri')) {
-            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Request/BaseUri.php';
-        }
-        if (!interface_exists('\\SprayFire\\Request\\RoutedUri')) {
-            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Request/RoutedUri.php';
-        }
-        if (!class_exists('\\SprayFire\\Request\\DispatchUri')) {
-            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Request/DispatchUri.php';
-        }
+
     }
 
     public function testOriginalUriWithNoSettings() {
         $originalUri = '/';
         $routedUri = '/pages/index/';
-        $RoutedUri = new \SprayFire\Request\DispatchUri($routedUri, $originalUri, $this->installDir);
+        $RoutedUri = new \SprayFire\Request\Router\DispatchUri($routedUri, $originalUri, $this->installDir);
 
         $this->assertSame($originalUri, $RoutedUri->getOriginalUri());
         $this->assertSame($routedUri, $RoutedUri->getRoutedUri());
@@ -68,7 +70,7 @@ class DispatchUriTest extends PHPUnit_Framework_TestCase {
     public function testOriginalUriWithOnlyController() {
         $originalUri = '/'. $this->installDir . '/dogs/';
         $routedUri = '/dogs/train/stay';
-        $RoutedUri = new \SprayFire\Request\DispatchUri($routedUri, $originalUri, $this->installDir);
+        $RoutedUri = new \SprayFire\Request\Router\DispatchUri($routedUri, $originalUri, $this->installDir);
 
         $this->assertSame($originalUri, $RoutedUri->getOriginalUri());
         $this->assertSame($routedUri, $RoutedUri->getRoutedUri());

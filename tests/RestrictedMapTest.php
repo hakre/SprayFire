@@ -17,44 +17,42 @@
  * @copyright Copyright (c) 2011, Charles Sprayberry
  */
 
+if (!interface_exists('\\SprayFire\\Core\\Object')) {
+    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/Object.php';
+}
+if (!class_exists('\\SprayFire\\Core\\CoreObject')) {
+    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/CoreObject.php';
+}
+if (!interface_exists('\\SprayFire\\Core\\Structure\\ObjectMap')) {
+    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/Structure/ObjectMap.php';
+}
+if (!interface_exists('\\SprayFire\\Core\\Structure\\Overloadable')) {
+    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/Structure/Overloadable.php';
+}
+if (!class_exists('\\SprayFire\\Core\\Structure\\DataStorage')) {
+    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/Structure/DataStorage.php';
+}
+if (!class_exists('\\SprayFire\\Core\\Structure\\ImmutableStorage')) {
+    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/Structure/ImmutableStorage.php';
+}
+if (!class_exists('\\SprayFire\\Core\\Structure\\GenericMap')) {
+    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/Structure/GenericMap.php';
+}
+if (!class_exists('\\SprayFire\\Core\\Structures\\RestrictedMap')) {
+    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/Structure/RestrictedMap.php';
+}
+if (!class_exists('TestObject')) {
+    include './helpers/TestObject.php';
+}
+
 /**
  *
  */
 class RestrictedMapTest extends PHPUnit_Framework_TestCase {
 
-    public function setUp() {
-        if (!interface_exists('\\SprayFire\\Core\\Object')) {
-            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/Object.php';
-        }
-        if (!class_exists('\\SprayFire\\Core\\CoreObject')) {
-            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/CoreObject.php';
-        }
-        if (!interface_exists('\\SprayFire\\Core\\Structures\\ObjectMap')) {
-            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/Structures/ObjectMap.php';
-        }
-        if (!interface_exists('\\SprayFire\\Core\\Structures\\Overloadable')) {
-            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/Structures/Overloadable.php';
-        }
-        if (!class_exists('\\SprayFire\\Core\\Structures\\DataStorage')) {
-            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/Structures/DataStorage.php';
-        }
-        if (!class_exists('\\SprayFire\\Core\\Structures\\ImmutableStorage')) {
-            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/Structures/ImmutableStorage.php';
-        }
-        if (!class_exists('\\SprayFire\\Core\\Structures\\GenericMap')) {
-            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/Structures/GenericMap.php';
-        }
-        if (!class_exists('\\SprayFire\\Core\\Structures\\RestrictedMap')) {
-            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/Structures/RestrictedMap.php';
-        }
-        if (!class_exists('TestObject')) {
-            include './helpers/TestObject.php';
-        }
-    }
-
     public function testBasicObjectStorage() {
         $ParentType = new ReflectionClass('TestObject');
-        $Storage = new \SprayFire\Core\Structures\RestrictedMap($ParentType);
+        $Storage = new \SprayFire\Core\Structure\RestrictedMap($ParentType);
 
         $expectedInitiationSize = 0;
         $initiationSize = \count($Storage);
@@ -87,7 +85,7 @@ class RestrictedMapTest extends PHPUnit_Framework_TestCase {
         $SecondFromGetObject = $Storage->getObject('object-two');
         $this->assertSame($SecondAdd, $SecondFromGetObject);
 
-        $InvalidObject = new \SprayFire\Core\Structures\ImmutableStorage(array());
+        $InvalidObject = new \SprayFire\Core\Structure\ImmutableStorage(array());
         $exceptionThrown = false;
         try {
             $Storage->setObject('invalid-object', $InvalidObject);
@@ -100,16 +98,16 @@ class RestrictedMapTest extends PHPUnit_Framework_TestCase {
     }
 
     public function testInterfaceObjectStorage() {
-        $Type = new \ReflectionClass('\\SprayFire\\Core\\Structures\\Overloadable');
-        $Storage = new SprayFire\Core\Structures\RestrictedMap($Type);
+        $Type = new \ReflectionClass('\\SprayFire\\Core\\Structure\\Overloadable');
+        $Storage = new SprayFire\Core\Structure\RestrictedMap($Type);
 
-        $Storage->setObject('key', new \SprayFire\Core\Structures\ImmutableStorage(array()));
+        $Storage->setObject('key', new \SprayFire\Core\Structure\ImmutableStorage(array()));
         $this->assertTrue($Storage->count() === 1);
     }
 
     public function testLoopingThroughObjectStore() {
         $Type = new \ReflectionClass('\\SprayFire\\Core\\Object');
-        $Storage = new \SprayFire\Core\Structures\RestrictedMap($Type);
+        $Storage = new \SprayFire\Core\Structure\RestrictedMap($Type);
 
         $One = new TestObject();
         $Two = new TestObject();
@@ -156,7 +154,7 @@ class RestrictedMapTest extends PHPUnit_Framework_TestCase {
         $Object = new TestObject;
 
         $Type = new ReflectionClass($Object);
-        $Storage = new \SprayFire\Core\Structures\RestrictedMap($Type);
+        $Storage = new \SprayFire\Core\Structure\RestrictedMap($Type);
 
         $Storage->setObject($key, $Object);
     }
@@ -164,7 +162,7 @@ class RestrictedMapTest extends PHPUnit_Framework_TestCase {
     public function testGettingNonexistentKey() {
         $key = 'noexist';
         $Type = new ReflectionClass('\\SprayFire\\Core\\Object');
-        $Storage = new \SprayFire\Core\Structures\RestrictedMap($Type);
+        $Storage = new \SprayFire\Core\Structure\RestrictedMap($Type);
 
         $Storage->setObject('i-do-exist', new TestObject());
         $Noexist = $Storage->getObject($key);

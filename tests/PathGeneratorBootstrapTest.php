@@ -24,6 +24,6 @@
 /**
  * @brief
  */
-class PathGeneratorBootstrapTest {
+class PathGeneratorBootstrapTest extends PHPUnit_Framework_TestCase {
 
 }

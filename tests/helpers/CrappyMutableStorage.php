@@ -24,7 +24,7 @@
 /**
  * @brief
  */
-class CrappyMutableStorage extends \SprayFire\Core\Structures\MutableStorage {
+class CrappyMutableStorage extends \SprayFire\Core\Structure\MutableStorage {
 
     protected function convertDataDeep(array $array) {
         return null;

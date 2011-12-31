@@ -17,46 +17,38 @@
  * @copyright Copyright (c) 2011, Charles Sprayberry
  */
 
+if (!interface_exists('\\SprayFire\\Core\\Object')) {
+    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/Object.php';
+}
+if (!class_exists('\\SprayFire\\Core\\CoreObject')) {
+    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/CoreObject.php';
+}
+if (!interface_exists('\\SprayFire\\Core\\Structure\\Overloadable')) {
+    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/Structure/Overloadable.php';
+}
+if (!class_exists('\\SprayFire\\Core\\Structure\\DataStorage')) {
+    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/Structure/DataStorage.php';
+}
+if (!class_exists('\\SprayFire\\Core\\Structure\\ImmutableStorage')) {
+    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/Structure/ImmutableStorage.php';
+}
+if (!interface_exists('\\SprayFire\\Config\\Configuration')) {
+    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Config/Configuration.php';
+}
+if (!class_exists('\\SprayFire\\Config\\JsonConfig')) {
+    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Config/JsonConfig.php';
+}
+if (!class_exists('\\SprayFire\\Exception\\UnsupportedOperationException')) {
+    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Exception/UnsupportedOperationException.php';
+}
+if (!class_exists('CrappyJsonConfig')) {
+    include './helpers/CrappyJsonConfig.php';
+}
+
 /**
  *
  */
 class JsonConfigTest extends PHPUnit_Framework_TestCase {
-
-    public function setUp() {
-        if (!interface_exists('\\SprayFire\\Core\\Object')) {
-            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/Object.php';
-        }
-        if (!class_exists('\\SprayFire\\Core\\CoreObject')) {
-            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/CoreObject.php';
-        }
-        if (!interface_exists('\\SprayFire\\Core\\Structures\\Overloadable')) {
-            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/Structures/Overloadable.php';
-        }
-        if (!class_exists('\\SprayFire\\Core\\Structures\\DataStorage')) {
-            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/Structures/DataStorage.php';
-        }
-        if (!class_exists('\\SprayFire\\Core\\Structures\\ImmutableStorage')) {
-            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/Structures/ImmutableStorage.php';
-        }
-        if (!interface_exists('\\SprayFire\\Config\\Configuration')) {
-            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Config/Configuration.php';
-        }
-        if (!class_exists('\\SprayFire\\Config\\JsonConfig')) {
-            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Config/JsonConfig.php';
-        }
-        if (!class_exists('\\SprayFire\\Exceptions\\UnsupportedOperationException')) {
-            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Exceptions/UnsupportedOperationException.php';
-        }
-        if (!class_exists('CrappyJsonConfig')) {
-            include './helpers/CrappyJsonConfig.php';
-        }
-//        $installPath = \SPRAYFIRE_ROOT . '/tests/mockframework';
-//        $libsPath = \SPRAYFIRE_ROOT . '/tests/mockframework/libs';
-//
-//        \SprayFire\Core\Directory::setInstallPath($installPath);
-//        \SprayFire\Core\Directory::setLibsPath($libsPath);
-//        \SprayFire\Core\Directory::setAppPath($appPath);
-    }
 
     public function testJsonConfigObject() {
         $filePath = \SPRAYFIRE_ROOT . '/tests/mockframework/app/TestApp/config/json/test-config.json';
@@ -80,7 +72,7 @@ class JsonConfigTest extends PHPUnit_Framework_TestCase {
         $exceptionThrownWhenSet = false;
         try {
             $Config->app->version = 'some new version';
-        } catch (\SprayFire\Exceptions\UnsupportedOperationException $UnsupportedOp) {
+        } catch (\SprayFire\Exception\UnsupportedOperationException $UnsupportedOp) {
             $exceptionThrownWhenSet = true;
         }
 
@@ -89,7 +81,7 @@ class JsonConfigTest extends PHPUnit_Framework_TestCase {
         $exceptionThrownWhenUnset = false;
         try {
             unset($Config->app->version);
-        } catch (\SprayFire\Exceptions\UnsupportedOperationException $UnsupportedOp) {
+        } catch (\SprayFire\Exception\UnsupportedOperationException $UnsupportedOp) {
             $exceptionThrownWhenUnset = true;
         }
 

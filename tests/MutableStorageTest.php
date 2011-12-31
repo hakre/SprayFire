@@ -17,6 +17,29 @@
  * @copyright Copyright (c) 2011, Charles Sprayberry
  */
 
+if (!interface_exists('\\SprayFire\\Core\\Object')) {
+    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/Object.php';
+}
+if (!class_exists('\\SprayFire\\Core\\CoreObject')) {
+    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/CoreObject.php';
+}
+if (!interface_exists('\\SprayFire\\Core\\Structure\\Overloadable')) {
+    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/Structure/Overloadable.php';
+}
+if (!class_exists('\\SprayFire\\Core\\Structure\\DataStorage')) {
+    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/Structure/DataStorage.php';
+}
+if (!class_exists('\\SprayFire\\Core\\Structure\\MutableStorage')) {
+    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/Structure/MutableStorage.php';
+}
+
+if (!class_exists('TestObject')) {
+    include './helpers/TestObject.php';
+}
+if (!class_exists('CrappyMutableStorage')) {
+    include './helpers/CrappyMutableStorage.php';
+}
+
 /**
  *
  */
@@ -24,28 +47,7 @@ class MutableStorageTest extends PHPUnit_Framework_TestCase {
 
     public function setUp() {
 
-        if (!interface_exists('\\SprayFire\\Core\\Object')) {
-            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/Object.php';
-        }
-        if (!class_exists('\\SprayFire\\Core\\CoreObject')) {
-            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/CoreObject.php';
-        }
-        if (!interface_exists('\\SprayFire\\Core\\Structures\\Overloadable')) {
-            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/Structures/Overloadable.php';
-        }
-        if (!class_exists('\\SprayFire\\Core\\Structures\\DataStorage')) {
-            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/Structures/DataStorage.php';
-        }
-        if (!class_exists('\\SprayFire\\Core\\Structures\\MutableStorage')) {
-            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/Structures/MutableStorage.php';
-        }
 
-        if (!class_exists('TestObject')) {
-            include './helpers/TestObject.php';
-        }
-        if (!class_exists('CrappyMutableStorage')) {
-            include './helpers/CrappyMutableStorage.php';
-        }
     }
 
     public function testMutableStorage() {
@@ -53,7 +55,7 @@ class MutableStorageTest extends PHPUnit_Framework_TestCase {
         $data['key-one'] = 'value';
         $data['key-two'] = 'another value';
         $data['key-three'] = array('one' => '1');
-        $Storage = new \SprayFire\Core\Structures\MutableStorage($data, false);
+        $Storage = new \SprayFire\Core\Structure\MutableStorage($data, false);
 
         $this->assertSame(\count($Storage), \count($data));
 
@@ -89,7 +91,7 @@ class MutableStorageTest extends PHPUnit_Framework_TestCase {
             )
         );
 
-        $Storage = new \SprayFire\Core\Structures\MutableStorage($data);
+        $Storage = new \SprayFire\Core\Structure\MutableStorage($data);
         $this->assertSame('value 1', $Storage->{'key-one'}->one);
         $this->assertSame('value 2', $Storage->{'key-two'}->one);
         $this->assertSame('value 3', $Storage->{'key-two'}->two->key);
@@ -97,7 +99,7 @@ class MutableStorageTest extends PHPUnit_Framework_TestCase {
 
     public function testNullArrayKeyStorage() {
         $data = array();
-        $Storage = new \SprayFire\Core\Structures\MutableStorage($data);
+        $Storage = new \SprayFire\Core\Structure\MutableStorage($data);
 
         $First = new TestObject();
         $Second = new TestObject();
