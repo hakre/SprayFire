@@ -59,6 +59,11 @@ class BaseUri extends \SprayFire\Core\CoreObject implements \SprayFire\Request\U
      */
     protected $parameters;
 
+    /**
+     * @brief The name of the directory the libs, app, and web dir are stored in
+     *
+     * @property $installDir
+     */
     protected $installDir;
 
     /**
@@ -67,9 +72,9 @@ class BaseUri extends \SprayFire\Core\CoreObject implements \SprayFire\Request\U
      *
      * @param $uri string
      */
-    public function __construct($uri, $installDir) {
+    public function __construct($uri, $rootDir) {
         $this->originalUri = $uri;
-        $this->installDir = \trim($installDir, '/ ');
+        $this->installDir = \trim($rootDir, '/ ');
         $this->parseUri($this->originalUri);
     }
 
@@ -211,6 +216,13 @@ class BaseUri extends \SprayFire\Core\CoreObject implements \SprayFire\Request\U
      */
     public function getOriginalUri() {
         return $this->originalUri;
+    }
+
+    /**
+     * @return The name of the root directory set in constructor
+     */
+    public function getRootDirectory() {
+        return $this->installDir;
     }
 
     /**

@@ -80,4 +80,13 @@ interface Uri {
      */
     public function getParameters();
 
+    /**
+     * @return String representing directory the app, libs, web dir is stored in
+     *
+     * @details
+     * This is here because the Uri implementation needs to know about the root
+     * install directory to remove any erroneous fragments.
+     */
+    public function getRootDirectory();
+
 }
