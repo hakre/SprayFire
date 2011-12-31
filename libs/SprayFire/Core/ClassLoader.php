@@ -36,7 +36,7 @@ class ClassLoader {
     /**
      * @brief An array holding a top-level namespace as the key and the complete
      * root path for that namespace as the value.
-     * 
+     *
      * @property $namespaceMap
      */
     protected $namespaceMap = array();
@@ -85,6 +85,9 @@ class ClassLoader {
     public function loadClass($className) {
         $namespace = $this->getTopLevelNamespace($className);
         $path = $this->getDirectoryForTopLevelNamespace($namespace) . '/';
+        if (!$path) {
+            return false;
+        }
         $path .= $this->convertNamespacedClassToFilePath($className);
         if (\file_exists($path)) {
             include $path;
@@ -118,7 +121,7 @@ class ClassLoader {
         if (isset($namespace) && \array_key_exists($namespace, $this->namespaceMap)) {
             return $this->namespaceMap[$namespace];
         }
-        return \SprayFire\Core\Directory::getAppPath();
+        return false;
     }
 
     /**
