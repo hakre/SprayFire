@@ -20,6 +20,7 @@ include 'SprayFireRouterTest.php';
 include 'DispatchUriTest.php';
 include 'FileLoggerTest.php';
 include 'DevelopmentLoggerTest.php';
+include 'ClassLoaderTest.php';
 
 /**
  * @codeCoverageIgnore
@@ -43,6 +44,7 @@ class AllTests extends PHPUnit_Framework_TestSuite {
         $Suite->addTestSuite('DispatchUriTest');
         $Suite->addTestSuite('FileLoggerTest');
         $Suite->addTestSuite('DevelopmentLoggerTest');
+        $Suite->addTestSuite('ClassLoaderTest');
 
         return $Suite;
     }
