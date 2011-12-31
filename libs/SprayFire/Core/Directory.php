@@ -34,7 +34,7 @@ namespace SprayFire\Core;
  * residing inside installation path directories.  In addition, you can also
  * resolve the absolute paths for files this way.
  */
-class Directory {
+class Directory extends \SprayFire\Core\CoreObject implements \SprayFire\Core\PathGenerator {
 
     /**
      * @brief The root path holding the primary directories used by the app and
@@ -42,7 +42,7 @@ class Directory {
      *
      * @property $installPath
      */
-    protected static $installPath;
+    protected $installPath;
 
     /**
      * @brief The root path holding framework and third-party classes used by the
@@ -50,14 +50,16 @@ class Directory {
      *
      * @property $libsPath
      */
-    protected static $libsPath;
+    protected $libsPath;
 
     /**
      * @brief The root path holding app classes
      *
      * @property $appPath
      */
-    protected static $appPath;
+    protected $appPath;
+
+    protected $configPath;
 
     /**
      * @brief The root path holding log files that are written to by the framework
@@ -65,129 +67,133 @@ class Directory {
      *
      * @property $logsPath
      */
-    protected static $logsPath;
+    protected $logsPath;
 
     /**
      * @brief The root path holding files that are accessible via the web
      *
      * @property $webPath
      */
-    protected static $webPath;
+    protected $webPath;
 
     /**
      * @param $path The path that the app and framework are installed in
      */
-    public static function setInstallPath($path) {
-        self::$installPath = $path;
+    public function setInstallPath($path) {
+        $this->installPath = $path;
     }
 
     /**
      * @param $path The path holding framework and third-party libs
      */
-    public static function setLibsPath($path) {
-        self::$libsPath = $path;
+    public function setLibsPath($path) {
+        $this->libsPath = $path;
     }
 
     /**
      * @param $path The path holding app classes and libs
      */
-    public static function setAppPath($path) {
-        self::$appPath= $path;
+    public function setAppPath($path) {
+        $this->appPath = $path;
+    }
+
+    public function setConfigPath($path) {
+        $this->configPath = $path;
     }
 
     /**
      * @param $path The path holding log files written to by the framework and app
      */
-    public static function setLogsPath($path) {
-        self::$logsPath = $path;
+    public function setLogsPath($path) {
+        $this->logsPath = $path;
     }
 
     /**
      * @param $path the path holding web accessible files
      */
-    public static function setWebPath($path) {
-        self::$webPath = $path;
+    public function setWebPath($path) {
+        $this->webPath = $path;
     }
 
     /**
      * @return The path holding the path the app and framework are installed in
      */
-    public static function getInstallPath() {
-        $subDir = \func_get_args();
-        if (\count($subDir) === 0) {
-            return self::$installPath;
-        }
-        return self::$installPath . '/' . self::generateSubDirectoryPath($subDir);
+    public function getInstallPath($subDir = array()) {
+        return $this->generateFullPath('installPath', \func_get_args());
     }
 
     /**
      * @return Absolute path to libs dir, with sub-directories appended if applicable,
      *         and no trailing separator
      */
-    public static function getLibsPath() {
-        $subDir = \func_get_args();
-        if (\count($subDir) === 0) {
-            return self::$libsPath;
-        }
-        return self::$libsPath . '/' . self::generateSubDirectoryPath($subDir);
+    public function getLibsPath($subDir = array()) {
+        return $this->generateFullPath('libsPath', \func_get_args());
     }
 
     /**
      * @return Absolute path to app dir, with sub-directories appended if applicable,
      *         and no trailing separator
      */
-    public static function getAppPath() {
-        $subDir = \func_get_args();
-        if (\count($subDir) === 0) {
-            return self::$appPath;
-        }
-        return self::$appPath . '/' . self::generateSubDirectoryPath($subDir);
+    public function getAppPath($subDir = array()) {
+        return $this->generateFullPath('appPath', \func_get_args());
+    }
+
+    /**
+     * @param $subDir An array of variables
+     * @return A path to the configuration file
+     */
+    public function getConfigPath($subDir = array()) {
+        return $this->generateFullPath('configPath', \func_get_args());
     }
 
     /**
      * @return Absolute path to logs dir, with sub-directories appended if applicable,
      *         and no trailing separator
      */
-    public static function getLogsPath() {
-        $subDir = \func_get_args();
-        if (\count($subDir) === 0) {
-            return self::$logsPath;
-        }
-        return self::$logsPath . '/' . self::generateSubDirectoryPath($subDir);
+    public function getLogsPath($subDir = array()) {
+        return $this->generateFullPath('logsPath', \func_get_args());
     }
 
     /**
      * @return Absolute path to web dir, with sub-directories appended if applicable,
      *         and no trailing whitespace
      */
-    public static function getWebPath() {
-        $subDir = \func_get_args();
-        if (\count($subDir) === 0) {
-            return self::$webPath;
-        }
-        return self::$webPath . '/' . self::generateSubDirectoryPath($subDir);
+    public function getWebPath($subDir = array()) {
+        return $this->generateFullPath('webPath', \func_get_args());
     }
 
     /**
      * @return A relative path to the framework web-root or a subdirectory suitable
      *         for use as image, stylesheet and script links
      */
-    public static function getUrlPath() {
-        $webRoot = \basename(self::getWebPath());
-        $installRoot = \basename(self::getInstallPath());
+    public function getUrlPath($subDir = array()) {
+        $webRoot = \basename($this->getWebPath());
+        $installRoot = \basename($this->getInstallPath());
         $urlPath = '/' . $installRoot . '/' . $webRoot;
         $subDir = \func_get_args();
         if (\count($subDir) === 0) {
             return $urlPath;
         }
-        return $urlPath . '/' . self::generateSubDirectoryPath($subDir);
+        return $urlPath . '/' . $this->generateSubDirectoryPath($subDir);
+    }
+
+    /**
+     * @param $property The class property to use for the primary path
+     * @param $subDir A list of possible sub directories to add to primary path
+     * @return Absolute path for the given class \a $property and \a $subDir
+     */
+    protected function generateFullPath($property, array $subDir) {
+        if (\count($subDir) === 0) {
+            return $this->$property;
+        }
+        return $this->$property . '/' . $this->generateSubDirectoryPath($subDir);
     }
 
     /**
      * @param $subDir
      * @return A sub directory path, with n otrailing separator
      */
-    protected static function generateSubDirectoryPath(array $subDir) {
+    protected function generateSubDirectoryPath(array $subDir) {
         $subDirPath = '';
         if (\is_array($subDir[0])) {
             $subDir = $subDir[0];
