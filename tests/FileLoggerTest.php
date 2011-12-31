@@ -33,12 +33,24 @@ class FileLoggerTest extends PHPUnit_Framework_TestCase {
     private $noTimestampLog;
 
     public function setUp() {
-        $logPath = \dirname(__DIR__) . '/tests/mockframework/logs';
-        \SprayFire\Core\Directory::setLogsPath($logPath);
+        if (!interface_exists('\\SprayFire\\Core\\Object')) {
+            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/Object.php';
+        }
+        if (!class_exists('\\SprayFire\\Core\\CoreObject')) {
+            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/CoreObject.php';
+        }
+        if (!interface_exists('\\SprayFire\\Logger\\Log')) {
+            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Logger/Log.php';
+        }
+        if (!class_exists('\\SprayFire\\Logger\\FileLogger')) {
+            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Logger/FileLogger.php';
+        }
 
-        $this->readOnlyLog = \SprayFire\Core\Directory::getLogsPath('readonly-log.txt');
-        $this->writableLog = \SprayFire\Core\Directory::getLogsPath('writable-log.txt');
-        $this->noTimestampLog = \SprayFire\Core\Directory::getLogsPath('no-timestamp-log.txt');
+        $logPath = \SPRAYFIRE_ROOT . '/tests/mockframework/logs';
+
+        $this->readOnlyLog = $logPath . '/readonly-log.txt';
+        $this->writableLog = $logPath . 'writable-log.txt';
+        $this->noTimestampLog = $logPath . 'no-timestamp-log.txt';
     }
 
     /**
