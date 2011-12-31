@@ -19,6 +19,7 @@ include 'DirectoryTest.php';
 include 'SprayFireRouterTest.php';
 include 'DispatchUriTest.php';
 include 'FileLoggerTest.php';
+include 'DevelopmentLoggerTest.php';
 
 /**
  * @codeCoverageIgnore
@@ -41,6 +42,7 @@ class AllTests extends PHPUnit_Framework_TestSuite {
         $Suite->addTestSuite('DirectoryTest');
         $Suite->addTestSuite('DispatchUriTest');
         $Suite->addTestSuite('FileLoggerTest');
+        $Suite->addTestSuite('DevelopmentLoggerTest');
 
         return $Suite;
     }
@@ -50,7 +52,7 @@ class AllTests extends PHPUnit_Framework_TestSuite {
     }
 
     protected function tearDown() {
-        
+
     }
 
 }
