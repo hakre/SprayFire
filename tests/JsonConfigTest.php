@@ -23,19 +23,44 @@
 class JsonConfigTest extends PHPUnit_Framework_TestCase {
 
     public function setUp() {
+        if (!interface_exists('\\SprayFire\\Core\\Object')) {
+            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/Object.php';
+        }
+        if (!class_exists('\\SprayFire\\Core\\CoreObject')) {
+            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/CoreObject.php';
+        }
+        if (!interface_exists('\\SprayFire\\Core\\Structures\\Overloadable')) {
+            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/Structures/Overloadable.php';
+        }
+        if (!class_exists('\\SprayFire\\Core\\Structures\\DataStorage')) {
+            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/Structures/DataStorage.php';
+        }
+        if (!class_exists('\\SprayFire\\Core\\Structures\\ImmutableStorage')) {
+            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/Structures/ImmutableStorage.php';
+        }
+        if (!interface_exists('\\SprayFire\\Config\\Configuration')) {
+            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Config/Configuration.php';
+        }
+        if (!class_exists('\\SprayFire\\Config\\JsonConfig')) {
+            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Config/JsonConfig.php';
+        }
+        if (!class_exists('\\SprayFire\\Exceptions\\UnsupportedOperationException')) {
+            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Exceptions/UnsupportedOperationException.php';
+        }
         if (!class_exists('CrappyJsonConfig')) {
             include './helpers/CrappyJsonConfig.php';
         }
-        $installPath = \SPRAYFIRE_ROOT . '/tests/mockframework';
-        $libsPath = \SPRAYFIRE_ROOT . '/tests/mockframework/libs';
-        $appPath = \SPRAYFIRE_ROOT . '/tests/mockframework/app';
-        \SprayFire\Core\Directory::setInstallPath($installPath);
-        \SprayFire\Core\Directory::setLibsPath($libsPath);
-        \SprayFire\Core\Directory::setAppPath($appPath);
+//        $installPath = \SPRAYFIRE_ROOT . '/tests/mockframework';
+//        $libsPath = \SPRAYFIRE_ROOT . '/tests/mockframework/libs';
+//
+//        \SprayFire\Core\Directory::setInstallPath($installPath);
+//        \SprayFire\Core\Directory::setLibsPath($libsPath);
+//        \SprayFire\Core\Directory::setAppPath($appPath);
     }
 
     public function testJsonConfigObject() {
-        $File = new SplFileInfo(\SprayFire\Core\Directory::getAppPath('TestApp', 'config', 'json', 'test-config.json'));
+        $filePath = \SPRAYFIRE_ROOT . '/tests/mockframework/app/TestApp/config/json/test-config.json';
+        $File = new SplFileInfo($filePath);
         $Config = new \SprayFire\Config\JsonConfig($File);
 
         $expectedNoExist = null;
@@ -74,7 +99,7 @@ class JsonConfigTest extends PHPUnit_Framework_TestCase {
         $actualAppVersion = $Config->app->version;
         $this->assertSame($expectedAppVersion, $actualAppVersion);
 
-        $expectedToString = 'SprayFire\Config\JsonConfig::ROOT_PATH/app/TestApp/config/json/test-config.json';
+        $expectedToString = 'SprayFire\Config\JsonConfig::' . \SPRAYFIRE_ROOT . '/tests/mockframework/app/TestApp/config/json/test-config.json';
         $actualToString = $Config->__toString();
         $this->assertSame($expectedToString, $actualToString);
     }
@@ -91,7 +116,8 @@ class JsonConfigTest extends PHPUnit_Framework_TestCase {
      * @expectedException \InvalidArgumentException
      */
     public function testInvalidJsonFile() {
-        $File = new \SplFileInfo(\SprayFire\Core\Directory::getLibsPath('SprayFire', 'Config', 'json', 'test-invalid-config.json'));
+        $filePath = \SPRAYFIRE_ROOT . '/tests/mockframework/libs/SprayFire/Config/json/test-invalid-config.json';
+        $File = new \SplFileInfo($filePath);
         $Config = new \SprayFire\Config\JsonConfig($File);
     }
 
@@ -99,7 +125,7 @@ class JsonConfigTest extends PHPUnit_Framework_TestCase {
      * @expectedException \UnexpectedValueException
      */
     public function testCrappyExtension() {
-        $File = new SplFileInfo(\SprayFire\Core\Directory::getAppPath('TestApp', 'config', 'json', 'test-config.json'));
+        $File = new SplFileInfo(\SPRAYFIRE_ROOT . '/tests/mockframework/app/TestApp/config/json/test-config.json');
         $Config = new CrappyJsonConfig($File);
     }
 
