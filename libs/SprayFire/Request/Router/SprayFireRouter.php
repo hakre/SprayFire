@@ -178,7 +178,7 @@ class SprayFireRouter extends \SprayFire\Logger\CoreObject implements \SprayFire
      *         \a action, that will be used to determine the routed URI string
      *         to generate.
      */
-    protected function getControllerAndActionToUse(Uri $Uri) {
+    protected function getControllerAndActionToUse(\SprayFire\Request\Uri $Uri) {
         $data = array();
         if ($Uri->getController() === \SprayFire\Request\Uri::DEFAULT_CONTROLLER) {
             $data['controller'] = $this->defaultController;
