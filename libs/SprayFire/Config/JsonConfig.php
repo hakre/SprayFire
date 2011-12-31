@@ -112,8 +112,7 @@ class JsonConfig extends \SprayFire\Core\Structures\ImmutableStorage implements 
      * associated configuration file.
      */
     public function __toString() {
-        $escapedRootPath = '/' . \preg_replace('/\//', '\/', \SprayFire\Core\Directory::getInstallPath()) . '/';
-        return parent::__toString() . '::' . 'ROOT_PATH' . \preg_replace($escapedRootPath, '', $this->ConfigFileInfo->getPathname());
+        return parent::__toString() . '::' . $this->ConfigFileInfo->getPathname();
     }
 
 }
