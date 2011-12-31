@@ -21,12 +21,16 @@
  * @author Charles Sprayberry cspray at gmail dot com
  * @copyright Copyright (c) 2011, Charles Sprayberry
  */
+
 namespace SprayFire\Core\Handler;
 
 /**
  * @brief A class that is responsible for trapping errors, logging appropriate
  * messages and provides a means to get the error info for errors triggered in a
  * specific request.
+ *
+ * @uses SprayFire.Logger.Log
+ * @uses SprayFire.Logger.CoreObject
  */
 class ErrorHandler extends \SprayFire\Logger\CoreObject {
 

@@ -53,8 +53,14 @@ namespace SprayFire\Config;
  *
  * echo $Config['app']['development-settings']['debug-mode'];   // 'on'
  *
- * echo $Config->app->{'development-settings'}->{'display-errors'};   // 1
+ * // ?? I mixed these to show that it is possible.  It is not recommended however
+ * echo $Config->app['development-settings']->{'display-errors'};   // 1
  * </pre>
+ *
+ * @uses SplFileInfo
+ * @uses InvalidArgumentException
+ * @uses SprayFire.Core.Structure.ImmutableStorage
+ * @uses SprayFire.Config.Configuration
  */
 class JsonConfig extends \SprayFire\Core\Structure\ImmutableStorage implements \SprayFire\Config\Configuration {
 

@@ -32,6 +32,9 @@ namespace SprayFire\Config;
  * Implementations of this interface should be immutable.  Only data passed in
  * a constructor depedency should be worked with, no new data to be set or
  * existing data to be changed or removed.
+ *
+ * @uses ArrayAccess
+ * @uses SprayFire.Core.Structure.Overloadable
  */
 interface Configuration extends \ArrayAccess, \SprayFire\Core\Structure\Overloadable {
 

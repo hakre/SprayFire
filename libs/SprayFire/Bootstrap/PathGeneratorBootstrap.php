@@ -67,6 +67,10 @@ namespace SprayFire\Bootstrap;
  * files if the constructor dependencies for this implementation change:
  *
  * - <code>/web/index.php</code>
+ *
+ * @uses SprayFire.Bootstrap.Bootstrapper
+ * @uses SprayFire.Core.PathGenerator
+ * @uses SprayFire.Core.Directory
  */
 class PathGeneratorBootstrap implements \SprayFire\Bootstrap\Bootstrapper {
 
