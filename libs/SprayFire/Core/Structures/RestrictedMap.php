@@ -31,7 +31,7 @@ namespace SprayFire\Core\Structures;
  * of that object using that key.  Also allows for the removal of an object
  * associated with a key and iterating over the stored objects.
  */
-class RestrictedMap extends \SprayFire\Core\Structures\GenericMap implements \SprayFire\Core\Structures\ObjectMap {
+class RestrictedMap extends \SprayFire\Core\Structures\GenericMap {
 
     /**
      * @brief Holds a ReflectionClass of the data type that should be implemented by objects
