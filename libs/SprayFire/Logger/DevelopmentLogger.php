@@ -27,7 +27,7 @@ namespace SprayFire\Logger;
  * @brief A more flexible implementation of the SprayFire.Logger.Log interface that
  * allows for much more information to be logged about a particular event.
  */
-class DevelopmentLogger implements \SprayFire\Logger\Log {
+class DevelopmentLogger extends \SprayFire\Core\CoreObject implements \SprayFire\Logger\Log {
 
     /**
      * @brief A storage of the messages that are passed to the logger
