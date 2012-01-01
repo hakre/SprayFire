@@ -11,19 +11,6 @@
  * @copyright Copyright (c) 2011, Charles Sprayberry
  */
 
-include 'JsonConfigTest.php';
-include 'MutableStorageTest.php';
-include 'RestrictedMapTest.php';
-include 'BaseUriTest.php';
-include 'DirectoryTest.php';
-include 'SprayFireRouterTest.php';
-include 'DispatchUriTest.php';
-include 'FileLoggerTest.php';
-include 'DevelopmentLoggerTest.php';
-include 'ClassLoaderTest.php';
-include 'PathGeneratorBootstrapTest.php';
-include 'ConfigBootstrapTest.php';
-
 /**
  * @codeCoverageIgnore
  */
@@ -36,28 +23,30 @@ class AllTests extends PHPUnit_Framework_TestSuite {
      * @return PHPUnit_Framework_TestSuite
      */
     public static function suite() {
+        $tests = array(
+            'BaseUriTest',
+            'ClassLoaderTest',
+            'ConfigBootstrapTest',
+            'DevelopmentLoggerTest',
+            'DirectoryTest',
+            'DispatchUriTest',
+            'FileLoggerTest',
+            'JsonConfigTest',
+            'MutableStorageTest',
+            'PathGeneratorBootstrapTest',
+            'RestrictedMapTest',
+            'SprayFireRouterTest'
+        );
+
+        \shuffle($tests);
         $Suite = new AllTests();
-        $Suite->addTestSuite('JsonConfigTest');
-        $Suite->addTestSuite('MutableStorageTest');
-        $Suite->addTestSuite('RestrictedMapTest');
-        $Suite->addTestSuite('SprayFireRouterTest');
-        $Suite->addTestSuite('BaseUriTest');
-        $Suite->addTestSuite('DirectoryTest');
-        $Suite->addTestSuite('DispatchUriTest');
-        $Suite->addTestSuite('FileLoggerTest');
-        $Suite->addTestSuite('DevelopmentLoggerTest');
-        $Suite->addTestSuite('ClassLoaderTest');
-        $Suite->addTestSuite('PathGeneratorBootstrapTest');
-        $Suite->addTestSuite('ConfigBootstrapTest');
+
+        foreach ($tests as $test) {
+            include './cases/' . $test . '.php';
+            $Suite->addTestSuite($test);
+        }
 
         return $Suite;
-    }
-
-    protected function setUp() {
-
-    }
-
-    protected function tearDown() {
 
     }
 
