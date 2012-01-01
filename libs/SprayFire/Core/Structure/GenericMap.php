@@ -24,7 +24,13 @@
 namespace SprayFire\Core\Structure;
 
 /**
- * @brief
+ * @brief Base implementation of the SprayFire.Core.Structure.ObjectMap interface,
+ * it simply allows for any SprayFire.Core.CoreObject to be added.
+ *
+ * @uses IteratorAggregate
+ * @uses InvalidArgumentException
+ * @uses SprayFire.Core.Object
+ * @uses SprayFire.Core.Structure.ObjectMap
  */
 class GenericMap extends \SprayFire\Core\CoreObject implements \IteratorAggregate, \SprayFire\Core\Structure\ObjectMap {
 
