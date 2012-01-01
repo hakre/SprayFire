@@ -8,7 +8,7 @@
 *
 * @author Charles Sprayberry <cspray at gmail dot com>
 * @license OSI MIT License <http://www.opensource.org/licenses/mit-license.php>
-* @copyright Copyright (c) 2011, Charles Sprayberry
+* @copyright Copyright (c) 2011,2012 Charles Sprayberry
 */
 
 // Change the below variables to adjust the SprayFire.Core.PathGenerator
@@ -83,7 +83,6 @@ include $libsPath . '/SprayFire/Core/ClassLoader.php';
 
 $ClassLoader = new \SprayFire\Core\ClassLoader();
 \spl_autoload_register(array($ClassLoader, 'load'));
-
 $ClassLoader->registerNamespaceDirectory('SprayFire', $libsPath);
 
 $paths = \compact('installPath', 'libsPath', 'appPath', 'logsPath', 'configPath', 'webPath');
