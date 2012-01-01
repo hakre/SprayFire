@@ -25,7 +25,6 @@ if (!interface_exists('\\SprayFire\\Core\\Object')) {
     include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/Object.php';
 }
 
-
 if (!interface_exists('\\SprayFire\\Core\\Structure\\ObjectMap')) {
     include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/Structure/ObjectMap.php';
 }

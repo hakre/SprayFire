@@ -20,6 +20,19 @@
  * @copyright Copyright (c) 2011, Charles Sprayberry OSI MIT License <http://www.opensource.org/licenses/mit-license.php>
  */
 
+if (!interface_exists('\\SprayFire\\Core\\Object')) {
+    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/Object.php';
+}
+if (!class_exists('\\SprayFire\\Core\\CoreObject')) {
+    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/CoreObject.php';
+}
+if (!interface_exists('\\SprayFire\\Core\\PathGenerator')) {
+    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/PathGenerator.php';
+}
+if (!class_exists('\\SprayFire\\Core\\Directory')) {
+    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/Directory.php';
+}
+
 /**
  *
  */
@@ -37,18 +50,7 @@ class DirectoryTest extends PHPUnit_Framework_TestCase {
         if (!isset($this->paths)) {
             $this->paths = \compact('installPath', 'libsPath', 'appPath', 'logsPath', 'webPath', 'configPath');
         }
-        if (!interface_exists('\\SprayFire\\Core\\Object')) {
-            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/Object.php';
-        }
-        if (!class_exists('\\SprayFire\\Core\\CoreObject')) {
-            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/CoreObject.php';
-        }
-        if (!interface_exists('\\SprayFire\\Core\\PathGenerator')) {
-            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/PathGenerator.php';
-        }
-        if (!class_exists('\\SprayFire\\Core\\Directory')) {
-            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/Directory.php';
-        }
+
     }
 
     public function testInstallPath() {

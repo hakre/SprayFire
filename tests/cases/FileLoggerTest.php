@@ -21,6 +21,19 @@
  * @copyright Copyright (c) 2011, Charles Sprayberry
  */
 
+if (!interface_exists('\\SprayFire\\Core\\Object')) {
+    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/Object.php';
+}
+if (!class_exists('\\SprayFire\\Core\\CoreObject')) {
+    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/CoreObject.php';
+}
+if (!interface_exists('\\SprayFire\\Logger\\Log')) {
+    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Logger/Log.php';
+}
+if (!class_exists('\\SprayFire\\Logger\\FileLogger')) {
+    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Logger/FileLogger.php';
+}
+
 /**
  * @brief
  */
@@ -33,18 +46,7 @@ class FileLoggerTest extends PHPUnit_Framework_TestCase {
     private $noTimestampLog;
 
     public function setUp() {
-        if (!interface_exists('\\SprayFire\\Core\\Object')) {
-            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/Object.php';
-        }
-        if (!class_exists('\\SprayFire\\Core\\CoreObject')) {
-            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/CoreObject.php';
-        }
-        if (!interface_exists('\\SprayFire\\Logger\\Log')) {
-            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Logger/Log.php';
-        }
-        if (!class_exists('\\SprayFire\\Logger\\FileLogger')) {
-            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Logger/FileLogger.php';
-        }
+
 
         $logPath = \SPRAYFIRE_ROOT . '/tests/mockframework/logs';
 

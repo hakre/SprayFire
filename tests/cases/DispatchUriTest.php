@@ -27,7 +27,7 @@ if (!class_exists('\\SprayFire\\Core\\CoreObject')) {
     include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/CoreObject.php';
 }
 if (!class_exists('TestObject')) {
-    include './helpers/TestObject.php';
+    include \SPRAYFIRE_ROOT . '/tests/helpers/TestObject.php';
 }
 if (!interface_exists('\\SprayFire\\Request\\Uri')) {
     include \SPRAYFIRE_ROOT .'/libs/SprayFire/Request/Uri.php';

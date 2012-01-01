@@ -30,6 +30,10 @@ if (!class_exists('\\SprayFire\\Request\\BaseUri')) {
     include \SPRAYFIRE_ROOT . '/libs/SprayFire/Request/BaseUri.php';
 }
 
+if (!class_exists('TestObject')) {
+    include \SPRAYFIRE_ROOT . '/tests/helpers/TestObject.php';
+}
+
 /**
  *
  */

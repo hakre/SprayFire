@@ -34,21 +34,16 @@ if (!class_exists('\\SprayFire\\Core\\Structure\\MutableStorage')) {
 }
 
 if (!class_exists('TestObject')) {
-    include './helpers/TestObject.php';
+    include \SPRAYFIRE_ROOT . '/tests/helpers/TestObject.php';
 }
 if (!class_exists('CrappyMutableStorage')) {
-    include './helpers/CrappyMutableStorage.php';
+    include \SPRAYFIRE_ROOT . '/tests/helpers/CrappyMutableStorage.php';
 }
 
 /**
  *
  */
 class MutableStorageTest extends PHPUnit_Framework_TestCase {
-
-    public function setUp() {
-
-
-    }
 
     public function testMutableStorage() {
         $data = array();

@@ -21,16 +21,14 @@
  * @copyright Copyright (c) 2011, Charles Sprayberry
  */
 
+if (!class_exists('\\SprayFire\\Core\\ClassLoader')) {
+    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/ClassLoader.php';
+}
+
 /**
  * @brief
  */
 class ClassLoaderTest extends PHPUnit_Framework_TestCase {
-
-    public function setUp() {
-        if (!class_exists('\\SprayFire\\Core\\ClassLoader')) {
-            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/ClassLoader.php';
-        }
-    }
 
     public function testNamespaceDirectoryLoad() {
         $ClassLoader = new \SprayFire\Core\ClassLoader();

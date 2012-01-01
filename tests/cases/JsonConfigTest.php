@@ -42,7 +42,7 @@ if (!class_exists('\\SprayFire\\Exception\\UnsupportedOperationException')) {
     include \SPRAYFIRE_ROOT . '/libs/SprayFire/Exception/UnsupportedOperationException.php';
 }
 if (!class_exists('CrappyJsonConfig')) {
-    include './helpers/CrappyJsonConfig.php';
+    include \SPRAYFIRE_ROOT . '/tests/helpers/CrappyJsonConfig.php';
 }
 
 /**

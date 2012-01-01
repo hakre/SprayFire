@@ -20,26 +20,23 @@
  * @author Charles Sprayberry cspray at gmail dot com
  * @copyright Copyright (c) 2011, Charles Sprayberry
  */
+if (!interface_exists('\\SprayFire\\Core\\Object')) {
+    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/Object.php';
+}
+if (!class_exists('\\SprayFire\\Core\\CoreObject')) {
+    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/CoreObject.php';
+}
+if (!interface_exists('\\SprayFire\\Logger\\Log')) {
+    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Logger/Log.php';
+}
+if (!class_exists('\\SprayFire\\Logger\\DevelopmentLogger')) {
+    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Logger/DevelopmentLogger.php';
+}
 
 /**
  * @brief
  */
 class DevelopmentLoggerTest extends PHPUnit_Framework_TestCase {
-
-    public function setUp() {
-        if (!interface_exists('\\SprayFire\\Core\\Object')) {
-            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/Object.php';
-        }
-        if (!class_exists('\\SprayFire\\Core\\CoreObject')) {
-            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/CoreObject.php';
-        }
-        if (!interface_exists('\\SprayFire\\Logger\\Log')) {
-            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Logger/Log.php';
-        }
-        if (!class_exists('\\SprayFire\\Logger\\DevelopmentLogger')) {
-            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Logger/DevelopmentLogger.php';
-        }
-    }
 
     public function testDevelopmentLogger() {
         $Logger = new \SprayFire\Logger\DevelopmentLogger();
@@ -71,8 +68,6 @@ class DevelopmentLoggerTest extends PHPUnit_Framework_TestCase {
         $expected[1]['info'] = $info;
         $actual = $Logger->getMessages();
         $this->assertSame($expected, $actual);
-
-
     }
 
 }

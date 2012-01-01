@@ -42,7 +42,7 @@ if (!class_exists('\\SprayFire\\Core\\Structure\\RestrictedMap')) {
     include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/Structure/RestrictedMap.php';
 }
 if (!class_exists('TestObject')) {
-    include './helpers/TestObject.php';
+    include \SPRAYFIRE_ROOT . '/tests/helpers/TestObject.php';
 }
 
 /**
