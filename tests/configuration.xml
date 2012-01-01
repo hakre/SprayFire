@@ -20,7 +20,6 @@
     <testsuites>
         <testsuite name="All Tests Suite">
             <directory suffix="Test.php">/tests/cases/</directory>
-            <file>/tests/AllTests.php</file>
         </testsuite>
     </testsuites>
     <logging>
