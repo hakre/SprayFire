@@ -11,8 +11,10 @@
 * @copyright Copyright (c) 2011,2012 Charles Sprayberry
 */
 
-// Change the below variables to adjust the SprayFire.Core.PathGenerator
-// implementation created to suite the specific layout or needs of your app
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// The below variables can be changed to adjust the implementation details
+// of the framework's initialization process.
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 // The path where the app, libs, config and web directories are stored
 $installPath = \dirname(__DIR__);
