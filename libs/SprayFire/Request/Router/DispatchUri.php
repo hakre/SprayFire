@@ -53,7 +53,8 @@ class DispatchUri extends \SprayFire\Request\BaseUri implements \SprayFire\Reque
     public function __construct($routedUri, $originalUri, $installDir) {
         parent::__construct($originalUri, $installDir);
         $this->routedUri = $routedUri;
-        $this->parseUri($this->routedUri);
+        $parsedUri = $this->parseUri($this->routedUri);
+        $this->setProperties($parsedUri);
     }
 
     /**
