@@ -55,6 +55,11 @@ namespace SprayFire\Core\Structure;
  * to manipulate the data structure you should really evaluate whether or not
  * this is the best option as you will still have to take into account the
  * public methods that allow the object an array notation.
+ *
+ * @uses ArrayIterator
+ * @uses Countable
+ * @uses IteratorAggregate
+ * @uses SprayFire.Core.Structure.Overloadable
  */
 abstract class DataStorage extends \SprayFire\Core\CoreObject implements \ArrayAccess, \Countable, \IteratorAggregate, \SprayFire\Core\Structure\Overloadable {
 
@@ -218,7 +223,7 @@ abstract class DataStorage extends \SprayFire\Core\CoreObject implements \ArrayA
      * @param $key string
      * @param $value mixed
      * @return mixed
-     * @throws SprayFire.Exceptions.UnsupportedOperationException
+     * @throws SprayFire.Exception.UnsupportedOperationException
      */
     abstract protected function set($key, $value);
 
@@ -226,6 +231,7 @@ abstract class DataStorage extends \SprayFire\Core\CoreObject implements \ArrayA
      * @brief 'hook' to remove the given \a $key from the stored data.
      *
      * @param $key string
+     * @throws SprayFire.Exception.UnsupportedOperationException
      */
     abstract protected function removeKey($key);
 
