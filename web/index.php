@@ -36,6 +36,8 @@ $webPath = $installPath . '/web';
 // This should exists in \a $configPath
 $primaryConfigFile = array('json', 'configuration.json');
 
+$routesConfigFile = array('json', 'routes.json');
+
 // PLEASE DO NOT CHANGE CODE BELOW THIS LINE UNLESS YOU KNOW WHAT YOU ARE DOING!
 
 // SPRAYFIRE SPRAYFIRE SPRAYFIRE SPRAYFIRE SPRAYFIRE SPRAYFIRE SPRAYFIRE SPRAYFIRE
@@ -91,23 +93,26 @@ $PathGenBootstrap->runBootstrap();
 $Directory = $PathGenBootstrap->getPathGenerator();
 
 $primaryConfigPath = $Directory->getConfigPath($primaryConfigFile);
-$primaryConfigObject = '\\SprayFire\\Config\\ArrayConfig';
-$primaryConfigArgument = $defaultPrimaryConfigValues;
-if (\file_exists($primaryConfigPath)) {
-    $primaryConfigObject = '\\SprayFire\\Config\\JsonConfig';
-    $primaryConfigArgument = new \SplFileInfo($primaryConfigPath);
-}
-$PrimaryConfig = new $primaryConfigObject($primaryConfigArgument);
-
-$routesConfigFile = \explode(',', $PrimaryConfig->app->{'routes-config'});
 $routesConfigPath = $Directory->getConfigPath($routesConfigFile);
-$routesConfigObject = '\\SprayFire\\Config\\ArrayConfig';
-$routesConfigArgument = $defaultRoutesConfigValues;
-if (\file_exists($routesConfigPath)) {
-    $routesConfigObject = '\\SprayFire\\Config\\JsonConfig';
-    $routesConfigArgument = new \SplFileInfo($routesConfigPath);
-}
-$RoutesConfig = new $routesConfigObject($routesConfigArgument);
+$configObject = '\\SprayFire\\Config\\JsonConfig';
+
+$configs = array();
+
+$configs[0]['config-object'] = $configObject;
+$configs[0]['config-data'] = $primaryConfigPath;
+$configs[0]['map-key'] = 'PrimaryConfig';
+
+$configs[1]['config-object'] = $configObject;
+$configs[1]['config-data'] = $routesConfigPath;
+$configs[1]['map-key'] = 'RoutesConfig';
+
+$ConfigErrorLog = new \SprayFire\Logger\DevelopmentLogger();
+$ConfigBootstrap = new \SprayFire\Bootstrap\ConfigBootstrap($ConfigErrorLog, $configs);
+$ConfigBootstrap->runBootstrap();
+$ConfigMap = $ConfigBootstrap->getConfigs();
+
+$PrimaryConfig = $ConfigMap->getObject('PrimaryConfig');
+$RoutesConfig = $ConfigMap->getObject('RoutesConfig');
 
 var_dump($RoutesConfig->defaults);
 
