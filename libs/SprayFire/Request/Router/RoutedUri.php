@@ -28,6 +28,8 @@ namespace SprayFire\Request\Router;
  * @brief An extension of the SprayFire.Request.Uri interface to allow
  * for the setting of the original URI string used to map the RoutedUri object
  * created and a means to retrieve the mapped URI string.
+ *
+ * @uses SprayFire.Request.Uri
  */
 interface RoutedUri extends \SprayFire\Request\Uri {
 
