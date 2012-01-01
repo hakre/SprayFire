@@ -38,6 +38,7 @@ $webPath = $installPath . '/web';
 // This should exists in \a $configPath
 $primaryConfigFile = array('json', 'configuration.json');
 
+
 $routesConfigFile = array('json', 'routes.json');
 
 // PLEASE DO NOT CHANGE CODE BELOW THIS LINE UNLESS YOU KNOW WHAT YOU ARE DOING!
@@ -182,7 +183,7 @@ echo <<<HTML
                         <div id="the-team">
                             <h2>the team</h2>
                             <div class="team-member">
-                                <p class="name">Charles Sprayberry</p>
+                                <p class="name">< href="http://www.cspray.github.com/">Charles Sprayberry</a></p>
                                 <p class="title">Benevolent Dictator for Life</p>
                                 <p class="title">Lead Developer &amp; Creator</p>
                                 <p><a href="http://www.github.com/cspray/">github</a></p>
