@@ -2,8 +2,8 @@
 
 /**
  * @file
- * @brief Holds the interface needed to be implemented by objects represetning
- * $_GET, $_POST and other HTTP related superglobals.
+ * @brief Holds an interface needed to route a SprayFire.Request.Uri object into
+ * the appropriate SprayFire.Request.Router.RoutedUri object.
  *
  * @details
  * SprayFire is a fully unit-tested, light-weight PHP framework for developers who
@@ -26,7 +26,7 @@ namespace SprayFire\Request\Router;
 
 /**
  * @brief Implementations should convert a libs.sprayfire.request.Uri object
- * into a libs.sprayfire.request.RoutedUri object, using values from the
+ * into a SprayFire.Request.Router.RoutedUri object, using values from the
  * SprayFire.Config.Configuration object that is passed in the constructor
  * as defaults if needed.
  *
@@ -38,6 +38,7 @@ namespace SprayFire\Request\Router;
  * that can be used by the actual dispatching class.
  *
  * @see https://github.com/cspray/SprayFire/wiki/Routing
+ * @uses SprayFire.Request.Uri
  */
 interface Router {
 
