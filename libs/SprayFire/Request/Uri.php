@@ -40,8 +40,8 @@ namespace SprayFire\Request;
  * If no value is returned from these then the default values should be returned.
  * For this interface the default values are:
  *
- * Default controller = libs.sprayfire.request.Uri::DEFAULT_CONTROLLER
- * Default action = libs.sprayfire.request.Uri::DEFAULT_ACTION
+ * Default controller = SprayFire.Request.Uri::DEFAULT_CONTROLLER
+ * Default action = SprayFire.Request.Uri::DEFAULT_ACTION
  * Default parameters = array()
  */
 interface Uri {
@@ -81,11 +81,11 @@ interface Uri {
     public function getParameters();
 
     /**
-     * @return String representing directory the app, libs, web dir is stored in
-     *
      * @details
      * This is here because the Uri implementation needs to know about the root
      * install directory to remove any erroneous fragments.
+     *
+     * @return String representing directory the app, libs, web dir is stored in
      */
     public function getRootDirectory();
 
