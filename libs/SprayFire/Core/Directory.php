@@ -33,6 +33,9 @@ namespace SprayFire\Core;
  * This is absolutely the preferred method to retrieve paths to directories
  * residing inside installation path directories.  In addition, you can also
  * resolve the absolute paths for files this way.
+ *
+ * @uses SprayFire.Core.PathGenerator
+ * @uses SprayFire.Core.CoreObject
  */
 class Directory extends \SprayFire\Core\CoreObject implements \SprayFire\Core\PathGenerator {
 
@@ -59,6 +62,11 @@ class Directory extends \SprayFire\Core\CoreObject implements \SprayFire\Core\Pa
      */
     protected $appPath;
 
+    /**
+     * @brief The root path holding configuration files
+     *
+     * @property $configPath
+     */
     protected $configPath;
 
     /**
