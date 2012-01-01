@@ -27,6 +27,9 @@ namespace SprayFire\Request;
 /**
  * @brief A base implementation to convert a URI into the appropriate fragments,
  * will also urldecode() the original URI passed.
+ *
+ * @uses SprayFire.Request.Uri
+ * @uses SprayFire.Core.CoreObject
  */
 class BaseUri extends \SprayFire\Core\CoreObject implements \SprayFire\Request\Uri {
 
@@ -70,24 +73,30 @@ class BaseUri extends \SprayFire\Core\CoreObject implements \SprayFire\Request\U
      * @brief Forces the injection of a URI string into the object, this object
      * should forever be associated with the passed URI.
      *
+     * @details
+     * For convenience the \a $rootDir passed can have trailing and leading slashes,
+     * they will be removed.
+     *
      * @param $uri string
+     * @param $rootDir The name of the directory holding libs, app, web directories
      */
     public function __construct($uri, $rootDir) {
         $this->originalUri = $uri;
         $this->installDir = \trim($rootDir, '/ ');
-        $this->parseUri($this->originalUri);
+        $parsedUri = $this->parseUri($this->originalUri);
+        $this->setProperties($parsedUri);
     }
 
     /**
-     * @brief Will parse the passed URI and set the appropriate properties
+     * @brief Will parse the passed URI and return an associative array with the
+     * appropriate fragments stored as 'controller', 'action', 'parameters'.
      *
      * @param $uri String to parse
      */
     protected function parseUri($uri) {
         $decodedUri = \urldecode($uri);
         $uriFragments = $this->trimAndExplodeUri($decodedUri);
-        $parsedUri = $this->parseUriFragments($uriFragments);
-        $this->setProperties($parsedUri);
+        return $this->parseUriFragments($uriFragments);
     }
 
     /**
