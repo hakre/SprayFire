@@ -28,6 +28,9 @@ namespace SprayFire\Request\Router;
  * @brief Framework's implementation of a RoutedUri, provides a means to retrieve
  * a controller, action and parameters, the routed URI string and the original
  * URI string that was mapped to the routed.
+ *
+ * @uses SprayFire.Request.Router.RoutedUri
+ * @uses SprayFire.Request.BaseUri
  */
 class DispatchUri extends \SprayFire\Request\BaseUri implements \SprayFire\Request\Router\RoutedUri {
 
@@ -43,7 +46,9 @@ class DispatchUri extends \SprayFire\Request\BaseUri implements \SprayFire\Reque
      * @brief Will take a routed URI string and then set the appropriate URI
      * properties based on the parsing of that string.
      *
-     * @param $uri The routed URI string
+     * @param $routedUri The routed URI string
+     * @param $originalUri The original URI string used to create the mapping
+     * @param $installDir The name of the directory storing app and libs folders
      */
     public function __construct($routedUri, $originalUri, $installDir) {
         parent::__construct($originalUri, $installDir);
