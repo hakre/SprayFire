@@ -27,8 +27,9 @@ namespace SprayFire\Logger;
  * to store error messages.
  *
  * @uses SprayFire.Logger.Log
+ * @uses SprayFire.Core.CoreObject
  */
-class SystemLogger implements \SprayFire\Logger\Log {
+class SystemLogger extends \SprayFire\Core\CoreObject implements \SprayFire\Logger\Log {
 
     /**
      * @brief An implementation that uses PHP built in <code>error_log</code>
