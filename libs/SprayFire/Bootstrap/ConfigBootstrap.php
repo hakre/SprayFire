@@ -46,10 +46,10 @@ namespace SprayFire\Bootstrap;
  *
  * @uses ReflectionClass
  * @uses SprayFire.Config.Configuration
- * @uses SprayFire.Core.Structure.RestrictedMap
- * @uses SprayFire.Bootstrap.Bootstrapper
  * @uses SprayFire.Logger.Log
+ * @uses SprayFire.Bootstrap.Bootstrapper
  * @uses SprayFire.Logger.CoreObject
+ * @uses SprayFire.Core.Structure.RestrictedMap
  */
 class ConfigBootstrap extends \SprayFire\Logger\CoreObject implements \SprayFire\Bootstrap\Bootstrapper {
 
@@ -135,5 +135,5 @@ class ConfigBootstrap extends \SprayFire\Logger\CoreObject implements \SprayFire
     public function getConfigs() {
         return $this->ConfigMap;
     }
-    
+
 }
