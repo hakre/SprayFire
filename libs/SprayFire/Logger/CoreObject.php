@@ -32,6 +32,7 @@ namespace SprayFire\Logger;
  * of call.  The timestamp format by default is `M-d-Y H:i:s` but you can change
  * the timestamp format by passing the optional second parameter on construction.
  *
+ * @uses SprayFire.Logger.Log
  * @uses SprayFire.Core.CoreObject
  */
 abstract class CoreObject extends \SprayFire\Core\CoreObject {
