@@ -10,7 +10,6 @@
             "auto-start": "off",
             "engine": "default"
         },
-        "routes-config": "json,routes.json",
         "ini-settings": {
             "global": {
                 "allow_url_fopen": "0",
