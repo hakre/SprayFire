@@ -2,8 +2,7 @@
 
 /**
  * @file
- * @brief Holds an abstract class that allows messages to be logged to a file on
- * disk.
+ * @brief Holds a class that allows messages to be logged to a file on disk.
  *
  * @details
  * SprayFire is a fully unit-tested, light-weight PHP framework for developers who
@@ -27,8 +26,9 @@ namespace SprayFire\Logger;
 /**
  * @brief A framework implemented class that adds a timestamp log message to
  * the end of an injected file.
+ *
  */
-class FileLogger implements \SprayFire\Logger\Log  {
+class FileLogger extends \SprayFire\Core\CoreObject implements \SprayFire\Logger\Log  {
 
     /**
      * @brief A SplFileObject that should be used to write log messages to.
