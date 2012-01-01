@@ -113,6 +113,23 @@ class MutableStorageTest extends PHPUnit_Framework_TestCase {
         $this->assertSame($Second, $Storage[1]);
     }
 
+    public function testMutableIterator() {
+        $charles = 'sprayfire dictator';
+        $dyana = 'charles love';
+        $sprayfire = 'the project';
+        $data = \compact('charles', 'dyana', 'sprayfire');
+        $expectedKeys = array('charles', 'dyana', 'sprayfire');
+        $expectedValues = array('sprayfire dictator', 'charles love', 'the project');
+
+        $Storage = new \SprayFire\Core\Structure\MutableStorage($data);
+        $i = 0;
+        foreach ($Storage as $key => $value) {
+            $this->assertSame($expectedKeys[$i], $key);
+            $this->assertSame($expectedValues[$i], $value);
+            $i++;
+        }
+    }
+
     /**
      * @expectedException \UnexpectedValueException
      */
