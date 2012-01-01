@@ -36,27 +36,6 @@ $webPath = $installPath . '/web';
 // This should exists in \a $configPath
 $primaryConfigFile = array('json', 'configuration.json');
 
-// This will be used if a file does not exist at \a $primaryConfigFile
-$defaultPrimaryConfigValues = array(
-    'SprayFire' => array(
-        'version' => '0.1.0-alpha'
-    ),
-    'app' => array(
-        'version' => '0.0.0-alpha',
-        'name' => 'YourApp',
-        'routes-config' => 'json,routes.json',
-        'development-mode' => 'off'
-    )
-);
-
-// This will be used if a file does not exist at \a $PrimaryConfig->app->{'routes-config'}
-$defaultRoutesConfigValues = array(
-    'defaults' => array(
-        'controller' => 'pages',
-        'action' => 'index'
-    )
-);
-
 // PLEASE DO NOT CHANGE CODE BELOW THIS LINE UNLESS YOU KNOW WHAT YOU ARE DOING!
 
 // SPRAYFIRE SPRAYFIRE SPRAYFIRE SPRAYFIRE SPRAYFIRE SPRAYFIRE SPRAYFIRE SPRAYFIRE
