@@ -111,7 +111,7 @@ class BaseUri extends \SprayFire\Core\CoreObject implements \SprayFire\Request\U
         $path = $parsedUri['path'];
         $path = \trim($path, '/');
         $explodedPath = \explode('/', $path);
-        if ($explodedPath[0] === $this->installDir) {
+        if ($explodedPath[0] === $this->getRootDirectory()) {
             unset($explodedPath[0]);
         }
         return \array_values($explodedPath);
