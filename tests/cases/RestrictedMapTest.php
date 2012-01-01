@@ -38,7 +38,7 @@ if (!class_exists('\\SprayFire\\Core\\Structure\\ImmutableStorage')) {
 if (!class_exists('\\SprayFire\\Core\\Structure\\GenericMap')) {
     include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/Structure/GenericMap.php';
 }
-if (!class_exists('\\SprayFire\\Core\\Structures\\RestrictedMap')) {
+if (!class_exists('\\SprayFire\\Core\\Structure\\RestrictedMap')) {
     include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/Structure/RestrictedMap.php';
 }
 if (!class_exists('TestObject')) {

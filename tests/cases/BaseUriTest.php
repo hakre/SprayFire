@@ -17,6 +17,19 @@
  * @copyright Copyright (c) 2011, Charles Sprayberry
  */
 
+if (!interface_exists('\\SprayFire\\Core\\Object')) {
+    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/Object.php';
+}
+if (!class_exists('\\SprayFire\\Core\\CoreObject')) {
+    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/CoreObject.php';
+}
+if (!interface_exists('\\SprayFire\\Request\\Uri')) {
+    include \SPRAYFIRE_ROOT .'/libs/SprayFire/Request/Uri.php';
+}
+if (!class_exists('\\SprayFire\\Request\\BaseUri')) {
+    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Request/BaseUri.php';
+}
+
 /**
  *
  */
@@ -27,21 +40,7 @@ class BaseUriTest extends PHPUnit_Framework_TestCase {
     public function setUp() {
         $this->baseDir = '/' . \basename(\SPRAYFIRE_ROOT) . '/';
 
-        if (!interface_exists('\\SprayFire\\Core\\Object')) {
-            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/Object.php';
-        }
-        if (!class_exists('\\SprayFire\\Core\\CoreObject')) {
-            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/CoreObject.php';
-        }
-        if (!class_exists('TestObject')) {
-            include './helpers/TestObject.php';
-        }
-        if (!interface_exists('\\SprayFire\\Request\\Uri')) {
-            include \SPRAYFIRE_ROOT .'/libs/SprayFire/Request/Uri.php';
-        }
-        if (!class_exists('\\SprayFire\\Request\\BaseUri')) {
-            include \SPRAYFIRE_ROOT . '/libs/SprayFire/Request/BaseUri.php';
-        }
+
     }
 
     public function testBaseUriWithNoPath() {
