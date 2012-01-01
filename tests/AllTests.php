@@ -22,6 +22,7 @@ include 'FileLoggerTest.php';
 include 'DevelopmentLoggerTest.php';
 include 'ClassLoaderTest.php';
 include 'PathGeneratorBootstrapTest.php';
+include 'ConfigBootstrapTest.php';
 
 /**
  * @codeCoverageIgnore
@@ -47,6 +48,7 @@ class AllTests extends PHPUnit_Framework_TestSuite {
         $Suite->addTestSuite('DevelopmentLoggerTest');
         $Suite->addTestSuite('ClassLoaderTest');
         $Suite->addTestSuite('PathGeneratorBootstrapTest');
+        $Suite->addTestSuite('ConfigBootstrapTest');
 
         return $Suite;
     }
