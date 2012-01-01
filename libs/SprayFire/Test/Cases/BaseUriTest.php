@@ -17,27 +17,12 @@
  * @copyright Copyright (c) 2011, Charles Sprayberry
  */
 
-if (!interface_exists('\\SprayFire\\Core\\Object')) {
-    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/Object.php';
-}
-if (!class_exists('\\SprayFire\\Core\\CoreObject')) {
-    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/CoreObject.php';
-}
-if (!interface_exists('\\SprayFire\\Request\\Uri')) {
-    include \SPRAYFIRE_ROOT .'/libs/SprayFire/Request/Uri.php';
-}
-if (!class_exists('\\SprayFire\\Request\\BaseUri')) {
-    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Request/BaseUri.php';
-}
-
-if (!class_exists('TestObject')) {
-    include \SPRAYFIRE_ROOT . '/tests/helpers/TestObject.php';
-}
+namespace SprayFire\Test\Cases;
 
 /**
  *
  */
-class BaseUriTest extends PHPUnit_Framework_TestCase {
+class BaseUriTest extends \PHPUnit_Framework_TestCase {
 
     private $baseDir;
 
@@ -131,7 +116,7 @@ class BaseUriTest extends PHPUnit_Framework_TestCase {
 
     public function testUriEqualsWithNonUriObject() {
         $FirstUri = new \SprayFire\Request\BaseUri($this->baseDir . 'dogs/train/:stay', $this->baseDir);
-        $SecondUri = new TestObject();
+        $SecondUri = new \SprayFire\Test\Helpers\TestObject();
         $this->assertFalse($FirstUri->equals($SecondUri));
     }
 

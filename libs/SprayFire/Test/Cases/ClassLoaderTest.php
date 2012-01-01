@@ -21,18 +21,16 @@
  * @copyright Copyright (c) 2011, Charles Sprayberry
  */
 
-if (!class_exists('\\SprayFire\\Core\\ClassLoader')) {
-    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/ClassLoader.php';
-}
+namespace SprayFire\Test\Cases;
 
 /**
  * @brief
  */
-class ClassLoaderTest extends PHPUnit_Framework_TestCase {
+class ClassLoaderTest extends \PHPUnit_Framework_TestCase {
 
     public function testNamespaceDirectoryLoad() {
         $ClassLoader = new \SprayFire\Core\ClassLoader();
-        $ClassLoader->registerNamespaceDirectory('TestApp', \SPRAYFIRE_ROOT . '/tests/mockframework/app');
+        $ClassLoader->registerNamespaceDirectory('TestApp', \SPRAYFIRE_ROOT . '/libs/SprayFire/Test/mockframework/app');
         $this->assertTrue($ClassLoader->load('\\TestApp\\Controller\\TestController'));
         $Controller = new \TestApp\Controller\TestController();
         $this->assertTrue(\is_object($Controller));

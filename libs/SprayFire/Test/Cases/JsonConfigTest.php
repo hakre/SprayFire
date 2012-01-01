@@ -17,42 +17,16 @@
  * @copyright Copyright (c) 2011, Charles Sprayberry
  */
 
-if (!interface_exists('\\SprayFire\\Core\\Object')) {
-    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/Object.php';
-}
-if (!class_exists('\\SprayFire\\Core\\CoreObject')) {
-    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/CoreObject.php';
-}
-if (!interface_exists('\\SprayFire\\Core\\Structure\\Overloadable')) {
-    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/Structure/Overloadable.php';
-}
-if (!class_exists('\\SprayFire\\Core\\Structure\\DataStorage')) {
-    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/Structure/DataStorage.php';
-}
-if (!class_exists('\\SprayFire\\Core\\Structure\\ImmutableStorage')) {
-    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/Structure/ImmutableStorage.php';
-}
-if (!interface_exists('\\SprayFire\\Config\\Configuration')) {
-    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Config/Configuration.php';
-}
-if (!class_exists('\\SprayFire\\Config\\JsonConfig')) {
-    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Config/JsonConfig.php';
-}
-if (!class_exists('\\SprayFire\\Exception\\UnsupportedOperationException')) {
-    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Exception/UnsupportedOperationException.php';
-}
-if (!class_exists('CrappyJsonConfig')) {
-    include \SPRAYFIRE_ROOT . '/tests/helpers/CrappyJsonConfig.php';
-}
+namespace SprayFire\Test\Cases;
 
 /**
  *
  */
-class JsonConfigTest extends PHPUnit_Framework_TestCase {
+class JsonConfigTest extends \PHPUnit_Framework_TestCase {
 
     public function testJsonConfigObject() {
-        $filePath = \SPRAYFIRE_ROOT . '/tests/mockframework/app/TestApp/config/json/test-config.json';
-        $File = new SplFileInfo($filePath);
+        $filePath = \SPRAYFIRE_ROOT . '/libs/SprayFire/Test/mockframework/app/TestApp/config/json/test-config.json';
+        $File = new \SplFileInfo($filePath);
         $Config = new \SprayFire\Config\JsonConfig($File);
 
         $expectedNoExist = null;
@@ -91,7 +65,7 @@ class JsonConfigTest extends PHPUnit_Framework_TestCase {
         $actualAppVersion = $Config->app->version;
         $this->assertSame($expectedAppVersion, $actualAppVersion);
 
-        $expectedToString = 'SprayFire\Config\JsonConfig::' . \SPRAYFIRE_ROOT . '/tests/mockframework/app/TestApp/config/json/test-config.json';
+        $expectedToString = 'SprayFire\Config\JsonConfig::' . \SPRAYFIRE_ROOT . '/libs/SprayFire/Test/mockframework/app/TestApp/config/json/test-config.json';
         $actualToString = $Config->__toString();
         $this->assertSame($expectedToString, $actualToString);
     }
@@ -108,7 +82,7 @@ class JsonConfigTest extends PHPUnit_Framework_TestCase {
      * @expectedException \InvalidArgumentException
      */
     public function testInvalidJsonFile() {
-        $filePath = \SPRAYFIRE_ROOT . '/tests/mockframework/libs/SprayFire/Config/json/test-invalid-config.json';
+        $filePath = \SPRAYFIRE_ROOT . '/libs/SprayFire/Test/mockframework/libs/SprayFire/Config/json/test-invalid-config.json';
         $File = new \SplFileInfo($filePath);
         $Config = new \SprayFire\Config\JsonConfig($File);
     }
@@ -117,8 +91,8 @@ class JsonConfigTest extends PHPUnit_Framework_TestCase {
      * @expectedException \UnexpectedValueException
      */
     public function testCrappyExtension() {
-        $File = new SplFileInfo(\SPRAYFIRE_ROOT . '/tests/mockframework/app/TestApp/config/json/test-config.json');
-        $Config = new CrappyJsonConfig($File);
+        $File = new \SplFileInfo(\SPRAYFIRE_ROOT . '/libs/SprayFire/Test/mockframework/app/TestApp/config/json/test-config.json');
+        $Config = new \SprayFire\Test\Helpers\CrappyJsonConfig($File);
     }
 
 }

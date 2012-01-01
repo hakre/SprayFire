@@ -20,32 +20,12 @@
  * @copyright Copyright (c) 2011, Charles Sprayberry OSI MIT License <http://www.opensource.org/licenses/mit-license.php>
  */
 
-if (!interface_exists('\\SprayFire\\Core\\Object')) {
-    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/Object.php';
-}
-if (!class_exists('\\SprayFire\\Core\\CoreObject')) {
-    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/CoreObject.php';
-}
-if (!class_exists('TestObject')) {
-    include \SPRAYFIRE_ROOT . '/tests/helpers/TestObject.php';
-}
-if (!interface_exists('\\SprayFire\\Request\\Uri')) {
-    include \SPRAYFIRE_ROOT .'/libs/SprayFire/Request/Uri.php';
-}
-if (!class_exists('\\SprayFire\\Request\\BaseUri')) {
-    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Request/BaseUri.php';
-}
-if (!interface_exists('\\SprayFire\\Request\\Router\\RoutedUri')) {
-    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Request/Router/RoutedUri.php';
-}
-if (!class_exists('\\SprayFire\\Request\\Router\\DispatchUri')) {
-    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Request/Router/DispatchUri.php';
-}
+namespace SprayFire\Test\Cases;
 
 /**
  *
  */
-class DispatchUriTest extends PHPUnit_Framework_TestCase {
+class DispatchUriTest extends \PHPUnit_Framework_TestCase {
 
     protected $installDir;
 

@@ -21,12 +21,14 @@
  * @copyright Copyright (c) 2011, Charles Sprayberry
  */
 
+namespace SprayFire\Test\Helpers;
+
 /**
  * @brief
  */
-class CrappyMutableStorage extends \SprayFire\Core\Structure\MutableStorage {
+class CrappyJsonConfig extends \SprayFire\Config\JsonConfig {
 
-    protected function convertDataDeep(array $array) {
+    protected function convertDataDeep(array $data) {
         return null;
     }
 

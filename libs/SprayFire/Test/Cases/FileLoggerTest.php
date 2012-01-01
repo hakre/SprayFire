@@ -21,23 +21,12 @@
  * @copyright Copyright (c) 2011, Charles Sprayberry
  */
 
-if (!interface_exists('\\SprayFire\\Core\\Object')) {
-    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/Object.php';
-}
-if (!class_exists('\\SprayFire\\Core\\CoreObject')) {
-    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/CoreObject.php';
-}
-if (!interface_exists('\\SprayFire\\Logger\\Log')) {
-    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Logger/Log.php';
-}
-if (!class_exists('\\SprayFire\\Logger\\FileLogger')) {
-    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Logger/FileLogger.php';
-}
+namespace SprayFire\Test\Cases;
 
 /**
  * @brief
  */
-class FileLoggerTest extends PHPUnit_Framework_TestCase {
+class FileLoggerTest extends \PHPUnit_Framework_TestCase {
 
     private $readOnlyLog;
 
@@ -48,7 +37,7 @@ class FileLoggerTest extends PHPUnit_Framework_TestCase {
     public function setUp() {
 
 
-        $logPath = \SPRAYFIRE_ROOT . '/tests/mockframework/logs';
+        $logPath = \SPRAYFIRE_ROOT . '/libs/SprayFire/Test/mockframework/logs';
 
         $this->readOnlyLog = $logPath . '/readonly-log.txt';
         $this->writableLog = $logPath . 'writable-log.txt';

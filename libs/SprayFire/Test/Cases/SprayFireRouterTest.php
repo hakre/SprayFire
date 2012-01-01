@@ -19,69 +19,13 @@
  * @author Charles Sprayberry cspray at gmail dot com
  * @copyright Copyright (c) 2011, Charles Sprayberry OSI MIT License <http://www.opensource.org/licenses/mit-license.php>
  */
-/**
- * @namespace libs.sprayfire.request
- * @brief Contains all classes and interfaces needed to parse the requested URI
- * and manage the HTTP data, both headers and normal GET/POST data, that get passed
- * in each request.
- */
-if (!interface_exists('\\SprayFire\\Core\\Object')) {
-    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/Object.php';
-}
-if (!class_exists('\\SprayFire\\Core\\CoreObject')) {
-    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/CoreObject.php';
-}
-if (!class_exists('\\SprayFire\\Logger\\CoreObject')) {
-    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Logger/CoreObject.php';
-}
-if (!interface_exists('\\SprayFire\\Request\\Uri')) {
-    include \SPRAYFIRE_ROOT .'/libs/SprayFire/Request/Uri.php';
-}
-if (!class_exists('\\SprayFire\\Request\\BaseUri')) {
-    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Request/BaseUri.php';
-}
-if (!interface_exists('\\SprayFire\\Request\\Router\\RoutedUri')) {
-    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Request/Router/RoutedUri.php';
-}
-if (!class_exists('\\SprayFire\\Request\\Router\\DispatchUri')) {
-    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Request/Router/DispatchUri.php';
-}
-if (!interface_exists('\\SprayFire\\Request\\Router\\Router')) {
-    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Request/Router/Router.php';
-}
-if (!class_exists('\\SprayFire\\Request\\Router\\SprayFireRouter')) {
-    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Request/Router/SprayFireRouter.php';
-}
-if (!interface_exists('\\SprayFire\\Core\\Structure\\Overloadable')) {
-    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/Structure/Overloadable.php';
-}
-if (!class_exists('\\SprayFire\\Core\\Structure\\DataStorage')) {
-    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/Structure/DataStorage.php';
-}
-if (!class_exists('\\SprayFire\\Core\\Structure\\ImmutableStorage')) {
-    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Core/Structure/ImmutableStorage.php';
-}
-if (!interface_exists('\\SprayFire\\Config\\Configuration')) {
-    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Config/Configuration.php';
-}
-if (!class_exists('\\SprayFire\\Config\\JsonConfig')) {
-    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Config/JsonConfig.php';
-}
-if (!class_exists('\\SprayFire\\Exception\\UnsupportedOperationException')) {
-    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Exception/UnsupportedOperationException.php';
-}
-if (!interface_exists('\\SprayFire\\Logger\\Log')) {
-    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Logger/Log.php';
-}
-if (!class_exists('\\SprayFire\\Logger\\FileLogger')) {
-    include \SPRAYFIRE_ROOT . '/libs/SprayFire/Logger/FileLogger.php';
-}
 
+namespace SprayFire\Test\Cases;
 
 /**
  *
  */
-class SprayFireRouterTest extends PHPUnit_Framework_TestCase {
+class SprayFireRouterTest extends \PHPUnit_Framework_TestCase {
 
     private $validLogPath;
 
@@ -90,15 +34,15 @@ class SprayFireRouterTest extends PHPUnit_Framework_TestCase {
     public function setUp() {
 
 
-        $appPath = \SPRAYFIRE_ROOT . '/tests/mockframework/app';
-        $logPath = \SPRAYFIRE_ROOT . '/tests/mockframework/logs';
+        $appPath = \SPRAYFIRE_ROOT . '/libs/SprayFire/Test/mockframework/app';
+        $logPath = \SPRAYFIRE_ROOT . '/libs/SprayFire/Test/mockframework/logs';
         \chmod($logPath, 0777);
         $this->validLogPath = $logPath . '/no-errors.txt';
         $this->invalidLogPath = $logPath . '/config/error.txt';
     }
 
     public function testRootUriRouting() {
-        $routesConfigPath = \SPRAYFIRE_ROOT . '/tests/mockframework/app/TestApp/Config/json/routes.json';
+        $routesConfigPath = \SPRAYFIRE_ROOT . '/libs/SprayFire/Test/mockframework/app/TestApp/Config/json/routes.json';
         $RoutesConfigFile = new \SplFileInfo($routesConfigPath);
         $RoutesConfig = new \SprayFire\Config\JsonConfig($RoutesConfigFile);
 
@@ -125,7 +69,7 @@ class SprayFireRouterTest extends PHPUnit_Framework_TestCase {
     }
 
     public function testRoutedUriWithControllerParametersUsingWildCard() {
-        $routesConfigPath = \SPRAYFIRE_ROOT . '/tests/mockframework/app/TestApp/Config/json/routes.json';
+        $routesConfigPath = \SPRAYFIRE_ROOT . '/libs/SprayFire/Test/mockframework/app/TestApp/Config/json/routes.json';
         $RoutesConfigFile = new \SplFileInfo($routesConfigPath);
         $RoutesConfig = new \SprayFire\Config\JsonConfig($RoutesConfigFile);
 
@@ -151,7 +95,7 @@ class SprayFireRouterTest extends PHPUnit_Framework_TestCase {
     }
 
     public function testRoutedUriWithControllersParametersUsingSpecific() {
-        $routesConfigPath = \SPRAYFIRE_ROOT . '/tests/mockframework/app/TestApp/config/json/routes.json';
+        $routesConfigPath = \SPRAYFIRE_ROOT . '/libs/SprayFire/Test/mockframework/app/TestApp/config/json/routes.json';
         $RoutesConfigFile = new \SplFileInfo($routesConfigPath);
         $RoutesConfig = new \SprayFire\Config\JsonConfig($RoutesConfigFile);
 
@@ -177,7 +121,7 @@ class SprayFireRouterTest extends PHPUnit_Framework_TestCase {
     }
 
     public function testRoutedUriWithControllersParametersUsingSpecificAndNoControllerSet() {
-        $routesConfigPath = \SPRAYFIRE_ROOT . '/tests/mockframework/app/TestApp/config/json/routes.json';
+        $routesConfigPath = \SPRAYFIRE_ROOT . '/libs/SprayFire/Test/mockframework/app/TestApp/config/json/routes.json';
         $RoutesConfigFile = new \SplFileInfo($routesConfigPath);
         $RoutesConfig = new \SprayFire\Config\JsonConfig($RoutesConfigFile);
 
@@ -203,7 +147,7 @@ class SprayFireRouterTest extends PHPUnit_Framework_TestCase {
     }
 
     public function testRoutedUriWithOnlyOneParameter() {
-        $routesConfigPath = \SPRAYFIRE_ROOT . '/tests/mockframework/app/TestApp/config/json/routes.json';
+        $routesConfigPath = \SPRAYFIRE_ROOT . '/libs/SprayFire/Test/mockframework/app/TestApp/config/json/routes.json';
         $RoutesConfigFile = new \SplFileInfo($routesConfigPath);
         $RoutesConfig = new \SprayFire\Config\JsonConfig($RoutesConfigFile);
 
@@ -229,7 +173,7 @@ class SprayFireRouterTest extends PHPUnit_Framework_TestCase {
     }
 
     public function testRoutedUriWithOnlyTwoParameters() {
-        $routesConfigPath = \SPRAYFIRE_ROOT .  '/tests/mockframework/app/TestApp/config/json/routes.json';
+        $routesConfigPath = \SPRAYFIRE_ROOT .  '/libs/SprayFire/Test/mockframework/app/TestApp/config/json/routes.json';
         $RoutesConfigFile = new \SplFileInfo($routesConfigPath);
         $RoutesConfig = new \SprayFire\Config\JsonConfig($RoutesConfigFile);
 
@@ -255,7 +199,7 @@ class SprayFireRouterTest extends PHPUnit_Framework_TestCase {
     }
 
     public function testRoutedUriWithWildCardAndNoDefinedAction() {
-        $routesConfigPath = \SPRAYFIRE_ROOT .  '/tests/mockframework/app/TestApp/config/json/routes.json';
+        $routesConfigPath = \SPRAYFIRE_ROOT .  '/libs/SprayFire/Test/mockframework/app/TestApp/config/json/routes.json';
         $RoutesConfigFile = new \SplFileInfo($routesConfigPath);
         $RoutesConfig = new \SprayFire\Config\JsonConfig($RoutesConfigFile);
 
@@ -281,7 +225,7 @@ class SprayFireRouterTest extends PHPUnit_Framework_TestCase {
     }
 
     public function testRoutedUriWithInvalidConfiguration() {
-        $routesConfigPath = \SPRAYFIRE_ROOT .  '/tests/mockframework/app/TestApp/config/json/invalid-routes.json';
+        $routesConfigPath = \SPRAYFIRE_ROOT .  '/libs/SprayFire/Test/mockframework/app/TestApp/config/json/invalid-routes.json';
         $RoutesConfigFile = new \SplFileInfo($routesConfigPath);
         $RoutesConfig = new \SprayFire\Config\JsonConfig($RoutesConfigFile);
 
@@ -309,7 +253,7 @@ class SprayFireRouterTest extends PHPUnit_Framework_TestCase {
     }
 
     public function testDefaultControllerAndActionSetInConfigWithSpecificPattern() {
-        $routesConfigPath = \SPRAYFIRE_ROOT . '/tests/mockframework/app/TestApp/config/json/routes.json';
+        $routesConfigPath = \SPRAYFIRE_ROOT . '/libs/SprayFire/Test/mockframework/app/TestApp/config/json/routes.json';
         $RoutesConfigFile = new \SplFileInfo($routesConfigPath);
         $RoutesConfig = new \SprayFire\Config\JsonConfig($RoutesConfigFile);
 
