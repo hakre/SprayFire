@@ -23,8 +23,10 @@
 namespace SprayFire\Logger;
 
 /**
- * @brief A SprayFire.Logger.Log class that should be used if there is a problem
- * creating a normal SprayFire.Logger.FileLogger
+ * @brief A SprayFire.Logger.Log implementation that utilizes the system error log
+ * to store error messages.
+ *
+ * @uses SprayFire.Logger.Log
  */
 class SystemLogger implements \SprayFire\Logger\Log {
 
