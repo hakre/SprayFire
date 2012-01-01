@@ -21,11 +21,15 @@
  * @author Charles Sprayberry cspray at gmail dot com
  * @copyright Copyright (c) 2011, Charles Sprayberry
  */
+
 namespace SprayFire\Logger;
 
 /**
  * @brief A more flexible implementation of the SprayFire.Logger.Log interface that
  * allows for much more information to be logged about a particular event.
+ *
+ * @uses SprayFire.Logger.Log
+ * @uses SprayFire.Core.CoreObject
  */
 class DevelopmentLogger extends \SprayFire\Core\CoreObject implements \SprayFire\Logger\Log {
 
