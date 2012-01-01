@@ -2,9 +2,9 @@
 
 /**
  * @file
- * @brief The framework's implementation of the SprayFire.Request.Router interface
- * that allows for a Uri to be parsed and converted into a RoutedUri based on a
- * SprayFire.Config.Configuration object injected at construction.
+ * @brief The framework's implementation of the SprayFire.Request.Router.Router interface
+ * that allows for a Uri to be parsed and converted into a SprayFire.Request.Router.RoutedUri
+ * based on a SprayFire.Config.Configuration object injected at construction.
  *
  * @details
  * SprayFire is a fully unit-tested, light-weight PHP framework for developers who
@@ -32,8 +32,15 @@ namespace SprayFire\Request\Router;
  *
  * @details
  * This class **GUARANTEES** that when <code>SprayFireRouter::getRoutedUri($Uri)</code>
- * is invoked an appropriate SprayFire.Request.RoutedUri object will be returned,
+ * is invoked an appropriate SprayFire.Request.Router.RoutedUri object will be returned,
  * even if an invalid configuration file is used.
+ *
+ * @uses SprayFire.Request.Router.Router
+ * @uses SprayFire.Logger.Log
+ * @uses SprayFire.Config.Configuration
+ * @uses SprayFire.Request.Uri
+ * @uses SprayFire.Logger.CoreObject
+ * @uses SprayFire.Request.Router.DispatchUri
  */
 class SprayFireRouter extends \SprayFire\Logger\CoreObject implements \SprayFire\Request\Router\Router {
 
@@ -108,7 +115,7 @@ class SprayFireRouter extends \SprayFire\Logger\CoreObject implements \SprayFire
 
     /**
      * @brief Will take a SprayFire.Request.Uri object and create an appropriate
-     * SprayFire.Request.RoutedUri object.
+     * SprayFire.Request.Router.RoutedUri object.
      *
      * @details
      * This function will:
@@ -121,7 +128,7 @@ class SprayFireRouter extends \SprayFire\Logger\CoreObject implements \SprayFire
      * pattern does not exist checks the wild-card SprayFireURI pattern.
      * - Creates the mapped URI based on the controller and action set in the routing
      * or based on the default/requested controller and action
-     * - Returns a properly instantiated SprayFire.Request.DispatchUri object
+     * - Returns a properly instantiated SprayFire.Request.Router.DispatchUri object
      *
      * @param $Uri SprayFire.Request.Uri
      * @return SprayFire.Request.Router.RoutedUri This implementation returns
