@@ -70,7 +70,7 @@ class JsonConfig extends \SprayFire\Core\Structure\ImmutableStorage implements \
      * @property $ConfigFileInfo
      * @see http://us3.php.net/manual/en/class.splfileinfo.php
      */
-    private $ConfigFileInfo;
+    protected $ConfigFileInfo;
 
     /**
      * @brief Parses a file represented by the \a $FileInfo object and prepares
@@ -92,7 +92,7 @@ class JsonConfig extends \SprayFire\Core\Structure\ImmutableStorage implements \
      * @return Associative array representing key/value pairs held in JSON config
      * @throws InvalidArgumentException
      */
-    private function getDecodedJson() {
+    protected function getDecodedJson() {
         $decodedJson = \json_decode($this->getFileContents(), true);
         $lastJsonError = \json_last_error();
         if ($lastJsonError !== \JSON_ERROR_NONE || \is_null($decodedJson)) {
@@ -105,7 +105,7 @@ class JsonConfig extends \SprayFire\Core\Structure\ImmutableStorage implements \
      * @return The contents of the file represented by \a $ConfigFileInfo
      * @throws InvalidArgumentException
      */
-    private function getFileContents() {
+    protected function getFileContents() {
         if (!$this->ConfigFileInfo->isFile() && !$this->ConfigFileInfo->isLink()) {
             throw new \InvalidArgumentException('There is an error with the path to the configuration file, it does not appear to be a valid file or symlink.');
         }
