@@ -29,7 +29,9 @@ namespace SprayFire\Core;
  * assuming they abide to the rules set forth by the framework.
  *
  * @details
- *
+ * Will load any class belonging to a top-level namespace that is registered.  You
+ * can register a namespace directory by passing the top-level namespace and the
+ * complete path to the directory holding that namespace to registerNamespaceDirectory().
  */
 class ClassLoader {
 
