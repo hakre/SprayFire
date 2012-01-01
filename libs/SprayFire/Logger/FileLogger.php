@@ -27,6 +27,10 @@ namespace SprayFire\Logger;
  * @brief A framework implemented class that adds a timestamp log message to
  * the end of an injected file.
  *
+ * @uses SplFileInfo
+ * @uses InvalidArgumentException
+ * @uses SprayFire.Logger.Log
+ * @uses SprayFire.Core.CoreObject
  */
 class FileLogger extends \SprayFire\Core\CoreObject implements \SprayFire\Logger\Log  {
 
