@@ -19,7 +19,7 @@
  * OSI MIT License <http://www.opensource.org/licenses/mit-license.php>
  *
  * @author Charles Sprayberry cspray at gmail dot com
- * @copyright Copyright (c) 2011, Charles Sprayberry
+ * @copyright Copyright (c) 2011,2012 Charles Sprayberry
  */
 
 namespace SprayFire\Config;
