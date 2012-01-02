@@ -53,14 +53,14 @@ namespace SprayFire\Config;
  *
  * echo $Config['app']['development-settings']['debug-mode'];   // 'on'
  *
- * // ?? I mixed these to show that it is possible.  It is not recommended however
+ * // I mixed these to show that it is possible.  It is not recommended however
  * echo $Config->app['development-settings']->{'display-errors'};   // 1
  * </pre>
  *
  * @uses SplFileInfo
  * @uses InvalidArgumentException
- * @uses SprayFire.Core.Structure.ImmutableStorage
  * @uses SprayFire.Config.Configuration
+ * @uses SprayFire.Core.Structure.ImmutableStorage
  */
 class JsonConfig extends \SprayFire\Core\Structure\ImmutableStorage implements \SprayFire\Config\Configuration {
 
@@ -91,6 +91,7 @@ class JsonConfig extends \SprayFire\Core\Structure\ImmutableStorage implements \
      *
      * @return Associative array representing key/value pairs held in JSON config
      * @throws InvalidArgumentException
+     * @see http://www.php.net/manual/en/book.json.php
      */
     protected function getDecodedJson() {
         $decodedJson = \json_decode($this->getFileContents(), true);
@@ -104,6 +105,7 @@ class JsonConfig extends \SprayFire\Core\Structure\ImmutableStorage implements \
     /**
      * @return The contents of the file represented by \a $ConfigFileInfo
      * @throws InvalidArgumentException
+     * @see http://www.php.net/manual/en/function.file-get-contents.php
      */
     protected function getFileContents() {
         if (!$this->ConfigFileInfo->isFile() && !$this->ConfigFileInfo->isLink()) {
