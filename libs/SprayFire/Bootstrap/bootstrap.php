@@ -1,5 +1,7 @@
 <?php
 
+$startTime = \microtime(true);
+
 $errors = array();
 
 $errorCallback = function($severity, $message, $file = null, $line = null, $context = null) use (&$errors) {
@@ -49,6 +51,14 @@ $PathGenBootstrap->runBootstrap();
 
 $Directory = $PathGenBootstrap->getPathGenerator();
 
+// We are setting exception handler here because later in the bootstrap if it is
+// found that we cannot continue with processing the request we will simply throw
+// an uncaught exception that will wind up sending an internal error response.
+$uncaughExceptionContent = $Directory->getWebPath('500.html');
+$SystemLogger = new \SprayFire\Logger\SystemLogger();
+$ExceptionHandler = new \SprayFire\Core\Handler\ExceptionHandler($SystemLogger, $uncaughExceptionContent);
+\set_exception_handler(array($ExceptionHandler, 'trap'));
+
 $primaryConfigPath = $Directory->getConfigPath($primaryConfigFile);
 $routesConfigPath = $Directory->getConfigPath($routesConfigFile);
 $configObject = '\\SprayFire\\Config\\JsonConfig';
@@ -68,5 +78,13 @@ $ConfigBootstrap = new \SprayFire\Bootstrap\ConfigBootstrap($ConfigErrorLog, $co
 $ConfigBootstrap->runBootstrap();
 $ConfigMap = $ConfigBootstrap->getConfigs();
 
+$configErrors = $ConfigErrorLog->getMessages();
+
 $PrimaryConfig = $ConfigMap->getObject('PrimaryConfig');
 $RoutesConfig = $ConfigMap->getObject('RoutesConfig');
+
+$Container = new \SprayFire\Core\Structure\GenericMap();
+$Container->setObject('PrimaryConfig', $PrimaryConfig);
+$Container->setObject('RoutesConfig', $RoutesConfig);
+
+return $Container;
