@@ -1,15 +1,15 @@
 <?php
 
 /**
-* SprayFire is a custom built framework intended to ease the development
-* of websites with PHP 5.3.
-*
-* SprayFire is released under the Open-Source Initiative MIT license.
-*
-* @author Charles Sprayberry <cspray at gmail dot com>
-* @license OSI MIT License <http://www.opensource.org/licenses/mit-license.php>
-* @copyright Copyright (c) 2011,2012 Charles Sprayberry
-*/
+ * @file
+ * @brief The primary intialization script for SprayFire.
+ *
+ * @details
+ * 
+ *
+ * @author Charles Sprayberry cspray at gmail dot com
+ * @copyright Copyright (c) 2011,2012 Charles Sprayberry
+ */
 
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 // The below variables can be changed to adjust the implementation details
@@ -35,88 +35,17 @@ $configPath = $installPath .'/config';
 $webPath = $installPath . '/web';
 
 // The sub-directory and file name holding the primary configuration
-// This should exists in \a $configPath
+// This should exist in \a $configPath
 $primaryConfigFile = array('json', 'configuration.json');
 
-
+// The sub-directory and file name holding the routes configuration
+// This should exist in \a $configPath
 $routesConfigFile = array('json', 'routes.json');
 
 // PLEASE DO NOT CHANGE CODE BELOW THIS LINE UNLESS YOU KNOW WHAT YOU ARE DOING!
-
 // SPRAYFIRE SPRAYFIRE SPRAYFIRE SPRAYFIRE SPRAYFIRE SPRAYFIRE SPRAYFIRE SPRAYFIRE
 
-$errors = array();
-
-$errorCallback = function($severity, $message, $file = null, $line = null, $context = null) use (&$errors) {
-
-    $normalizeSeverity = function() use ($severity) {
-        $severityMap = array(
-            E_WARNING => 'E_WARNING',
-            E_NOTICE => 'E_NOTICE',
-            E_USER_ERROR => 'E_USER_ERROR',
-            E_USER_WARNING => 'E_USER_WARNING',
-            E_USER_NOTICE => 'E_USER_NOTICE',
-            E_USER_DEPRECATED => 'E_USER_DEPRECATED',
-            E_RECOVERABLE_ERROR => 'E_RECOVERABLE_ERROR',
-            E_DEPRECATED => 'E_DEPRECATED'
-        );
-        if (\array_key_exists($severity, $severityMap)) {
-            return $severityMap[$severity];
-        }
-        return 'E_UNKOWN_SEVERITY';
-    };
-
-    $index = \count($errors);
-    $errors[$index]['severity'] = $normalizeSeverity();
-    $errors[$index]['message'] = $message;
-    $errors[$index]['file'] = $file;
-    $errors[$index]['line'] = $line;
-
-    // here to return an error if improper type hints are passed
-    $unhandledSeverity = array(E_RECOVERABLE_ERROR);
-    if (\in_array($severity, $unhandledSeverity)) {
-        return false;
-    }
-
-};
-
-\set_error_handler($errorCallback);
-
-include $libsPath . '/SprayFire/Core/ClassLoader.php';
-
-$ClassLoader = new \SprayFire\Core\ClassLoader();
-\spl_autoload_register(array($ClassLoader, 'load'));
-$ClassLoader->registerNamespaceDirectory('SprayFire', $libsPath);
-
-$paths = \compact('installPath', 'libsPath', 'appPath', 'logsPath', 'configPath', 'webPath');
-$PathGenBootstrap = new \SprayFire\Bootstrap\PathGeneratorBootstrap($paths);
-$PathGenBootstrap->runBootstrap();
-
-$Directory = $PathGenBootstrap->getPathGenerator();
-
-$primaryConfigPath = $Directory->getConfigPath($primaryConfigFile);
-$routesConfigPath = $Directory->getConfigPath($routesConfigFile);
-$configObject = '\\SprayFire\\Config\\JsonConfig';
-
-$configs = array();
-
-$configs[0]['config-object'] = $configObject;
-$configs[0]['config-data'] = $primaryConfigPath;
-$configs[0]['map-key'] = 'PrimaryConfig';
-
-$configs[1]['config-object'] = $configObject;
-$configs[1]['config-data'] = $routesConfigPath;
-$configs[1]['map-key'] = 'RoutesConfig';
-
-$ConfigErrorLog = new \SprayFire\Logger\DevelopmentLogger();
-$ConfigBootstrap = new \SprayFire\Bootstrap\ConfigBootstrap($ConfigErrorLog, $configs);
-$ConfigBootstrap->runBootstrap();
-$ConfigMap = $ConfigBootstrap->getConfigs();
-
-$PrimaryConfig = $ConfigMap->getObject('PrimaryConfig');
-$RoutesConfig = $ConfigMap->getObject('RoutesConfig');
-
-var_dump($RoutesConfig->defaults);
+include $libsPath . '/SprayFire/Bootstrap/bootstrap.php';
 
 /**
  * @todo The following markup eventually needs to be moved into the default
@@ -183,7 +112,7 @@ echo <<<HTML
                         <div id="the-team">
                             <h2>the team</h2>
                             <div class="team-member">
-                                <p class="name">< href="http://www.cspray.github.com/">Charles Sprayberry</a></p>
+                                <p class="name"><a href="http://www.cspray.github.com/">Charles Sprayberry</a></p>
                                 <p class="title">Benevolent Dictator for Life</p>
                                 <p class="title">Lead Developer &amp; Creator</p>
                                 <p><a href="http://www.github.com/cspray/">github</a></p>
