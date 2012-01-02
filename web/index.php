@@ -69,10 +69,12 @@ $SprayFireContainer = include $libsPath . '/SprayFire/Bootstrap/bootstrap.php';
  * template for HtmlResponders.
  */
 
-// NOTE: The below code is a temporary measure until the templating system is
-// in place
+// NOTE: The below code is a temporary measure until the templating system is in place
 
 $installDir = \basename($installPath);
+$errors = 'Errors: ' . \print_r($errors, true);
+$memUsage = 'Memory usage: ' . \memory_get_peak_usage() / (1000*1024) . ' mb';
+$runTime = 'Execution time: ' . (\microtime(true) - $startTime) . ' seconds';
 
 echo <<<HTML
 <!DOCTYPE html>
@@ -132,10 +134,15 @@ echo <<<HTML
                     <p style="text-align:center;"><span class="sprayfire-orange">Spray</span><span class="sprayfire-red">Fire</span> &copy; Charles Sprayberry 2011</p>
                 </div>
             </div>
+
+            <div id="debug-info" style="margin-top:1em;border:2px solid black;padding:5px;font-family:monospace;">
+                <ul>
+                    <li>$errors</li>
+                    <li>$memUsage</li>
+                    <li>$runTime</li>
+                </ul>
+            </div>
         </body>
     </html>
 HTML;
 
-echo 'Errors: ' , var_dump($errors);
-echo 'Memory usage: ' . \memory_get_peak_usage() / (1000*1024), '<br />';
-echo 'Execution time: ' . (\microtime(true) - $startTime);
