@@ -70,6 +70,7 @@ class ExceptionHandler extends \SprayFire\Logger\CoreObject {
      * content will be sent to the user.
      *
      * @param $Exception Exception thrown and not caught
+     * @see http://www.php.net/manual/en/function.header.php
      */
     public function trap($Exception) {
         $file = $Exception->getFile();
