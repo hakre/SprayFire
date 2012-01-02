@@ -20,6 +20,7 @@
  * @author Charles Sprayberry cspray at gmail dot com
  * @copyright Copyright (c) 2011,2012 Charles Sprayberry
  */
+
 namespace SprayFire\Core\Handler;
 
 /**
@@ -46,10 +47,18 @@ class ExceptionHandler extends \SprayFire\Logger\CoreObject {
     /**
      * @brief A URL path to a page that should handle 500 requests
      *
+     * @details
+     * The content of this file, if the file exists, will be included as the content
+     * to be shown instead of the normal content for a request.
+     *
      * @property $urlPath
      */
     protected $replacePath;
 
+    /**
+     * @param $Log \SprayFire\Logger\Log to log information about the caught exception
+     * @param $contentReplacementPath File path holding content to serve up after the info is logged
+     */
     public function __construct(\SprayFire\Logger\Log $Log, $contentReplacementPath) {
         parent::__construct($Log);
         $this->replacePath = $contentReplacementPath;
@@ -58,7 +67,7 @@ class ExceptionHandler extends \SprayFire\Logger\CoreObject {
     /**
      * @brief It should be known that after the Exception information is logged
      * the request will have a 500 HTTP status error returned and the passed
-     * \a $replacePath will be included as the content to display to the user.
+     * content will be sent to the user.
      *
      * @param $Exception Exception thrown and not caught
      */
