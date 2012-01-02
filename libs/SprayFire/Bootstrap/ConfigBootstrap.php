@@ -2,7 +2,7 @@
 
 /**
  * @file
- * @brief Holds a class designed to create the SprayFire.Config.Configuraiton objects
+ * @brief Holds a class designed to create the SprayFire.Config.Configuration objects
  * needed by SprayFire.
  *
  * @details
