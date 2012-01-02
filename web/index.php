@@ -1,20 +1,37 @@
 <?php
-
 /**
  * @file
- * @brief The primary intialization script for SprayFire.
+ * @brief The primary intialization script for SprayFire
  *
  * @details
- * 
+ * SprayFire is a fully unit-tested, light-weight PHP framework for developers who
+ * want to make simple, secure, dynamic website content.
+ *
+ * SprayFire repository: http://www.github.com/cspray/SprayFire/
+ *
+ * SprayFire wiki: http://www.github.com/cspray/SprayFire/wiki/
+ *
+ * SprayFire API Documentation: http://www.cspray.github.com/SprayFire/
+ *
+ * SprayFire is released under the Open-Source Initiative MIT license.
+ * OSI MIT License <http://www.opensource.org/licenses/mit-license.php>
  *
  * @author Charles Sprayberry cspray at gmail dot com
  * @copyright Copyright (c) 2011,2012 Charles Sprayberry
  */
 
+
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 // The below variables can be changed to adjust the implementation details
 // of the framework's initialization process.
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+// Please note that changing the names of variables in this file will have horrible
+// awful consequences that probably entails some things failing horribly.  Please
+// do not modify any variable names, add any variables or otherwise modify this
+// code outside of the values of the variables you see below.
+
+// NO TRAILING SLASHES ON DIRECTORIES!
 
 // The path where the app, libs, config and web directories are stored
 $installPath = \dirname(__DIR__);
@@ -45,7 +62,7 @@ $routesConfigFile = array('json', 'routes.json');
 // PLEASE DO NOT CHANGE CODE BELOW THIS LINE UNLESS YOU KNOW WHAT YOU ARE DOING!
 // SPRAYFIRE SPRAYFIRE SPRAYFIRE SPRAYFIRE SPRAYFIRE SPRAYFIRE SPRAYFIRE SPRAYFIRE
 
-include $libsPath . '/SprayFire/Bootstrap/bootstrap.php';
+$SprayFireContainer = include $libsPath . '/SprayFire/Bootstrap/bootstrap.php';
 
 /**
  * @todo The following markup eventually needs to be moved into the default
@@ -56,24 +73,6 @@ include $libsPath . '/SprayFire/Bootstrap/bootstrap.php';
 // in place
 
 $installDir = \basename($installPath);
-
-if (empty($sanityFailures)) {
-    $sanityDisplay = '<div id="sanity-check">';
-    $sanityDisplay .= '<div class="sanity-success">';
-    $sanityDisplay .= '<img src="/' . $installDir . '/web/images/sanity-success.png" width="75" height="75" style="float:left;margin-right:.5em;" />';
-    $sanityDisplay .= '<p>All sanity checks passed!  Please feel free to adjust this template as needed.</p>';
-    $sanityDisplay .= '</div>';
-    $sanityDisplay .= '</div>';
-} else {
-    $sanityDisplay = '<div id="sanity-check">';
-    foreach ($sanityFailures as $sanityMessage) {
-        $sanityDisplay .= '<div class="sanity-failure">';
-        $sanityDisplay .= '<img src="/' . $installDir . '/web/images/sanity-warning.png" width="75" height="75" style="float:left;margin-right:.5em;" />';
-        $sanityDisplay .= '<p>' . $sanityMessage . '</p>';
-        $sanityDisplay .= '</div>';
-    }
-    $sanityDisplay .= '</div>';
-}
 
 echo <<<HTML
 <!DOCTYPE html>
@@ -92,7 +91,6 @@ echo <<<HTML
                 <div id="body">
                     <div id="main-content">
                         <p>Thanks for checking out <span class="sprayfire-orange">Spray</span><span class="sprayfire-red">Fire</span>, a PHP 5.3+ framework written to ease the development of web sites and web applications.  It appears you are setting up a fresh installation, check out the results of the sanity check below.  If you get the green light please feel free to change this template located in <em>put path to template here</em>.  If you find errors please fix them as appropriate and reload this page until you get the green light.</p>
-                        $sanityDisplay
                         <p><span class="sprayfire-orange">Spray</span><span class="sprayfire-red">Fire</span> is a fully unit-tested, light-weight PHP framework for developers who want to make simple, secure, dynamic website content.  Some of the features built in includes:</p>
                         <ul>
                             <li>Full support of PHP 5.3+, most importantly including the use of namespaces.</li>
@@ -138,4 +136,6 @@ echo <<<HTML
     </html>
 HTML;
 
-var_dump($errors);
+echo 'Errors: ' , var_dump($errors);
+echo 'Memory usage: ' . \memory_get_peak_usage() / (1000*1024), '<br />';
+echo 'Execution time: ' . (\microtime(true) - $startTime);
