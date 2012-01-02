@@ -51,7 +51,7 @@ class ClassLoader {
     public function load($className) {
         $namespace = $this->getTopLevelNamespace($className);
         $path = $this->getDirectoryForTopLevelNamespace($namespace);
-        if (!$path) {
+        if (!isset($path)) {
             return false;
         }
         $path .= '/' . $this->convertNamespacedClassToFilePath($className);
